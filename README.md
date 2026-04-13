@@ -1,15 +1,53 @@
-## 参考资料
+# HTML 學習筆記
 
-### 教学影片
+這份筆記整理 Web 與 HTML 入門課程內容，保留教學型正文，方便順讀學習，也方便之後快速回查。
+
+## 這份筆記在學什麼
+
+這裡主要收錄前端入門階段會先碰到的基礎概念。  
+內容會從 `Web`、瀏覽器、網站、網頁與 `HTML` 這些核心名詞開始，逐步往後建立頁面結構與開發觀念。
+
+## 章節導航
+
+### 第一章｜寫在前面
+
+- [查看本章導航](./第一章_寫在前面/README.md)
+- [甚麼是 Web](./第一章_寫在前面/甚麼是%20Web.md)
+- [瀏覽器](./第一章_寫在前面/瀏覽器.md)
+- [Web 標準](./第一章_寫在前面/Web%20標準.md)
+- [甚麼是 Web 的前端和後端](./第一章_寫在前面/甚麼是%20Web%20的前端和後端.md)
+- [客户端、终端、服务端是什么意思](./第一章_寫在前面/客户端、终端、服务端是什么意思.md)
+- [C S 架構和 B S 架構](./第一章_寫在前面/C%20S%20架構和%20B%20S%20架構.md)
+- [Web 服務器](./第一章_寫在前面/Web%20服務器.md)
+
+### 第二章｜HTML 簡介
+
+- [查看本章導航](./第二章_HTML簡介/README.md)
+- [網頁和網站](./第二章_HTML簡介/網頁和網站.md)
+- [HTML 版本的區別](./第二章_HTML簡介/HTML版本的區別.md)
+
+## 快速回查入口
+
+- 想先釐清 `Web` 是什麼時，看：[甚麼是 Web](./第一章_寫在前面/甚麼是%20Web.md)
+- 想理解瀏覽器在整個流程中的角色時，看：[瀏覽器](./第一章_寫在前面/瀏覽器.md)
+- 想確認 `HTML`、`CSS`、`JavaScript` 的基本分工時，看：[Web 標準](./第一章_寫在前面/Web%20標準.md)
+- 想分清網頁、網站與 `HTML` 的差別時，看：[網頁和網站](./第二章_HTML簡介/網頁和網站.md)
+- 想快速比較 `HTML5`、`HTML4`、`XHTML` 時，看：[HTML 版本的區別](./第二章_HTML簡介/HTML版本的區別.md)
+
+## 參考資料
+
+### 教學影片
+
 - [黑马程序员pink老师前端入门教程](https://www.bilibili.com/video/BV14J4114768/?spm_id_from=333.337.search-card.all.click&vd_source=dd97ccca0358cc54d2813737943d2b54)
 - [前端开发入门教程](https://www.bilibili.com/video/BV1Kg411T7t9?vd_source=dd97ccca0358cc54d2813737943d2b54)
 - [黑马程序员web前端进阶教程](https://www.bilibili.com/video/BV1xq4y1q7jZ/?spm_id_from=333.788.b_636f6d6d656e74.10&vd_source=dd97ccca0358cc54d2813737943d2b54)
 - [前端html5+css3零基础入门](https://www.bilibili.com/video/BV1p84y1P7Z5/?spm_id_from=333.999.0.0&vd_source=723087a45cc18ba8e7d0e2720ffbf08d)
 
-### 笔记来源
+### 筆記來源
 
+- 依目前倉庫內容整理，原始來源可後續再補。
 
-### Markdown 参考
+### Markdown 參考
 
 - [MarkDown語法大全](https://hackmd.io/@eMP9zQQ0Qt6I8Uqp2Vqy6w/SyiOheL5N/%2FBVqowKshRH246Q7UDyodFA)
 - [Markdown 常見語法整理](https://austin72905.github.io/2023/08/05/markdown-syntax)
