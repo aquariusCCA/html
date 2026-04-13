@@ -1,98 +1,142 @@
 # contenteditable 屬性
 
 > 所屬章節：第五章｜全局屬性  
-> 關鍵字：`contenteditable`、可編輯內容、行內編輯、HTML5、全局屬性、`true`、`false`  
-> 建議回查情境：想知道如何讓元素內容能直接在頁面上被修改、想快速回查 `contenteditable` 的基本寫法、想分清 `contenteditable="true"` 和 `contenteditable="false"` 的差別
+> 關鍵字：`contenteditable`、可編輯內容、行內編輯、rich-text editing、`true`、`false`、`plaintext-only`、繼承、HTML 全局屬性  
+> 建議回查情境：想知道如何讓元素內容能直接在頁面上被修改、想分清 `contenteditable="true"`、`"false"`、`"plaintext-only"` 的差別、想確認為什麼元素可編輯不代表資料已經保存
 
 ## 本節導讀
 
-這篇整理 `contenteditable` 這個 HTML 全局屬性的基本用途。  
-它的核心作用，是讓元素內的內容可以直接在瀏覽器頁面上被使用者編輯，而不一定要先做成表單欄位。
+這篇整理 `contenteditable` 這個全局屬性的真正使用邏輯。  
+它不只是「讓元素可以編輯」而已，更重要的是要分清三件事：元素是否可編輯、可編輯時允不允許富文字格式、以及沒有明寫值時會不會從父層繼承。
 
-如果你看到某些頁面上的文字區塊可以直接點擊後修改，背後常見的做法之一，就是替元素加上 `contenteditable`。
+原始教材常把它講成單純的 `true` / `false` 開關。  
+這樣入門很快，但會漏掉兩個很關鍵的觀念：`contenteditable` 其實是列舉屬性，不是只有兩種狀態；而且當屬性缺失或值無效時，結果會看父元素，不是單純「等於 false」。
 
-## 你會在這篇學到什麼
+## 這篇在解決什麼問題
 
-- `contenteditable` 屬性是在做什麼
-- `contenteditable` 的基本寫法
-- `contenteditable="true"` 和 `contenteditable="false"` 的差別
-- 什麼情況下適合用這個屬性
+- 有些頁面希望使用者直接修改某個區塊裡的內容，而不是另外打開表單欄位。
+- `contenteditable` 就是在處理這類需求：把一般 HTML 元素變成可直接編輯的區域。
+- 但如果只把它理解成「true 可編輯、false 不可編輯」，你會很容易在巢狀編輯區、貼上內容、或可編輯範圍判斷上出錯。
 
-## 30 秒複習入口
+## 先講結論 / 核心理解
 
-- `contenteditable` 用來控制元素內容能不能直接在頁面上編輯。
-- `contenteditable="true"` 代表允許編輯內容。
-- `contenteditable="false"` 代表不允許編輯內容。
-- 這個屬性改變的是元素內容的可編輯性，不是把元素變成表單控制項。
+先記住一件事：`contenteditable` 不是單純布林開關，而是控制「這個元素的內容能不能編輯，以及用哪種編輯模式」的列舉屬性。  
+最常見的三種理解如下：
 
-## 速查區
+- `true`：內容可編輯，通常允許富文字編輯。
+- `false`：內容不可編輯。
+- `plaintext-only`：內容可編輯，但只保留純文字，不保留富文字格式。
 
-### 核心概念
+如果屬性沒有設定，或值無效，結果通常會繼承父元素的可編輯狀態。
 
-- `contenteditable` 是讓元素內容可直接被使用者修改的全局屬性。
-- 它最常用在想做「頁面上直接編輯文字」的情境。
+## 核心定義 / 規則
 
-### 關鍵規則 / 判準
+## 1. `contenteditable` 在控制什麼
 
-- 常見寫法是 `<element contenteditable="true">` 或 `<element contenteditable="false">`。
-- `true` 表示元素內容可編輯。
-- `false` 表示元素內容不可編輯。
-- 這個屬性是 HTML5 新增的能力。
+`contenteditable` 控制的是元素內部內容能不能直接被使用者修改。  
+它常見於：
 
-### 常見混淆點
+- 行內編輯介面
+- 可直接改字的說明區塊
+- 簡單的筆記或留言編輯器
 
-- `contenteditable` 讓內容可被修改，但不等於資料已經自動儲存。
-- `contenteditable` 不是專門給 `<input>` 或 `<textarea>` 用的；它常用在一般元素上。
-- 元素可編輯，不代表所有編輯行為都已經被完整控制，實際應用時通常還要再搭配程式處理。
+它改變的是「瀏覽器把這塊內容當成可編輯區」，不是把元素自動變成表單控制項。
 
-### 一句話對比
+## 2. 它不是只有 `true` 和 `false`
 
-- `contenteditable` 解決的是「元素內容能不能直接在頁面上改」，不是「怎麼提交表單資料」。
+`contenteditable` 是列舉屬性。  
+以學習筆記角度，至少先掌握三種常見值：
 
-## 正文筆記
+### `contenteditable="true"`
 
-### 這篇在解決什麼問題？
+- 表示元素內容可編輯。
+- 一般會進入可編輯模式，並可能允許貼入帶格式內容。
 
-- 有些頁面希望使用者直接點一下文字區塊就能修改內容，而不是另外跳到表單頁面。
-- `contenteditable` 正是在處理這類需求：把一般 HTML 元素變成可直接編輯內容的區域。
+### `contenteditable="false"`
 
-## 1. `contenteditable` 的作用
+- 表示元素內容不可編輯。
+- 若放在父層可編輯區中的某個子元素上，常可用來把那一小塊排除在可編輯範圍外。
 
-> HTML5 新增。目的是讓用戶能夠修改頁面上的元素。
+### `contenteditable="plaintext-only"`
 
-- 加上 `contenteditable` 之後，使用者可以直接在頁面上編輯元素內的文字內容。
-- 這很適合用在簡單的備註區、可即時修改的說明文字，或需要行內編輯的介面。
+- 表示元素內容可編輯，但以純文字為主。
+- 比起一般 `true`，它更適合「只想收文字、不想保留粗體、連結、顏色等格式」的情境。
 
-## 2. 語法與基本示例
+## 3. 缺失或無效值會看父元素
+
+- 這是原始教材最容易漏掉的點。
+- 如果元素本身沒有設定 `contenteditable`，或設定成無效值，結果通常不是直接變成不可編輯，而是看父元素是不是可編輯。
+- 所以在巢狀結構中，常會出現「父層可編輯，子層沒寫也跟著可編輯」的情況。
+
+## 判斷條件或推理過程
+
+當你在判斷某個元素是否可編輯時，可以用這個順序想：
+
+1. 先看這個元素自己有沒有寫 `contenteditable`。
+2. 如果寫的是 `true`，它就是可編輯區。
+3. 如果寫的是 `false`，它就是不可編輯區。
+4. 如果寫的是 `plaintext-only`，它可編輯，但以純文字模式理解。
+5. 如果沒寫或值無效，再往父層看有沒有可編輯設定。
+
+## 例子說明
+
+### 例子 1：最基本的可編輯與不可編輯
 
 ```html
 <body>
-  <p contenteditable="true">I love China!</p>
-  <p contenteditable="false">I love China!</p>
+  <p contenteditable="true">這段文字可以直接修改。</p>
+  <p contenteditable="false">這段文字不能直接修改。</p>
 </body>
 ```
 
-### 這段怎麼理解？
+- 第一個段落可直接在頁面上編輯。
+- 第二個段落不可直接編輯。
+- 這個例子只是在建立最基礎的開關概念。
 
-- 第一個 `<p>` 設為 `contenteditable="true"`，表示段落內容可以直接被修改。
-- 第二個 `<p>` 設為 `contenteditable="false"`，表示段落內容不能直接被修改。
-- 這個例子最重要的觀察點，是同樣都是 `<p>`，是否可編輯取決於 `contenteditable` 的值。
+### 例子 2：純文字模式
 
-## 3. 什麼時候會用到 `contenteditable`
+```html
+<div contenteditable="plaintext-only">
+  這裡可以輸入文字，但不希望保留貼上的富文字格式。
+</div>
+```
 
-- 當你想讓使用者直接修改頁面上的文字內容時。
-- 當你想做簡單的行內編輯介面，而不是先建立完整表單流程時。
-- 當你只是要提供可編輯區域時，它很方便；但如果還需要驗證、送出、儲存，通常仍要再搭配 JavaScript 或後端處理。
+- 這個例子最重要的不是「也能編輯」，而是「只想要純文字」。
+- 如果你的目標是備註、簡短輸入或不想處理富文字清理，這種理解比單純背 `true` / `false` 更重要。
 
-## 自測問題
+### 例子 3：父層可編輯、子層排除
 
-1. `contenteditable` 屬性主要在解決什麼問題？
-2. `contenteditable="true"` 和 `contenteditable="false"` 的差別是什麼？
-3. 為什麼說 `contenteditable` 讓內容可編輯，不代表資料一定已經被保存？
-4. 哪些情況適合使用 `contenteditable`，哪些情況可能還要搭配其他程式處理？
+```html
+<div contenteditable="true">
+  這整塊可以編輯，
+  <span contenteditable="false">但這一小段不行。</span>
+</div>
+```
+
+- 父層整塊可編輯。
+- 子層 `span` 明確標記成 `false`，所以它可以被理解成從可編輯區中切出去的例外。
+- 這就是為什麼只把 `contenteditable` 當成單純兩段示例，會漏掉很多實際情境。
+
+## 常見混淆點 / 易錯點
+
+- `contenteditable` 讓內容可修改，不代表資料已經保存；儲存仍要靠 JavaScript、表單送出或後端流程。
+- `contenteditable` 不是專門給 `<input>` 或 `<textarea>` 用的；它更常拿來讓一般元素進入可編輯狀態。
+- `contenteditable="true"` 不等於你已經做完一個完整編輯器；游標行為、貼上內容、格式清理、儲存、驗證，往往都還要另外處理。
+- `contenteditable` 不是單純布林屬性；如果你忽略 `plaintext-only` 和繼承行為，後面很容易判斷錯。
+
+## 修正說明
+
+- 原文偏向把 `contenteditable` 當成 `true` / `false` 二分法，這裡改成列舉屬性來整理，避免忽略 `plaintext-only`。
+- 原文未交代缺失值與無效值的繼承行為，這裡補上，因為這是判斷可編輯範圍時的核心概念。
+- 本次採中度改寫：保留原本「讓元素可直接編輯」的核心意圖，但重排知識順序，避免學成過度簡化版本。
+
+## 一句話抓核心
+
+`contenteditable` 的關鍵不在於背 `true` 或 `false`，而在於理解「這個元素現在是不是可編輯區、用哪種編輯模式、以及是否會從父層繼承可編輯狀態」。
 
 ## 延伸閱讀
 
+- [spellcheck 屬性](./spellcheck%20属性.md)
 - [class 屬性](./class%20属性.md)
 - [返回第五章：全局屬性](./README.md)
 - [返回首頁](../README.md)
