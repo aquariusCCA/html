@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hidden Demo</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --paper: #fffaf4;
+      --ink: #1f2830;
+      --muted: #66717a;
+      --line: #d8c9b7;
+      --accent: #2f7f73;
+      --accent-strong: #205a52;
+      --soft: rgba(47, 127, 115, 0.12);
+      --warn: #ad5f2f;
+      --shadow: 0 18px 40px rgba(52, 39, 21, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(47, 127, 115, 0.15), transparent 26%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(960px, calc(100% - 32px));
+      margin: 28px auto;
+      padding: 24px;
+      border: 1px solid rgba(216, 201, 183, 0.9);
+      border-radius: 24px;
+      background: rgba(255, 250, 244, 0.92);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.1;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .lead {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--paper);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .note {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .sample {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px dashed var(--line);
+      margin-bottom: 12px;
+    }
+
+    .message {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--soft);
+      border-left: 4px solid var(--accent);
+      margin-top: 14px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(173, 95, 47, 0.08);
+      color: var(--warn);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        width: min(100% - 20px, 960px);
+        margin: 12px auto;
+        padding: 18px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>`hidden` Demo</h1>
+    <p class="lead">
+      這個示例把筆記中的兩個重點放在同一頁：一個元素因為帶有 <code>hidden</code> 而不顯示，
+      以及如何用 JavaScript 移除 <code>hidden</code> 讓內容重新可見。
+    </p>
+
+    <section class="layout">
+      <section class="card">
+        <h2>基本示例</h2>
+        <p class="note">下面第一段會顯示，第二段因為帶有 <code>hidden</code>，所以一開始看不到。</p>
+
+        <p class="sample">這是一個沒有隱藏的段落。</p>
+        <p class="sample" hidden>這是一個隱藏的段落。</p>
+
+        <div class="status">
+          重點：只要元素帶有 <code>hidden</code>，它就不會顯示在頁面上。
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>移除 `hidden` 後顯示</h2>
+        <p class="note">這一區模擬常見情境：先藏起來，等使用者按按鈕後再顯示內容。</p>
+
+        <button id="showButton" type="button">顯示內容</button>
+        <button id="resetButton" type="button">重設</button>
+
+        <p class="message" id="message" hidden>
+          這段內容原本是隱藏的。按下按鈕後，JavaScript 會移除 <code>hidden</code>。
+        </p>
+
+        <div class="status" id="statusText">
+          目前狀態：訊息仍為隱藏。
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const showButton = document.getElementById("showButton");
+    const resetButton = document.getElementById("resetButton");
+    const message = document.getElementById("message");
+    const statusText = document.getElementById("statusText");
+
+    showButton.addEventListener("click", () => {
+      message.removeAttribute("hidden");
+      statusText.textContent = "目前狀態：`hidden` 已移除，訊息已顯示。";
+    });
+
+    resetButton.addEventListener("click", () => {
+      message.setAttribute("hidden", "");
+      statusText.textContent = "目前狀態：訊息仍為隱藏。";
+    });
+  </script>
+</body>
+</html>
