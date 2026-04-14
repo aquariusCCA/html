@@ -1,4 +1,4 @@
-# dropzone 屬性
+﻿# dropzone 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`dropzone`、拖放目標、drop target、drag and drop、`copy`、`move`、`link`、obsolete、`dragenter`、`dragover`、`drop`  
@@ -134,7 +134,9 @@
 
 ## 延伸閱讀
 
-- [draggable 屬性](./draggable%20属性.md)
+- [draggable 屬性](./draggable%20屬性.md)
 - [第五章示例索引](./demos/README.md)
-- [返回第五章：全局屬性](./README.md)
+- [返回第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+
+

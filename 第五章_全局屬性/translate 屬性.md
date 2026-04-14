@@ -1,4 +1,4 @@
-# translate 屬性
+﻿# translate 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`translate`、翻譯提示、機器翻譯、在地化、`translate="yes"`、`translate="no"`、文字子節點、可翻譯屬性值、全局屬性  
@@ -123,7 +123,8 @@
 
 ## 延伸閱讀
 
-- [lang 屬性](./lang%20属性.md)
-- [title 屬性](./title%20属性.md)
+- [lang 屬性](./lang%20屬性.md)
+- [title 屬性](./title%20屬性.md)
 - [第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+

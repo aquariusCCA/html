@@ -1,4 +1,4 @@
-# id 屬性
+﻿# id 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`id`、唯一識別、unique identifier、CSS 選擇器、JavaScript 選取、片段連結、fragment  
@@ -119,6 +119,7 @@
 
 ## 延伸閱讀
 
-- [class 屬性](./class%20属性.md)
+- [class 屬性](./class%20屬性.md)
 - [第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+

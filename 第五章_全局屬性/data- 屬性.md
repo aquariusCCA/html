@@ -1,4 +1,4 @@
-# data-* 屬性
+﻿# data-* 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`data-*`、自定義資料屬性、custom data attributes、`dataset`、`DOMStringMap`、`data-foo-bar`、camelCase  
@@ -135,7 +135,9 @@
 
 ## 延伸閱讀
 
-- [class 屬性](./class%20属性.md)
-- [contenteditable 屬性](./contenteditable%20属性.md)
-- [返回第五章：全局屬性](./README.md)
+- [class 屬性](./class%20屬性.md)
+- [contenteditable 屬性](./contenteditable%20屬性.md)
+- [返回第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+
+

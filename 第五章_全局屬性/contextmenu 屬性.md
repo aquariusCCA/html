@@ -1,4 +1,4 @@
-# contextmenu 屬性
+﻿# contextmenu 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`contextmenu`、右鍵選單、上下文選單、`<menu>`、`menuitem`、舊規格、obsolete、`contextmenu` 事件、全局屬性  
@@ -142,6 +142,7 @@
 
 ## 延伸閱讀
 
-- [contenteditable 屬性](./contenteditable%20属性.md)
+- [contenteditable 屬性](./contenteditable%20屬性.md)
 - [第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+

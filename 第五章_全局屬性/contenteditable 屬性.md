@@ -1,4 +1,4 @@
-# contenteditable 屬性
+﻿# contenteditable 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`contenteditable`、可編輯內容、行內編輯、rich-text editing、`true`、`false`、`plaintext-only`、繼承、HTML 全局屬性  
@@ -130,7 +130,9 @@
 
 ## 延伸閱讀
 
-- [spellcheck 屬性](./spellcheck%20属性.md)
-- [class 屬性](./class%20属性.md)
-- [返回第五章：全局屬性](./README.md)
+- [spellcheck 屬性](./spellcheck%20屬性.md)
+- [class 屬性](./class%20屬性.md)
+- [返回第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+
+

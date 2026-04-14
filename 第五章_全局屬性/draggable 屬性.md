@@ -1,4 +1,4 @@
-# draggable 屬性
+﻿# draggable 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`draggable`、拖曳、drag and drop、HTML Drag and Drop API、`true`、`false`、`auto`、`dragstart`  
@@ -172,7 +172,9 @@
 
 ## 延伸閱讀
 
-- [dir 屬性](./dir%20属性.md)
+- [dir 屬性](./dir%20屬性.md)
 - [第五章示例索引](./demos/README.md)
-- [返回第五章：全局屬性](./README.md)
+- [返回第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+
+

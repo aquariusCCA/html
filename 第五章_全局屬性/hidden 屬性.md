@@ -1,4 +1,4 @@
-# hidden 屬性
+﻿# hidden 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`hidden`、隱藏元素、布林屬性、Boolean attribute、顯示與隱藏、JavaScript 切換  
@@ -115,5 +115,6 @@
 - [hidden-demo.html](./demos/hidden-demo.html)
 - [第五章示例索引](./demos/README.md)
 - [第五章｜全局屬性](./README.md)
-- [contenteditable 屬性](./contenteditable%20属性.md)
+- [contenteditable 屬性](./contenteditable%20屬性.md)
 - [返回首頁](../README.md)
+

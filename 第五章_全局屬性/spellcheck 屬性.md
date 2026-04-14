@@ -1,4 +1,4 @@
-# spellcheck 屬性
+﻿# spellcheck 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`spellcheck`、拼寫檢查、語法檢查、瀏覽器檢查、`input`、`textarea`、`contenteditable`  
@@ -119,6 +119,7 @@
 
 - [spellcheck-demo.html](./demos/spellcheck-demo.html)
 - [第五章示例索引](./demos/README.md)
-- [contenteditable 屬性](./contenteditable%20属性.md)
+- [contenteditable 屬性](./contenteditable%20屬性.md)
 - [第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+

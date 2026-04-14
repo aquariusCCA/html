@@ -25,7 +25,7 @@
 7. [button 按鈕標籤](./button 按鈕標籤.md)
 8. [禁用表單控件](./禁用表單控件.md)
 9. [label 標籤](./label標籤.md)
-10. [fieldset 與 legend 標籤](./fieldest與legend標籤.md)
+10. [fieldset 與 legend 標籤](./fieldset與legend標籤.md)
 
 ## 本章所有小節
 
@@ -38,7 +38,7 @@
 - [button 按鈕標籤](./button 按鈕標籤.md)
 - [禁用表單控件](./禁用表單控件.md)
 - [label 標籤](./label標籤.md)
-- [fieldset 與 legend 標籤](./fieldest與legend標籤.md)
+- [fieldset 與 legend 標籤](./fieldset與legend標籤.md)
 
 ## 適合快速回查的主題
 
@@ -80,7 +80,7 @@
 - 想確認怎麼禁用一整組控件，以及這對提交資料有什麼影響時，看：[禁用表單控件](./禁用表單控件.md)
 - 想快速知道 `<label>` 怎麼讓點文字也能操作表單控件時，看：[label 標籤](./label標籤.md)
 - 想確認 `for` 為什麼要對應 `id` 而不是 `name` 時，看：[label 標籤](./label標籤.md)
-- 想快速知道 `fieldset` 怎麼把表單欄位分組，以及 `legend` 在這組裡扮演什麼角色時，看：[fieldset 與 legend 標籤](./fieldest與legend標籤.md)
+- 想快速知道 `fieldset` 怎麼把表單欄位分組，以及 `legend` 在這組裡扮演什麼角色時，看：[fieldset 與 legend 標籤](./fieldset與legend標籤.md)
 
 ## 易混淆主題
 

@@ -1,4 +1,4 @@
-# title 屬性
+﻿# title 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`title`、`title attribute`、工具提示、tooltip、附加說明、補充資訊、全局屬性、滑鼠懸停、hover text、`abbr`、`<title>`  
@@ -167,7 +167,8 @@
 
 ## 延伸閱讀
 
-- [lang 屬性](./lang%20属性.md)
-- [style 屬性](./style%20属性.md)
+- [lang 屬性](./lang%20屬性.md)
+- [style 屬性](./style%20屬性.md)
 - [第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+

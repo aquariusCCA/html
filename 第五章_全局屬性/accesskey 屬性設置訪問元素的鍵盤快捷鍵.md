@@ -1,4 +1,4 @@
-# accesskey 屬性設置訪問元素的鍵盤快捷鍵
+﻿# accesskey 屬性設置訪問元素的鍵盤快捷鍵
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`accesskey`、鍵盤快捷鍵、快速訪問、全局屬性、HTML5、HTML4、快捷鍵衝突、鍵盤操作、無障礙  
@@ -105,6 +105,8 @@
 
 ## 延伸閱讀
 
-- [tabindex 屬性](./tabindex%20属性.md)
-- [返回第五章：全局屬性](./README.md)
+- [tabindex 屬性](./tabindex%20屬性.md)
+- [返回第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+
+

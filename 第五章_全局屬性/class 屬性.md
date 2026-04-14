@@ -1,4 +1,4 @@
-# class 屬性
+﻿# class 屬性
 
 > 所屬章節：第五章｜全局屬性  
 > 關鍵字：`class`、類名、類選擇器、CSS class、HTML DOM、JavaScript、全局屬性、多個類名  
@@ -145,5 +145,6 @@ p.important {
 ## 延伸閱讀
 
 - [accesskey 屬性設置訪問元素的鍵盤快捷鍵](./accesskey%20屬性設置訪問元素的鍵盤快捷鍵.md)
-- [返回第五章：全局屬性](./README.md)
+- [返回第五章｜全局屬性](./README.md)
 - [返回首頁](../README.md)
+
