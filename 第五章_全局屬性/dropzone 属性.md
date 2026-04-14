@@ -128,13 +128,6 @@
 - 畫面上看起來像拖放區，不代表瀏覽器真的會接受 drop；現代通常仍要處理 `dragover` 和 `drop`。
 - 如果你的目標是新專案實作，應優先記事件式拖放，不要把 `dropzone` 當成主解法。
 
-## 修正說明
-
-- 原文已經知道它不是現代主流方案，但仍保留較多「屬性本身如何使用」的重心，容易讓讀者覺得它只是支援度不好，而不是規格路線已退場。
-- 這次改寫把主線明確改成：`dropzone` 是歷史語法知識，現代拖放要學的是事件式 drop target。
-- 依 WHATWG 現行 HTML Standard，`dropzone` on all elements 已列為 obsolete attribute；規格直接建議改用 script 處理 `dragenter` 和 `dragover`。
-- 本次採中度改寫：保留 `copy` / `move` / `link` 的教學價值，但把它們放回歷史設計語境中理解。
-
 ## 一句話抓核心
 
 `dropzone` 的關鍵不在於背三個值，而在於知道它代表的是一條已經退場的 HTML 宣告式拖放方案；今天真正該學的是事件式 drop target。

@@ -136,13 +136,6 @@
 - `menuitem` 與 `menu type="context"` 若出現在教材裡，應優先把它們當成歷史知識，而不是新專案語法。
 - 如果你的目標是跨瀏覽器可控的右鍵選單，不要依賴 `contextmenu` 屬性。
 
-## 修正說明
-
-- 原文雖然已提到它偏舊、支援差，但主線仍容易被讀成「這是一種做右鍵選單的 HTML 方案」。
-- 這次改寫把主軸明確改成：`contextmenu` 是歷史語法知識，現代主流方案是 `contextmenu` 事件加自訂 UI。
-- 依 WHATWG 現行 HTML Standard，`contextmenu` on all elements、`type` on `menu`、以及 `menuitem` 都屬於 obsolete 路線；因此正文不再把它當成可直接採用的實務語法。
-- 本次採中度改寫：保留教材示例，但調整其知識定位與閱讀方式。
-
 ## 一句話抓核心
 
 `contextmenu` 屬性的關鍵不在於背它怎麼綁 `<menu>`，而在於知道這是一條已經退場的 HTML 路線；今天要做自訂右鍵選單，應改學 `contextmenu` 事件。
