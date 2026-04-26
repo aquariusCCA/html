@@ -23,11 +23,11 @@
 
 ## 建議閱讀順序
 
-1. [`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
+1. [`details` 標籤](./第31章_detail標籤.md)
 
 ## 本章所有小節
 
-- [`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
+- [`details` 標籤](./第31章_detail標籤.md)
 
 ## 適合快速回查的主題
 
@@ -44,12 +44,12 @@
 
 ## 高頻回查入口
 
-- 想快速知道 `<details>` 是做什麼的時，看：[`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
-- 想確認 `<summary>` 在做什麼時，看：[`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
-- 想知道 `open` 會不會讓內容預設展開時，看：[`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
-- 想確認 `open` 是否能寫成 `open="false"` 時，看：[`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
-- 想回看原生收合區塊範例時，看：[`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
-- 想知道什麼時候不適合用 `<details>` 時，看：[`details` 標籤｜9.5 分整理版](./第31章_detail標籤_9.5分版本.md)
+- 想快速知道 `<details>` 是做什麼的時，看：[`details` 標籤](./第31章_detail標籤.md)
+- 想確認 `<summary>` 在做什麼時，看：[`details` 標籤](./第31章_detail標籤.md)
+- 想知道 `open` 會不會讓內容預設展開時，看：[`details` 標籤](./第31章_detail標籤.md)
+- 想確認 `open` 是否能寫成 `open="false"` 時，看：[`details` 標籤](./第31章_detail標籤.md)
+- 想回看原生收合區塊範例時，看：[`details` 標籤](./第31章_detail標籤.md)
+- 想知道什麼時候不適合用 `<details>` 時，看：[`details` 標籤](./第31章_detail標籤.md)
 
 ## 易混淆主題
 
