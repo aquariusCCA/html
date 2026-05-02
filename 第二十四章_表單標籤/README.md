@@ -1,151 +1,148 @@
-# 第二十四章｜表單標籤
+# 第三十四章｜`script` 與 `noscript` 標籤
 
-> - 章節定位：從展示內容走向使用者互動，開始理解網頁如何接收輸入資料  
-> - 建議閱讀方式：先建立表單整體觀，再理解欄位之間的關係，最後補齊常見元素與行為控制
+> 章節定位：理解 HTML 如何載入與支援 JavaScript，以及腳本不可用時如何提供替代內容  
+> 建議閱讀方式：先理解 `<script>` 的基本載入方式，再分清傳統腳本、`defer`、`async`、`type="module"` 與 `<noscript>` 的用途
 
 ## 本章在學什麼
 
-這一章整理 HTML 的表單標籤。  
-重點不只是背各種輸入元素，而是先建立一個更大的觀念：表單是網頁與使用者互動、收集資料的起點。
+這一章整理 HTML 中和 JavaScript 載入直接相關的標籤。
 
-如果前面學到的標題、段落、列表、表格，主要都在處理內容展示，  
-那這一章開始進入的，就是「使用者如何輸入資料、選擇資料、送出資料，以及欄位之間如何形成清楚結構」這件事。
+重點不是學 JavaScript 語法，而是理解：
+
+- `<script>` 可以放內嵌程式，也可以透過 `src` 載入外部 JavaScript 檔案。
+- 腳本的「下載」和「執行」是兩件不同的事。
+- 腳本放置位置會影響 HTML 解析、DOM 操作時機與頁面可用性。
+- 傳統腳本可能阻塞 HTML 解析，因此現代頁面常搭配 `defer`、`async` 或模組腳本。
+- `defer` 和 `async` 都能改善傳統腳本阻塞問題，但執行時機與順序保證不同。
+- `type="module"` 是現代 JavaScript 模組的載入方式，預設具有類似 `defer` 的延後執行特性。
+- `nomodule` 可作為舊瀏覽器的相容性策略。
+- `<noscript>` 只能處理腳本被停用或不支援的情境，不是 JavaScript 錯誤處理工具。
 
 ## 本章與整體地圖的關係
 
-- 前置知識：前面學過的標題、段落、列表、表格，主要都在處理內容展示；這一章開始進入資料輸入與互動。
-- 這章的核心任務：先建立表單整體觀，再逐步理解表單域、表單控件、欄位關聯、分組結構，以及常見輸入元素與行為控制。
-- 這章的閱讀邏輯：先看整體，再看結構，再看元素，最後補強屬性與狀態控制。
-- 讀完後通常接：後續看到輸入框、單選、複選、按鈕、提交、驗證等內容時，都可以回來先確認表單的整體定位。
+- 前置知識：前面已學過 HTML 骨架、路徑、表單與互動元素。
+- 這章的核心任務：把 HTML 文件與 JavaScript 載入流程接起來。
+- 讀完後通常接：後續學 DOM、事件、表單互動、動態內容時，都會回到這章確認腳本如何被載入與執行。
 
 ## 建議閱讀順序
 
-### 第一階段：先建立整體觀
-
-1. [表單介紹](./表單介紹.md)
-2. [表單域](./表單域.md)
-3. [表單控件](./表單控件.md)
-
-### 第二階段：理解欄位之間的關係
-
-4. [label 標籤](./label標籤.md)
-5. [fieldset 與 legend 標籤](./fieldset與legend標籤.md)
-
-### 第三階段：認識常見表單元素
-
-6. [textarea 文本域表單元素](./textarea文本域表單元素.md)
-7. [select 下拉表單元素](./select下拉表單元素.md)
-8. [button 按鈕標籤](./button 按鈕標籤.md)
-
-### 第四階段：補強欄位行為與控制
-
-9. [新增表單屬性](./新增表單屬性.md)
-10. [禁用表單控件](./禁用表單控件.md)
+1. [`script` 與 `noscript` 標籤](./第34章_script與noscript標籤.md)
 
 ## 本章所有小節
 
-### 整體觀與基本結構
-
-- [表單介紹](./表單介紹.md)
-- [表單域](./表單域.md)
-- [表單控件](./表單控件.md)
-
-### 欄位關聯與分組結構
-
-- [label 標籤](./label標籤.md)
-- [fieldset 與 legend 標籤](./fieldset與legend標籤.md)
-
-### 常見表單元素
-
-- [textarea 文本域表單元素](./textarea文本域表單元素.md)
-- [select 下拉表單元素](./select下拉表單元素.md)
-- [button 按鈕標籤](./button 按鈕標籤.md)
-
-### 屬性補強與狀態控制
-
-- [新增表單屬性](./新增表單屬性.md)
-- [禁用表單控件](./禁用表單控件.md)
+- [`script` 與 `noscript` 標籤](./第34章_script與noscript標籤.md)
 
 ## 適合快速回查的主題
 
-### 表單整體觀
-
-- 為什麼網頁需要表單
-- 表單的核心任務是什麼
-- 表單由哪些部分組成
-- 表單和一般展示型標籤差在哪
-- `<form>` 是做什麼的
-- `action`、`method`、`name`、`target` 在處理什麼
-- `<input>` 可以變成哪些常見控件
-- `type`、`name`、`value`、`checked` 分別在做什麼
-
-### 欄位關聯與表單結構
-
-- `<label>` 是做什麼的
-- `for` 和 `id` 如何對應
-- `fieldset`、`legend` 如何把表單控件分組
-- `fieldset` 和 `label` 差在哪
-
-### 常見表單元素
-
-- `<textarea>`、`rows`、`cols` 如何控制多行輸入
-- `<select>`、`<option>`、`value`、`selected` 如何分工
-- `<button>`、`submit`、`reset`、`button` 如何分工
-
-### 屬性與狀態控制
-
-- `required`、`placeholder`、`autofocus`、`autocomplete` 分別在做什麼
-- `disabled` 如何禁用單一控件或一整組控件
-- `placeholder` 和 `value` 差在哪
-- 為什麼被禁用的控件通常不會提交
+- `<script>` 是做什麼的
+- 內嵌腳本和外部腳本有什麼差別
+- `<script src>` 怎麼載入外部 JavaScript
+- 腳本的下載和執行有什麼不同
+- 為什麼傳統腳本可能阻塞 HTML 解析
+- 為什麼腳本常放在 `body` 結尾
+- 為什麼現代寫法常在 `<head>` 使用 `defer`
+- `defer` 和 `async` 差在哪
+- 什麼情況適合使用 `async`
+- `type="module"` 有什麼特點
+- `nomodule` 是什麼相容性策略
+- `<noscript>` 適合處理什麼情境
+- `<noscript>` 不能處理哪些 JavaScript 錯誤
 
 ## 高頻回查入口
 
-### 想先建立整體概念時
-
-- 想快速知道表單在網頁中是做什麼的時，看：[表單介紹](./表單介紹.md)
-- 想分清表單域、表單控件、提示信息時，看：[表單介紹](./表單介紹.md)
-- 想開始學後續表單元素前先建立整體概念時，看：[表單介紹](./表單介紹.md)
-- 想快速知道 `<form>` 的角色與表單域的概念時，看：[表單域](./表單域.md)
-- 想先理解 `action`、`method`、`name`、`target` 這些常見屬性時，看：[表單域](./表單域.md)
-- 想快速知道 `<input>` 能有哪些常見控件時，看：[表單控件](./表單控件.md)
-- 想分清文字框、密碼框、單選框、複選框、提交按鈕與重置按鈕時，看：[表單控件](./表單控件.md)
-
-### 想整理欄位關聯與分組時
-
-- 想快速知道 `<label>` 怎麼讓點文字也能操作表單控件時，看：[label 標籤](./label標籤.md)
-- 想確認 `for` 為什麼要對應 `id` 而不是 `name` 時，看：[label 標籤](./label標籤.md)
-- 想快速知道 `fieldset` 怎麼把表單欄位分組，以及 `legend` 在這組裡扮演什麼角色時，看：[fieldset 與 legend 標籤](./fieldset與legend標籤.md)
-- 想分清 `fieldset` 和 `label` 在表單中的角色差異時，看：[fieldset 與 legend 標籤](./fieldset與legend標籤.md)
-
-### 想快速查常見表單元素時
-
-- 想快速知道 `<textarea>` 什麼時候該用時，看：[textarea 文本域表單元素](./textarea文本域表單元素.md)
-- 想分清 `rows`、`cols` 和多行輸入的關係時，看：[textarea 文本域表單元素](./textarea文本域表單元素.md)
-- 想快速知道 `<select>` 怎麼建立下拉列表時，看：[select 下拉表單元素](./select下拉表單元素.md)
-- 想分清 `<select>`、`<option>`、`value`、`selected` 各自在做什麼時，看：[select 下拉表單元素](./select下拉表單元素.md)
-- 想快速知道 `<button>` 有哪些常見型別時，看：[button 按鈕標籤](./button 按鈕標籤.md)
-- 想確認為什麼不寫 `type` 可能誤送出表單時，看：[button 按鈕標籤](./button 按鈕標籤.md)
-
-### 想查屬性與狀態控制時
-
-- 想快速知道 `required`、`placeholder`、`autofocus`、`autocomplete` 各自在做什麼時，看：[新增表單屬性](./新增表單屬性.md)
-- 想確認提示文字和真正欄位值差在哪時，看：[新增表單屬性](./新增表單屬性.md)
-- 想快速知道 `disabled` 會讓控件發生什麼事時，看：[禁用表單控件](./禁用表單控件.md)
-- 想確認怎麼禁用一整組控件，以及這對提交資料有什麼影響時，看：[禁用表單控件](./禁用表單控件.md)
+- 想快速知道 JavaScript 檔案怎麼接到 HTML 時，看：[`script` 與 `noscript` 標籤](./第34章_script與noscript標籤.md)
+- 想理解腳本為什麼會影響頁面解析時，看：[`script` 與 `noscript` 標籤](./第34章_script與noscript標籤.md)
+- 想分清 `defer` 和 `async` 時，看：[`script` 與 `noscript` 標籤](./第34章_script與noscript標籤.md)
+- 想知道現代前端專案為什麼使用 `type="module"` 時，看：[`script` 與 `noscript` 標籤](./第34章_script與noscript標籤.md)
+- 想確認 `<noscript>` 的用途與限制時，看：[`script` 與 `noscript` 標籤](./第34章_script與noscript標籤.md)
 
 ## 易混淆主題
 
-- 表單 vs 輸入框：表單是整體結構，輸入框只是其中一種控件。
-- 展示內容 vs 收集資料：表單章節的重點開始從顯示資訊轉向接收資訊。
-- 表單域 vs 表單控件：前者是外層範圍，後者是裡面的可互動元素。
-- `for` vs `name`：`label` 綁定控件時看的是 `id`，不是 `name`。
-- `fieldset` vs `label`：前者是整組欄位的分組容器，後者是單一控件的說明文字與關聯。
-- `<input type="text">` vs `<textarea>`：前者通常是單行輸入，後者適合多行長文本。
-- `<select>` vs `<input>`：前者偏向從固定選項中挑選，後者常用於輸入文字或其他型別資料。
-- `<button type="button">` vs 預設 `<button>`：前者是一般互動按鈕，後者在表單裡常會變成提交按鈕。
-- `placeholder` vs `value`：前者是提示文字，後者才是欄位真正內容。
-- `disabled` vs 可編輯但需提交的欄位：前者會讓控件失效，且通常不會被提交。
+### 1. 載入腳本 vs 執行腳本
+
+下載完成不代表一定立刻執行。
+
+例如：
+
+- `defer` 腳本可以先下載，但會等 HTML 解析完成後再執行。
+- `async` 腳本下載完成後會盡快執行。
+- `type="module"` 腳本預設具有類似 `defer` 的延後執行特性。
+
+### 2. 傳統腳本 vs `defer`
+
+傳統外部腳本：
+
+```html
+<script src="./main.js"></script>
+```
+
+瀏覽器解析到它時，可能會先下載並執行腳本，再繼續解析後面的 HTML。
+
+使用 `defer`：
+
+```html
+<script src="./main.js" defer></script>
+```
+
+腳本下載不阻塞 HTML 解析，並會在 HTML 解析完成後執行。
+
+### 3. `defer` vs `async`
+
+- `defer`：下載不阻塞解析，HTML 解析完成後執行，保留腳本順序。
+- `async`：下載不阻塞解析，下載完成後盡快執行，不保證腳本順序。
+
+如果腳本之間有依賴順序，通常選 `defer`；如果是獨立第三方腳本，才比較適合考慮 `async`。
+
+### 4. `async` 的不阻塞
+
+`async` 主要是「下載過程不阻塞 HTML 解析」。
+
+但是腳本真正執行時，瀏覽器仍需要先執行腳本。  
+如果當下 HTML 還沒解析完，仍可能短暫中斷 HTML 解析。
+
+### 5. `type="module"` vs 傳統腳本
+
+模組腳本可以使用 `import` / `export`，並且有自己的作用域。  
+它不像傳統腳本一樣，直接把頂層變數掛到全域環境。
+
+一般情況下，`type="module"` 本身就有類似 `defer` 的延後執行特性，不需要再特別加 `defer`。
+
+### 6. `<noscript>` vs 錯誤提示
+
+`<noscript>` 只處理腳本停用或瀏覽器不支援腳本的情境。
+
+它不能處理：
+
+- JavaScript 語法錯誤
+- JavaScript 執行錯誤
+- API 請求失敗
+- 套件載入失敗
+- 邏輯錯誤造成的畫面異常
+
+這些情況需要 JavaScript 本身的錯誤處理、狀態設計或前端框架的錯誤邊界處理。
+
+## 實務選擇簡表
+
+| 情境 | 常見寫法 | 說明 |
+|---|---|---|
+| 一般自己寫的主程式 | `<script src="./main.js" defer></script>` | 常見穩定寫法，適合依賴 DOM 的腳本 |
+| 多個有依賴順序的腳本 | 多個 `defer` 腳本 | 會保留原本出現順序 |
+| 統計、廣告、第三方獨立腳本 | `async` | 適合不依賴其他腳本、也不要求順序的腳本 |
+| 現代前端專案入口 | `<script type="module" src="./main.js"></script>` | 支援模組化，常見於 Vite、Webpack 等工具產生的入口 |
+| 舊瀏覽器備援 | `nomodule` | 搭配 `type="module"` 提供相容性處理 |
+| 腳本不可用時的提示 | `<noscript>...</noscript>` | 提供 JavaScript 被停用或不支援時的替代內容 |
+
+## 本章讀完後要能回答
+
+- `<script>` 可以用哪兩種方式引入 JavaScript？
+- 為什麼傳統 `<script src>` 可能阻塞 HTML 解析？
+- 腳本放在 `body` 結尾和使用 `defer` 有什麼差別？
+- `defer` 的下載與執行時機是什麼？
+- `async` 為什麼不適合有依賴順序的腳本？
+- `type="module"` 和傳統腳本有什麼不同？
+- `nomodule` 是用來解決什麼問題？
+- `<noscript>` 能處理哪些情境？
+- `<noscript>` 不能處理哪些 JavaScript 問題？
 
 ## 導航
 
