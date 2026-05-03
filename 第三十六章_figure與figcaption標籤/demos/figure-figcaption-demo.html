@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HTML figure 與 figcaption demo，展示圖片、程式碼、表格、前後對照、alt 與 caption 的正確用法。">
+  <title>Figure and Figcaption Demo</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --panel: #fcfcfd;
+      --ink: #17202a;
+      --muted: #5e6875;
+      --line: #d7dee8;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --amber: #b45309;
+      --rose: #be123c;
+      --green: #15803d;
+      --code-bg: #111827;
+      --code-ink: #e5e7eb;
+      --shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      background: var(--bg);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 40px;
+    }
+
+    .top,
+    .grid,
+    .demo-row,
+    .compare {
+      display: grid;
+      gap: 16px;
+    }
+
+    .top {
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .grid,
+    .compare {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .demo-row {
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      align-items: start;
+    }
+
+    .hero,
+    .panel,
+    .card,
+    .demo-figure {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 58%, #ecfeff 100%);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .hero p,
+    .panel p,
+    .card p,
+    li {
+      line-height: 1.72;
+    }
+
+    .hero p,
+    .muted {
+      color: var(--muted);
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quick,
+    .card {
+      padding: 18px;
+    }
+
+    .quick h2,
+    .panel h2,
+    .card h3 {
+      margin: 0 0 12px;
+    }
+
+    .quick ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .panel {
+      margin-top: 16px;
+      padding: 22px;
+      background: var(--panel);
+    }
+
+    .card {
+      box-shadow: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: #fff;
+      background: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.blue { background: var(--blue); }
+    .badge.amber { background: var(--amber); }
+    .badge.rose { background: var(--rose); }
+    .badge.green { background: var(--green); }
+
+    .code {
+      margin: 0;
+      overflow: auto;
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .demo-figure {
+      overflow: hidden;
+      margin: 0;
+      background: #fff;
+      box-shadow: none;
+    }
+
+    .demo-figure img {
+      width: 100%;
+    }
+
+    .demo-figure figcaption {
+      border-top: 1px solid var(--line);
+      padding: 12px 14px;
+      color: var(--muted);
+      background: #f8fafc;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .caption-first figcaption {
+      border-top: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .figure-inner {
+      padding: 16px;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 16px;
+      background: #f8fafc;
+    }
+
+    .note {
+      border-left: 4px solid var(--teal);
+      padding: 12px 14px;
+      color: var(--muted);
+      background: #f0fdfa;
+      border-radius: 8px;
+    }
+
+    .warning {
+      border-color: var(--rose);
+      background: #fff1f2;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .table th,
+    .table td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .table th {
+      background: #f8fafc;
+    }
+
+    .decision {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .decision th,
+    .decision td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .decision tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .decision th {
+      background: #f8fafc;
+    }
+
+    .decorative {
+      padding: 16px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .footer-links a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--teal);
+      background: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 920px) {
+      main {
+        width: min(100% - 20px, 1180px);
+        margin-top: 10px;
+      }
+
+      .top,
+      .grid,
+      .demo-row,
+      .compare,
+      .before-after {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="top">
+      <header class="hero">
+        <h1>Figure 與 Figcaption Demo</h1>
+        <p>
+          這個範例對應筆記中的判斷規則：`figure` 表示一組可獨立引用的內容，`figcaption` 是這組內容的說明；圖片、程式碼、表格、前後對照都可以放進 `figure`，但裝飾圖與單純排版容器不需要。
+        </p>
+      </header>
+
+      <aside class="quick card">
+        <h2>核心規則</h2>
+        <ul>
+          <li>`figcaption` 必須是 `figure` 的直接子元素。</li>
+          <li>一個 `figure` 最多放一個 `figcaption`。</li>
+          <li>`figcaption` 可以在內容前面或後面。</li>
+          <li>`alt` 描述圖片內容，caption 說明圖片在文章中的意義。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <span class="badge">basic image figure</span>
+      <h2>圖片與說明文字組成一個獨立內容單元</h2>
+      <div class="demo-row">
+        <div>
+          <pre class="code"><code>&lt;figure&gt;
+  &lt;img
+    src="./images/html-structure.svg"
+    alt="HTML 文件結構圖，包含 doctype、html、head、meta、title 與 body 區塊"&gt;
+  &lt;figcaption&gt;
+    圖 1：HTML 文件的基本結構。
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+          <p class="note">
+            這張圖可以被搬到附錄、投影片或其他段落仍保有意義，因此適合使用 `figure`。
+          </p>
+        </div>
+        <figure class="demo-figure">
+          <img
+            src="./images/html-structure.svg"
+            width="960"
+            height="540"
+            alt="HTML 文件結構圖，包含 doctype、html、head、meta、title 與 body 區塊">
+          <figcaption>圖 1：HTML 文件的基本結構。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <span class="badge blue">caption position</span>
+        <h2>`figcaption` 可以放前面</h2>
+        <figure class="demo-figure caption-first">
+          <figcaption>範例 1：最小 HTML 文件骨架。</figcaption>
+          <div class="figure-inner">
+            <pre class="code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+        </figure>
+        <p class="muted">
+          對程式碼範例來說，caption 放前面常像標題，先告訴讀者這段程式碼的目的。
+        </p>
+      </article>
+
+      <article class="panel">
+        <span class="badge green">not only images</span>
+        <h2>`figure` 不只可以包圖片</h2>
+        <figure class="demo-figure">
+          <div class="figure-inner">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>元素</th>
+                  <th>用途</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>`figure`</td>
+                  <td>包住可獨立引用的一組內容。</td>
+                </tr>
+                <tr>
+                  <td>`figcaption`</td>
+                  <td>提供這組內容的標題或說明。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption>表 1：`figure` 與 `figcaption` 的分工。</figcaption>
+        </figure>
+        <p class="muted">
+          若是資料表本身的標題，優先用 `table` 的 `caption`；若整個表格是文章中的附圖或附表，也可以外層再用 `figure`。
+        </p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <span class="badge amber">alt vs caption</span>
+      <h2>`alt` 與 `figcaption` 不應互相複製</h2>
+      <div class="demo-row">
+        <div class="compare">
+          <article class="card">
+            <h3>合適分工</h3>
+            <pre class="code"><code>&lt;img
+  src="./images/sales-chart.svg"
+  alt="長條圖顯示 A、B、C 三項產品在 Q1 到 Q4 的銷售量；B 產品四季皆最高，且 Q4 達到最高點"&gt;
+&lt;figcaption&gt;
+  圖 2：2026 年各產品季度銷售比較。
+&lt;/figcaption&gt;</code></pre>
+          </article>
+          <article class="card">
+            <h3>常見問題</h3>
+            <pre class="code"><code>&lt;img
+  src="./images/sales-chart.svg"
+  alt="圖 2：2026 年各產品季度銷售比較"&gt;
+&lt;figcaption&gt;
+  圖 2：2026 年各產品季度銷售比較。
+&lt;/figcaption&gt;</code></pre>
+          </article>
+        </div>
+        <figure class="demo-figure">
+          <img
+            src="./images/sales-chart.svg"
+            width="960"
+            height="540"
+            alt="長條圖顯示 A、B、C 三項產品在 Q1 到 Q4 的銷售量；B 產品四季皆最高，且 Q4 達到最高點">
+          <figcaption>圖 2：2026 年各產品季度銷售比較。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="badge rose">multiple media</span>
+      <h2>多張相關圖片可以共用一個 caption</h2>
+      <div class="demo-row">
+        <div>
+          <pre class="code"><code>&lt;figure&gt;
+  &lt;img src="./images/before.svg" alt="改版前版面擁擠、間距不一致"&gt;
+  &lt;img src="./images/after.svg" alt="改版後版面留白增加、層級更清楚"&gt;
+  &lt;figcaption&gt;
+    圖 3：同一個頁面區塊在改版前後的視覺對照。
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+          <p class="note">
+            當兩張圖共同構成一個比較，放在同一個 `figure` 內比拆成兩個獨立 figure 更清楚。
+          </p>
+        </div>
+        <figure class="demo-figure">
+          <div class="before-after">
+            <img src="./images/before.svg" width="520" height="360" alt="改版前版面擁擠、間距不一致">
+            <img src="./images/after.svg" width="520" height="360" alt="改版後版面留白增加、層級更清楚">
+          </div>
+          <figcaption>圖 3：同一個頁面區塊在改版前後的視覺對照。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <span class="badge">figure or div</span>
+        <h2>純排版容器用 `div` 即可</h2>
+        <div class="decorative">
+          <img src="./images/decorative-divider.svg" alt="">
+        </div>
+        <pre class="code" style="margin-top: 12px;"><code>&lt;div class="decorative"&gt;
+  &lt;img src="./images/decorative-divider.svg" alt=""&gt;
+&lt;/div&gt;</code></pre>
+        <p class="muted">
+          裝飾線、背景圖、單純卡片外框不構成可獨立引用的內容，使用 `figure` 反而會增加不必要的語意。
+        </p>
+      </article>
+
+      <article class="panel">
+        <span class="badge rose">invalid pattern</span>
+        <h2>`figcaption` 不要包在其他元素裡</h2>
+        <pre class="code"><code>&lt;figure&gt;
+  &lt;img src="./images/html-structure.svg" alt="HTML 文件結構圖"&gt;
+  &lt;div&gt;
+    &lt;figcaption&gt;錯誤：figcaption 不是 figure 的直接子元素&lt;/figcaption&gt;
+  &lt;/div&gt;
+&lt;/figure&gt;</code></pre>
+        <p class="note warning">
+          `figcaption` 應該直接放在 `figure` 內，而且一個 `figure` 最多只放一個 `figcaption`。
+        </p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <span class="badge blue">decision table</span>
+      <h2>什麼時候使用 `figure`</h2>
+      <table class="decision">
+        <thead>
+          <tr>
+            <th>情境</th>
+            <th>建議</th>
+            <th>理由</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>文章中的教學圖、流程圖、資料圖表</td>
+            <td>使用 `figure` + `figcaption`</td>
+            <td>內容可被獨立引用，caption 能補充它在文章中的意義。</td>
+          </tr>
+          <tr>
+            <td>程式碼範例、附表、公式或插圖</td>
+            <td>可以使用 `figure`</td>
+            <td>`figure` 不限於圖片，只要它是一組自足的內容即可。</td>
+          </tr>
+          <tr>
+            <td>單純頭像、icon、裝飾線</td>
+            <td>通常不要使用 `figure`</td>
+            <td>它們不是可獨立引用的內容單元；裝飾圖可用 `alt=""`。</td>
+          </tr>
+          <tr>
+            <td>只為了排版加外框、陰影、格線</td>
+            <td>使用 `div` 或 CSS</td>
+            <td>`figure` 是語意元素，不是通用樣式容器。</td>
+          </tr>
+          <tr>
+            <td>圖片有可見說明，也需要讀屏替代文字</td>
+            <td>`alt` 與 `figcaption` 分工撰寫</td>
+            <td>`alt` 描述圖片本身；`figcaption` 提供可見標題、來源、脈絡或結論。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer-links">
+      <a href="../README.md">回到本章 README</a>
+      <a href="../第36章_figure與figcaption標籤.md">回到筆記</a>
+    </div>
+  </main>
+</body>
+</html>

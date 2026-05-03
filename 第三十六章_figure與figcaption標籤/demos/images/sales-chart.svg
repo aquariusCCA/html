@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Quarterly sales chart</title>
+  <desc id="desc">A bar chart comparing product A, B and C across four quarters.</desc>
+  <rect width="960" height="540" fill="#fff"/>
+  <rect x="64" y="54" width="832" height="406" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+  <line x1="130" y1="406" x2="838" y2="406" stroke="#475569" stroke-width="4"/>
+  <line x1="130" y1="122" x2="130" y2="406" stroke="#475569" stroke-width="4"/>
+  <g font-family="Arial, sans-serif" font-size="18" fill="#64748b">
+    <text x="160" y="438">Q1</text><text x="334" y="438">Q2</text><text x="508" y="438">Q3</text><text x="682" y="438">Q4</text>
+  </g>
+  <rect x="152" y="258" width="34" height="148" fill="#0f766e"/>
+  <rect x="192" y="214" width="34" height="192" fill="#2563eb"/>
+  <rect x="232" y="296" width="34" height="110" fill="#f59e0b"/>
+  <rect x="326" y="236" width="34" height="170" fill="#0f766e"/>
+  <rect x="366" y="178" width="34" height="228" fill="#2563eb"/>
+  <rect x="406" y="274" width="34" height="132" fill="#f59e0b"/>
+  <rect x="500" y="194" width="34" height="212" fill="#0f766e"/>
+  <rect x="540" y="146" width="34" height="260" fill="#2563eb"/>
+  <rect x="580" y="248" width="34" height="158" fill="#f59e0b"/>
+  <rect x="674" y="168" width="34" height="238" fill="#0f766e"/>
+  <rect x="714" y="118" width="34" height="288" fill="#2563eb"/>
+  <rect x="754" y="218" width="34" height="188" fill="#f59e0b"/>
+  <g font-family="Arial, sans-serif" font-size="20" fill="#334155">
+    <rect x="640" y="64" width="20" height="20" fill="#0f766e"/><text x="672" y="81">Product A</text>
+    <rect x="640" y="94" width="20" height="20" fill="#2563eb"/><text x="672" y="111">Product B</text>
+    <rect x="640" y="124" width="20" height="20" fill="#f59e0b"/><text x="672" y="141">Product C</text>
+  </g>
+  <text x="80" y="504" font-family="Arial, sans-serif" font-size="22" fill="#475569">Chart image intentionally needs a detailed alt plus a concise figcaption.</text>
+</svg>
