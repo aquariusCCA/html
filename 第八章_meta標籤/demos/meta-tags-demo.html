@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Tags Demo</title>
+  <style>
+    :root {
+      --bg: #f4efe8;
+      --panel: rgba(255, 252, 247, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #182128;
+      --muted: #5f6a72;
+      --line: #d7ccbd;
+      --accent: #16697a;
+      --accent-strong: #0f5260;
+      --accent-soft: rgba(22, 105, 122, 0.12);
+      --warm: #b45309;
+      --warm-soft: rgba(180, 83, 9, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --danger: #c2410c;
+      --danger-soft: rgba(194, 65, 12, 0.12);
+      --shadow: 0 24px 52px rgba(39, 30, 20, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(22, 105, 122, 0.15), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(180, 83, 9, 0.1), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(215, 204, 189, 0.92);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li {
+      line-height: 1.7;
+    }
+
+    .lead {
+      max-width: 840px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero,
+    .two-col,
+    .summary-grid,
+    .card-grid,
+    .stage-grid,
+    .mini-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.18fr 0.82fr;
+      margin-bottom: 22px;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .summary-grid,
+    .card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stage-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .summary-item,
+    .mini-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(215, 204, 189, 0.85);
+      background: rgba(255, 248, 240, 0.82);
+    }
+
+    .summary-item strong,
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .pill.active {
+      background: var(--accent-soft);
+      border-color: rgba(22, 105, 122, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .info-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(22, 105, 122, 0.06);
+      color: var(--muted);
+    }
+
+    .head-shell,
+    .browser-card,
+    .share-card,
+    .viewport-shell {
+      border-radius: 20px;
+      border: 1px solid rgba(24, 33, 40, 0.08);
+      background: #fff;
+    }
+
+    .head-shell,
+    .viewport-shell {
+      padding: 18px;
+    }
+
+    .browser-card,
+    .share-card {
+      overflow: hidden;
+    }
+
+    .browser-top,
+    .share-top {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(24, 33, 40, 0.08);
+      background: #eef3f5;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .browser-body,
+    .share-body {
+      padding: 16px;
+    }
+
+    .result-title {
+      margin-bottom: 6px;
+      color: #1a0dab;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .result-url {
+      margin-bottom: 8px;
+      color: #137333;
+      font-size: 14px;
+    }
+
+    .result-description {
+      color: #4d5156;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .share-media {
+      height: 170px;
+      background:
+        linear-gradient(135deg, rgba(22, 105, 122, 0.92), rgba(11, 78, 92, 0.82)),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 30%);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    .share-domain {
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .share-title {
+      margin-bottom: 8px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .share-description {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .rule-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rule-button {
+      text-align: left;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .rule-button.active {
+      background: rgba(240, 249, 252, 0.94);
+      border-color: rgba(22, 105, 122, 0.3);
+      box-shadow: inset 0 0 0 1px rgba(22, 105, 122, 0.08);
+    }
+
+    .rule-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .meter-line {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .bar {
+      position: relative;
+      height: 12px;
+      margin: 10px 0 8px;
+      border-radius: 999px;
+      background: rgba(22, 105, 122, 0.12);
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #16697a, #36a2b3);
+    }
+
+    .bar.warn > span {
+      background: linear-gradient(90deg, #b45309, #f59e0b);
+    }
+
+    .bar.danger > span {
+      background: linear-gradient(90deg, #c2410c, #fb923c);
+    }
+
+    .viewport-frame {
+      width: min(100%, 340px);
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 28px;
+      background: #19242b;
+      box-shadow: 0 18px 28px rgba(25, 36, 43, 0.18);
+    }
+
+    .viewport-screen {
+      overflow: hidden;
+      border-radius: 20px;
+      background: #fff;
+    }
+
+    .viewport-site {
+      padding: 16px;
+      transform-origin: top left;
+      transition: transform 0.25s ease;
+    }
+
+    .viewport-site.shrunk {
+      transform: scale(0.58);
+      width: 172%;
+    }
+
+    .viewport-hero {
+      margin-bottom: 14px;
+      padding: 16px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(22, 105, 122, 0.92), rgba(11, 78, 92, 0.82));
+      color: #fff;
+    }
+
+    .viewport-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .viewport-box {
+      padding: 12px;
+      border-radius: 14px;
+      background: #f5f7f8;
+      border: 1px solid #e2e8ea;
+      font-size: 14px;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .two-col,
+      .summary-grid,
+      .card-grid,
+      .stage-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML meta 標籤 Demo</h1>
+        <p class="lead">
+          `meta` 大多不直接顯示在頁面上，但它會影響瀏覽器如何理解文件、搜尋引擎怎麼產生摘要，以及社群平台分享時要抓哪些資訊。這個 demo 會把這些差異視覺化。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>文件層級</strong>
+            `charset`、`viewport` 主要影響瀏覽器怎麼解析內容、怎麼在裝置上顯示頁面。
+          </article>
+          <article class="summary-item">
+            <strong>SEO 層級</strong>
+            `description`、`robots`、`keywords` 主要服務搜尋結果與索引控制。
+          </article>
+          <article class="summary-item">
+            <strong>分享層級</strong>
+            `og:title`、`og:description`、`og:image` 用來決定社群分享卡長什麼樣。
+          </article>
+          <article class="summary-item">
+            <strong>寫法差異</strong>
+            常見屬性分三類：`name`、`http-equiv`、`property`。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁涵蓋內容</h2>
+        <ul class="mini-list">
+          <li>常見 `meta` 的完整 `<head>` 範例</li>
+          <li>`viewport` 對手機版顯示的差異模擬</li>
+          <li>SEO 摘要卡與 Open Graph 分享卡對照</li>
+          <li>`name` / `http-equiv` / `property` 的角色區分</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 常見 `meta` 組合</h2>
+        <div class="pill-row" role="tablist" aria-label="meta preset">
+          <button class="pill active" type="button" data-preset="basic">基本頁面</button>
+          <button class="pill" type="button" data-preset="seo">SEO 頁面</button>
+          <button class="pill" type="button" data-preset="social">社群分享頁</button>
+        </div>
+
+        <div class="stage-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="presetBadge">Basic</span>
+            <h3 id="presetTitle">先把文件能正確顯示做好</h3>
+            <p id="presetDescription">
+              最基礎的組合通常至少包含 `charset` 和 `viewport`，讓文字能正常顯示、頁面能在手機上合理縮放。
+            </p>
+            <pre class="code-block" id="presetCode"></pre>
+          </section>
+
+          <section class="head-shell">
+            <div class="info-box" id="presetExplain">
+              這組設定偏向「先讓頁面正常可讀」，還沒有特別處理搜尋摘要或社群分享卡。
+            </div>
+            <div class="card-grid" style="margin-top: 14px;">
+              <article class="mini-item">
+                <strong>主要用途</strong>
+                <span id="presetPurpose">解析文字、控制初始縮放</span>
+              </article>
+              <article class="mini-item">
+                <strong>重點標籤</strong>
+                <span id="presetKeys">`charset`、`viewport`</span>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. `viewport` 為什麼重要</h2>
+        <div class="two-col">
+          <section class="card">
+            <span class="badge">手機顯示模擬</span>
+            <h3 id="viewportTitle">有 `viewport` 時，頁面會以裝置寬度為基準</h3>
+            <p id="viewportDescription">
+              `width=device-width, initial-scale=1.0` 能讓瀏覽器以目前裝置寬度排版，而不是先把整個桌面版縮小塞進手機畫面。
+            </p>
+            <pre class="code-block" id="viewportCode"></pre>
+            <div class="meter-line">
+              <div>可讀性評估</div>
+              <div class="bar" id="viewportBar"><span style="width: 88%;"></span></div>
+              <div id="viewportNote">文字尺寸與卡片寬度都比較接近手機使用情境。</div>
+            </div>
+          </section>
+
+          <section class="viewport-shell">
+            <div class="pill-row" style="margin-bottom: 14px;">
+              <button class="pill active" type="button" data-viewport-mode="with">有 viewport</button>
+              <button class="pill" type="button" data-viewport-mode="without">沒有 viewport</button>
+            </div>
+            <div class="viewport-frame">
+              <div class="viewport-screen">
+                <div class="viewport-site" id="viewportSite">
+                  <section class="viewport-hero">
+                    <strong>Meta Demo Landing</strong>
+                    <p style="margin:8px 0 0;">把 `meta viewport` 想成手機排版的基準線。</p>
+                  </section>
+                  <div class="viewport-grid">
+                    <article class="viewport-box">課程資訊</article>
+                    <article class="viewport-box">章節摘要</article>
+                    <article class="viewport-box">操作說明</article>
+                    <article class="viewport-box">延伸閱讀</article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. SEO 摘要 vs 社群分享卡</h2>
+        <div class="two-col">
+          <section class="card">
+            <span class="badge">搜尋結果模擬</span>
+            <h3>`description` 影響搜尋摘要</h3>
+            <p>
+              搜尋結果通常會優先參考 `meta name="description"`，它的目標是讓人快速理解頁面主題與價值。
+            </p>
+            <div class="browser-card">
+              <div class="browser-top">Search Result Preview</div>
+              <div class="browser-body">
+                <div class="result-title" id="seoTitle">HTML meta 標籤完整教學</div>
+                <div class="result-url">https://example.com/meta-guide</div>
+                <div class="result-description" id="seoDescription">
+                  從 charset、viewport 到 description、robots 與 Open Graph，一次理解 meta 標籤在瀏覽器、SEO 與社群分享中的角色差異。
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge">社群卡片模擬</span>
+            <h3>`og:*` 影響分享卡外觀</h3>
+            <p>
+              社群平台分享頁面時，通常優先使用 Open Graph 資訊，而不是直接複用一般 SEO 摘要。
+            </p>
+            <div class="share-card">
+              <div class="share-media" id="shareImage">OG IMAGE</div>
+              <div class="share-body">
+                <div class="share-domain">example.com</div>
+                <div class="share-title" id="shareTitle">Meta 標籤：SEO 與分享卡一次搞懂</div>
+                <div class="share-description" id="shareDescription">
+                  適合初學者快速掌握 description、robots、og:title、og:image 等常見 meta 設定。
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. `name` / `http-equiv` / `property` 的差異</h2>
+        <div class="stage-grid">
+          <section class="card">
+            <div class="rule-list">
+              <button class="rule-button active" type="button" data-meta-kind="name">
+                <strong>`name`</strong>
+                用來描述一般頁面資訊，例如 `description`、`robots`、`viewport`。
+              </button>
+              <button class="rule-button" type="button" data-meta-kind="http-equiv">
+                <strong>`http-equiv`</strong>
+                用來模擬某些 HTTP 標頭效果，例如 `refresh`、`X-UA-Compatible`。
+              </button>
+              <button class="rule-button" type="button" data-meta-kind="property">
+                <strong>`property`</strong>
+                常見於 Open Graph，用來提供社群平台讀取分享資訊。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="kindBadge">name</div>
+            <h3 id="kindTitle">一般頁面資訊最常用的寫法</h3>
+            <p id="kindDescription">
+              `name` 類型最常見，因為它負責描述頁面的普通 metadata，而不是模擬 HTTP 行為或社群協定。
+            </p>
+            <pre class="code-block" id="kindCode"></pre>
+            <div class="info-box" id="kindNote" style="margin-top: 14px;">
+              典型例子：`description`、`viewport`、`robots`、`author`。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 常見實務提醒</h2>
+        <div class="mini-grid">
+          <article class="mini-item">
+            <strong>`charset` 優先放前面</strong>
+            先告訴瀏覽器編碼，能降低中文亂碼或解析錯誤的風險。
+          </article>
+          <article class="mini-item">
+            <strong>`keywords` 重要性較低</strong>
+            相比之下，`description` 對理解頁面內容通常更有實際價值。
+          </article>
+          <article class="mini-item">
+            <strong>SEO 與 OG 不要混為一談</strong>
+            `description` 是搜尋摘要導向；`og:description` 是社群分享導向。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const presetButtons = [...document.querySelectorAll("[data-preset]")];
+    const presetBadge = document.getElementById("presetBadge");
+    const presetTitle = document.getElementById("presetTitle");
+    const presetDescription = document.getElementById("presetDescription");
+    const presetCode = document.getElementById("presetCode");
+    const presetExplain = document.getElementById("presetExplain");
+    const presetPurpose = document.getElementById("presetPurpose");
+    const presetKeys = document.getElementById("presetKeys");
+
+    const viewportButtons = [...document.querySelectorAll("[data-viewport-mode]")];
+    const viewportTitle = document.getElementById("viewportTitle");
+    const viewportDescription = document.getElementById("viewportDescription");
+    const viewportCode = document.getElementById("viewportCode");
+    const viewportBar = document.getElementById("viewportBar");
+    const viewportNote = document.getElementById("viewportNote");
+    const viewportSite = document.getElementById("viewportSite");
+
+    const metaKindButtons = [...document.querySelectorAll("[data-meta-kind]")];
+    const kindBadge = document.getElementById("kindBadge");
+    const kindTitle = document.getElementById("kindTitle");
+    const kindDescription = document.getElementById("kindDescription");
+    const kindCode = document.getElementById("kindCode");
+    const kindNote = document.getElementById("kindNote");
+
+    const presetViews = {
+      basic: {
+        badge: "Basic",
+        title: "先把文件能正確顯示做好",
+        description: "最基礎的組合通常至少包含 `charset` 和 `viewport`，讓文字能正常顯示、頁面能在手機上合理縮放。",
+        code: `&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Meta Demo&lt;/title&gt;
+&lt;/head&gt;`,
+        explain: "這組設定偏向「先讓頁面正常可讀」，還沒有特別處理搜尋摘要或社群分享卡。",
+        purpose: "解析文字、控制初始縮放",
+        keys: "`charset`、`viewport`"
+      },
+      seo: {
+        badge: "SEO",
+        title: "加上搜尋摘要與索引控制",
+        description: "當頁面要被搜尋引擎理解時，通常會補上 `description`、`robots`，有時也會看到 `keywords`。",
+        code: `&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="完整介紹 HTML meta 標籤的用途與常見寫法"&gt;
+  &lt;meta name="robots" content="index, follow"&gt;
+  &lt;meta name="keywords" content="HTML, meta, viewport, SEO"&gt;
+  &lt;title&gt;Meta SEO Guide&lt;/title&gt;
+&lt;/head&gt;`,
+        explain: "這組設定的重點不是畫面，而是讓搜尋系統更容易抓到頁面主題與索引策略。",
+        purpose: "搜尋摘要、索引與爬蟲規則",
+        keys: "`description`、`robots`、`keywords`"
+      },
+      social: {
+        badge: "Open Graph",
+        title: "補上社群分享卡資訊",
+        description: "如果頁面常被分享到 Facebook、LinkedIn 或聊天工具，就應補上 Open Graph 相關欄位。",
+        code: `&lt;head&gt;
+  &lt;meta property="og:title" content="Meta 標籤：SEO 與分享卡一次搞懂"&gt;
+  &lt;meta property="og:description" content="快速掌握 description、robots、og:image 等常見設定"&gt;
+  &lt;meta property="og:image" content="https://example.com/meta-cover.jpg"&gt;
+  &lt;meta property="og:url" content="https://example.com/meta-guide"&gt;
+  &lt;meta property="og:type" content="article"&gt;
+  &lt;meta property="og:site_name" content="HTML 筆記站"&gt;
+&lt;/head&gt;`,
+        explain: "Open Graph 主要不是給使用者直接看，而是給社群平台抓資料生成分享卡。",
+        purpose: "社群平台預覽卡",
+        keys: "`og:title`、`og:description`、`og:image`"
+      }
+    };
+
+    const viewportViews = {
+      with: {
+        title: "有 `viewport` 時，頁面會以裝置寬度為基準",
+        description: "`width=device-width, initial-scale=1.0` 能讓瀏覽器以目前裝置寬度排版，而不是先把整個桌面版縮小塞進手機畫面。",
+        code: `&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;`,
+        barClass: "bar",
+        barWidth: "88%",
+        note: "文字尺寸與卡片寬度都比較接近手機使用情境。",
+        shrunk: false
+      },
+      without: {
+        title: "沒有 `viewport` 時，常像先縮小桌面版再塞進手機",
+        description: "少了 `viewport` 後，瀏覽器可能以較寬的虛擬畫布排版，再整體縮小，造成文字看起來偏小、區塊偏擠。",
+        code: `&lt;!-- 沒有設定 viewport --&gt;`,
+        barClass: "bar danger",
+        barWidth: "42%",
+        note: "畫面雖然看似完整塞進手機，但可讀性往往變差。",
+        shrunk: true
+      }
+    };
+
+    const metaKindViews = {
+      name: {
+        badge: "name",
+        title: "一般頁面資訊最常用的寫法",
+        description: "`name` 類型最常見，因為它負責描述頁面的普通 metadata，而不是模擬 HTTP 行為或社群協定。",
+        code: `&lt;meta name="description" content="完整介紹 HTML meta 標籤的用途與常見寫法"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="robots" content="index, follow"&gt;`,
+        note: "典型例子：`description`、`viewport`、`robots`、`author`。"
+      },
+      "http-equiv": {
+        badge: "http-equiv",
+        title: "模擬某些 HTTP 標頭效果",
+        description: "`http-equiv` 比較像在 HTML 裡補上一種回應標頭效果，常見例子是 `refresh` 與早期的 `X-UA-Compatible`。",
+        code: `&lt;meta http-equiv="refresh" content="3;url=https://example.com/"&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;`,
+        note: "`refresh` 會影響重新整理或跳轉；`X-UA-Compatible` 則多半是舊版 IE 相容性場景。"
+      },
+      property: {
+        badge: "property",
+        title: "Open Graph 常用這種寫法",
+        description: "`property` 最典型的用途就是 Open Graph，讓社群平台在抓頁面時能讀到分享卡片需要的欄位。",
+        code: `&lt;meta property="og:title" content="Meta 標籤：SEO 與分享卡一次搞懂"&gt;
+&lt;meta property="og:description" content="快速掌握 description、robots、og:image 等常見設定"&gt;
+&lt;meta property="og:image" content="https://example.com/meta-cover.jpg"&gt;`,
+        note: "常見欄位：`og:title`、`og:description`、`og:image`、`og:url`、`og:type`。"
+      }
+    };
+
+    function setPreset(preset) {
+      const view = presetViews[preset];
+
+      presetButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.preset === preset);
+      });
+
+      presetBadge.textContent = view.badge;
+      presetTitle.textContent = view.title;
+      presetDescription.textContent = view.description;
+      presetCode.innerHTML = view.code;
+      presetExplain.textContent = view.explain;
+      presetPurpose.textContent = view.purpose;
+      presetKeys.textContent = view.keys;
+    }
+
+    function setViewportMode(mode) {
+      const view = viewportViews[mode];
+
+      viewportButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.viewportMode === mode);
+      });
+
+      viewportTitle.textContent = view.title;
+      viewportDescription.textContent = view.description;
+      viewportCode.innerHTML = view.code;
+      viewportBar.className = view.barClass;
+      viewportBar.innerHTML = `<span style="width:${view.barWidth};"></span>`;
+      viewportNote.textContent = view.note;
+      viewportSite.classList.toggle("shrunk", view.shrunk);
+    }
+
+    function setMetaKind(kind) {
+      const view = metaKindViews[kind];
+
+      metaKindButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.metaKind === kind);
+      });
+
+      kindBadge.textContent = view.badge;
+      kindTitle.textContent = view.title;
+      kindDescription.textContent = view.description;
+      kindCode.innerHTML = view.code;
+      kindNote.textContent = view.note;
+    }
+
+    presetButtons.forEach((button) => {
+      button.addEventListener("click", () => setPreset(button.dataset.preset));
+    });
+
+    viewportButtons.forEach((button) => {
+      button.addEventListener("click", () => setViewportMode(button.dataset.viewportMode));
+    });
+
+    metaKindButtons.forEach((button) => {
+      button.addEventListener("click", () => setMetaKind(button.dataset.metaKind));
+    });
+
+    setPreset("basic");
+    setViewportMode("with");
+    setMetaKind("name");
+  </script>
+</body>
+</html>
