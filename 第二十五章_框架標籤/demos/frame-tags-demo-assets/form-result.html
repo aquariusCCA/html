@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表單送出結果</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #1e2824;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: #f6fbf7;
+    }
+    main {
+      display: grid;
+      gap: 16px;
+      min-height: 100vh;
+      padding: 24px;
+      align-content: center;
+      border: 8px solid #cde6d5;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+    p {
+      margin: 0;
+      line-height: 1.8;
+      color: #50645a;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      padding: 10px 12px;
+      border: 1px solid #d9e8df;
+      text-align: left;
+      line-height: 1.6;
+    }
+    th {
+      width: 34%;
+      background: #edf7f1;
+    }
+    code {
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #154c33;
+      background: #e0f2e8;
+      font-family: Consolas, "Courier New", monospace;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>表單回應已載入 iframe</h1>
+    <p>外層表單的 <code>target="resultFrame"</code>，讓這份回應頁顯示在指定框架中。</p>
+    <table aria-label="送出資料">
+      <tbody id="resultRows"></tbody>
+    </table>
+  </main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const rows = document.querySelector("#resultRows");
+    const labels = {
+      keyword: "查詢關鍵字",
+      type: "內容類型",
+      note: "補充說明"
+    };
+
+    for (const key of Object.keys(labels)) {
+      const row = document.createElement("tr");
+      const heading = document.createElement("th");
+      const data = document.createElement("td");
+      heading.textContent = labels[key];
+      data.textContent = params.get(key) || "未填寫";
+      row.append(heading, data);
+      rows.append(row);
+    }
+  </script>
+</body>
+</html>

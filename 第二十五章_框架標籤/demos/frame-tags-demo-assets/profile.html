@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>內容頁面示例</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #1e2830;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: #fffaf2;
+    }
+    main {
+      display: grid;
+      gap: 14px;
+      min-height: 100vh;
+      padding: 24px;
+      align-content: center;
+      border: 8px solid #f1d5aa;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+    p {
+      margin: 0;
+      line-height: 1.8;
+      color: #665847;
+    }
+    dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 10px 14px;
+      margin: 0;
+    }
+    dt { font-weight: 700; }
+    dd { margin: 0; color: #665847; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>被連結載入的本地頁面</h1>
+    <p>這個頁面不是用 JavaScript 換內容，而是瀏覽器按照 <code>target</code> 和 <code>name</code> 的配對把它載入 iframe。</p>
+    <dl>
+      <dt>連結</dt>
+      <dd><code>&lt;a href="..." target="lessonFrame"&gt;</code></dd>
+      <dt>框架</dt>
+      <dd><code>&lt;iframe name="lessonFrame"&gt;</code></dd>
+    </dl>
+  </main>
+</body>
+</html>

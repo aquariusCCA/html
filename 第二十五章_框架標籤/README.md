@@ -74,6 +74,11 @@
 - `frameborder` vs CSS `border`：前者常見於舊教材，現代通常改用 CSS 控制邊框。
 - `iframe` vs 前端元件：`iframe` 適合嵌入獨立內容，不適合拿來取代一般元件化開發。
 
+## 對應示例
+
+- [框架標籤 Demo](./demos/frame-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 常見查錯方向
 
 當 `iframe` 沒有正常顯示時，可以依照下面順序檢查：
