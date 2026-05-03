@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Tags Demo</title>
+  <style>
+    :root {
+      --bg: #edf2f4;
+      --surface: #fbfcf8;
+      --panel: #ffffff;
+      --ink: #17242c;
+      --muted: #5c6b72;
+      --line: #cad7dc;
+      --header: #255f72;
+      --header-soft: #e3eff3;
+      --nav: #2f6d52;
+      --nav-soft: #e4f1e9;
+      --main: #8a5a16;
+      --main-soft: #f5eadb;
+      --article: #6a5aa8;
+      --article-soft: #ece8f8;
+      --section: #9b4f3f;
+      --section-soft: #f7e5e1;
+      --aside: #3d6f90;
+      --aside-soft: #e6eef7;
+      --footer: #49545b;
+      --footer-soft: #edf0f2;
+      --danger: #a63d32;
+      --danger-soft: #f6e1de;
+      --code-bg: #17252c;
+      --code-ink: #eef7f8;
+      --shadow: 0 18px 48px rgba(26, 39, 44, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(180deg, #fbfaf4 0%, var(--bg) 100%);
+    }
+
+    body > header,
+    body > nav,
+    body > footer,
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li, td, th {
+      line-height: 1.72;
+    }
+
+    a {
+      color: var(--header);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: #fff;
+      background: var(--header);
+      font: inherit;
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: #1e4c5b;
+      transform: translateY(-1px);
+    }
+
+    .site-header {
+      margin-top: 24px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px 24px 0 0;
+      color: #f8fcfa;
+      background: #18333c;
+      box-shadow: var(--shadow);
+    }
+
+    .site-header p {
+      max-width: 850px;
+      margin-bottom: 0;
+      color: #d1e1e6;
+      font-size: 17px;
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px 18px;
+      border-inline: 1px solid var(--line);
+      background: #eef6f2;
+    }
+
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      border-radius: 999px;
+      padding: 8px 13px;
+      color: #174935;
+      background: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    main {
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .site-footer {
+      margin-bottom: 38px;
+      padding: 20px 28px;
+      border: 1px solid var(--line);
+      border-radius: 0 0 24px 24px;
+      color: #f6f8f9;
+      background: #303b42;
+    }
+
+    .site-footer p {
+      margin-bottom: 0;
+      color: #d6dde0;
+    }
+
+    .grid-2,
+    .grid-3,
+    .demo-layout,
+    .compare,
+    .label-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2,
+    .compare {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .demo-layout {
+      grid-template-columns: minmax(0, 1fr) 300px;
+      align-items: start;
+    }
+
+    .label-grid {
+      grid-template-columns: 160px minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card,
+    .semantic-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 18px; }
+
+    .section-space {
+      margin-top: 18px;
+    }
+
+    .lead {
+      max-width: 850px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border-radius: 10px;
+      padding: 3px 8px;
+      color: #fff;
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .tag-header { background: var(--header); }
+    .tag-nav { background: var(--nav); }
+    .tag-main { background: var(--main); }
+    .tag-article { background: var(--article); }
+    .tag-section { background: var(--section); }
+    .tag-aside { background: var(--aside); }
+    .tag-footer { background: var(--footer); }
+    .tag-div { background: #66737a; }
+
+    .semantic-box {
+      position: relative;
+      padding: 18px;
+    }
+
+    .semantic-box::before {
+      content: attr(data-tag);
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      color: #fff;
+      background: rgba(23, 36, 44, 0.76);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .semantic-box > :last-child {
+      margin-bottom: 0;
+    }
+
+    .box-header {
+      border-color: #b9d3dc;
+      background: var(--header-soft);
+    }
+
+    .box-nav {
+      border-color: #b9d9ca;
+      background: var(--nav-soft);
+    }
+
+    .box-main {
+      border-color: #e5c69a;
+      background: var(--main-soft);
+    }
+
+    .box-article {
+      border-color: #cbc3ea;
+      background: var(--article-soft);
+    }
+
+    .box-section {
+      border-color: #e7bbb3;
+      background: var(--section-soft);
+    }
+
+    .box-aside {
+      border-color: #c0d5e7;
+      background: var(--aside-soft);
+    }
+
+    .box-footer {
+      border-color: #cbd1d4;
+      background: var(--footer-soft);
+    }
+
+    .box-div {
+      border-style: dashed;
+      background: #f7f9f9;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .toc-list,
+    .compact-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .code {
+      overflow: auto;
+      margin: 0;
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .role-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .role-table th,
+    .role-table td {
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .role-table th {
+      background: #edf4f5;
+    }
+
+    .good {
+      border-color: #b9d9ca;
+      background: var(--nav-soft);
+    }
+
+    .warn {
+      border-color: #e5c69a;
+      background: var(--main-soft);
+    }
+
+    .danger {
+      border-color: #e5b2ab;
+      background: var(--danger-soft);
+    }
+
+    .decision-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .decision-list li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 10px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .decision-list li::before {
+      content: counter(step);
+      display: inline-grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--header);
+      font-weight: 700;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .highlight-target {
+      outline: 4px solid rgba(37, 95, 114, 0.34);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 920px) {
+      body > header,
+      body > nav,
+      body > footer,
+      main {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .site-header,
+      main {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .grid-2,
+      .grid-3,
+      .demo-layout,
+      .compare,
+      .label-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <hgroup>
+      <h1>第二十七章：布局標籤 Demo</h1>
+      <p>用一個完整頁面骨架示範 HTML5 語意化布局標籤如何描述內容角色。</p>
+    </hgroup>
+  </header>
+
+  <nav class="site-nav" aria-label="示例頁主要導覽">
+    <a href="#skeleton">完整骨架</a>
+    <a href="#roles">標籤速查</a>
+    <a href="#article-section">article / section</a>
+    <a href="#decision">判斷流程</a>
+    <a href="#mistakes">常見錯誤</a>
+  </nav>
+
+  <main id="main-content">
+    <section class="panel" aria-labelledby="intro-title">
+      <h2 id="intro-title">這個 demo 在示範什麼</h2>
+      <p class="lead">HTML5 布局標籤負責說明「這塊內容是什麼角色」，CSS 才負責左右欄、間距、尺寸與響應式版面。請注意頁面本身就使用了真正的 <code>header</code>、<code>nav</code>、<code>main</code> 和 <code>footer</code>。</p>
+    </section>
+
+    <section id="skeleton" class="panel section-space" aria-labelledby="skeleton-title">
+      <h2 id="skeleton-title">1. 完整頁面結構骨架</h2>
+      <div class="button-row" aria-label="高亮特定語意區塊">
+        <button type="button" data-highlight="demo-header">看 header</button>
+        <button type="button" data-highlight="demo-nav">看 nav</button>
+        <button type="button" data-highlight="demo-main">看 main</button>
+        <button type="button" data-highlight="demo-article">看 article</button>
+        <button type="button" data-highlight="demo-aside">看 aside</button>
+        <button type="button" data-highlight="demo-footer">看 footer</button>
+      </div>
+
+      <div class="semantic-box box-div" data-tag="div.page-layout">
+        <p><span class="tag tag-div">div</span> 這層只是 CSS 版面容器，所以不用硬套語意標籤。</p>
+        <div class="demo-layout">
+          <div id="demo-main" class="semantic-box box-main" data-tag="main" aria-labelledby="demo-main-title">
+            <article id="demo-article" class="semantic-box box-article" data-tag="article">
+              <header id="demo-header" class="semantic-box box-header" data-tag="article > header">
+                <h3 id="demo-main-title">HTML5 語意化布局介紹</h3>
+                <p>這篇文章可以獨立閱讀，所以文章本體用 <code>article</code>。</p>
+              </header>
+
+              <section class="semantic-box box-section" data-tag="section">
+                <h4>為什麼需要語意化布局？</h4>
+                <p>它讓 HTML 結構能直接表達區塊角色，而不是只留下無語意的容器。</p>
+              </section>
+
+              <section class="semantic-box box-section" data-tag="section">
+                <h4>常見布局標籤有哪些？</h4>
+                <p>常見標籤包含 <code>header</code>、<code>nav</code>、<code>main</code>、<code>article</code>、<code>section</code>、<code>aside</code>、<code>footer</code> 和 <code>hgroup</code>。</p>
+              </section>
+
+              <footer class="semantic-box box-footer" data-tag="article > footer">
+                <p>最後更新：2026-05-03</p>
+              </footer>
+            </article>
+          </div>
+
+          <aside id="demo-aside" class="semantic-box box-aside" data-tag="aside" aria-labelledby="related-title">
+            <h3 id="related-title">延伸閱讀</h3>
+            <nav id="demo-nav" class="semantic-box box-nav" data-tag="aside > nav" aria-label="延伸閱讀">
+              <ul class="toc-list">
+                <li><a href="../第27章_布局標籤.md">布局標籤筆記</a></li>
+                <li><a href="../../第十三章_語意化標籤/README.md">語意化標籤</a></li>
+                <li><a href="../../第十六章_預格式化文本標籤/README.md">預格式化文本</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+
+        <footer id="demo-footer" class="semantic-box box-footer section-space" data-tag="page footer">
+          <p>這是整頁結尾資訊；文章自己的結尾資訊則可以放在 <code>article &gt; footer</code>。</p>
+        </footer>
+      </div>
+    </section>
+
+    <section id="roles" class="panel section-space" aria-labelledby="roles-title">
+      <h2 id="roles-title">2. 常見布局標籤速查</h2>
+      <table class="role-table">
+        <thead>
+          <tr>
+            <th>標籤</th>
+            <th>核心角色</th>
+            <th>使用提醒</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-header">header</span></td>
+            <td>頁面或區塊的開頭資訊。</td>
+            <td>可以是整頁頁首，也可以是文章或區段的開頭。</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-nav">nav</span></td>
+            <td>重要導覽連結區。</td>
+            <td>主選單、頁內目錄、側邊選單適合用；普通段落連結不一定需要。</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-main">main</span></td>
+            <td>目前頁面最核心、不重複的主要內容。</td>
+            <td>通常一個頁面只有一個可見 <code>main</code>。</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-article">article</span></td>
+            <td>可以獨立閱讀或獨立分發的內容單元。</td>
+            <td>文章、新聞、貼文、商品卡片、留言都可能適合。</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-section">section</span></td>
+            <td>同一份內容中的主題分段。</td>
+            <td>通常應該有標題；純樣式容器不要用。</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-aside">aside</span></td>
+            <td>補充資訊或旁支內容。</td>
+            <td>不一定要視覺上放在側邊，位置交給 CSS。</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-footer">footer</span></td>
+            <td>頁面或區塊的結尾資訊。</td>
+            <td>可以放版權、作者、更新時間、相關連結。</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-div">div</span></td>
+            <td>無語意通用容器。</td>
+            <td>純排版、樣式包裝、JS 操作用它更合適。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="article-section" class="panel section-space" aria-labelledby="article-section-title">
+      <h2 id="article-section-title">3. <code>article</code> 和 <code>section</code> 怎麼分</h2>
+      <div class="compare">
+        <article class="card good">
+          <h3>可以獨立拿出去看：用 <code>article</code></h3>
+          <pre class="code"><code>&lt;article&gt;
+  &lt;h2&gt;HTML5 布局標籤&lt;/h2&gt;
+  &lt;p&gt;介紹常見 HTML5 結構標籤。&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+          <p>整篇文章、單則新聞、商品卡片、留言，都可以先問「拿出去還像完整內容嗎？」</p>
+        </article>
+
+        <article class="card warn">
+          <h3>同一內容裡的主題分段：用 <code>section</code></h3>
+          <pre class="code"><code>&lt;article&gt;
+  &lt;h2&gt;JavaScript 學習路線&lt;/h2&gt;
+
+  &lt;section&gt;
+    &lt;h3&gt;基礎語法&lt;/h3&gt;
+    &lt;p&gt;先學變數、流程控制與函式。&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/article&gt;</code></pre>
+          <p><code>section</code> 是分段，不是萬用容器。沒有清楚標題時要先停下來判斷。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="decision" class="panel section-space" aria-labelledby="decision-title">
+      <h2 id="decision-title">4. 判斷流程</h2>
+      <ol class="decision-list">
+        <li>這是整頁最主要、最核心的內容嗎？是的話考慮 <code>main</code>。</li>
+        <li>這是一組重要導航連結嗎？是的話考慮 <code>nav</code>。</li>
+        <li>這塊內容拿出去後還能獨立閱讀嗎？是的話考慮 <code>article</code>。</li>
+        <li>這是同一份內容中的主題分段嗎？是的話考慮 <code>section</code>。</li>
+        <li>這是補充資訊、延伸閱讀或旁支內容嗎？是的話考慮 <code>aside</code>。</li>
+        <li>這是頁面或區塊的開頭 / 結尾資訊嗎？開頭用 <code>header</code>，結尾用 <code>footer</code>。</li>
+        <li>只是為了排版、樣式或 JS 操作包一層嗎？用 <code>div</code>。</li>
+      </ol>
+    </section>
+
+    <section id="mistakes" class="panel section-space" aria-labelledby="mistakes-title">
+      <h2 id="mistakes-title">5. 常見錯誤對照</h2>
+      <div class="grid-3">
+        <article class="card danger">
+          <h3>把所有容器都改成 <code>section</code></h3>
+          <p><code>section</code> 表示主題區段。純樣式包裝應該用 <code>div</code>。</p>
+        </article>
+        <article class="card danger">
+          <h3>看到連結就用 <code>nav</code></h3>
+          <p><code>nav</code> 適合重要導航系統。普通文字裡的一兩個連結不一定需要。</p>
+        </article>
+        <article class="card danger">
+          <h3>把 <code>aside</code> 當成右側欄</h3>
+          <p><code>aside</code> 的重點是補充性，不是畫面位置。左右排列由 CSS 決定。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section-space" aria-labelledby="hgroup-title">
+      <h2 id="hgroup-title">6. <code>hgroup</code> 與標題群組</h2>
+      <div class="compare">
+        <article class="card good">
+          <h3>適合：主標題 + 副標題</h3>
+          <pre class="code"><code>&lt;hgroup&gt;
+  &lt;h1&gt;HTML5 布局標籤&lt;/h1&gt;
+  &lt;p&gt;理解頁面結構與語意化標籤&lt;/p&gt;
+&lt;/hgroup&gt;</code></pre>
+        </article>
+        <article class="card danger">
+          <h3>不建議：亂包多層標題</h3>
+          <pre class="code"><code>&lt;hgroup&gt;
+  &lt;h1&gt;HTML5 布局標籤&lt;/h1&gt;
+  &lt;h2&gt;header&lt;/h2&gt;
+  &lt;h2&gt;nav&lt;/h2&gt;
+&lt;/hgroup&gt;</code></pre>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Frontend Notes. 這個頁尾示範整頁的 <code>footer</code>，和文章內的 <code>article &gt; footer</code> 是不同層級。</p>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-highlight]");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".highlight-target").forEach((target) => {
+          target.classList.remove("highlight-target");
+        });
+
+        const target = document.querySelector(`#${button.dataset.highlight}`);
+        if (!target) return;
+
+        target.classList.add("highlight-target");
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  </script>
+</body>
+</html>
