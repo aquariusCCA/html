@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic Tags Demo</title>
+  <style>
+    :root {
+      --bg: #f4efe8;
+      --panel: rgba(255, 252, 247, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #182128;
+      --muted: #5f6a72;
+      --line: #d7ccbd;
+      --accent: #0f766e;
+      --accent-strong: #0a5a54;
+      --accent-soft: rgba(15, 118, 110, 0.12);
+      --warm: #b45309;
+      --warm-soft: rgba(180, 83, 9, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --danger: #c2410c;
+      --danger-soft: rgba(194, 65, 12, 0.12);
+      --shadow: 0 24px 52px rgba(39, 30, 20, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.15), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(180, 83, 9, 0.1), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(215, 204, 189, 0.92);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li {
+      line-height: 1.7;
+    }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero,
+    .summary-grid,
+    .two-col,
+    .stage-grid,
+    .mini-grid,
+    .compare-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.18fr 0.82fr;
+      margin-bottom: 22px;
+    }
+
+    .summary-grid,
+    .compare-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stage-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .summary-item,
+    .mini-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(215, 204, 189, 0.85);
+      background: rgba(255, 248, 240, 0.82);
+    }
+
+    .summary-item strong,
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill,
+    .choice-button {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .pill.active,
+    .choice-button.active {
+      background: var(--accent-soft);
+      border-color: rgba(15, 118, 110, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .info-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(15, 118, 110, 0.06);
+      color: var(--muted);
+    }
+
+    .page-shell,
+    .compare-card,
+    .structure-card {
+      border-radius: 20px;
+      border: 1px solid rgba(24, 33, 40, 0.08);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .semantic-layout {
+      display: grid;
+      gap: 12px;
+    }
+
+    .layout-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      background: rgba(15, 118, 110, 0.08);
+    }
+
+    .layout-box.nav {
+      background: rgba(180, 83, 9, 0.08);
+      border-color: rgba(180, 83, 9, 0.18);
+    }
+
+    .layout-box.main {
+      background: rgba(47, 133, 90, 0.08);
+      border-color: rgba(47, 133, 90, 0.18);
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 12px;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-button {
+      text-align: left;
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .choice-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .node-list {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .node-list li {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(241, 250, 252, 0.84);
+      border: 1px solid rgba(15, 118, 110, 0.12);
+    }
+
+    .indent-1 { margin-left: 0; }
+    .indent-2 { margin-left: 18px; }
+    .indent-3 { margin-left: 36px; }
+    .indent-4 { margin-left: 54px; }
+
+    .nav-chip {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.12);
+      color: var(--accent-strong);
+    }
+
+    .note-line {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 248, 240, 0.84);
+      color: var(--muted);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .summary-grid,
+      .two-col,
+      .stage-grid,
+      .mini-grid,
+      .compare-grid,
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML 語意化標籤 Demo</h1>
+        <p class="lead">
+          語意化標籤的重點不是「畫面會變不一樣」，而是讓 HTML 更清楚地表達內容角色。當頁面結構更清楚時，讀者、工具與搜尋系統都更容易理解這一頁在做什麼。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>語意先於樣式</strong>
+            `header`、`nav`、`main`、`article`、`section`、`aside`、`footer` 的重點是角色，不是外觀。
+          </article>
+          <article class="summary-item">
+            <strong>不是 `div` 換名字</strong>
+            它們仍是容器，但比單純 `div` 更能說明內容用途。
+          </article>
+          <article class="summary-item">
+            <strong>提升可理解性</strong>
+            更清楚的結構通常有助於內容維護、頁面分析與資訊判讀。
+          </article>
+          <article class="summary-item">
+            <strong>SEO 與工具友善</strong>
+            語意更清楚時，搜尋系統與其他工具通常更容易理解頁面架構。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁會示範</h2>
+        <ul class="mini-list">
+          <li>典型的語意化頁面結構</li>
+          <li>常見語意標籤的角色分工</li>
+          <li>語意化版本與 `div` 版本的對照</li>
+          <li>`article` 與 `section` 的差異</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 一個典型的語意化頁面</h2>
+        <div class="pill-row" role="tablist" aria-label="semantic page demo">
+          <button class="pill active" type="button" data-semantic-mode="layout">頁面結構</button>
+          <button class="pill" type="button" data-semantic-mode="outline">文件大綱感</button>
+        </div>
+
+        <div class="stage-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="semanticBadge">Semantic Layout</span>
+            <h3 id="semanticTitle">用標籤直接說明這塊內容是什麼</h3>
+            <p id="semanticDescription">
+              當你看到 `header`、`nav`、`main`、`aside`、`footer`，就能直接猜到這塊內容的大致用途。
+            </p>
+            <pre class="code-block" id="semanticCode"></pre>
+          </section>
+
+          <section id="semanticPreview"></section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. 語意化標籤 vs `div` 堆疊</h2>
+        <div class="two-col">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-compare-mode="semantic">
+                <strong>語意化寫法</strong>
+                直接讓 HTML 描述內容角色。
+              </button>
+              <button class="choice-button" type="button" data-compare-mode="div">
+                <strong>`div` + class 寫法</strong>
+                可以做到相同畫面，但必須靠 class 名稱補語意。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="compareBadge">建議</div>
+            <h3 id="compareTitle">HTML 本身就能說明頁面結構</h3>
+            <p id="compareDescription">
+              語意化寫法的好處是，你不必先閱讀一堆 class 名稱才能知道區塊在做什麼。
+            </p>
+            <pre class="code-block" id="compareCode"></pre>
+            <div class="note-line" id="compareNote"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. `article` 和 `section` 的差異</h2>
+        <div class="compare-grid">
+          <section class="card">
+            <span class="badge ok">`article`</span>
+            <h3>偏向可獨立存在的內容</h3>
+            <p>
+              如果一塊內容被單獨拿出去閱讀、分享、轉載，仍然能成立，通常更接近 `article`。
+            </p>
+            <div class="compare-card">
+              <h3 style="margin-bottom:8px;">前端學習心得</h3>
+              <p style="margin-bottom:0;">這篇文章即使被抽離原頁面，仍然是一篇完整內容。</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge">`section`</span>
+            <h3>偏向主題下的一個區段</h3>
+            <p>
+              如果它主要是某個頁面裡的其中一段內容、其中一個主題區塊，通常更接近 `section`。
+            </p>
+            <div class="compare-card">
+              <h3 style="margin-bottom:8px;">課程特色</h3>
+              <p style="margin-bottom:0;">這更像某個頁面裡的其中一個介紹區塊，而不是獨立文章。</p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 何時應優先用語意化標籤</h2>
+        <div class="stage-grid">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-usage="prefer">
+                <strong>應優先使用</strong>
+                當內容本身就是導覽、主要區域、文章、側欄、頁首、頁尾時。
+              </button>
+              <button class="choice-button" type="button" data-usage="fallback">
+                <strong>退回 `div`</strong>
+                當你只是單純為排版分組，找不到更合適的語意標籤時。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="usageBadge">優先語意</div>
+            <h3 id="usageTitle">先找有語意的標籤，再退回泛用容器</h3>
+            <p id="usageDescription">
+              語意化標籤不是要完全取代 `div`，而是讓「本來就有明確角色」的區塊先用更恰當的標籤表達。
+            </p>
+            <pre class="code-block" id="usageCode"></pre>
+            <div class="info-box" id="usageNote" style="margin-top: 14px;">
+              原則很簡單：先問這塊內容是不是頁首、導覽、主內容、文章、區段、側欄或頁尾。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 常見實務提醒</h2>
+        <div class="mini-grid">
+          <article class="mini-item">
+            <strong>語意不等於樣式</strong>
+            `header` 看起來不一定要像網站頂部橫條，重點是它扮演的角色。
+          </article>
+          <article class="mini-item">
+            <strong>`div` 不是錯</strong>
+            當內容只是純排版分組、沒有更明確角色時，`div` 仍然是合理選擇。
+          </article>
+          <article class="mini-item">
+            <strong>先分清內容角色</strong>
+            先搞清楚內容在頁面中的用途，再選語意標籤，會比先想畫面更穩定。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const semanticButtons = [...document.querySelectorAll("[data-semantic-mode]")];
+    const semanticBadge = document.getElementById("semanticBadge");
+    const semanticTitle = document.getElementById("semanticTitle");
+    const semanticDescription = document.getElementById("semanticDescription");
+    const semanticCode = document.getElementById("semanticCode");
+    const semanticPreview = document.getElementById("semanticPreview");
+
+    const compareButtons = [...document.querySelectorAll("[data-compare-mode]")];
+    const compareBadge = document.getElementById("compareBadge");
+    const compareTitle = document.getElementById("compareTitle");
+    const compareDescription = document.getElementById("compareDescription");
+    const compareCode = document.getElementById("compareCode");
+    const compareNote = document.getElementById("compareNote");
+
+    const usageButtons = [...document.querySelectorAll("[data-usage]")];
+    const usageBadge = document.getElementById("usageBadge");
+    const usageTitle = document.getElementById("usageTitle");
+    const usageDescription = document.getElementById("usageDescription");
+    const usageCode = document.getElementById("usageCode");
+    const usageNote = document.getElementById("usageNote");
+
+    const semanticViews = {
+      layout: {
+        badge: "Semantic Layout",
+        title: "用標籤直接說明這塊內容是什麼",
+        description: "當你看到 `header`、`nav`、`main`、`aside`、`footer`，就能直接猜到這塊內容的大致用途。",
+        code: `&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;
+  &lt;article&gt;...&lt;/article&gt;
+  &lt;aside&gt;...&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;`,
+        preview: `
+          <section class="page-shell">
+            <div class="semantic-layout">
+              <div class="layout-box">header：網站標題 / 頁首資訊</div>
+              <div class="layout-box nav">nav：主要導覽</div>
+              <div class="layout-box main">
+                <div class="main-grid">
+                  <div class="layout-box">article / section：主內容區</div>
+                  <div class="layout-box">aside：側欄 / 延伸資訊</div>
+                </div>
+              </div>
+              <div class="layout-box">footer：頁尾資訊</div>
+            </div>
+          </section>
+        `
+      },
+      outline: {
+        badge: "Document Meaning",
+        title: "語意化標籤會讓頁面更像有結構的文件",
+        description: "除了排版區塊之外，這些標籤也讓頁面呈現出更清楚的內容角色與層次感。",
+        code: `&lt;main&gt;
+  &lt;article&gt;
+    &lt;header&gt;文章標題區&lt;/header&gt;
+    &lt;section&gt;第一節&lt;/section&gt;
+    &lt;section&gt;第二節&lt;/section&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;相關閱讀&lt;/aside&gt;
+&lt;/main&gt;`,
+        preview: `
+          <section class="structure-card">
+            <ul class="node-list">
+              <li class="indent-1">main：主要內容</li>
+              <li class="indent-2">article：一篇完整文章</li>
+              <li class="indent-3">header：文章標題區</li>
+              <li class="indent-3">section：第一節內容</li>
+              <li class="indent-3">section：第二節內容</li>
+              <li class="indent-2">aside：相關閱讀 / 補充資訊</li>
+            </ul>
+          </section>
+        `
+      }
+    };
+
+    const compareViews = {
+      semantic: {
+        badge: "建議",
+        title: "HTML 本身就能說明頁面結構",
+        description: "語意化寫法的好處是，你不必先閱讀一堆 class 名稱才能知道區塊在做什麼。",
+        code: `&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;`,
+        note: "這種寫法對人和工具都更直觀，因為標籤本身已經在傳達內容角色。"
+      },
+      div: {
+        badge: "可行但較弱",
+        title: "畫面能成立，但語意要靠 class 補",
+        description: "`div` 加 class 也能做出相同畫面，但你得先解讀 class 名稱，才能理解區塊用途。",
+        code: `&lt;div class="header"&gt;...&lt;/div&gt;
+&lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;div class="main"&gt;...&lt;/div&gt;
+&lt;div class="footer"&gt;...&lt;/div&gt;`,
+        note: "這不是錯，但當已有更合適的語意標籤時，通常不如直接使用它們。"
+      }
+    };
+
+    const usageViews = {
+      prefer: {
+        badge: "優先語意",
+        title: "先找有語意的標籤，再退回泛用容器",
+        description: "語意化標籤不是要完全取代 `div`，而是讓「本來就有明確角色」的區塊先用更恰當的標籤表達。",
+        code: `&lt;nav&gt;...&lt;/nav&gt;
+&lt;article&gt;...&lt;/article&gt;
+&lt;aside&gt;...&lt;/aside&gt;`,
+        note: "原則很簡單：先問這塊內容是不是頁首、導覽、主內容、文章、區段、側欄或頁尾。"
+      },
+      fallback: {
+        badge: "退回 div",
+        title: "純排版分組時，`div` 仍然合理",
+        description: "如果你只是要做 flex / grid 分組、包一層排版容器，或找不到更精準的語意角色，`div` 仍然是正常選擇。",
+        code: `&lt;div class="card-grid"&gt;
+  &lt;div class="card"&gt;...&lt;/div&gt;
+  &lt;div class="card"&gt;...&lt;/div&gt;
+&lt;/div&gt;`,
+        note: "不要為了語意而硬套錯標籤；沒有更好的角色時，用 `div` 反而更穩當。"
+      }
+    };
+
+    function setSemanticMode(mode) {
+      const view = semanticViews[mode];
+
+      semanticButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.semanticMode === mode);
+      });
+
+      semanticBadge.textContent = view.badge;
+      semanticTitle.textContent = view.title;
+      semanticDescription.textContent = view.description;
+      semanticCode.innerHTML = view.code;
+      semanticPreview.innerHTML = view.preview;
+    }
+
+    function setCompareMode(mode) {
+      const view = compareViews[mode];
+
+      compareButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.compareMode === mode);
+      });
+
+      compareBadge.textContent = view.badge;
+      compareBadge.className = "badge" + (mode === "semantic" ? " ok" : "");
+      compareTitle.textContent = view.title;
+      compareDescription.textContent = view.description;
+      compareCode.innerHTML = view.code;
+      compareNote.textContent = view.note;
+    }
+
+    function setUsageMode(mode) {
+      const view = usageViews[mode];
+
+      usageButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.usage === mode);
+      });
+
+      usageBadge.textContent = view.badge;
+      usageTitle.textContent = view.title;
+      usageDescription.textContent = view.description;
+      usageCode.innerHTML = view.code;
+      usageNote.textContent = view.note;
+    }
+
+    semanticButtons.forEach((button) => {
+      button.addEventListener("click", () => setSemanticMode(button.dataset.semanticMode));
+    });
+
+    compareButtons.forEach((button) => {
+      button.addEventListener("click", () => setCompareMode(button.dataset.compareMode));
+    });
+
+    usageButtons.forEach((button) => {
+      button.addEventListener("click", () => setUsageMode(button.dataset.usage));
+    });
+
+    setSemanticMode("layout");
+    setCompareMode("semantic");
+    setUsageMode("prefer");
+  </script>
+</body>
+</html>
