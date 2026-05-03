@@ -82,6 +82,11 @@
 &#39;    '
 ```
 
+## 對應示例
+
+- [字符實體 Demo](./demos/character-entities-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 * [返回首頁](../README.md)
