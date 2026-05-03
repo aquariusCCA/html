@@ -43,6 +43,11 @@
 - `th` vs `td`：差別不只是粗體外觀，還在於表頭與資料語意。
 - `rowspan` vs `colspan`：一個向下跨列，一個向右跨欄。
 
+## 對應示例
+
+- [表格標籤 Demo](./demos/table-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
