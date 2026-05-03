@@ -42,6 +42,11 @@
 - 單一 `src` vs 多個 `<source>`：前者夠簡單，後者更適合多格式備援。
 - 音頻標籤 vs 視頻標籤：它們都是媒體元素，但不能把影片畫面相關概念直接套到音頻。
 
+## 對應示例
+
+- [音頻標籤 Demo](./demos/audio-tag-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
