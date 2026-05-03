@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HTML 可存取性基礎 demo，展示語意化 HTML、alt、label、table、landmark、鍵盤操作、tabindex 與 ARIA。">
+  <title>HTML Accessibility Basics Demo</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --panel: #fcfcfd;
+      --ink: #17202a;
+      --muted: #5e6875;
+      --line: #d7dee8;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --amber: #b45309;
+      --rose: #be123c;
+      --green: #15803d;
+      --code-bg: #111827;
+      --code-ink: #e5e7eb;
+      --shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      background: var(--bg);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    select {
+      outline-offset: 3px;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid rgba(37, 99, 235, 0.5);
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    input[aria-invalid="true"] {
+      border-color: rgba(190, 18, 60, 0.76);
+      background: #fff1f2;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 13px;
+      color: #fff;
+      background: var(--teal);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      z-index: 10;
+      transform: translateY(-160%);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #fff;
+      background: var(--blue);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header,
+    main,
+    .site-footer {
+      width: min(1180px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-list a {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    main {
+      margin-top: 16px;
+      margin-bottom: 40px;
+    }
+
+    .top,
+    .grid,
+    .demo-row,
+    .split,
+    .status-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .top {
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .grid,
+    .split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .demo-row {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      align-items: start;
+    }
+
+    .status-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hero,
+    .panel,
+    .card,
+    .status-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 58%, #ecfeff 100%);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .hero p,
+    .panel p,
+    .card p,
+    li {
+      line-height: 1.72;
+    }
+
+    .hero p,
+    .muted,
+    .hint {
+      color: var(--muted);
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quick,
+    .card,
+    .status-card {
+      padding: 18px;
+    }
+
+    .quick h2,
+    .panel h2,
+    .card h3 {
+      margin: 0 0 12px;
+    }
+
+    .quick ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .panel {
+      margin-top: 16px;
+      padding: 22px;
+      background: var(--panel);
+    }
+
+    .card,
+    .status-card {
+      box-shadow: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: #fff;
+      background: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.blue { background: var(--blue); }
+    .badge.amber { background: var(--amber); }
+    .badge.rose { background: var(--rose); }
+    .badge.green { background: var(--green); }
+
+    .code {
+      margin: 0;
+      overflow: auto;
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .field label,
+    .option-group strong {
+      font-weight: 800;
+    }
+
+    .hint,
+    .error {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .error {
+      color: var(--rose);
+      font-weight: 800;
+    }
+
+    .image-frame {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .image-frame figcaption {
+      border-top: 1px solid var(--line);
+      padding: 10px 12px;
+      color: var(--muted);
+      background: #f8fafc;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .button-row,
+    .option-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .fake-button {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 13px;
+      color: var(--ink);
+      background: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .menu[hidden] {
+      display: none;
+    }
+
+    .menu a {
+      display: block;
+      padding: 8px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .status-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .status-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .log {
+      min-height: 84px;
+      margin: 0;
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      white-space: pre-wrap;
+      line-height: 1.55;
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    caption {
+      padding: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      text-align: left;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+    }
+
+    .note {
+      border-left: 4px solid var(--teal);
+      padding: 12px 14px;
+      color: var(--muted);
+      background: #f0fdfa;
+      border-radius: 8px;
+    }
+
+    .note.warning {
+      border-color: var(--rose);
+      background: #fff1f2;
+    }
+
+    .kbd-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .site-footer {
+      margin-bottom: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .footer-links a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--teal);
+      background: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 920px) {
+      .site-header,
+      main,
+      .site-footer {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .site-header,
+      .top,
+      .grid,
+      .demo-row,
+      .split,
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <div class="brand">A11y HTML Lab</div>
+    <nav aria-label="章節導覽">
+      <ul class="nav-list">
+        <li><a href="#semantic">語意化</a></li>
+        <li><a href="#images">圖片</a></li>
+        <li><a href="#forms">表單</a></li>
+        <li><a href="#tables">表格</a></li>
+        <li><a href="#aria">ARIA</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="top" aria-labelledby="page-title">
+      <header class="hero">
+        <h1 id="page-title">HTML 可存取性基礎 Demo</h1>
+        <p>
+          這個範例對應筆記中的核心原則：先使用正確的 HTML，再補 ARIA。頁面示範 landmark、標題層級、圖片替代文字、表單標籤、表格標題、鍵盤操作、`tabindex` 與 `aria-expanded` / `aria-live`。
+        </p>
+      </header>
+
+      <aside class="quick card" aria-labelledby="quick-title">
+        <h2 id="quick-title">手動測試</h2>
+        <ul>
+          <li>按 `Tab` 檢查焦點順序是否合理。</li>
+          <li>按 skip link 確認可跳到主要內容。</li>
+          <li>用 Enter / Space 操作按鈕與選單。</li>
+          <li>觀察錯誤訊息是否和欄位關聯。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="panel" id="semantic" aria-labelledby="semantic-title">
+      <span class="badge">semantic first</span>
+      <h2 id="semantic-title">語意化 HTML 優先於 ARIA</h2>
+      <div class="demo-row">
+        <article class="card">
+          <h3>不理想</h3>
+          <pre class="code"><code>&lt;div class="title"&gt;課程總覽&lt;/div&gt;
+&lt;div class="btn" onclick="save()"&gt;儲存&lt;/div&gt;
+&lt;span onclick="location.href='./notes.html'"&gt;看更多&lt;/span&gt;</code></pre>
+          <p class="note warning">
+            視覺上像標題、按鈕、連結，不代表輔助技術會把它們理解成標題、按鈕、連結。
+          </p>
+        </article>
+        <article class="card">
+          <h3>建議</h3>
+          <pre class="code"><code>&lt;h2&gt;課程總覽&lt;/h2&gt;
+&lt;button type="button"&gt;儲存&lt;/button&gt;
+&lt;a href="./notes.html"&gt;閱讀 HTML 可存取性筆記&lt;/a&gt;</code></pre>
+          <p class="note">
+            原生元素會自帶語意、鍵盤操作、焦點行為與可預期的瀏覽器互動。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="images" aria-labelledby="images-title">
+      <span class="badge blue">alt text</span>
+      <h2 id="images-title">圖片 `alt`：內容圖要描述，裝飾圖要留空</h2>
+      <div class="grid">
+        <figure class="image-frame">
+          <img
+            src="./images/a11y-chart.svg"
+            width="960"
+            height="540"
+            alt="可存取性檢查清單，包含語意化 HTML、替代文字與標籤、鍵盤操作、ARIA 狀態同步四項。">
+          <figcaption>有內容意義的圖表：`alt` 說明圖片本身傳達的資訊。</figcaption>
+        </figure>
+
+        <figure class="image-frame">
+          <img src="./images/decorative-wave.svg" width="960" height="110" alt="">
+          <figcaption>純裝飾分隔線：使用 `alt=""`，避免讀屏讀出無意義內容。</figcaption>
+        </figure>
+      </div>
+      <pre class="code" style="margin-top: 16px;"><code>&lt;img src="./images/a11y-chart.svg" alt="可存取性檢查清單，包含..."&gt;
+&lt;img src="./images/decorative-wave.svg" alt=""&gt;</code></pre>
+    </section>
+
+    <section class="panel" id="forms" aria-labelledby="forms-title">
+      <span class="badge green">forms</span>
+      <h2 id="forms-title">表單：`label`、`fieldset`、`aria-describedby`</h2>
+      <div class="demo-row">
+        <form class="card" id="demoForm" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <p class="hint" id="email-help">請輸入可收信的 Email。</p>
+            <input id="email" name="email" type="email" aria-describedby="email-help email-error" placeholder="user@example.com">
+            <p class="error" id="email-error" hidden>請輸入有效的 Email，例如 user@example.com。</p>
+          </div>
+
+          <fieldset>
+            <legend>通知方式</legend>
+            <div class="option-row">
+              <label><input type="checkbox" name="notice" value="email"> Email</label>
+              <label><input type="checkbox" name="notice" value="sms"> 簡訊</label>
+              <label><input type="checkbox" name="notice" value="app"> App 推播</label>
+            </div>
+          </fieldset>
+
+          <div class="button-row">
+            <button type="submit">檢查表單</button>
+            <button class="secondary" type="reset">重設</button>
+          </div>
+        </form>
+
+        <article class="card">
+          <h3>對應程式碼</h3>
+          <pre class="code"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input
+  id="email"
+  type="email"
+  aria-describedby="email-help email-error"&gt;
+&lt;p id="email-error"&gt;請輸入有效的 Email&lt;/p&gt;
+
+&lt;fieldset&gt;
+  &lt;legend&gt;通知方式&lt;/legend&gt;
+  ...
+&lt;/fieldset&gt;</code></pre>
+          <p class="note">
+            `placeholder` 不能取代 `label`。錯誤文字要能被欄位關聯，常見做法是 `aria-describedby` 搭配 `aria-invalid`。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="tables" aria-labelledby="tables-title">
+      <span class="badge amber">tables</span>
+      <h2 id="tables-title">資料表：`caption`、`th`、`scope`</h2>
+      <div class="demo-row">
+        <article class="card">
+          <table>
+            <caption>HTML 可存取性檢查項目</caption>
+            <thead>
+              <tr>
+                <th scope="col">項目</th>
+                <th scope="col">建議</th>
+                <th scope="col">常見問題</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">標題</th>
+                <td>依內容層級使用 `h1` 到 `h6`。</td>
+                <td>只用 CSS 做大字。</td>
+              </tr>
+              <tr>
+                <th scope="row">圖片</th>
+                <td>內容圖提供有意義的 `alt`。</td>
+                <td>`alt="image"` 或檔名。</td>
+              </tr>
+              <tr>
+                <th scope="row">表單</th>
+                <td>每個欄位都有可程式關聯的 label。</td>
+                <td>只放 placeholder。</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="card">
+          <h3>對應程式碼</h3>
+          <pre class="code"><code>&lt;table&gt;
+  &lt;caption&gt;HTML 可存取性檢查項目&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;項目&lt;/th&gt;
+      ...
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;標題&lt;/th&gt;
+      ...
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+          <p class="note">資料表用 `table`，排版格線不要假裝資料表。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="aria" aria-labelledby="aria-title">
+      <span class="badge rose">ARIA</span>
+      <h2 id="aria-title">ARIA 補語意，不補互動邏輯</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>選單狀態同步</h3>
+          <button type="button" id="menuButton" aria-expanded="false" aria-controls="lessonMenu">
+            切換課程選單
+          </button>
+          <nav class="menu" id="lessonMenu" aria-label="課程選單" hidden>
+            <a href="#semantic">語意化 HTML</a>
+            <a href="#forms">表單標籤</a>
+            <a href="#tables">資料表</a>
+          </nav>
+          <p class="hint">按鈕展開時，JS 會同步更新 `hidden` 與 `aria-expanded`。</p>
+          <pre class="code"><code>&lt;button aria-expanded="false" aria-controls="menu"&gt;
+  切換選單
+&lt;/button&gt;
+&lt;nav id="menu" hidden&gt;...&lt;/nav&gt;</code></pre>
+        </article>
+
+        <article class="card">
+          <h3>原生 button vs role button</h3>
+          <div class="button-row">
+            <button type="button" id="nativeButton">原生 button</button>
+            <span class="fake-button" role="button" tabindex="0" id="roleButton">role="button"</span>
+          </div>
+          <p class="hint">這裡刻意示範：`role="button"` 需要額外補鍵盤事件。能用原生 `button` 時，不應先用 `div/span + role`。</p>
+          <pre class="log" id="buttonLog" aria-live="polite">尚未操作。</pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <span class="badge blue">tabindex</span>
+        <h2>`tabindex` 使用邊界</h2>
+        <ul class="kbd-list">
+          <li>`tabindex="0"`：讓自訂元件進入自然 Tab 順序，但應少用。</li>
+          <li>`tabindex="-1"`：可用 JS 聚焦，但不進入 Tab 順序，常用於跳轉到主要內容或錯誤摘要。</li>
+          <li>正整數 `tabindex` 會改寫焦點順序，容易讓鍵盤使用者迷路。</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <span class="badge green">live region</span>
+        <h2>`aria-live` 宣告動態訊息</h2>
+        <div class="status-grid">
+          <div class="status-card">
+            <strong id="saveCount">0</strong>
+            <span>儲存次數</span>
+          </div>
+          <div class="status-card">
+            <strong id="expandedState">false</strong>
+            <span>aria-expanded</span>
+          </div>
+          <div class="status-card">
+            <strong id="emailState">true</strong>
+            <span>Email aria-invalid</span>
+          </div>
+        </div>
+        <p class="note" id="liveStatus" aria-live="polite">動態狀態會出現在這裡。</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <span class="badge">checklist</span>
+      <h2>本章檢查清單</h2>
+      <table>
+        <caption>可存取性基礎檢查表</caption>
+        <thead>
+          <tr>
+            <th scope="col">檢查項目</th>
+            <th scope="col">合格做法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">HTML 語意</th>
+            <td>標題、按鈕、連結、表單、表格先用原生元素。</td>
+          </tr>
+          <tr>
+            <th scope="row">圖片</th>
+            <td>內容圖有描述性 `alt`，裝飾圖 `alt=""`。</td>
+          </tr>
+          <tr>
+            <th scope="row">鍵盤</th>
+            <td>Tab 順序合理，互動元件可用 Enter / Space 操作。</td>
+          </tr>
+          <tr>
+            <th scope="row">ARIA</th>
+            <td>只在需要補充 accessibility tree 時使用，狀態必須同步。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer-links">
+      <a href="../README.md">回到本章 README</a>
+      <a href="../第38章_HTML可存取性基礎.md">回到筆記</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>本頁本身也刻意使用 landmark、skip link、焦點樣式、label、caption 與可辨識連結文字。</p>
+  </footer>
+
+  <script>
+    const demoForm = document.querySelector("#demoForm");
+    const email = document.querySelector("#email");
+    const emailError = document.querySelector("#email-error");
+    const emailState = document.querySelector("#emailState");
+    const liveStatus = document.querySelector("#liveStatus");
+    const menuButton = document.querySelector("#menuButton");
+    const lessonMenu = document.querySelector("#lessonMenu");
+    const expandedState = document.querySelector("#expandedState");
+    const nativeButton = document.querySelector("#nativeButton");
+    const roleButton = document.querySelector("#roleButton");
+    const buttonLog = document.querySelector("#buttonLog");
+    const saveCount = document.querySelector("#saveCount");
+
+    let count = 0;
+
+    function setEmailValidity() {
+      const isValid = email.value === "" || email.validity.valid;
+      email.setAttribute("aria-invalid", String(!isValid));
+      emailError.hidden = isValid;
+      emailState.textContent = String(!isValid);
+      return isValid;
+    }
+
+    function announce(message) {
+      count += 1;
+      saveCount.textContent = String(count);
+      buttonLog.textContent = message;
+      liveStatus.textContent = message;
+    }
+
+    email.addEventListener("input", setEmailValidity);
+    email.addEventListener("blur", setEmailValidity);
+
+    demoForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const isValid = setEmailValidity();
+      announce(isValid ? "表單欄位目前有效。" : "Email 欄位格式不正確，錯誤訊息已和欄位關聯。");
+    });
+
+    demoForm.addEventListener("reset", () => {
+      window.setTimeout(() => {
+        setEmailValidity();
+        announce("表單已重設。");
+      });
+    });
+
+    menuButton.addEventListener("click", () => {
+      const expanded = menuButton.getAttribute("aria-expanded") === "true";
+      const next = !expanded;
+      menuButton.setAttribute("aria-expanded", String(next));
+      lessonMenu.hidden = !next;
+      expandedState.textContent = String(next);
+      liveStatus.textContent = next ? "課程選單已展開。" : "課程選單已收合。";
+    });
+
+    nativeButton.addEventListener("click", () => {
+      announce("原生 button 已被操作。");
+    });
+
+    roleButton.addEventListener("click", () => {
+      announce('role="button" 已被滑鼠操作。');
+    });
+
+    roleButton.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        announce('role="button" 已透過鍵盤操作。');
+      }
+    });
+
+    setEmailValidity();
+  </script>
+</body>
+</html>
