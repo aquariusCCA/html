@@ -40,6 +40,11 @@
 - 保留格式 vs 等寬字體：前者是核心用途，後者是常見顯示結果。
 - `<pre>` vs `<p>`：前者保留原始排版，後者偏一般段落閱讀。
 
+## 對應示例
+
+- [預格式化文本標籤 Demo](./demos/pre-tag-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
