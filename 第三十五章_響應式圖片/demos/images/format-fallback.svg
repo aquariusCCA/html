@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="506" viewBox="0 0 900 506" role="img" aria-labelledby="title desc">
+  <title id="title">Fallback image candidate</title>
+  <desc id="desc">Fallback image used by the img element.</desc>
+  <rect width="900" height="506" fill="#fff7ed"/>
+  <rect x="38" y="38" width="824" height="430" rx="12" fill="#9a3412"/>
+  <path d="M70 385h760v40H70z" fill="#fed7aa"/>
+  <path d="M164 360l116-132 98 110 78-76 190 98z" fill="#fb923c"/>
+  <circle cx="690" cy="150" r="78" fill="#fdba74"/>
+  <text x="84" y="116" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#fff7ed">img fallback</text>
+  <text x="84" y="172" font-family="Arial, sans-serif" font-size="28" fill="#ffedd5">always keep img src and alt inside picture</text>
+</svg>

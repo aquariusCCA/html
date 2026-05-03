@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="506" viewBox="0 0 900 506" role="img" aria-labelledby="title desc">
+  <title id="title">Modern image format candidate</title>
+  <desc id="desc">A modern format candidate selected by source type.</desc>
+  <rect width="900" height="506" fill="#f0fdf4"/>
+  <rect x="38" y="38" width="824" height="430" rx="12" fill="#14532d"/>
+  <path d="M70 385h760v40H70z" fill="#86efac"/>
+  <path d="M160 360l120-150 98 118 72-82 190 114z" fill="#22c55e"/>
+  <circle cx="690" cy="150" r="78" fill="#bbf7d0"/>
+  <text x="84" y="116" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#f0fdf4">source type selected</text>
+  <text x="84" y="172" font-family="Arial, sans-serif" font-size="28" fill="#dcfce7">same structure as AVIF / WebP / JPG fallback</text>
+</svg>

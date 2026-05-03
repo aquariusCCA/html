@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="270" viewBox="0 0 480 270" role="img" aria-labelledby="title desc">
+  <title id="title">Responsive banner 480w</title>
+  <desc id="desc">Small 480 pixel wide banner candidate.</desc>
+  <rect width="480" height="270" fill="#fef3c7"/>
+  <rect x="24" y="24" width="432" height="222" rx="10" fill="#92400e"/>
+  <path d="M0 210l105-92 80 65 63-44 132 101H0z" fill="#fbbf24"/>
+  <circle cx="380" cy="72" r="42" fill="#fde68a"/>
+  <text x="36" y="70" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#fff7ed">480w</text>
+  <text x="36" y="110" font-family="Arial, sans-serif" font-size="18" fill="#ffedd5">small candidate</text>
+</svg>

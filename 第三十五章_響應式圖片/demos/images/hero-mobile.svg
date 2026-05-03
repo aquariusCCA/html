@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="900" viewBox="0 0 640 900" role="img" aria-labelledby="title desc">
+  <title id="title">Mobile art direction image</title>
+  <desc id="desc">Tall mobile image for picture media demo.</desc>
+  <rect width="640" height="900" fill="#f1f5f9"/>
+  <rect x="52" y="60" width="536" height="780" rx="18" fill="#7c2d12"/>
+  <circle cx="320" cy="300" r="150" fill="#fdba74"/>
+  <rect x="128" y="518" width="384" height="172" rx="14" fill="#fff7ed"/>
+  <text x="320" y="548" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#7c2d12" text-anchor="middle">MOBILE</text>
+  <text x="320" y="614" font-family="Arial, sans-serif" font-size="32" fill="#9a3412" text-anchor="middle">vertical crop</text>
+</svg>
