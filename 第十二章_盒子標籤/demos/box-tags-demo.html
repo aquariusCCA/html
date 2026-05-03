@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Tags Demo</title>
+  <style>
+    :root {
+      --bg: #f4efe8;
+      --panel: rgba(255, 252, 247, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #182128;
+      --muted: #5f6a72;
+      --line: #d7ccbd;
+      --accent: #176b87;
+      --accent-strong: #12556b;
+      --accent-soft: rgba(23, 107, 135, 0.12);
+      --warm: #b45309;
+      --warm-soft: rgba(180, 83, 9, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --danger: #c2410c;
+      --danger-soft: rgba(194, 65, 12, 0.12);
+      --shadow: 0 24px 52px rgba(39, 30, 20, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(23, 107, 135, 0.15), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(180, 83, 9, 0.1), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(215, 204, 189, 0.92);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li {
+      line-height: 1.7;
+    }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero,
+    .summary-grid,
+    .two-col,
+    .stage-grid,
+    .mini-grid,
+    .compare-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.16fr 0.84fr;
+      margin-bottom: 22px;
+    }
+
+    .summary-grid,
+    .compare-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stage-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .summary-item,
+    .mini-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(215, 204, 189, 0.85);
+      background: rgba(255, 248, 240, 0.82);
+    }
+
+    .summary-item strong,
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill,
+    .choice-button {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .pill.active,
+    .choice-button.active {
+      background: var(--accent-soft);
+      border-color: rgba(23, 107, 135, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .info-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(23, 107, 135, 0.06);
+      color: var(--muted);
+    }
+
+    .demo-card,
+    .compare-card,
+    .semantic-card {
+      border-radius: 20px;
+      border: 1px solid rgba(24, 33, 40, 0.08);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .block-box {
+      margin-bottom: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(23, 107, 135, 0.18);
+      background: rgba(23, 107, 135, 0.1);
+    }
+
+    .inline-chip {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(180, 83, 9, 0.16);
+      background: rgba(180, 83, 9, 0.14);
+      color: #8a4b06;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-button {
+      text-align: left;
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .choice-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .catalog-card,
+    .fake-catalog-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(24, 33, 40, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .catalog-price {
+      font-weight: 800;
+      color: #b91c1c;
+    }
+
+    .nav-chip {
+      display: inline-block;
+      margin-right: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(23, 107, 135, 0.12);
+      color: var(--accent-strong);
+    }
+
+    .display-inline {
+      display: inline;
+    }
+
+    .display-block {
+      display: block;
+    }
+
+    .note-line {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 248, 240, 0.84);
+      color: var(--muted);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .summary-grid,
+      .two-col,
+      .stage-grid,
+      .mini-grid,
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML 盒子標籤 Demo</h1>
+        <p class="lead">
+          `div` 和 `span` 是 HTML 裡最常見的泛用容器。它們本身幾乎沒有內容語意，但非常適合拿來包裝區塊、綁 class、套樣式與配合 JavaScript 操作。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>`div`</strong>
+            常作為區塊級泛用容器，適合包整塊區域、卡片、版面區段。
+          </article>
+          <article class="summary-item">
+            <strong>`span`</strong>
+            常作為行內泛用容器，適合包一小段文字、價格、關鍵詞、狀態。
+          </article>
+          <article class="summary-item">
+            <strong>本質是容器</strong>
+            它們的重點是「包起來」，而不是自帶強烈語意。
+          </article>
+          <article class="summary-item">
+            <strong>樣式靠 CSS</strong>
+            `div` / `span` 的外觀和排列方式，真正多半是由 `display` 與其他 CSS 決定。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁會示範</h2>
+        <ul class="mini-list">
+          <li>`div` 與 `span` 的典型使用情境</li>
+          <li>block / inline 的預設差異</li>
+          <li>CSS `display` 改變外觀但不改變本質</li>
+          <li>何時應優先用更有語意的標籤</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. `div` 和 `span` 的典型差異</h2>
+        <div class="pill-row" role="tablist" aria-label="box tag demo">
+          <button class="pill active" type="button" data-box-mode="div">`div`</button>
+          <button class="pill" type="button" data-box-mode="span">`span`</button>
+        </div>
+
+        <div class="stage-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="boxBadge">Block Container</span>
+            <h3 id="boxTitle">`div` 適合包整塊內容</h3>
+            <p id="boxDescription">
+              `div` 常拿來包一張卡片、一整個區域、或一組排版單位。它通常和區塊內容一起工作。
+            </p>
+            <pre class="code-block" id="boxCode"></pre>
+          </section>
+
+          <section class="demo-card" id="boxPreview"></section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. 預設的 block / inline 行為</h2>
+        <div class="compare-grid">
+          <section class="card">
+            <span class="badge">`div` 預設</span>
+            <h3>通常會從新的一行開始</h3>
+            <div class="compare-card">
+              <div class="block-box">第一個 div 區塊</div>
+              <div class="block-box">第二個 div 區塊</div>
+              <div class="block-box" style="margin-bottom:0;">第三個 div 區塊</div>
+            </div>
+            <div class="note-line">
+              這是典型的區塊級排列方式，一塊接一塊往下堆。
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge">`span` 預設</span>
+            <h3>通常會跟著文字排在同一行</h3>
+            <div class="compare-card">
+              <span class="inline-chip">新品</span>
+              <span class="inline-chip">免運</span>
+              <span class="inline-chip">限時折扣</span>
+              <span>這些標記會跟著行內文字一起流動。</span>
+            </div>
+            <div class="note-line">
+              這是典型的行內排列方式，適合局部標記，不適合整塊版面切分。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. CSS 可以改外觀，但不代表該這樣選標籤</h2>
+        <div class="two-col">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-display-demo="div-inline">
+                <strong>把 `div` 改成 inline</strong>
+                看起來能像行內元素，但它仍然是拿來承載整塊內容的泛用容器。
+              </button>
+              <button class="choice-button" type="button" data-display-demo="span-block">
+                <strong>把 `span` 改成 block</strong>
+                看起來能像區塊元素，但它仍常被用來包局部文字或小片段。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="displayBadge">display</div>
+            <h3 id="displayTitle">`display` 會改呈現方式</h3>
+            <p id="displayDescription">
+              `display` 可以改變排版外觀，但不該反過來主導你選用哪種標籤。選標籤時還是要先看內容角色。
+            </p>
+            <pre class="code-block" id="displayCode"></pre>
+            <div class="demo-card" id="displayPreview" style="margin-top: 14px;"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 何時不該只用 `div` / `span`</h2>
+        <div class="stage-grid">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-semantic="better">
+                <strong>較好的寫法</strong>
+                如果內容本身有更明確的語意，就應優先使用更合適的標籤。
+              </button>
+              <button class="choice-button" type="button" data-semantic="generic">
+                <strong>泛用容器寫法</strong>
+                `div` / `span` 可以做到，但語意較弱，通常是後備方案。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="semanticBadge">較好的語意</div>
+            <h3 id="semanticTitle">先找有語意的標籤，再退回泛用容器</h3>
+            <p id="semanticDescription">
+              如果你其實是在寫導航、段落、標題或區段，通常應優先選擇對應的語意標籤。
+            </p>
+            <pre class="code-block" id="semanticCode"></pre>
+            <div class="semantic-card" id="semanticPreview" style="margin-top: 14px;"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 常見實務提醒</h2>
+        <div class="mini-grid">
+          <article class="mini-item">
+            <strong>`div` 管整塊</strong>
+            當你要包卡片、區域、版面模組、群組內容時，`div` 很常是合理選擇。
+          </article>
+          <article class="mini-item">
+            <strong>`span` 管局部</strong>
+            當你只想標記一句話裡的一小段文字，`span` 通常比 `div` 更自然。
+          </article>
+          <article class="mini-item">
+            <strong>不要把語意元素都換成 `div`</strong>
+            若有更具體的 `<p>`、`<h1>`、`<nav>`、`<section>`，通常應優先使用它們。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const boxButtons = [...document.querySelectorAll("[data-box-mode]")];
+    const boxBadge = document.getElementById("boxBadge");
+    const boxTitle = document.getElementById("boxTitle");
+    const boxDescription = document.getElementById("boxDescription");
+    const boxCode = document.getElementById("boxCode");
+    const boxPreview = document.getElementById("boxPreview");
+
+    const displayButtons = [...document.querySelectorAll("[data-display-demo]")];
+    const displayBadge = document.getElementById("displayBadge");
+    const displayTitle = document.getElementById("displayTitle");
+    const displayDescription = document.getElementById("displayDescription");
+    const displayCode = document.getElementById("displayCode");
+    const displayPreview = document.getElementById("displayPreview");
+
+    const semanticButtons = [...document.querySelectorAll("[data-semantic]")];
+    const semanticBadge = document.getElementById("semanticBadge");
+    const semanticTitle = document.getElementById("semanticTitle");
+    const semanticDescription = document.getElementById("semanticDescription");
+    const semanticCode = document.getElementById("semanticCode");
+    const semanticPreview = document.getElementById("semanticPreview");
+
+    const boxViews = {
+      div: {
+        badge: "Block Container",
+        title: "`div` 適合包整塊內容",
+        description: "`div` 常拿來包一張卡片、一整個區域、或一組排版單位。它通常和區塊內容一起工作。",
+        code: `&lt;div class="card"&gt;
+  &lt;h2&gt;商品標題&lt;/h2&gt;
+  &lt;p&gt;商品描述&lt;/p&gt;
+&lt;/div&gt;`,
+        preview: `
+          <section class="catalog-card">
+            <h3 style="margin-bottom:8px;">商品標題</h3>
+            <p style="margin-bottom:0;">這是一張由 div 包起來的商品卡片區塊。</p>
+          </section>
+        `
+      },
+      span: {
+        badge: "Inline Container",
+        title: "`span` 適合包局部文字",
+        description: "`span` 常拿來標記價格、關鍵詞、狀態字樣或一句話裡的某個局部片段。",
+        code: `&lt;p&gt;
+  限時優惠：
+  &lt;span class="price"&gt;999 元&lt;/span&gt;
+&lt;/p&gt;`,
+        preview: `
+          <section class="catalog-card">
+            <p style="margin-bottom:0;">限時優惠：<span class="catalog-price">999 元</span></p>
+          </section>
+        `
+      }
+    };
+
+    const displayViews = {
+      "div-inline": {
+        badge: "display: inline",
+        title: "把 `div` 改成 inline 只是改外觀",
+        description: "`display: inline` 可以讓 div 看起來排成一行，但這不表示它在內容角色上就變成了適合包局部詞語的標籤。",
+        code: `.inline-box {\n  display: inline;\n}\n\n&lt;div class="inline-box"&gt;A&lt;/div&gt;\n&lt;div class="inline-box"&gt;B&lt;/div&gt;`,
+        preview: `
+          <div class="block-box display-inline">A</div>
+          <div class="block-box display-inline">B</div>
+          <div class="note-line" style="margin-top:14px;">它們現在排在一行，但本質上你仍然是在用 div 這個泛用區塊容器。</div>
+        `
+      },
+      "span-block": {
+        badge: "display: block",
+        title: "把 `span` 改成 block 也只是改外觀",
+        description: "`display: block` 可以讓 span 一行一個，但這不表示它就自然變成了最適合包整塊內容的標籤。",
+        code: `.tag {\n  display: block;\n}\n\n&lt;span class="tag"&gt;新品&lt;/span&gt;\n&lt;span class="tag"&gt;免運&lt;/span&gt;`,
+        preview: `
+          <span class="inline-chip display-block">新品</span>
+          <span class="inline-chip display-block">免運</span>
+          <div class="note-line" style="margin-top:14px;">它們現在一個一行，但 span 通常還是更自然地服務於局部內容標記。</div>
+        `
+      }
+    };
+
+    const semanticViews = {
+      better: {
+        badge: "較好的語意",
+        title: "先找有語意的標籤，再退回泛用容器",
+        description: "如果你其實是在寫導航、段落、標題或區段，通常應優先選擇對應的語意標籤。",
+        code: `&lt;nav&gt;
+  &lt;a href="#"&gt;首頁&lt;/a&gt;
+  &lt;a href="#"&gt;課程&lt;/a&gt;
+&lt;/nav&gt;`,
+        preview: `
+          <nav>
+            <span class="nav-chip">首頁</span>
+            <span class="nav-chip">課程</span>
+            <span class="nav-chip">關於</span>
+          </nav>
+        `
+      },
+      generic: {
+        badge: "泛用容器",
+        title: "`div` / `span` 能做，但語意較弱",
+        description: "如果你只是想先把東西包起來，`div` / `span` 當然可用；但當頁面規模變大，語意會顯得比較模糊。",
+        code: `&lt;div class="nav"&gt;
+  &lt;span&gt;首頁&lt;/span&gt;
+  &lt;span&gt;課程&lt;/span&gt;
+&lt;/div&gt;`,
+        preview: `
+          <div class="fake-catalog-card">
+            <span class="nav-chip">首頁</span>
+            <span class="nav-chip">課程</span>
+            <span class="nav-chip">關於</span>
+          </div>
+        `
+      }
+    };
+
+    function setBoxMode(mode) {
+      const view = boxViews[mode];
+
+      boxButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.boxMode === mode);
+      });
+
+      boxBadge.textContent = view.badge;
+      boxTitle.textContent = view.title;
+      boxDescription.textContent = view.description;
+      boxCode.innerHTML = view.code;
+      boxPreview.innerHTML = view.preview;
+    }
+
+    function setDisplayMode(mode) {
+      const view = displayViews[mode];
+
+      displayButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.displayDemo === mode);
+      });
+
+      displayBadge.textContent = view.badge;
+      displayTitle.textContent = view.title;
+      displayDescription.textContent = view.description;
+      displayCode.innerHTML = view.code;
+      displayPreview.innerHTML = view.preview;
+    }
+
+    function setSemanticMode(mode) {
+      const view = semanticViews[mode];
+
+      semanticButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.semantic === mode);
+      });
+
+      semanticBadge.textContent = view.badge;
+      semanticBadge.className = "badge" + (mode === "better" ? " ok" : "");
+      semanticTitle.textContent = view.title;
+      semanticDescription.textContent = view.description;
+      semanticCode.innerHTML = view.code;
+      semanticPreview.innerHTML = view.preview;
+    }
+
+    boxButtons.forEach((button) => {
+      button.addEventListener("click", () => setBoxMode(button.dataset.boxMode));
+    });
+
+    displayButtons.forEach((button) => {
+      button.addEventListener("click", () => setDisplayMode(button.dataset.displayDemo));
+    });
+
+    semanticButtons.forEach((button) => {
+      button.addEventListener("click", () => setSemanticMode(button.dataset.semantic));
+    });
+
+    setBoxMode("div");
+    setDisplayMode("div-inline");
+    setSemanticMode("better");
+  </script>
+</body>
+</html>
