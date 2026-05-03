@@ -60,6 +60,11 @@
 
 `<mark>` 標示的是「這段文字在目前脈絡下特別相關」，不是單純讓文字變黃，也不是用來表示內容本身很重要。
 
+## 對應示例
+
+- [`mark` 標籤 Demo](./demos/mark-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
