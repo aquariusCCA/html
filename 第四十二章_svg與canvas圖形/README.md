@@ -72,6 +72,11 @@
 4. 為什麼 Canvas 畫出來的文字不等於 HTML 文字？
 5. 如果圖表資訊很重要，為什麼不能只把資料畫在 Canvas 上？
 
+## 對應示例
+
+- [`svg` 與 `canvas` 圖形 Demo](./demos/svg-canvas-graphics-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)

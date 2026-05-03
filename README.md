@@ -302,6 +302,7 @@
 ### 第四十二章｜`svg` 與 `canvas` 圖形
 
 - [查看本章導航](./第四十二章_svg與canvas圖形/README.md)
+- [查看本章示例](./第四十二章_svg與canvas圖形/demos/README.md)
 - [`svg` 與 `canvas` 圖形](./第四十二章_svg與canvas圖形/第42章_svg與canvas圖形.md)
 
 ### 第四十三章｜`template` 標籤
