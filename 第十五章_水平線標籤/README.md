@@ -40,6 +40,11 @@
 - 主題分隔 vs 裝飾線條：前者是內容語意，後者偏版面樣式。
 - `<hr>` vs `<br>`：前者是內容區塊分隔，後者是同段文字內換行。
 
+## 對應示例
+
+- [水平線標籤 Demo](./demos/hr-tag-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)

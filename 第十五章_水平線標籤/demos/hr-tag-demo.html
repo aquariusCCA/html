@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Tag Demo</title>
+  <style>
+    :root {
+      --bg: #f3efe7;
+      --panel: rgba(255, 252, 247, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #1b2730;
+      --muted: #5e6b75;
+      --line: #d9cdbc;
+      --accent: #155e75;
+      --accent-strong: #12485b;
+      --accent-soft: rgba(21, 94, 117, 0.12);
+      --warm: #b45309;
+      --warm-soft: rgba(180, 83, 9, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --danger: #c2410c;
+      --danger-soft: rgba(194, 65, 12, 0.12);
+      --shadow: 0 24px 52px rgba(37, 29, 21, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(21, 94, 117, 0.14), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(180, 83, 9, 0.12), transparent 25%),
+        linear-gradient(180deg, #fbf8f3 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(217, 205, 188, 0.92);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li {
+      line-height: 1.72;
+    }
+
+    .hero,
+    .summary-grid,
+    .stage-grid,
+    .two-col,
+    .compare-grid,
+    .mini-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.18fr 0.82fr;
+      margin-bottom: 22px;
+    }
+
+    .summary-grid,
+    .compare-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stage-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .summary-item,
+    .mini-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(217, 205, 188, 0.85);
+      background: rgba(255, 247, 239, 0.82);
+    }
+
+    .summary-item strong,
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill,
+    .choice-button {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .pill.active,
+    .choice-button.active {
+      background: var(--accent-soft);
+      border-color: rgba(21, 94, 117, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-button {
+      text-align: left;
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .choice-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .preview-card,
+    .compare-card,
+    .text-card {
+      border-radius: 20px;
+      border: 1px solid rgba(27, 39, 48, 0.08);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .article-preview {
+      display: grid;
+      gap: 14px;
+    }
+
+    .article-preview p {
+      margin: 0;
+    }
+
+    .article-preview hr {
+      border: 0;
+      border-top: 2px solid rgba(21, 94, 117, 0.25);
+      margin: 6px 0;
+    }
+
+    .section-card {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(21, 94, 117, 0.14);
+      background: rgba(21, 94, 117, 0.06);
+    }
+
+    .section-card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .section-card p {
+      margin: 0;
+    }
+
+    .compare-text {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(249, 250, 251, 0.92);
+      border: 1px solid rgba(27, 39, 48, 0.08);
+      line-height: 1.75;
+    }
+
+    .rule-demo {
+      height: 2px;
+      width: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(180, 83, 9, 0.15), rgba(21, 94, 117, 0.45), rgba(180, 83, 9, 0.15));
+      margin: 16px 0;
+    }
+
+    .thread-demo {
+      display: grid;
+      gap: 14px;
+    }
+
+    .thread-demo .item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(21, 94, 117, 0.08);
+      border: 1px solid rgba(21, 94, 117, 0.14);
+    }
+
+    .thread-demo .item h4 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .thread-demo .fake-separator {
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--danger);
+      background: rgba(194, 65, 12, 0.08);
+      border: 1px dashed rgba(194, 65, 12, 0.35);
+    }
+
+    .note-line,
+    .info-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+    }
+
+    .note-line {
+      background: rgba(255, 247, 239, 0.84);
+    }
+
+    .info-box {
+      background: rgba(21, 94, 117, 0.06);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .summary-grid,
+      .stage-grid,
+      .two-col,
+      .compare-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML 水平線標籤 Demo</h1>
+        <p class="lead">
+          `&lt;hr&gt;` 的核心不是「畫出一條線」，而是表示前後內容在主題或閱讀脈絡上出現明顯分隔。它適合用在話題切換、正文轉補充、主要說明轉注意事項這類情境；如果你只是想要一條視覺上的裝飾線，通常應該先考慮 CSS。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>`&lt;hr&gt;` 是主題分隔</strong>
+            它表示內容脈絡切換，而不只是讓畫面多出一條線。
+          </article>
+          <article class="summary-item">
+            <strong>適合內容轉場</strong>
+            例如正文切到補充、基礎概念切到實作提醒、文章切到結語。
+          </article>
+          <article class="summary-item">
+            <strong>不是 `&lt;br&gt;`</strong>
+            `&lt;br&gt;` 是同段內換行，`&lt;hr&gt;` 是更高層的內容分隔。
+          </article>
+          <article class="summary-item">
+            <strong>不是萬用畫線工具</strong>
+            若需求只是裝飾線條或 spacing，應優先交給 CSS。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁會示範</h2>
+        <ul class="mini-list">
+          <li>`&lt;hr&gt;` 的典型使用情境</li>
+          <li>`&lt;hr&gt;` 和 `&lt;br&gt;` 的層級差異</li>
+          <li>`&lt;hr&gt;` 和 CSS 線條的用途差異</li>
+          <li>不建議的濫用方式</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. `&lt;hr&gt;` 的典型用途</h2>
+        <div class="pill-row" role="tablist" aria-label="hr use cases">
+          <button class="pill active" type="button" data-hr-mode="topic">話題切換</button>
+          <button class="pill" type="button" data-hr-mode="supplement">正文轉補充</button>
+          <button class="pill" type="button" data-hr-mode="ending">正文轉結語</button>
+        </div>
+
+        <div class="stage-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="hrBadge">Topic Break</span>
+            <h3 id="hrTitle">主題已切換，不只是換個段落</h3>
+            <p id="hrDescription">
+              當前後內容的閱讀焦點已經不同時，用 `&lt;hr&gt;` 能明確提示讀者這裡出現脈絡轉場。
+            </p>
+            <pre class="code-block" id="hrCode"></pre>
+          </section>
+
+          <section class="preview-card" id="hrPreview"></section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. `&lt;hr&gt;` 和 `&lt;br&gt;` 的差異</h2>
+        <div class="compare-grid">
+          <section class="card">
+            <span class="badge">同段換行</span>
+            <h3>`&lt;br&gt;` 處理的是同一段裡的斷行</h3>
+            <pre class="code-block">客服信箱：service@example.com&lt;br&gt;
+服務時間：週一到週五 09:00 - 18:00</pre>
+            <div class="compare-text">
+              客服信箱：service@example.com<br>
+              服務時間：週一到週五 09:00 - 18:00
+            </div>
+            <div class="note-line">
+              這仍是同一組資訊，只是需要換到下一行。
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge ok">主題分隔</span>
+            <h3>`&lt;hr&gt;` 處理的是內容脈絡切換</h3>
+            <pre class="code-block">&lt;p&gt;以上整理的是基本觀念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;下面開始進入實作時常見的錯誤。&lt;/p&gt;</pre>
+            <div class="article-preview">
+              <p>以上整理的是基本觀念。</p>
+              <hr>
+              <p>下面開始進入實作時常見的錯誤。</p>
+            </div>
+            <div class="note-line">
+              這裡不是單純換行，而是整個閱讀重點轉到另一塊內容。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. `&lt;hr&gt;` 和 CSS 線條怎麼分</h2>
+        <div class="two-col">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-line-mode="semantic">
+                <strong>使用 `&lt;hr&gt;`</strong>
+                這裡真的有主題切換，線條背後有內容語意。
+              </button>
+              <button class="choice-button" type="button" data-line-mode="visual">
+                <strong>使用 CSS 線條</strong>
+                只是想做卡片分隔、視覺裝飾或控制造型。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="lineBadge">語意分隔</div>
+            <h3 id="lineTitle">有主題切換時，`&lt;hr&gt;` 比較合理</h3>
+            <p id="lineDescription">
+              如果線條代表閱讀脈絡的轉場，那它不只是外觀，這時用 `&lt;hr&gt;` 更貼切。
+            </p>
+            <pre class="code-block" id="lineCode"></pre>
+            <div class="text-card" id="linePreview"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 不要把 `&lt;hr&gt;` 當萬用分隔工具</h2>
+        <div class="stage-grid">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-usage="bad">
+                <strong>不建議</strong>
+                每個區塊中間都塞 `&lt;hr&gt;`，只是因為想讓畫面看起來更有層次。
+              </button>
+              <button class="choice-button" type="button" data-usage="good">
+                <strong>建議</strong>
+                只有內容焦點真的切換時才用 `&lt;hr&gt;`，其餘交給結構或 CSS。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge danger" id="usageBadge">不建議</div>
+            <h3 id="usageTitle">不是每個空隙都代表主題切換</h3>
+            <p id="usageDescription">
+              若只是想把內容切成一塊一塊，很多時候應先考慮標題、段落、section 或 CSS spacing。
+            </p>
+            <pre class="code-block" id="usageCode"></pre>
+            <div id="usagePreview"></div>
+            <div class="info-box" id="usageNote">
+              `&lt;hr&gt;` 用太多會讓內容看起來處處都在轉場，反而削弱真正重要的分隔點。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 實務提醒</h2>
+        <div class="mini-grid">
+          <article class="mini-item">
+            <strong>先判斷是不是主題切換</strong>
+            如果前後只是自然延續，通常不必急著加 `&lt;hr&gt;`。
+          </article>
+          <article class="mini-item">
+            <strong>線條外觀不是核心</strong>
+            瀏覽器會把它顯示成線，但重點是語意，不是畫線本身。
+          </article>
+          <article class="mini-item">
+            <strong>裝飾與 spacing 交給 CSS</strong>
+            `border-top`、偽元素、`margin`、`padding` 才是視覺控制的正規工具。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const hrButtons = [...document.querySelectorAll("[data-hr-mode]")];
+    const hrBadge = document.getElementById("hrBadge");
+    const hrTitle = document.getElementById("hrTitle");
+    const hrDescription = document.getElementById("hrDescription");
+    const hrCode = document.getElementById("hrCode");
+    const hrPreview = document.getElementById("hrPreview");
+
+    const lineButtons = [...document.querySelectorAll("[data-line-mode]")];
+    const lineBadge = document.getElementById("lineBadge");
+    const lineTitle = document.getElementById("lineTitle");
+    const lineDescription = document.getElementById("lineDescription");
+    const lineCode = document.getElementById("lineCode");
+    const linePreview = document.getElementById("linePreview");
+
+    const usageButtons = [...document.querySelectorAll("[data-usage]")];
+    const usageBadge = document.getElementById("usageBadge");
+    const usageTitle = document.getElementById("usageTitle");
+    const usageDescription = document.getElementById("usageDescription");
+    const usageCode = document.getElementById("usageCode");
+    const usagePreview = document.getElementById("usagePreview");
+    const usageNote = document.getElementById("usageNote");
+
+    const hrViews = {
+      topic: {
+        badge: "Topic Break",
+        title: "主題已切換，不只是換個段落",
+        description: "前面講基礎概念，後面轉進實作內容，閱讀焦點已經明顯改變。",
+        code: `&lt;p&gt;前面介紹的是 HTML 的基本文字標籤。&lt;/p&gt;
+&lt;p&gt;接下來要開始整理表單相關元素。&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;以下開始介紹 input、label 與 button 的基本用法。&lt;/p&gt;`,
+        preview: `
+          <section class="article-preview">
+            <p>前面介紹的是 HTML 的基本文字標籤。</p>
+            <p>接下來要開始整理表單相關元素。</p>
+            <hr>
+            <p>以下開始介紹 input、label 與 button 的基本用法。</p>
+          </section>
+        `
+      },
+      supplement: {
+        badge: "Supplement",
+        title: "正文結束，切到補充說明",
+        description: "這不是一般段落延續，而是明確提示下面進入補充資訊區塊。",
+        code: `&lt;p&gt;以上是本章的核心整理。&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;補充：如果你只是想畫裝飾線條，通常應優先考慮 CSS。&lt;/p&gt;`,
+        preview: `
+          <section class="article-preview">
+            <p>以上是本章的核心整理。</p>
+            <hr>
+            <p>補充：如果你只是想畫裝飾線條，通常應優先考慮 CSS。</p>
+          </section>
+        `
+      },
+      ending: {
+        badge: "Closing Shift",
+        title: "從正文切到結語或附註",
+        description: "讀者會感受到這裡已經不是主論述，而是收尾或延伸內容。",
+        code: `&lt;p&gt;以上完成了本次教學的主要內容。&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;最後提醒：實作時請先分清語意結構與視覺效果。&lt;/p&gt;`,
+        preview: `
+          <section class="article-preview">
+            <p>以上完成了本次教學的主要內容。</p>
+            <hr>
+            <p>最後提醒：實作時請先分清語意結構與視覺效果。</p>
+          </section>
+        `
+      }
+    };
+
+    const lineViews = {
+      semantic: {
+        badge: "語意分隔",
+        title: "有主題切換時，`<hr>` 比較合理",
+        description: "線條在這裡代表閱讀脈絡真的切換了，所以它不是單純裝飾。",
+        code: `&lt;p&gt;以上整理的是基本觀念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;以下開始補充實作注意事項。&lt;/p&gt;`,
+        preview: `
+          <section class="article-preview">
+            <p>以上整理的是基本觀念。</p>
+            <hr>
+            <p>以下開始補充實作注意事項。</p>
+          </section>
+        `
+      },
+      visual: {
+        badge: "視覺線條",
+        title: "只有裝飾需求時，交給 CSS 更自然",
+        description: "如果只是想做卡片分隔、版面點綴或品牌風格線條，通常不需要讓 `&lt;hr&gt;` 承擔語意。",
+        code: `.card::before {\n  content: \"\";\n  display: block;\n  height: 2px;\n  background: linear-gradient(...);\n}`,
+        preview: `
+          <section class="section-card">
+            <h4>卡片標題</h4>
+            <div class="rule-demo"></div>
+            <p>這條線只是視覺設計的一部分，不代表內容主題切換。</p>
+          </section>
+        `
+      }
+    };
+
+    const usageViews = {
+      bad: {
+        badge: "不建議",
+        badgeClass: "badge danger",
+        title: "不是每個空隙都代表主題切換",
+        description: "若只是想讓畫面更有層次，就把每塊內容中間塞一條 `&lt;hr&gt;`，通常會讓語意變得鬆散。",
+        code: `&lt;h3&gt;課程資訊&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;上課時間&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;上課地點&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;聯絡方式&lt;/p&gt;`,
+        preview: `
+          <section class="thread-demo">
+            <div class="item"><h4>課程資訊</h4><p>這裡是整體區塊。</p></div>
+            <div class="fake-separator">每段之間都塞了 &lt;hr&gt;，但其實沒有明顯主題轉場</div>
+            <div class="item"><h4>上課時間</h4><p>週二與週四 19:00 - 21:00</p></div>
+            <div class="fake-separator">這裡更像資訊條列，不像主題切換</div>
+            <div class="item"><h4>聯絡方式</h4><p>service@example.com</p></div>
+          </section>
+        `,
+        note: "這種情況通常改用標題層級、列表、section 或單純 spacing 會更合理。"
+      },
+      good: {
+        badge: "建議",
+        badgeClass: "badge ok",
+        title: "只有真的轉場時，才讓 `&lt;hr&gt;` 出現",
+        description: "保留 `&lt;hr&gt;` 給真正重要的內容切換點，其餘由結構和樣式各自負責。",
+        code: `&lt;section&gt;
+  &lt;h3&gt;課程資訊&lt;/h3&gt;
+  &lt;p&gt;上課時間與地點整理如下。&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;hr&gt;
+
+&lt;section&gt;
+  &lt;h3&gt;補充提醒&lt;/h3&gt;
+  &lt;p&gt;以下內容是課前準備與注意事項。&lt;/p&gt;
+&lt;/section&gt;`,
+        preview: `
+          <section class="thread-demo">
+            <div class="item"><h4>課程資訊</h4><p>上課時間與地點整理如下。</p></div>
+            <hr style="border:0;border-top:2px solid rgba(21, 94, 117, 0.25);margin:2px 0;">
+            <div class="item"><h4>補充提醒</h4><p>以下內容是課前準備與注意事項。</p></div>
+          </section>
+        `,
+        note: "這裡的前後區塊在閱讀目的上不同，所以 `&lt;hr&gt;` 才有存在價值。"
+      }
+    };
+
+    function setHrMode(mode) {
+      const view = hrViews[mode];
+
+      hrButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.hrMode === mode);
+      });
+
+      hrBadge.textContent = view.badge;
+      hrTitle.textContent = view.title;
+      hrDescription.textContent = view.description;
+      hrCode.innerHTML = view.code;
+      hrPreview.innerHTML = view.preview;
+    }
+
+    function setLineMode(mode) {
+      const view = lineViews[mode];
+
+      lineButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.lineMode === mode);
+      });
+
+      lineBadge.textContent = view.badge;
+      lineTitle.textContent = view.title;
+      lineDescription.textContent = view.description;
+      lineCode.innerHTML = view.code;
+      linePreview.innerHTML = view.preview;
+    }
+
+    function setUsageMode(mode) {
+      const view = usageViews[mode];
+
+      usageButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.usage === mode);
+      });
+
+      usageBadge.textContent = view.badge;
+      usageBadge.className = view.badgeClass;
+      usageTitle.textContent = view.title;
+      usageDescription.textContent = view.description;
+      usageCode.innerHTML = view.code;
+      usagePreview.innerHTML = view.preview;
+      usageNote.textContent = view.note;
+    }
+
+    hrButtons.forEach((button) => {
+      button.addEventListener("click", () => setHrMode(button.dataset.hrMode));
+    });
+
+    lineButtons.forEach((button) => {
+      button.addEventListener("click", () => setLineMode(button.dataset.lineMode));
+    });
+
+    usageButtons.forEach((button) => {
+      button.addEventListener("click", () => setUsageMode(button.dataset.usage));
+    });
+
+    setHrMode("topic");
+    setLineMode("semantic");
+    setUsageMode("bad");
+  </script>
+</body>
+</html>
