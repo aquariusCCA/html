@@ -60,6 +60,11 @@
 - 沒有 `<summary>` vs 不能使用：沒有 `<summary>` 仍可能顯示預設標題，但實務上不建議。
 - `<details>` vs 自製 Accordion：簡單收合可用 `<details>`，複雜互動通常需要額外 JavaScript。
 
+## 對應示例
+
+- [`details` 標籤 Demo](./demos/details-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
