@@ -123,6 +123,11 @@
 
 這些可以放到後續「技術文件樣式」或「前端工具整合」章節再整理。
 
+## 對應示例
+
+- [技術與細節文本標籤 Demo](./demos/technical-detail-text-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
