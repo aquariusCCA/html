@@ -43,6 +43,11 @@
 - `ul` vs `ol`：差別在順序語意，不只是圓點和數字外觀。
 - 描述列表 vs 一般項目列表：前者偏向名稱與說明，後者偏向並列或排序項目。
 
+## 對應示例
+
+- [列表標籤 Demo](./demos/list-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)

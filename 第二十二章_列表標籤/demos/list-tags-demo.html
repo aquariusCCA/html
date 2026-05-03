@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Tags Demo</title>
+  <style>
+    :root {
+      --bg: #eef4ec;
+      --panel: rgba(252, 250, 242, 0.96);
+      --panel-strong: #fffef8;
+      --ink: #1c261f;
+      --muted: #617063;
+      --line: #d4decf;
+      --accent: #2f6f3e;
+      --accent-strong: #245630;
+      --accent-soft: rgba(47, 111, 62, 0.12);
+      --warm: #9a5b13;
+      --warm-soft: rgba(154, 91, 19, 0.13);
+      --cool: #1f6a8b;
+      --cool-soft: rgba(31, 106, 139, 0.12);
+      --danger: #b45309;
+      --danger-soft: rgba(180, 83, 9, 0.14);
+      --code-bg: #162119;
+      --code-ink: #edf8ee;
+      --shadow: 0 24px 52px rgba(31, 42, 32, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(47, 111, 62, 0.18), transparent 27%),
+        radial-gradient(circle at 88% 8%, rgba(154, 91, 19, 0.14), transparent 24%),
+        linear-gradient(180deg, #fbf8ee 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(212, 222, 207, 0.92);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li, dd {
+      line-height: 1.72;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--accent-strong);
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      border-radius: 16px;
+    }
+
+    .hero,
+    .summary-grid,
+    .stage-grid,
+    .two-col,
+    .compare-grid,
+    .mini-grid,
+    .rule-grid,
+    .content-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.18fr 0.82fr;
+      margin-bottom: 22px;
+    }
+
+    .summary-grid,
+    .compare-grid,
+    .rule-grid,
+    .content-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stage-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .summary-item,
+    .mini-item,
+    .rule-card,
+    .content-card {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(212, 222, 207, 0.9);
+      background: rgba(255, 248, 237, 0.82);
+    }
+
+    .summary-item strong,
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill,
+    .choice-button {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .pill.active,
+    .choice-button.active {
+      background: var(--accent-soft);
+      border-color: rgba(47, 111, 62, 0.32);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-button {
+      text-align: left;
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .choice-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--cool-soft);
+      color: var(--cool);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .preview-card,
+    .list-demo {
+      border-radius: 20px;
+      border: 1px solid rgba(28, 38, 31, 0.08);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .list-demo {
+      background:
+        linear-gradient(135deg, rgba(47, 111, 62, 0.07), rgba(154, 91, 19, 0.07)),
+        #fff;
+    }
+
+    .list-demo ul,
+    .list-demo ol {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    .list-demo li + li,
+    .list-demo dd + dt {
+      margin-top: 8px;
+    }
+
+    .definition-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+    }
+
+    .definition-list dt {
+      font-weight: 800;
+      color: var(--accent-strong);
+    }
+
+    .definition-list dd {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+
+    .nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-list a {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: rgba(47, 111, 62, 0.1);
+      color: var(--accent-strong);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .rich-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .rich-list li {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(28, 38, 31, 0.08);
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .note-line,
+    .info-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+    }
+
+    .note-line {
+      background: rgba(255, 248, 237, 0.86);
+    }
+
+    .info-box {
+      background: rgba(31, 106, 139, 0.07);
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .summary-grid,
+      .stage-grid,
+      .two-col,
+      .compare-grid,
+      .mini-grid,
+      .rule-grid,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+
+      .rich-list li {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML 列表標籤 Demo</h1>
+        <p class="lead">
+          這個範例把第二十二章的重點做成可操作頁面：列表不是拿來把內容排成一行一行，而是用正確語意表達一組項目之間的關係。先判斷內容是並列、排序，還是名稱對應說明，再選 `ul`、`ol` 或 `dl`。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>`ul` 表達無序並列</strong>
+            項目之間沒有明確先後順序，交換位置通常不影響核心意思。
+          </article>
+          <article class="summary-item">
+            <strong>`ol` 表達有序流程</strong>
+            內容有步驟、名次、先後關係，順序改變會影響意義。
+          </article>
+          <article class="summary-item">
+            <strong>`dl` 表達名稱與說明</strong>
+            用 `dt` 放名稱或術語，用 `dd` 放對應說明。
+          </article>
+          <article class="summary-item">
+            <strong>列表不是版面工具</strong>
+            HTML 負責內容關係，橫排、間距、卡片樣式交給 CSS。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁會示範</h2>
+        <ul class="mini-list">
+          <li>`ul`、`ol`、`dl` 的選擇判準</li>
+          <li>`li`、`dt`、`dd` 的結構角色</li>
+          <li>`li` 裡放段落、圖片、連結與子列表</li>
+          <li>列表語意與 CSS 版面控制的分工</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 三種列表怎麼選</h2>
+        <div class="pill-row" role="tablist" aria-label="list type chooser">
+          <button class="pill active" type="button" data-list-mode="ul">`ul` 無序列表</button>
+          <button class="pill" type="button" data-list-mode="ol">`ol` 有序列表</button>
+          <button class="pill" type="button" data-list-mode="dl">`dl` 描述列表</button>
+        </div>
+
+        <div class="stage-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="listBadge">Unordered List</span>
+            <h3 id="listTitle">沒有先後順序的一組項目</h3>
+            <p id="listDescription">
+              `ul` 的重點不是圓點，而是項目屬於同一組，但順序不是核心。
+            </p>
+            <pre class="code-block" id="listCode"></pre>
+          </section>
+
+          <section class="preview-card" id="listPreview"></section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. `li` 裡可以放豐富內容</h2>
+        <div class="stage-grid">
+          <section class="card">
+            <span class="badge ok">Rich List Item</span>
+            <h3>`li` 的本質是列表項目，不是只能放一行文字</h3>
+            <p>
+              `li` 裡可以放文字、段落、圖片、連結、區塊元素，甚至另一個列表。重點是這些內容仍然屬於某個列表項目。
+            </p>
+            <pre class="code-block">&lt;ul&gt;
+  &lt;li&gt;
+    &lt;img src="../images/image_1776146765098_a7bd786b.jpg" alt="城市圖片"&gt;
+    &lt;p&gt;上海景點清單&lt;/p&gt;
+    &lt;a href="#nested"&gt;查看子列表&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</pre>
+          </section>
+
+          <section class="preview-card">
+            <ul class="rich-list">
+              <li>
+                <img src="../images/image_1776146765098_a7bd786b.jpg" alt="列表項目圖片示例">
+                <div>
+                  <h3>上海景點清單</h3>
+                  <p>這個 `li` 同時包含圖片、段落文字與連結，但它仍然只是一個列表項目。</p>
+                  <a href="#nested">查看巢狀列表示例</a>
+                </div>
+              </li>
+              <li>
+                <img src="../images/image_1776146765102_db9586ea.png" alt="列表項目圖片示例">
+                <div>
+                  <h3>學習任務卡</h3>
+                  <p>列表項目可以做成卡片，但語意仍是「一組相關項目」中的其中一項。</p>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel" id="nested">
+        <h2>3. 列表嵌套要放在某個 `li` 裡</h2>
+        <div class="compare-grid">
+          <section class="card">
+            <span class="badge ok">正確結構</span>
+            <h3>子列表屬於父項目</h3>
+            <pre class="code-block">&lt;ul&gt;
+  &lt;li&gt;成都&lt;/li&gt;
+  &lt;li&gt;
+    上海
+    &lt;ul&gt;
+      &lt;li&gt;外灘&lt;/li&gt;
+      &lt;li&gt;東方明珠&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</pre>
+            <div class="list-demo">
+              <ul>
+                <li>成都</li>
+                <li>
+                  上海
+                  <ul>
+                    <li>外灘</li>
+                    <li>杜莎夫人蠟像館</li>
+                    <li>東方明珠</li>
+                    <li>迪士尼樂園</li>
+                  </ul>
+                </li>
+                <li>西安</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge danger">錯誤觀念</span>
+            <h3>不要把子列表直接和外層項目並排</h3>
+            <pre class="code-block">&lt;ul&gt;
+  &lt;li&gt;上海&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+  &lt;li&gt;外灘&lt;/li&gt;
+&lt;/ul&gt;</pre>
+            <div class="note-line">
+              這樣看起來也可能有縮排，但語意上少了「外灘屬於上海」這層父子關係。子列表應該放進對應父項目的 `li` 裡。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 列表語意與 CSS 版面分工</h2>
+        <div class="two-col">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-layout-mode="semantic">
+                <strong>先用列表表達關係</strong>
+                導覽項目、商品分類、功能清單都可以先用列表建立語意。
+              </button>
+              <button class="choice-button" type="button" data-layout-mode="layout">
+                <strong>再用 CSS 改變外觀</strong>
+                橫排、去圓點、卡片間距是樣式問題，不是 HTML 語意問題。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge" id="layoutBadge">語意先行</span>
+            <h3 id="layoutTitle">導覽列仍然可以是列表</h3>
+            <p id="layoutDescription">
+              導覽列是一組相關導航項目，用 `ul` 表達分組，再用 CSS 橫排。
+            </p>
+            <pre class="code-block" id="layoutCode"></pre>
+            <div class="preview-card" id="layoutPreview"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 三種列表的快速判斷</h2>
+        <div class="rule-grid">
+          <article class="rule-card">
+            <span class="badge ok">`ul`</span>
+            <h3>只是列出一組相關項目</h3>
+            <p>例如分類、導覽項目、標籤、特色清單。順序換掉通常不影響意思。</p>
+          </article>
+
+          <article class="rule-card">
+            <span class="badge ok">`ol`</span>
+            <h3>項目有步驟、流程、名次</h3>
+            <p>例如操作步驟、排行榜、安裝流程。順序換掉會改變意義。</p>
+          </article>
+
+          <article class="rule-card">
+            <span class="badge ok">`dl`</span>
+            <h3>名稱對應說明</h3>
+            <p>例如術語解釋、FAQ、產品規格、聯絡資訊。</p>
+          </article>
+
+          <article class="rule-card">
+            <span class="badge danger">不要只看外觀</span>
+            <h3>圓點、數字都可以用 CSS 改</h3>
+            <p>列表語意由 HTML 標籤決定，不是由畫面上的圓點或數字決定。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>6. 實務提醒</h2>
+        <div class="mini-grid">
+          <article class="mini-item">
+            <strong>不要把純文字直接丟進 `ul` / `ol`</strong>
+            主要列表項目應該放在 `li` 裡，這樣結構才清楚。
+          </article>
+          <article class="mini-item">
+            <strong>`ol` 拿掉數字後仍是有序列表</strong>
+            CSS 改掉外觀，不會改變 HTML 的語意。
+          </article>
+          <article class="mini-item">
+            <strong>`dl` 不是一般項目清單</strong>
+            它重點是名稱與說明的對應，不是單純並列或排序。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const listButtons = [...document.querySelectorAll("[data-list-mode]")];
+    const listBadge = document.getElementById("listBadge");
+    const listTitle = document.getElementById("listTitle");
+    const listDescription = document.getElementById("listDescription");
+    const listCode = document.getElementById("listCode");
+    const listPreview = document.getElementById("listPreview");
+
+    const layoutButtons = [...document.querySelectorAll("[data-layout-mode]")];
+    const layoutBadge = document.getElementById("layoutBadge");
+    const layoutTitle = document.getElementById("layoutTitle");
+    const layoutDescription = document.getElementById("layoutDescription");
+    const layoutCode = document.getElementById("layoutCode");
+    const layoutPreview = document.getElementById("layoutPreview");
+
+    const listViews = {
+      ul: {
+        badge: "Unordered List",
+        title: "沒有先後順序的一組項目",
+        description: "`ul` 的重點不是圓點，而是項目屬於同一組，但順序不是核心。",
+        code: `&lt;ul&gt;
+  &lt;li&gt;榴槤&lt;/li&gt;
+  &lt;li&gt;臭豆腐&lt;/li&gt;
+  &lt;li&gt;鯡魚罐頭&lt;/li&gt;
+&lt;/ul&gt;`,
+        preview: `
+          <div class="list-demo">
+            <h3>您喜歡的食物？</h3>
+            <ul>
+              <li>榴槤</li>
+              <li>臭豆腐</li>
+              <li>鯡魚罐頭</li>
+              <li>其他特殊口味</li>
+            </ul>
+            <div class="info-box">這些項目只是並列選項，順序不是重點。</div>
+          </div>
+        `
+      },
+      ol: {
+        badge: "Ordered List",
+        title: "有先後、流程或名次的列表",
+        description: "`ol` 的重點不是數字樣式，而是順序會影響內容意義。",
+        code: `&lt;ol&gt;
+  &lt;li&gt;打開編輯器&lt;/li&gt;
+  &lt;li&gt;建立 HTML 檔案&lt;/li&gt;
+  &lt;li&gt;在瀏覽器中預覽&lt;/li&gt;
+&lt;/ol&gt;`,
+        preview: `
+          <div class="list-demo">
+            <h3>建立 HTML 頁面的步驟</h3>
+            <ol>
+              <li>打開編輯器</li>
+              <li>建立 HTML 檔案</li>
+              <li>寫入基本結構</li>
+              <li>在瀏覽器中預覽</li>
+            </ol>
+            <div class="info-box">這些項目有執行順序，因此比 <code>ul</code> 更適合用 <code>ol</code>。</div>
+          </div>
+        `
+      },
+      dl: {
+        badge: "Description List",
+        title: "名稱與說明的對應關係",
+        description: "`dl` 包整組描述列表，`dt` 是名稱，`dd` 是對名稱的說明。",
+        code: `&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;負責網頁的結構&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;負責網頁的樣式&lt;/dd&gt;
+&lt;/dl&gt;`,
+        preview: `
+          <div class="list-demo">
+            <dl class="definition-list">
+              <dt>HTML</dt>
+              <dd>負責網頁的結構。</dd>
+              <dt>CSS</dt>
+              <dd>負責網頁的樣式。</dd>
+              <dt>JavaScript</dt>
+              <dd>負責網頁的互動行為。</dd>
+            </dl>
+            <div class="info-box">這不是排序，也不是單純並列，而是名稱對應說明。</div>
+          </div>
+        `
+      }
+    };
+
+    const layoutViews = {
+      semantic: {
+        badge: "語意先行",
+        title: "導覽列仍然可以是列表",
+        description: "導覽列是一組相關導航項目，用 `ul` 表達分組，再用 CSS 橫排。",
+        code: `&lt;ul class="nav-list"&gt;
+  &lt;li&gt;&lt;a href="#"&gt;首頁&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;課程&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#"&gt;聯絡&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;`,
+        preview: `
+          <ul class="nav-list">
+            <li><a href="#">首頁</a></li>
+            <li><a href="#">課程</a></li>
+            <li><a href="#">筆記</a></li>
+            <li><a href="#">聯絡</a></li>
+          </ul>
+          <div class="info-box">HTML 表達「這是一組導覽項目」，CSS 負責把它橫排與美化。</div>
+        `
+      },
+      layout: {
+        badge: "樣式交給 CSS",
+        title: "改外觀不等於改語意",
+        description: "即使把圓點拿掉、變成卡片或橫排，只要內容仍是一組項目，列表語意仍然合理。",
+        code: `.nav-list {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}`,
+        preview: `
+          <div class="list-demo">
+            <ul class="nav-list">
+              <li><a href="#">分類 A</a></li>
+              <li><a href="#">分類 B</a></li>
+              <li><a href="#">分類 C</a></li>
+            </ul>
+            <div class="info-box">這些視覺效果都由 CSS 決定，不應反過來決定 HTML 要不要用列表。</div>
+          </div>
+        `
+      }
+    };
+
+    function setListMode(mode) {
+      const view = listViews[mode];
+
+      listButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.listMode === mode);
+      });
+
+      listBadge.textContent = view.badge;
+      listTitle.textContent = view.title;
+      listDescription.textContent = view.description;
+      listCode.innerHTML = view.code;
+      listPreview.innerHTML = view.preview;
+    }
+
+    function setLayoutMode(mode) {
+      const view = layoutViews[mode];
+
+      layoutButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.layoutMode === mode);
+      });
+
+      layoutBadge.textContent = view.badge;
+      layoutTitle.textContent = view.title;
+      layoutDescription.textContent = view.description;
+      layoutCode.innerHTML = view.code;
+      layoutPreview.innerHTML = view.preview;
+    }
+
+    listButtons.forEach((button) => {
+      button.addEventListener("click", () => setListMode(button.dataset.listMode));
+    });
+
+    layoutButtons.forEach((button) => {
+      button.addEventListener("click", () => setLayoutMode(button.dataset.layoutMode));
+    });
+
+    setListMode("ul");
+    setLayoutMode("semantic");
+  </script>
+</body>
+</html>
