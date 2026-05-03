@@ -40,6 +40,11 @@
 - 外觀效果 vs 語意強調：兩者常長得像，但用途不同。
 - HTML 標籤 vs CSS 樣式：前者可帶語意，後者更偏視覺控制。
 
+## 對應示例
+
+- [文本格式化標籤 Demo](./demos/text-formatting-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)

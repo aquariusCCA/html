@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Formatting Tags Demo</title>
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --panel: rgba(255, 251, 245, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #1c2630;
+      --muted: #5e6973;
+      --line: #dbcdbd;
+      --accent: #7c2d12;
+      --accent-strong: #64240f;
+      --accent-soft: rgba(124, 45, 18, 0.12);
+      --warm: #0369a1;
+      --warm-soft: rgba(3, 105, 161, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --danger: #c2410c;
+      --danger-soft: rgba(194, 65, 12, 0.12);
+      --shadow: 0 24px 52px rgba(42, 30, 20, 0.12);
+      --code-bg: #18222a;
+      --code-ink: #e7f1f4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(124, 45, 18, 0.14), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(3, 105, 161, 0.1), transparent 24%),
+        linear-gradient(180deg, #fbf8f3 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(219, 205, 189, 0.92);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li {
+      line-height: 1.72;
+    }
+
+    .hero,
+    .summary-grid,
+    .stage-grid,
+    .two-col,
+    .compare-grid,
+    .mini-grid,
+    .pair-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.18fr 0.82fr;
+      margin-bottom: 22px;
+    }
+
+    .summary-grid,
+    .compare-grid,
+    .pair-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stage-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .summary-item,
+    .mini-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(219, 205, 189, 0.85);
+      background: rgba(255, 247, 239, 0.82);
+    }
+
+    .summary-item strong,
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill,
+    .choice-button {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .pill.active,
+    .choice-button.active {
+      background: var(--accent-soft);
+      border-color: rgba(124, 45, 18, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-button {
+      text-align: left;
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .choice-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .preview-card,
+    .compare-card,
+    .text-card {
+      border-radius: 20px;
+      border: 1px solid rgba(28, 38, 48, 0.08);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .sample-line {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(124, 45, 18, 0.06);
+      border: 1px solid rgba(124, 45, 18, 0.14);
+      line-height: 1.8;
+    }
+
+    .pair-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(28, 38, 48, 0.08);
+      background: rgba(250, 250, 250, 0.9);
+    }
+
+    .pair-card h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .pair-card p {
+      margin: 0 0 12px;
+    }
+
+    .pair-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .css-chip {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(3, 105, 161, 0.12);
+      color: #075985;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .fake-underline {
+      text-decoration: underline;
+      text-decoration-color: rgba(3, 105, 161, 0.7);
+      text-decoration-thickness: 2px;
+    }
+
+    .fake-bold {
+      font-weight: 700;
+    }
+
+    .fake-italic {
+      font-style: italic;
+    }
+
+    .fake-delete {
+      text-decoration: line-through;
+    }
+
+    .note-line,
+    .info-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+    }
+
+    .note-line {
+      background: rgba(255, 247, 239, 0.84);
+    }
+
+    .info-box {
+      background: rgba(124, 45, 18, 0.06);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .summary-grid,
+      .stage-grid,
+      .two-col,
+      .compare-grid,
+      .mini-grid,
+      .pair-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML 文本格式化標籤 Demo</h1>
+        <p class="lead">
+          同樣都是粗體、斜體、底線或刪除線，背後代表的意思可能完全不同。這章的重點不是只看畫面，而是分清楚哪些標籤偏外觀、哪些標籤同時在表達重要性、語氣強調、修訂痕跡或內容狀態。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>外觀相似，不代表語意相同</strong>
+            `b` 和 `strong` 常都會變粗，但前者偏突顯，後者偏重要性。
+          </article>
+          <article class="summary-item">
+            <strong>語氣和樣式是兩回事</strong>
+            `i` 不一定是在強調，`em` 才更接近「這個詞要重讀」。
+          </article>
+          <article class="summary-item">
+            <strong>修訂痕跡有專門語意</strong>
+            `ins` 表示新增內容，`del` 表示刪除內容，和單純底線 / 刪除線不同。
+          </article>
+          <article class="summary-item">
+            <strong>純外觀很多時候交給 CSS</strong>
+            如果只是想讓字看起來不一樣，通常應先想樣式，而不是硬塞語意標籤。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁會示範</h2>
+        <ul class="mini-list">
+          <li>`b / strong`、`i / em`、`u / ins`、`s / del` 的差異</li>
+          <li>哪些標籤偏外觀、哪些偏語意</li>
+          <li>何時該交給 CSS 處理純視覺需求</li>
+          <li>實務上如何挑選更貼切的標籤</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 成對標籤對照</h2>
+        <div class="pill-row" role="tablist" aria-label="formatting pair chooser">
+          <button class="pill active" type="button" data-pair-mode="bold">`b` vs `strong`</button>
+          <button class="pill" type="button" data-pair-mode="italic">`i` vs `em`</button>
+          <button class="pill" type="button" data-pair-mode="underline">`u` vs `ins`</button>
+          <button class="pill" type="button" data-pair-mode="strike">`s` vs `del`</button>
+        </div>
+
+        <div class="stage-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="pairBadge">Bold Pair</span>
+            <h3 id="pairTitle">看起來都變粗，但意思不一樣</h3>
+            <p id="pairDescription">
+              當你只是想把詞顯得醒目，和你想表達「這段內容很重要」，選擇其實不同。
+            </p>
+            <pre class="code-block" id="pairCode"></pre>
+          </section>
+
+          <section class="preview-card" id="pairPreview"></section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. 八個常見標籤的角色分工</h2>
+        <div class="pair-grid">
+          <article class="pair-card">
+            <h4><code>&lt;b&gt;</code> vs <code>&lt;strong&gt;</code></h4>
+            <p><b>`b`</b> 偏向文字突顯；<strong>`strong`</strong> 偏向重要性。</p>
+            <p class="sample-line">本頁重點詞：<b>HTML</b>。<br><strong>注意：</strong>送出後資料將無法復原。</p>
+          </article>
+
+          <article class="pair-card">
+            <h4><code>&lt;i&gt;</code> vs <code>&lt;em&gt;</code></h4>
+            <p><i>`i`</i> 偏向不同語氣或術語；<em>`em`</em> 偏向語氣上的重讀。</p>
+            <p class="sample-line">單字 <i>status</i> 常出現在介面中。<br>我說的是 <em>現在</em>，不是明天。</p>
+          </article>
+
+          <article class="pair-card">
+            <h4><code>&lt;u&gt;</code> vs <code>&lt;ins&gt;</code></h4>
+            <p><u>`u`</u> 偏向標記呈現；<ins>`ins`</ins> 偏向新增、插入內容。</p>
+            <p class="sample-line">請留意 <u>專有名詞拼寫</u>。<br>本次更新已加入：<ins>支援匯出 PDF 功能</ins></p>
+          </article>
+
+          <article class="pair-card">
+            <h4><code>&lt;s&gt;</code> vs <code>&lt;del&gt;</code></h4>
+            <p><s>`s`</s> 偏向不再適用；<del>`del`</del> 偏向被刪除的內容。</p>
+            <p class="sample-line"><s>原價 1200 元</s>，現在特價 899 元。<br>修訂紀錄：<del>需附紙本申請書</del></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. 只是想改外觀時，很多時候交給 CSS</h2>
+        <div class="two-col">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-style-mode="semantic">
+                <strong>內容有語意</strong>
+                重要、強調、修訂、狀態變更，優先選語意標籤。
+              </button>
+              <button class="choice-button" type="button" data-style-mode="visual">
+                <strong>只有外觀需求</strong>
+                只是想粗體、斜體、底線或刪除線，多半先想 CSS。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="styleBadge">語意優先</div>
+            <h3 id="styleTitle">內容本身有意思，就別只把它當樣式</h3>
+            <p id="styleDescription">
+              當文字背後真的有重要性、重讀感或修訂含義時，HTML 標籤比單純的樣式更貼切。
+            </p>
+            <pre class="code-block" id="styleCode"></pre>
+            <div class="text-card" id="stylePreview"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 最容易混淆的選擇題</h2>
+        <div class="compare-grid">
+          <section class="card">
+            <span class="badge ok">較貼切</span>
+            <h3>內容真的有語意時，選對應標籤</h3>
+            <pre class="code-block">&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;表單送出後將無法復原。&lt;/p&gt;
+&lt;p&gt;我說的是 &lt;em&gt;現在&lt;/em&gt;，不是明天。&lt;/p&gt;</pre>
+            <div class="sample-line">
+              <strong>注意：</strong>表單送出後將無法復原。<br>
+              我說的是 <em>現在</em>，不是明天。
+            </div>
+            <div class="note-line">
+              這裡的粗體和斜體不是為了好看，而是有內容上的重要性與語氣差異。
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge danger">較弱</span>
+            <h3>只因為效果像，就隨便互換</h3>
+            <pre class="code-block">&lt;p&gt;&lt;b&gt;注意：&lt;/b&gt;表單送出後將無法復原。&lt;/p&gt;
+&lt;p&gt;我說的是 &lt;i&gt;現在&lt;/i&gt;，不是明天。&lt;/p&gt;</pre>
+            <div class="sample-line">
+              <b>注意：</b>表單送出後將無法復原。<br>
+              我說的是 <i>現在</i>，不是明天。
+            </div>
+            <div class="note-line">
+              畫面接近，但少了「重要性」和「重讀強調」的語意判讀。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 實務提醒</h2>
+        <div class="mini-grid">
+          <article class="mini-item">
+            <strong>先問自己要表達什麼</strong>
+            你要的是重要性、語氣、修訂痕跡，還是單純外觀？先分清楚再選標籤。
+          </article>
+          <article class="mini-item">
+            <strong>外觀像，不代表可以互換</strong>
+            `strong` 不等於 `b`，`em` 不等於 `i`，重點在語意而不是畫面相似度。
+          </article>
+          <article class="mini-item">
+            <strong>純裝飾需求優先交給 CSS</strong>
+            HTML 更適合描述內容本身；若只是視覺微調，樣式表通常更穩定。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const pairButtons = [...document.querySelectorAll("[data-pair-mode]")];
+    const pairBadge = document.getElementById("pairBadge");
+    const pairTitle = document.getElementById("pairTitle");
+    const pairDescription = document.getElementById("pairDescription");
+    const pairCode = document.getElementById("pairCode");
+    const pairPreview = document.getElementById("pairPreview");
+
+    const styleButtons = [...document.querySelectorAll("[data-style-mode]")];
+    const styleBadge = document.getElementById("styleBadge");
+    const styleTitle = document.getElementById("styleTitle");
+    const styleDescription = document.getElementById("styleDescription");
+    const styleCode = document.getElementById("styleCode");
+    const stylePreview = document.getElementById("stylePreview");
+
+    const pairViews = {
+      bold: {
+        badge: "Bold Pair",
+        title: "看起來都變粗，但意思不一樣",
+        description: "`b` 偏向醒目呈現；`strong` 偏向內容重要性。畫面可能接近，但用途不同。",
+        code: `&lt;p&gt;本頁重點詞：&lt;b&gt;HTML&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;表單送出後將無法復原。&lt;/p&gt;`,
+        preview: `
+          <div class="sample-line">
+            本頁重點詞：<b>HTML</b><br>
+            <strong>注意：</strong>表單送出後將無法復原。
+          </div>
+          <div class="info-box">同樣可能變粗，但前者較像視覺突顯，後者更像「這件事很重要」。</div>
+        `
+      },
+      italic: {
+        badge: "Italic Pair",
+        title: "看起來都傾斜，但語氣功能不同",
+        description: "`i` 常用於術語、外來語或不同語氣類型；`em` 則更接近朗讀時的重讀強調。",
+        code: `&lt;p&gt;單字 &lt;i&gt;status&lt;/i&gt; 常出現在介面中。&lt;/p&gt;
+&lt;p&gt;我說的是 &lt;em&gt;現在&lt;/em&gt;，不是明天。&lt;/p&gt;`,
+        preview: `
+          <div class="sample-line">
+            單字 <i>status</i> 常出現在介面中。<br>
+            我說的是 <em>現在</em>，不是明天。
+          </div>
+          <div class="info-box">前者比較像文字類型切換，後者比較像語氣重點落在哪個詞。</div>
+        `
+      },
+      underline: {
+        badge: "Underline Pair",
+        title: "都可能有底線，但新增內容才是 `ins`",
+        description: "`u` 不等於「任何底線需求」；`ins` 則明確表示這段內容是後來補上的。",
+        code: `&lt;p&gt;請閱讀 &lt;u&gt;重要名詞&lt;/u&gt; 的拼寫。&lt;/p&gt;
+&lt;p&gt;最新版本已補充：&lt;ins&gt;支援匯出 PDF 功能&lt;/ins&gt;&lt;/p&gt;`,
+        preview: `
+          <div class="sample-line">
+            請閱讀 <u>重要名詞</u> 的拼寫。<br>
+            最新版本已補充：<ins>支援匯出 PDF 功能</ins>
+          </div>
+          <div class="info-box">單純想畫底線通常可先考慮 CSS；若要表達「這是新增內容」，`ins` 更貼切。</div>
+        `
+      },
+      strike: {
+        badge: "Strike Pair",
+        title: "都可能有刪除線，但過時和刪除不是同一件事",
+        description: "`s` 偏向不再適用；`del` 偏向從文件中刪除或修訂移除。",
+        code: `&lt;p&gt;&lt;s&gt;原價 1200 元&lt;/s&gt;，現在特價 899 元。&lt;/p&gt;
+&lt;p&gt;修訂紀錄：&lt;del&gt;需附紙本申請書&lt;/del&gt;&lt;/p&gt;`,
+        preview: `
+          <div class="sample-line">
+            <s>原價 1200 元</s>，現在特價 899 元。<br>
+            修訂紀錄：<del>需附紙本申請書</del>
+          </div>
+          <div class="info-box">一個是在說資訊狀態已過時，一個是在說這段內容曾存在但已被刪除。</div>
+        `
+      }
+    };
+
+    const styleViews = {
+      semantic: {
+        badge: "語意優先",
+        title: "內容本身有意思，就別只把它當樣式",
+        description: "重要性、語氣強調、修訂痕跡這類需求，應先選對應語意標籤，而不是只追求畫面效果。",
+        code: `&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;這是最後一次修改機會。&lt;/p&gt;
+&lt;p&gt;我指的是 &lt;em&gt;今天&lt;/em&gt;，不是這週。&lt;/p&gt;
+&lt;p&gt;修訂內容：&lt;del&gt;舊規則&lt;/del&gt; → &lt;ins&gt;新規則&lt;/ins&gt;&lt;/p&gt;`,
+        preview: `
+          <div class="sample-line">
+            <strong>注意：</strong>這是最後一次修改機會。<br>
+            我指的是 <em>今天</em>，不是這週。<br>
+            修訂內容：<del>舊規則</del> → <ins>新規則</ins>
+          </div>
+        `
+      },
+      visual: {
+        badge: "CSS 更合適",
+        title: "如果只是想讓字看起來不一樣，多半先想 CSS",
+        description: "當需求只是視覺突顯，而內容本身沒有額外語意時，用一般容器加樣式通常更穩定。",
+        code: `&lt;span class="fake-bold"&gt;醒目文字&lt;/span&gt;
+&lt;span class="fake-italic"&gt;風格文字&lt;/span&gt;
+&lt;span class="fake-underline"&gt;底線文字&lt;/span&gt;
+&lt;span class="fake-delete"&gt;刪線文字&lt;/span&gt;`,
+        preview: `
+          <div class="sample-line">
+            <span class="css-chip">CSS</span>
+            <span class="fake-bold">醒目文字</span>、
+            <span class="fake-italic">風格文字</span>、
+            <span class="fake-underline">底線文字</span>、
+            <span class="fake-delete">刪線文字</span>
+          </div>
+          <div class="info-box">這裡只是改變外觀，沒有在說這段文字很重要、要重讀、是新增或被刪除。</div>
+        `
+      }
+    };
+
+    function setPairMode(mode) {
+      const view = pairViews[mode];
+
+      pairButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.pairMode === mode);
+      });
+
+      pairBadge.textContent = view.badge;
+      pairTitle.textContent = view.title;
+      pairDescription.textContent = view.description;
+      pairCode.innerHTML = view.code;
+      pairPreview.innerHTML = view.preview;
+    }
+
+    function setStyleMode(mode) {
+      const view = styleViews[mode];
+
+      styleButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.styleMode === mode);
+      });
+
+      styleBadge.textContent = view.badge;
+      styleTitle.textContent = view.title;
+      styleDescription.textContent = view.description;
+      styleCode.innerHTML = view.code;
+      stylePreview.innerHTML = view.preview;
+    }
+
+    pairButtons.forEach((button) => {
+      button.addEventListener("click", () => setPairMode(button.dataset.pairMode));
+    });
+
+    styleButtons.forEach((button) => {
+      button.addEventListener("click", () => setStyleMode(button.dataset.styleMode));
+    });
+
+    setPairMode("bold");
+    setStyleMode("semantic");
+  </script>
+</body>
+</html>
