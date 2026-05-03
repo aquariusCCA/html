@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HTML 表單進階驗證 demo，展示 required、type、pattern、min、max、step、Constraint Validation API、novalidate 與 formnovalidate。">
+  <title>HTML Form Advanced Validation Demo</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --panel: #fcfcfd;
+      --ink: #17202a;
+      --muted: #5e6875;
+      --line: #d7dee8;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --amber: #b45309;
+      --rose: #be123c;
+      --green: #15803d;
+      --code-bg: #111827;
+      --code-ink: #e5e7eb;
+      --shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      background: var(--bg);
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"],
+    input[type="file"] {
+      width: auto;
+    }
+
+    textarea {
+      min-height: 94px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+      outline: 3px solid rgba(37, 99, 235, 0.22);
+      outline-offset: 2px;
+    }
+
+    input:not(:placeholder-shown):invalid,
+    textarea:not(:placeholder-shown):invalid,
+    select:invalid {
+      border-color: rgba(190, 18, 60, 0.72);
+      background: #fff1f2;
+    }
+
+    input:valid,
+    textarea:valid,
+    select:valid {
+      border-color: rgba(21, 128, 61, 0.42);
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 13px;
+      color: #fff;
+      background: var(--teal);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    button.warning {
+      background: var(--amber);
+    }
+
+    button:disabled,
+    input:disabled,
+    select:disabled,
+    textarea:disabled {
+      cursor: not-allowed;
+      opacity: 0.58;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 40px;
+    }
+
+    .top,
+    .grid,
+    .lab,
+    .split,
+    .status-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .top {
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .grid,
+    .split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lab {
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      align-items: start;
+    }
+
+    .status-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hero,
+    .panel,
+    .card,
+    .status-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 58%, #ecfeff 100%);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .hero p,
+    .panel p,
+    .card p,
+    li {
+      line-height: 1.72;
+    }
+
+    .hero p,
+    .muted,
+    .hint {
+      color: var(--muted);
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quick,
+    .card,
+    .status-card {
+      padding: 18px;
+    }
+
+    .quick h2,
+    .panel h2,
+    .card h3 {
+      margin: 0 0 12px;
+    }
+
+    .quick ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .panel {
+      margin-top: 16px;
+      padding: 22px;
+      background: var(--panel);
+    }
+
+    .card,
+    .status-card {
+      box-shadow: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: #fff;
+      background: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.blue { background: var(--blue); }
+    .badge.amber { background: var(--amber); }
+    .badge.rose { background: var(--rose); }
+    .badge.green { background: var(--green); }
+
+    .code {
+      margin: 0;
+      overflow: auto;
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .field label,
+    .option-group strong {
+      font-weight: 800;
+    }
+
+    .hint {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .option-row,
+    .button-row,
+    .toggle-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .option-row label,
+    .toggle-row label {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      line-height: 1.4;
+    }
+
+    fieldset {
+      margin: 0 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    legend {
+      padding: 0 8px;
+      color: var(--teal);
+      font-weight: 800;
+    }
+
+    .status-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .status-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .log {
+      min-height: 140px;
+      margin: 0;
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      white-space: pre-wrap;
+      line-height: 1.55;
+      overflow: auto;
+    }
+
+    .state-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .state-list div {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px;
+      background: #fff;
+      font-size: 13px;
+    }
+
+    .state-list .on {
+      border-color: rgba(190, 18, 60, 0.34);
+      color: var(--rose);
+      background: #fff1f2;
+      font-weight: 800;
+    }
+
+    .note {
+      border-left: 4px solid var(--teal);
+      padding: 12px 14px;
+      color: var(--muted);
+      background: #f0fdfa;
+      border-radius: 8px;
+    }
+
+    .note.warning {
+      border-color: var(--rose);
+      background: #fff1f2;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .table th,
+    .table td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .table th {
+      background: #f8fafc;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .footer-links a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--teal);
+      background: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 920px) {
+      main {
+        width: min(100% - 20px, 1180px);
+        margin-top: 10px;
+      }
+
+      .top,
+      .grid,
+      .lab,
+      .split,
+      .status-grid,
+      .state-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="top">
+      <header class="hero">
+        <h1>表單進階驗證 Demo</h1>
+        <p>
+          這個範例對應筆記中的 HTML Constraint Validation：`required`、`type`、`minlength`、`pattern`、`min/max/step`、`readonly`、`disabled`、`accept`、`novalidate`、`formnovalidate`，以及 `checkValidity()`、`reportValidity()`、`setCustomValidity()`。
+        </p>
+      </header>
+
+      <aside class="quick card">
+        <h2>觀察方式</h2>
+        <ul>
+          <li>輸入不合法資料，觀察右側 `ValidityState`。</li>
+          <li>按 `reportValidity()` 觸發瀏覽器原生提示。</li>
+          <li>切換 `novalidate`，比較原生驗證是否被跳過。</li>
+          <li>用「儲存草稿」觀察 `formnovalidate`。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <span class="badge">validation lab</span>
+      <h2>綜合註冊表單</h2>
+      <div class="lab">
+        <form id="signupForm" action="/signup" method="post">
+          <fieldset>
+            <legend>帳號資料</legend>
+
+            <div class="field">
+              <label for="username">使用者名稱</label>
+              <p class="hint" id="usernameHint">3 到 16 個字元。示範 `required`、`minlength`、`maxlength`。</p>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                minlength="3"
+                maxlength="16"
+                autocomplete="username"
+                aria-describedby="usernameHint"
+                placeholder="例如 html_user"
+                required>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <p class="hint" id="emailHint">必填，且必須符合 email 格式。</p>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                aria-describedby="emailHint"
+                placeholder="user@example.com"
+                required>
+            </div>
+
+            <div class="field">
+              <label for="password">密碼</label>
+              <p class="hint" id="passwordHint">至少 8 碼，且需同時包含英文字母與數字。示範 `pattern` 與自訂錯誤。</p>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                minlength="8"
+                pattern="(?=.*[A-Za-z])(?=.*[0-9]).{8,}"
+                autocomplete="new-password"
+                aria-describedby="passwordHint"
+                placeholder="abc12345"
+                required>
+            </div>
+
+            <div class="field">
+              <label for="phone">手機號碼</label>
+              <p class="hint" id="phoneHint">台灣手機格式：09 開頭，共 10 碼。示範 `type=tel`、`inputmode`、`pattern`、`maxlength`。</p>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                inputmode="numeric"
+                pattern="09[0-9]{8}"
+                maxlength="10"
+                autocomplete="tel"
+                aria-describedby="phoneHint"
+                placeholder="0912345678">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>數值與選項</legend>
+
+            <div class="split">
+              <div class="field">
+                <label for="quantity">購買數量</label>
+                <p class="hint" id="quantityHint">1 到 10，間隔 1。示範 `min`、`max`。</p>
+                <input
+                  id="quantity"
+                  name="quantity"
+                  type="number"
+                  min="1"
+                  max="10"
+                  step="1"
+                  value="1"
+                  aria-describedby="quantityHint"
+                  required>
+              </div>
+
+              <div class="field">
+                <label for="rating">偶數評分</label>
+                <p class="hint" id="ratingHint">0 到 10，只接受 0、2、4、6、8、10。輸入 3 會觸發 `stepMismatch`。</p>
+                <input
+                  id="rating"
+                  name="rating"
+                  type="number"
+                  min="0"
+                  max="10"
+                  step="2"
+                  aria-describedby="ratingHint"
+                  placeholder="例如 4">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="startDate">課程開始日</label>
+              <p class="hint" id="dateHint">示範 `type=date`、`min`、`max`。</p>
+              <input
+                id="startDate"
+                name="startDate"
+                type="date"
+                min="2026-01-01"
+                max="2026-12-31"
+                aria-describedby="dateHint">
+            </div>
+
+            <div class="field">
+              <label for="city">城市</label>
+              <select id="city" name="city" required>
+                <option value="">請選擇城市</option>
+                <option value="taipei">台北</option>
+                <option value="taichung">台中</option>
+                <option value="kaohsiung">高雄</option>
+              </select>
+              <p class="hint">`select required` 需要第一個提示選項使用 `value=""`。</p>
+            </div>
+
+            <div class="field option-group">
+              <strong>程度</strong>
+              <p class="hint">同一組 radio 使用同一個 `name`；其中一個加 `required` 即可要求整組必選。</p>
+              <div class="option-row">
+                <label><input type="radio" name="level" value="beginner" required> 入門</label>
+                <label><input type="radio" name="level" value="intermediate"> 中階</label>
+                <label><input type="radio" name="level" value="advanced"> 進階</label>
+              </div>
+            </div>
+
+            <div class="field option-group">
+              <strong>興趣，至少選 2 項</strong>
+              <p class="hint" id="interestHint">HTML 不能直接限制 checkbox 群組至少選幾項，這裡用 `setCustomValidity()` 補上。</p>
+              <div class="option-row" aria-describedby="interestHint">
+                <label><input type="checkbox" name="interest" value="html"> HTML</label>
+                <label><input type="checkbox" name="interest" value="css"> CSS</label>
+                <label><input type="checkbox" name="interest" value="js"> JavaScript</label>
+              </div>
+            </div>
+
+            <label class="option-row">
+              <input id="agree" type="checkbox" name="agree" required>
+              我同意使用條款。示範單一 checkbox 的 `required`。
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>檔案與狀態</legend>
+
+            <div class="field">
+              <label for="avatar">頭像</label>
+              <p class="hint">`accept` 只是提示檔案挑選器，不等於安全驗證；後端仍要檢查。</p>
+              <input id="avatar" name="avatar" type="file" accept="image/png, image/jpeg">
+            </div>
+
+            <div class="field">
+              <label for="gallery">作品圖片，多選</label>
+              <input id="gallery" name="gallery" type="file" accept="image/*" multiple>
+            </div>
+
+            <div class="split">
+              <div class="field">
+                <label for="accountId">帳號 ID，readonly</label>
+                <input id="accountId" name="accountId" value="USER-2026-001" readonly>
+                <p class="hint">`readonly` 可送出，也會進入 `FormData`。</p>
+              </div>
+
+              <div class="field">
+                <label for="coupon">停用優惠碼，disabled</label>
+                <input id="coupon" name="coupon" value="SPRING" disabled>
+                <p class="hint">`disabled` 不會送出，也不會參與原生驗證。</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="toggle-row">
+            <label><input id="novalidateToggle" type="checkbox"> 在 form 上啟用 `novalidate`</label>
+          </div>
+
+          <div class="button-row" style="margin-top: 14px;">
+            <button type="submit">正式送出</button>
+            <button class="warning" type="submit" formnovalidate>儲存草稿，formnovalidate</button>
+            <button class="secondary" type="button" id="checkButton">checkValidity()</button>
+            <button class="secondary" type="button" id="reportButton">reportValidity()</button>
+            <button class="secondary" type="button" id="fillButton">填入有效範例</button>
+            <button class="secondary" type="reset">重設</button>
+          </div>
+        </form>
+
+        <aside class="card">
+          <span class="badge blue">live inspector</span>
+          <h2>即時驗證狀態</h2>
+          <div class="status-grid">
+            <div class="status-card">
+              <strong id="formValid">false</strong>
+              <span>form.checkValidity()</span>
+            </div>
+            <div class="status-card">
+              <strong id="selectedField">username</strong>
+              <span>目前觀察欄位</span>
+            </div>
+            <div class="status-card">
+              <strong id="willValidate">true</strong>
+              <span>field.willValidate</span>
+            </div>
+          </div>
+
+          <h3>validationMessage</h3>
+          <pre class="log" id="messageLog">請點選或輸入任一欄位。</pre>
+
+          <h3>ValidityState</h3>
+          <div class="state-list" id="stateList"></div>
+
+          <h3>FormData 預覽</h3>
+          <pre class="log" id="formDataLog">尚未送出。</pre>
+        </aside>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <span class="badge green">pattern</span>
+        <h2>`pattern` 寫法重點</h2>
+        <pre class="code"><code>&lt;input
+  type="tel"
+  inputmode="numeric"
+  pattern="09[0-9]{8}"
+  maxlength="10"
+  autocomplete="tel"&gt;</code></pre>
+        <p class="note">
+          HTML 的 `pattern` 不要包 `/ /`。筆記也提醒：手機、OTP、郵遞區號這類文字型數字，通常用 `type="tel"` 或 `type="text"` 搭配 `inputmode`，不要用 `type="number"`。
+        </p>
+      </article>
+
+      <article class="panel">
+        <span class="badge amber">novalidate</span>
+        <h2>`novalidate` 與 `formnovalidate`</h2>
+        <pre class="code"><code>&lt;form novalidate&gt;
+  ...
+&lt;/form&gt;
+
+&lt;button type="submit" formnovalidate&gt;
+  儲存草稿
+&lt;/button&gt;</code></pre>
+        <p class="note">
+          `novalidate` 放在 `form` 上，表示整張表單送出時不跑瀏覽器原生驗證。`formnovalidate` 放在特定送出按鈕上，適合草稿、預覽等流程。
+        </p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <span class="badge rose">client vs server</span>
+      <h2>前端驗證不等於安全驗證</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>層級</th>
+            <th>適合處理</th>
+            <th>限制</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HTML 原生驗證</td>
+            <td>必填、格式、長度、數值範圍、快速 UX 回饋。</td>
+            <td>可被停用或繞過，不可作為資料安全依據。</td>
+          </tr>
+          <tr>
+            <td>JavaScript 驗證</td>
+            <td>跨欄位規則、checkbox 至少 N 項、即時自訂訊息。</td>
+            <td>同樣可被關閉或繞過。</td>
+          </tr>
+          <tr>
+            <td>後端驗證</td>
+            <td>所有重要資料規則、權限、唯一性、檔案型別與大小。</td>
+            <td>不可省略；前端驗證只能改善體驗。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer-links">
+      <a href="../README.md">回到本章 README</a>
+      <a href="../第37章_表單進階驗證.md">回到筆記</a>
+    </div>
+  </main>
+
+  <script>
+    const form = document.querySelector("#signupForm");
+    const observedControls = [...form.querySelectorAll("input, select, textarea")];
+    const interestBoxes = [...form.querySelectorAll('input[name="interest"]')];
+    const username = document.querySelector("#username");
+    const email = document.querySelector("#email");
+    const password = document.querySelector("#password");
+    const phone = document.querySelector("#phone");
+    const quantity = document.querySelector("#quantity");
+    const rating = document.querySelector("#rating");
+    const startDate = document.querySelector("#startDate");
+    const city = document.querySelector("#city");
+    const agree = document.querySelector("#agree");
+    const accountId = document.querySelector("#accountId");
+    const novalidateToggle = document.querySelector("#novalidateToggle");
+    const formValid = document.querySelector("#formValid");
+    const selectedField = document.querySelector("#selectedField");
+    const willValidate = document.querySelector("#willValidate");
+    const messageLog = document.querySelector("#messageLog");
+    const stateList = document.querySelector("#stateList");
+    const formDataLog = document.querySelector("#formDataLog");
+    const checkButton = document.querySelector("#checkButton");
+    const reportButton = document.querySelector("#reportButton");
+    const fillButton = document.querySelector("#fillButton");
+
+    const stateKeys = [
+      "valueMissing",
+      "typeMismatch",
+      "patternMismatch",
+      "tooShort",
+      "tooLong",
+      "rangeUnderflow",
+      "rangeOverflow",
+      "stepMismatch",
+      "badInput",
+      "customError",
+      "valid"
+    ];
+
+    let activeControl = username;
+
+    function selectedInterestCount() {
+      return interestBoxes.filter((box) => box.checked).length;
+    }
+
+    function updateInterestValidity() {
+      const message = selectedInterestCount() >= 2 ? "" : "請至少選擇 2 項興趣。";
+      interestBoxes.forEach((box) => box.setCustomValidity(message));
+    }
+
+    function updatePasswordValidity() {
+      if (!password.value) {
+        password.setCustomValidity("");
+        return;
+      }
+
+      const hasLetter = /[A-Za-z]/.test(password.value);
+      const hasNumber = /[0-9]/.test(password.value);
+      password.setCustomValidity(hasLetter && hasNumber ? "" : "密碼需同時包含英文字母與數字。");
+    }
+
+    function controlLabel(control) {
+      const explicit = control.id ? form.querySelector(`label[for="${control.id}"]`) : null;
+      if (explicit) return explicit.textContent.trim();
+      if (control.name) return control.name;
+      return control.type || control.tagName.toLowerCase();
+    }
+
+    function formIsCurrentlyValid() {
+      return observedControls.every((control) => !control.willValidate || control.validity.valid);
+    }
+
+    function renderValidity(control = activeControl) {
+      activeControl = control;
+      updateInterestValidity();
+      updatePasswordValidity();
+
+      formValid.textContent = String(formIsCurrentlyValid());
+      selectedField.textContent = controlLabel(control);
+      willValidate.textContent = String(control.willValidate);
+      messageLog.textContent = control.validationMessage || "目前沒有驗證訊息。";
+
+      stateList.innerHTML = stateKeys
+        .map((key) => `<div class="${control.validity[key] ? "on" : ""}">${key}: ${control.validity[key]}</div>`)
+        .join("");
+    }
+
+    function describeFormData() {
+      const data = new FormData(form);
+      const lines = [];
+
+      for (const [key, value] of data.entries()) {
+        if (value instanceof File) {
+          lines.push(`${key}: ${value.name || "(未選擇檔案)"}`);
+        } else {
+          lines.push(`${key}: ${value}`);
+        }
+      }
+
+      return lines.length ? lines.join("\n") : "沒有可送出的 FormData。";
+    }
+
+    observedControls.forEach((control) => {
+      control.addEventListener("focus", () => renderValidity(control));
+      control.addEventListener("input", () => renderValidity(control));
+      control.addEventListener("change", () => renderValidity(control));
+      control.addEventListener("invalid", () => renderValidity(control));
+    });
+
+    interestBoxes.forEach((box) => {
+      box.addEventListener("change", () => renderValidity(box));
+    });
+
+    novalidateToggle.addEventListener("change", () => {
+      form.noValidate = novalidateToggle.checked;
+      formDataLog.textContent = form.noValidate
+        ? "已啟用 novalidate：正式送出時不會觸發瀏覽器原生驗證。"
+        : "已關閉 novalidate：正式送出時會觸發瀏覽器原生驗證。";
+      renderValidity(activeControl);
+    });
+
+    checkButton.addEventListener("click", () => {
+      renderValidity(activeControl);
+      formDataLog.textContent = `form.checkValidity() => ${form.checkValidity()}`;
+    });
+
+    reportButton.addEventListener("click", () => {
+      updateInterestValidity();
+      updatePasswordValidity();
+      const result = form.reportValidity();
+      renderValidity(activeControl);
+      formDataLog.textContent = `form.reportValidity() => ${result}`;
+    });
+
+    fillButton.addEventListener("click", () => {
+      username.value = "html_user";
+      email.value = "user@example.com";
+      password.value = "abc12345";
+      phone.value = "0912345678";
+      quantity.value = "2";
+      rating.value = "4";
+      startDate.value = "2026-06-01";
+      city.value = "taipei";
+      form.querySelector('input[name="level"][value="beginner"]').checked = true;
+      interestBoxes[0].checked = true;
+      interestBoxes[1].checked = true;
+      agree.checked = true;
+      renderValidity(username);
+      formDataLog.textContent = "已填入一組有效範例。";
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      updateInterestValidity();
+      updatePasswordValidity();
+
+      const submitter = event.submitter;
+      const bypassedByButton = submitter && submitter.formNoValidate;
+      const bypassedByForm = form.noValidate;
+      const valid = form.checkValidity();
+
+      renderValidity(activeControl);
+      formDataLog.textContent = [
+        `submitter: ${submitter ? submitter.textContent.trim() : "(unknown)"}`,
+        `formnovalidate: ${bypassedByButton}`,
+        `novalidate: ${bypassedByForm}`,
+        `checkValidity: ${valid}`,
+        "",
+        "FormData:",
+        describeFormData(),
+        "",
+        "注意：disabled 欄位 coupon 不會出現在 FormData，readonly 欄位 accountId 會出現。"
+      ].join("\n");
+    });
+
+    form.addEventListener("reset", () => {
+      setTimeout(() => {
+        activeControl = username;
+        renderValidity(username);
+        formDataLog.textContent = "表單已重設。";
+      });
+    });
+
+    updateInterestValidity();
+    renderValidity(username);
+  </script>
+</body>
+</html>
