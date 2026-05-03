@@ -11,6 +11,7 @@
 
 ## 目前示例
 
+- [global-attributes-overview-demo.html](./global-attributes-overview-demo.html)：整合 `accesskey`、`tabindex`、`title`、`id`、`class`、`data-*`、`contenteditable`、`lang`、`dir`、`translate`、`style` 等高頻全局屬性的角色差異。
 - [draggable-demo.html](./draggable-demo.html)：觀察 `draggable="true"`、`dragstart`、`dragover`、`drop`、`dragend` 的基本流程。
 - [hidden-demo.html](./hidden-demo.html)：觀察 `hidden` 如何隱藏元素，以及用 JavaScript 移除 `hidden` 後如何重新顯示內容。
 - [spellcheck-demo.html](./spellcheck-demo.html)：對照 `spellcheck="true"`、`spellcheck="false"` 在 `input`、`textarea`、`contenteditable` 上的基本用法。

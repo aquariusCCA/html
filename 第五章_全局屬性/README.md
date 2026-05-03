@@ -58,6 +58,7 @@
 ## 本章示例
 
 - [查看第五章示例索引](./demos/README.md)
+- [global-attributes-overview-demo.html](./demos/global-attributes-overview-demo.html)
 - [draggable-demo.html](./demos/draggable-demo.html)
 - [hidden-demo.html](./demos/hidden-demo.html)
 - [spellcheck-demo.html](./demos/spellcheck-demo.html)

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Attributes Overview Demo</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: rgba(255, 251, 245, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #182128;
+      --muted: #5f6a72;
+      --line: #d8ccbc;
+      --accent: #236b82;
+      --accent-strong: #194f61;
+      --accent-soft: rgba(35, 107, 130, 0.12);
+      --warm: #a95d2f;
+      --warm-soft: rgba(169, 93, 47, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --shadow: 0 24px 52px rgba(39, 30, 20, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(35, 107, 130, 0.14), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(169, 93, 47, 0.1), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(216, 204, 188, 0.94);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 { margin-bottom: 12px; font-size: 24px; }
+    h3 { margin-bottom: 10px; font-size: 18px; }
+    p, li { line-height: 1.7; }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .panel, .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .summary-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(216, 204, 188, 0.84);
+      background: rgba(255, 247, 239, 0.84);
+    }
+
+    .summary-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .stack { display: grid; gap: 18px; }
+    .section-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .pill-row, .tab-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill, .tab {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .pill.active {
+      background: var(--accent-soft);
+      border-color: rgba(35, 107, 130, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .tab { border-radius: 14px; }
+    .tab.active {
+      background: #182128;
+      border-color: #182128;
+      color: #fff;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .info-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(35, 107, 130, 0.06);
+      color: var(--muted);
+    }
+
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(23, 32, 38, 0.14);
+      background: rgba(255, 255, 255, 0.84);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .demo-button {
+      border-radius: 16px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .demo-button.is-focused {
+      outline: 3px solid rgba(35, 107, 130, 0.22);
+      border-color: rgba(35, 107, 130, 0.36);
+    }
+
+    .selector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .selector-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+      cursor: pointer;
+    }
+
+    .selector-card.active {
+      border-color: rgba(35, 107, 130, 0.3);
+      background: rgba(240, 249, 252, 0.94);
+    }
+
+    .selector-card.emphasis {
+      box-shadow: inset 0 0 0 1px rgba(47, 133, 90, 0.16);
+      border-color: rgba(47, 133, 90, 0.28);
+    }
+
+    .dataset-board {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .dataset-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .editable-box {
+      min-height: 92px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      outline: none;
+    }
+
+    .editable-box.locked {
+      opacity: 0.6;
+      background: rgba(248, 248, 248, 0.9);
+    }
+
+    .language-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .language-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .style-preview {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      margin-top: 14px;
+    }
+
+    .legacy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .legacy-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .link-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .section-grid, .selector-grid, .language-grid, .legacy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>全局屬性總覽 Demo</h1>
+        <p class="lead">
+          這個示例把第五章裡高頻、容易混用的全局屬性集中成一頁：鍵盤訪問、元素識別、自定義資料、可編輯內容、語言與方向，
+          再補上 `style`、`contextmenu`、`dropzone` 的定位。拖曳、隱藏、拼寫檢查則保留在既有專項 demo。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>鍵盤訪問</strong>
+            `accesskey` 是快捷訪問提示，`tabindex` 是焦點規則，不是畫面排序工具。
+          </article>
+          <article class="summary-item">
+            <strong>識別與分組</strong>
+            `id` 偏唯一識別，`class` 偏重複分組，`data-*` 偏附加資料。
+          </article>
+          <article class="summary-item">
+            <strong>內容與語言</strong>
+            `contenteditable` 控制能不能直接改內容；`lang`、`dir`、`translate` 補語言語意。
+          </article>
+          <article class="summary-item">
+            <strong>歷史與補充</strong>
+            `style` 是行內樣式；`contextmenu`、`dropzone` 更適合當歷史語法知識辨識。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>這頁怎麼看</h2>
+        <ul class="mini-list">
+          <li>先用第一區分清 `accesskey`、`tabindex`、`title` 的角色差異。</li>
+          <li>再點選商品卡片，看 `id`、`class`、`data-*` 各自在解決什麼問題。</li>
+          <li>接著切換 `contenteditable` 與語言設定，觀察 HTML 全局屬性如何改變元素語意。</li>
+          <li>最後看附錄區，把 `style`、`contextmenu`、`dropzone` 放回正確定位。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 鍵盤訪問與提示：`accesskey`、`tabindex`、`title`</h2>
+        <div class="pill-row" role="tablist" aria-label="鍵盤屬性切換">
+          <button class="pill active" type="button" data-key-demo="accesskey">accesskey</button>
+          <button class="pill" type="button" data-key-demo="tabindex">tabindex</button>
+          <button class="pill" type="button" data-key-demo="title">title</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="keyBadge">快捷訪問提示</span>
+            <h3 id="keyTitle">accesskey：提供補充性的鍵盤訪問入口</h3>
+            <p id="keyDescription">它不是固定熱鍵系統，而是向瀏覽器提示：這個元素可以有一條更快的鍵盤訪問路徑。</p>
+            <pre class="code-block" id="keyCode">&lt;button accesskey="s"&gt;送出&lt;/button&gt;</pre>
+          </section>
+
+          <section class="card">
+            <div class="info-box" id="keyExplain">
+              不同瀏覽器與作業系統的觸發組合可能不同，所以 `accesskey` 比較像補充入口，而不是主要操作方案。
+            </div>
+
+            <div class="demo-grid">
+              <div class="control-row" id="keyDemoArea">
+                <button class="demo-button" id="sendButton" accesskey="s" title="accesskey 示例：字元 s">送出</button>
+                <button class="demo-button" id="searchButton" accesskey="f" title="accesskey 示例：字元 f">搜尋</button>
+                <button class="demo-button" id="tabA" tabindex="2" title="tabindex=2">Tab 2</button>
+                <button class="demo-button" id="tabB" tabindex="1" title="tabindex=1">Tab 1</button>
+                <button class="demo-button" id="tabC" tabindex="0" title="tabindex=0">Tab 0</button>
+              </div>
+              <div class="info-box" id="keyStatus">目前示例聚焦在 `accesskey`。請觀察按鈕上的提示字元與說明。</div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. `id`、`class`、`data-*` 各自在做什麼</h2>
+        <div class="tab-row" role="tablist" aria-label="識別屬性切換">
+          <button class="tab active" type="button" data-identity="id">id</button>
+          <button class="tab" type="button" data-identity="class">class</button>
+          <button class="tab" type="button" data-identity="data">data-*</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="identityBadge">唯一識別</span>
+            <h3 id="identityTitle">id：告訴你「這個元素是誰」</h3>
+            <p id="identityDescription">同一頁面裡，`id` 應該盡量保持唯一，方便 CSS、JavaScript 或片段連結精準找到它。</p>
+            <pre class="code-block" id="identityCode">&lt;article id="product-101" class="product-card featured" data-product-id="101" data-category="book"&gt;
+  Java 書籍
+&lt;/article&gt;</pre>
+
+            <div class="selector-grid">
+              <article class="selector-card active emphasis" id="card101" data-classes="product-card featured" data-product-id="101" data-category="book">
+                <strong>Java 書籍</strong>
+                <p class="caption">id: product-101 / class: product-card featured</p>
+              </article>
+              <article class="selector-card" id="card102" data-classes="product-card" data-product-id="102" data-category="tool">
+                <strong>IDE 工具</strong>
+                <p class="caption">id: product-102 / class: product-card</p>
+              </article>
+              <article class="selector-card" id="card103" data-classes="product-card new" data-product-id="103" data-category="course">
+                <strong>前端課程</strong>
+                <p class="caption">id: product-103 / class: product-card new</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="info-box" id="identityExplain">
+              目前示例聚焦在 `id`。這種情況適合精準指向某一個元素，而不是整批元素。
+            </div>
+            <div class="dataset-board">
+              <div class="dataset-item" id="identityLine1">目前選中的卡片：`product-101`</div>
+              <div class="dataset-item" id="identityLine2">對應的 class：`product-card featured`</div>
+              <div class="dataset-item" id="identityLine3">對應的 data-*：`data-product-id="101"`、`data-category="book"`</div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. 可編輯內容與語言方向：`contenteditable`、`lang`、`dir`、`translate`</h2>
+        <div class="pill-row" role="tablist" aria-label="內容屬性切換">
+          <button class="pill active" type="button" data-content-demo="editable">contenteditable</button>
+          <button class="pill" type="button" data-content-demo="language">lang / dir / translate</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="contentBadge">可編輯內容</span>
+            <h3 id="contentTitle">contenteditable：讓一般元素內容可直接編輯</h3>
+            <p id="contentDescription">這不是表單欄位本身，而是把一般元素變成可直接改內容的區域。</p>
+            <pre class="code-block" id="contentCode">&lt;div contenteditable="true"&gt;
+  這裡可以直接修改內容。
+&lt;/div&gt;</pre>
+          </section>
+
+          <section class="card">
+            <div class="info-box" id="contentExplain">
+              `contenteditable="true"` 代表可編輯；`plaintext-only` 則偏向只保留純文字；`false` 則可用來排除某塊內容。
+            </div>
+            <div class="demo-grid">
+              <div class="control-row">
+                <button id="editableTrue" type="button">true</button>
+                <button id="editablePlain" type="button">plaintext-only</button>
+                <button id="editableFalse" type="button">false</button>
+              </div>
+              <div id="editableBox" class="editable-box" contenteditable="true">這裡可以直接修改內容。你可以試著輸入文字，觀察這和一般 div 的差別。</div>
+              <div class="caption" id="editableState">目前狀態：`contenteditable="true"`</div>
+            </div>
+
+            <div class="language-grid" id="languageGrid" hidden>
+              <article class="language-card">
+                <strong><code>lang="en"</code></strong>
+                <p class="caption">標示主要語言是英文。</p>
+              </article>
+              <article class="language-card" id="dirCard">
+                <strong><code>dir="ltr"</code></strong>
+                <p class="caption" id="dirText">文字方向目前是由左到右。</p>
+              </article>
+              <article class="language-card">
+                <strong><code>translate="no"</code></strong>
+                <p class="caption">適合品牌名、專有名詞這類不希望被翻譯的內容。</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. `style`、`contextmenu`、`dropzone` 的定位</h2>
+        <div class="section-grid">
+          <section class="card">
+            <span class="badge">style</span>
+            <h3>style：直接寫在元素上的行內樣式</h3>
+            <p class="caption">它能快速給單一元素加樣式，但通常不適合大量取代 `class` 與外部 CSS 規則。</p>
+            <pre class="code-block">&lt;p style="color: tomato; font-weight: 700;"&gt;
+  這段文字帶有行內樣式
+&lt;/p&gt;</pre>
+            <div class="style-preview">
+              <p style="color: tomato; font-weight: 700; margin: 0;">這段文字帶有行內樣式。</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge">歷史語法提醒</span>
+            <h3>contextmenu / dropzone：更適合當辨識知識，而不是現代主流方案</h3>
+            <div class="legacy-grid">
+              <article class="legacy-card">
+                <strong><code>contextmenu</code></strong>
+                <p class="caption">偏舊式 HTML 寫法。現代自訂右鍵選單通常改用 JavaScript 的 `contextmenu` 事件與自訂介面。</p>
+              </article>
+              <article class="legacy-card">
+                <strong><code>dropzone</code></strong>
+                <p class="caption">屬於較舊的拖放屬性語境。現代多半直接使用 `dragenter`、`dragover`、`drop` 事件建立放置目標。</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 已有專項示例</h2>
+        <div class="link-list">
+          <div class="link-item"><a href="./draggable-demo.html">draggable-demo.html</a>：觀察 `draggable="true"` 與拖放事件流程。</div>
+          <div class="link-item"><a href="./hidden-demo.html">hidden-demo.html</a>：觀察 `hidden` 如何隱藏，以及如何用 JavaScript 重新顯示。</div>
+          <div class="link-item"><a href="./spellcheck-demo.html">spellcheck-demo.html</a>：對照 `spellcheck="true"` 與 `spellcheck="false"` 的差異。</div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const keyButtons = [...document.querySelectorAll("[data-key-demo]")];
+    const keyBadge = document.getElementById("keyBadge");
+    const keyTitle = document.getElementById("keyTitle");
+    const keyDescription = document.getElementById("keyDescription");
+    const keyCode = document.getElementById("keyCode");
+    const keyExplain = document.getElementById("keyExplain");
+    const keyStatus = document.getElementById("keyStatus");
+    const keyDemoButtons = [...document.querySelectorAll("#keyDemoArea .demo-button")];
+
+    const identityButtons = [...document.querySelectorAll("[data-identity]")];
+    const identityBadge = document.getElementById("identityBadge");
+    const identityTitle = document.getElementById("identityTitle");
+    const identityDescription = document.getElementById("identityDescription");
+    const identityCode = document.getElementById("identityCode");
+    const identityExplain = document.getElementById("identityExplain");
+    const identityLine1 = document.getElementById("identityLine1");
+    const identityLine2 = document.getElementById("identityLine2");
+    const identityLine3 = document.getElementById("identityLine3");
+    const cards = [
+      document.getElementById("card101"),
+      document.getElementById("card102"),
+      document.getElementById("card103")
+    ];
+
+    const contentButtons = [...document.querySelectorAll("[data-content-demo]")];
+    const contentBadge = document.getElementById("contentBadge");
+    const contentTitle = document.getElementById("contentTitle");
+    const contentDescription = document.getElementById("contentDescription");
+    const contentCode = document.getElementById("contentCode");
+    const contentExplain = document.getElementById("contentExplain");
+    const editableTrue = document.getElementById("editableTrue");
+    const editablePlain = document.getElementById("editablePlain");
+    const editableFalse = document.getElementById("editableFalse");
+    const editableBox = document.getElementById("editableBox");
+    const editableState = document.getElementById("editableState");
+    const languageGrid = document.getElementById("languageGrid");
+    const dirCard = document.getElementById("dirCard");
+    const dirText = document.getElementById("dirText");
+
+    const keyViews = {
+      accesskey: {
+        badge: "快捷訪問提示",
+        title: "accesskey：提供補充性的鍵盤訪問入口",
+        description: "它不是固定熱鍵系統，而是向瀏覽器提示：這個元素可以有一條更快的鍵盤訪問路徑。",
+        code: "&lt;button accesskey=\"s\"&gt;送出&lt;/button&gt;",
+        explain: "不同瀏覽器與作業系統的觸發組合可能不同，所以 `accesskey` 比較像補充入口，而不是主要操作方案。",
+        status: "目前示例聚焦在 `accesskey`。請觀察按鈕上的提示字元與說明。"
+      },
+      tabindex: {
+        badge: "焦點順序",
+        title: "tabindex：控制元素能不能被聚焦，以及 Tab 順序",
+        description: "正整數是手動插隊排序，`0` 是加入自然順序，`-1` 則通常不參與一般 Tab 導航。",
+        code: "&lt;button tabindex=\"2\"&gt;Tab 2&lt;/button&gt;\n&lt;button tabindex=\"1\"&gt;Tab 1&lt;/button&gt;\n&lt;button tabindex=\"0\"&gt;Tab 0&lt;/button&gt;",
+        explain: "`tabindex` 管的是鍵盤焦點，不是畫面排列。正整數雖然能控制順序，但不適合大量硬排整頁流程。",
+        status: "目前示例聚焦在 `tabindex`。三顆按鈕的數字刻意打亂，方便你理解焦點順序不一定等於畫面順序。"
+      },
+      title: {
+        badge: "補充提示",
+        title: "title：幫元素補上一段附加說明",
+        description: "`title` 屬性和頁面的 `<title>` 標籤不同。它通常用在某個元素本身的提示文字。",
+        code: "&lt;button title=\"點我可以送出\"&gt;送出&lt;/button&gt;",
+        explain: "滑鼠移到元素上時，瀏覽器可能顯示提示文字；但它不應該取代畫面上的主要文案。",
+        status: "目前示例聚焦在 `title`。把游標移到按鈕上，可以觀察瀏覽器原生提示。"
+      }
+    };
+
+    const identityViews = {
+      id: {
+        badge: "唯一識別",
+        title: "id：告訴你「這個元素是誰」",
+        description: "同一頁面裡，`id` 應該盡量保持唯一，方便 CSS、JavaScript 或片段連結精準找到它。",
+        code: "&lt;article id=\"product-101\" class=\"product-card featured\" data-product-id=\"101\" data-category=\"book\"&gt;\n  Java 書籍\n&lt;/article&gt;",
+        explain: "目前示例聚焦在 `id`。這種情況適合精準指向某一個元素，而不是整批元素。"
+      },
+      class: {
+        badge: "分組標記",
+        title: "class：告訴你「這個元素屬於哪一類」",
+        description: "同一個 class 可以被多個元素重複使用；一個元素也可以同時擁有多個 class。",
+        code: "&lt;article class=\"product-card featured\"&gt;Java 書籍&lt;/article&gt;\n&lt;article class=\"product-card\"&gt;IDE 工具&lt;/article&gt;",
+        explain: "目前示例聚焦在 `class`。你會更在意哪些元素同屬一組，而不是哪個元素是唯一的。"
+      },
+      data: {
+        badge: "附加資料",
+        title: "data-*：讓元素攜帶額外資料給程式使用",
+        description: "`data-*` 不是拿來識別元素，也不是拿來分類，而是把額外資料附在元素上，方便 JavaScript 讀取。",
+        code: "&lt;article data-product-id=\"101\" data-category=\"book\"&gt;Java 書籍&lt;/article&gt;\n// JS: element.dataset.productId",
+        explain: "目前示例聚焦在 `data-*`。這類資料通常要交給 JavaScript 或 CSS 利用，本身不自帶特殊瀏覽器行為。"
+      }
+    };
+
+    const contentViews = {
+      editable: {
+        badge: "可編輯內容",
+        title: "contenteditable：讓一般元素內容可直接編輯",
+        description: "這不是表單欄位本身，而是把一般元素變成可直接改內容的區域。",
+        code: "&lt;div contenteditable=\"true\"&gt;\n  這裡可以直接修改內容。\n&lt;/div&gt;",
+        explain: "`contenteditable=\"true\"` 代表可編輯；`plaintext-only` 則偏向只保留純文字；`false` 則可用來排除某塊內容。"
+      },
+      language: {
+        badge: "語言與方向",
+        title: "lang / dir / translate：補上語言、方向與翻譯意圖",
+        description: "`lang` 管主要語言，`dir` 管文字方向，`translate` 則是在說這段內容應不應該被翻譯。",
+        code: "&lt;p lang=\"en\" dir=\"ltr\" translate=\"no\"&gt;OpenAI&lt;/p&gt;",
+        explain: "`lang` 和 `dir` 常一起出現，但它們在處理不同問題：一個是語言，一個是方向。"
+      }
+    };
+
+    function setKeyDemo(mode) {
+      const view = keyViews[mode];
+      keyButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.keyDemo === mode);
+      });
+
+      keyBadge.textContent = view.badge;
+      keyTitle.textContent = view.title;
+      keyDescription.textContent = view.description;
+      keyCode.innerHTML = view.code;
+      keyExplain.textContent = view.explain;
+      keyStatus.textContent = view.status;
+    }
+
+    function setIdentityDemo(mode) {
+      const view = identityViews[mode];
+      identityButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.identity === mode);
+      });
+
+      identityBadge.textContent = view.badge;
+      identityTitle.textContent = view.title;
+      identityDescription.textContent = view.description;
+      identityCode.innerHTML = view.code;
+      identityExplain.textContent = view.explain;
+
+      cards.forEach((card) => {
+        card.classList.toggle("emphasis", mode === "class");
+      });
+    }
+
+    function updateIdentityLines(card) {
+      identityLine1.textContent = `目前選中的卡片：${card.id}`;
+      identityLine2.textContent = `對應的 class：${card.dataset.classes || "無額外 class"}`;
+      identityLine3.textContent = `對應的 data-*：data-product-id="${card.dataset.productId}"、data-category="${card.dataset.category}"`;
+    }
+
+    function setContentDemo(mode) {
+      const view = contentViews[mode];
+      contentButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.contentDemo === mode);
+      });
+
+      contentBadge.textContent = view.badge;
+      contentTitle.textContent = view.title;
+      contentDescription.textContent = view.description;
+      contentCode.innerHTML = view.code;
+      contentExplain.textContent = view.explain;
+
+      const showEditable = mode === "editable";
+      editableTrue.hidden = !showEditable;
+      editablePlain.hidden = !showEditable;
+      editableFalse.hidden = !showEditable;
+      editableBox.hidden = !showEditable;
+      editableState.hidden = !showEditable;
+      languageGrid.hidden = showEditable;
+    }
+
+    function applyEditableMode(mode) {
+      editableBox.classList.remove("locked");
+
+      if (mode === "true") {
+        editableBox.setAttribute("contenteditable", "true");
+        editableBox.textContent = "這裡可以直接修改內容。你可以試著輸入文字，觀察這和一般 div 的差別。";
+        editableState.textContent = '目前狀態：`contenteditable="true"`';
+      } else if (mode === "plaintext-only") {
+        editableBox.setAttribute("contenteditable", "plaintext-only");
+        editableBox.textContent = "這裡偏向只保留純文字。貼上外部內容時，重點不是保留富文字格式。";
+        editableState.textContent = '目前狀態：`contenteditable="plaintext-only"`';
+      } else {
+        editableBox.setAttribute("contenteditable", "false");
+        editableBox.classList.add("locked");
+        editableBox.textContent = "這裡現在不可編輯。這代表你可以用 false 把某塊內容排除在可編輯區外。";
+        editableState.textContent = '目前狀態：`contenteditable="false"`';
+      }
+    }
+
+    keyDemoButtons.forEach((button) => {
+      button.addEventListener("focus", () => {
+        keyDemoButtons.forEach((item) => item.classList.remove("is-focused"));
+        button.classList.add("is-focused");
+      });
+
+      button.addEventListener("blur", () => {
+        button.classList.remove("is-focused");
+      });
+    });
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        cards.forEach((item) => item.classList.remove("active"));
+        card.classList.add("active");
+        updateIdentityLines(card);
+      });
+    });
+
+    keyButtons.forEach((button) => {
+      button.addEventListener("click", () => setKeyDemo(button.dataset.keyDemo));
+    });
+
+    identityButtons.forEach((button) => {
+      button.addEventListener("click", () => setIdentityDemo(button.dataset.identity));
+    });
+
+    contentButtons.forEach((button) => {
+      button.addEventListener("click", () => setContentDemo(button.dataset.contentDemo));
+    });
+
+    editableTrue.addEventListener("click", () => applyEditableMode("true"));
+    editablePlain.addEventListener("click", () => applyEditableMode("plaintext-only"));
+    editableFalse.addEventListener("click", () => applyEditableMode("false"));
+
+    dirCard.addEventListener("click", () => {
+      const current = dirCard.getAttribute("dir") || "ltr";
+      const next = current === "ltr" ? "rtl" : "ltr";
+      dirCard.setAttribute("dir", next);
+      dirCard.querySelector("strong").innerHTML = `<code>dir="${next}"</code>`;
+      dirText.textContent = next === "ltr"
+        ? "文字方向目前是由左到右。"
+        : "文字方向目前是由右到左。";
+    });
+
+    setKeyDemo("accesskey");
+    setIdentityDemo("id");
+    updateIdentityLines(cards[0]);
+    setContentDemo("editable");
+    applyEditableMode("true");
+  </script>
+</body>
+</html>
