@@ -73,6 +73,11 @@
 2. 這個數值是否有明確的 `min` 和 `max`？
 3. 是否需要用 `low`、`high`、`optimum` 補充區間判斷？
 
+## 對應示例
+
+- [度量衡標籤 Demo](./demos/meter-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
