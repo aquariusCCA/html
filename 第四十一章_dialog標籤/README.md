@@ -101,6 +101,11 @@
 3. 做一個「設定面板」dialog，練習取消、確認、Esc 關閉與焦點回復。
 4. 比較同一個 UI 用 `<div>` 和 `<dialog>` 實作時，事件與語意差在哪。
 
+## 對應示例
+
+- [`dialog` 標籤 Demo](./demos/dialog-tag-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)

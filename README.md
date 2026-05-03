@@ -296,6 +296,7 @@
 ### 第四十一章｜`dialog` 標籤
 
 - [查看本章導航](./第四十一章_dialog標籤/README.md)
+- [查看本章示例](./第四十一章_dialog標籤/demos/README.md)
 - [`dialog` 標籤](./第四十一章_dialog標籤/第41章_dialog標籤.md)
 
 ### 第四十二章｜`svg` 與 `canvas` 圖形
