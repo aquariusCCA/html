@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR Tag Demo</title>
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --panel: rgba(255, 251, 245, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #1f2933;
+      --muted: #5f6c76;
+      --line: #ddcfbd;
+      --accent: #0f766e;
+      --accent-strong: #0b5b55;
+      --accent-soft: rgba(15, 118, 110, 0.12);
+      --warm: #b45309;
+      --warm-soft: rgba(180, 83, 9, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --danger: #c2410c;
+      --danger-soft: rgba(194, 65, 12, 0.12);
+      --shadow: 0 24px 52px rgba(43, 31, 18, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.14), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(180, 83, 9, 0.12), transparent 26%),
+        linear-gradient(180deg, #fcf8f3 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(221, 207, 189, 0.9);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li {
+      line-height: 1.72;
+    }
+
+    .hero,
+    .summary-grid,
+    .stage-grid,
+    .two-col,
+    .compare-grid,
+    .mini-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.18fr 0.82fr;
+      margin-bottom: 22px;
+    }
+
+    .summary-grid,
+    .compare-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stage-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .summary-item,
+    .mini-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(221, 207, 189, 0.85);
+      background: rgba(255, 247, 239, 0.82);
+    }
+
+    .summary-item strong,
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill,
+    .choice-button {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .pill.active,
+    .choice-button.active {
+      background: var(--accent-soft);
+      border-color: rgba(15, 118, 110, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-button {
+      text-align: left;
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .choice-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #172129;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .preview-card,
+    .compare-card,
+    .text-card {
+      border-radius: 20px;
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .line-sample {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(15, 118, 110, 0.06);
+      border: 1px solid rgba(15, 118, 110, 0.14);
+      line-height: 1.75;
+    }
+
+    .paper {
+      padding: 16px;
+      border-radius: 18px;
+      background:
+        linear-gradient(transparent 31px, rgba(15, 118, 110, 0.08) 32px),
+        linear-gradient(90deg, rgba(180, 83, 9, 0.12) 0 3px, transparent 3px);
+      background-size: 100% 32px, 100% 100%;
+      border: 1px solid rgba(180, 83, 9, 0.18);
+      line-height: 32px;
+      min-height: 132px;
+    }
+
+    .compare-text {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(249, 250, 251, 0.92);
+      border: 1px solid rgba(31, 41, 51, 0.08);
+      line-height: 1.75;
+    }
+
+    .paragraph-stack p {
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(15, 118, 110, 0.08);
+      border: 1px solid rgba(15, 118, 110, 0.16);
+    }
+
+    .paragraph-stack p:last-child {
+      margin-bottom: 0;
+    }
+
+    .gap-demo {
+      display: grid;
+      gap: 14px;
+    }
+
+    .spacer-bars {
+      display: grid;
+      gap: 12px;
+    }
+
+    .spacer-box {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(15, 118, 110, 0.08);
+      border: 1px solid rgba(15, 118, 110, 0.14);
+    }
+
+    .fake-gap {
+      color: var(--danger);
+      background: rgba(194, 65, 12, 0.08);
+      border: 1px dashed rgba(194, 65, 12, 0.38);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .note-line,
+    .info-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--muted);
+    }
+
+    .note-line {
+      background: rgba(255, 247, 239, 0.84);
+    }
+
+    .info-box {
+      background: rgba(15, 118, 110, 0.06);
+    }
+
+    .preserve-space {
+      white-space: pre-wrap;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .summary-grid,
+      .stage-grid,
+      .two-col,
+      .compare-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML 換行標籤 Demo</h1>
+        <p class="lead">
+          `&lt;br&gt;` 的工作很單純：在同一段內容裡強制換到下一行。它適合地址、詩句、歌詞、署名這類本來就需要逐行呈現的內容；如果你想表達的是新段落或版面間距，就不該優先用它。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>`&lt;br&gt;` 是換行，不是分段</strong>
+            它只讓內容往下一行，不會產生新的段落語意。
+          </article>
+          <article class="summary-item">
+            <strong>適合逐行內容</strong>
+            地址、詩句、歌詞、聯絡資訊這種一行一行有意義的內容很適合。
+          </article>
+          <article class="summary-item">
+            <strong>`&lt;p&gt;` 負責段落</strong>
+            當內容已經是兩個完整意思單位時，應優先拆成兩個段落。
+          </article>
+          <article class="summary-item">
+            <strong>不要拿來撐間距</strong>
+            視覺距離應交給 CSS，例如 `margin`、`padding`、`line-height`。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁會示範</h2>
+        <ul class="mini-list">
+          <li>`&lt;br&gt;` 的基本效果與典型用途</li>
+          <li>`&lt;br&gt;` 和 `&lt;p&gt;` 的角色差異</li>
+          <li>HTML 空白折疊與真正換行的差別</li>
+          <li>不建議的濫用方式與替代做法</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. `&lt;br&gt;` 的典型用途</h2>
+        <div class="pill-row" role="tablist" aria-label="br use cases">
+          <button class="pill active" type="button" data-br-mode="address">地址資訊</button>
+          <button class="pill" type="button" data-br-mode="poem">詩句排版</button>
+          <button class="pill" type="button" data-br-mode="signature">署名區塊</button>
+        </div>
+
+        <div class="stage-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="brBadge">Address</span>
+            <h3 id="brTitle">同一組資訊，逐行呈現</h3>
+            <p id="brDescription">
+              這些內容仍屬於同一段資訊，只是需要明確換行，所以用 `&lt;br&gt;` 很合理。
+            </p>
+            <pre class="code-block" id="brCode"></pre>
+          </section>
+
+          <section class="preview-card" id="brPreview"></section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. `&lt;br&gt;` 和 `&lt;p&gt;` 的差異</h2>
+        <div class="compare-grid">
+          <section class="card">
+            <span class="badge ok">段落分開</span>
+            <h3>兩個完整意思單位，應用 `&lt;p&gt;`</h3>
+            <pre class="code-block">&lt;p&gt;第一段介紹課程目標與學習方式。&lt;/p&gt;
+&lt;p&gt;第二段補充修課前的建議與準備事項。&lt;/p&gt;</pre>
+            <div class="paragraph-stack">
+              <p>第一段介紹課程目標與學習方式。</p>
+              <p>第二段補充修課前的建議與準備事項。</p>
+            </div>
+            <div class="note-line">
+              這裡是兩個獨立段落，所以應該讓 HTML 直接表達出「分段」。
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge">同段換行</span>
+            <h3>同一段資訊內的分行，適合 `&lt;br&gt;`</h3>
+            <pre class="code-block">&lt;p&gt;
+  客服專線：02-1234-5678&lt;br&gt;
+  服務時間：週一到週五 09:00 - 18:00&lt;br&gt;
+  電子郵件：service@example.com
+&lt;/p&gt;</pre>
+            <div class="compare-text">
+              客服專線：02-1234-5678<br>
+              服務時間：週一到週五 09:00 - 18:00<br>
+              電子郵件：service@example.com
+            </div>
+            <div class="note-line">
+              這還是一組聯絡資訊，只是每一行都需要清楚排列。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. 為什麼按 Enter 不等於換行</h2>
+        <div class="two-col">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-space-mode="collapsed">
+                <strong>HTML 預設</strong>
+                多個空白和原始碼中的換行，通常會被折疊成一般空格。
+              </button>
+              <button class="choice-button" type="button" data-space-mode="br">
+                <strong>使用 `&lt;br&gt;`</strong>
+                需要真的換到下一行時，應明確寫出換行標籤。
+              </button>
+              <button class="choice-button" type="button" data-space-mode="css">
+                <strong>使用 CSS 保留格式</strong>
+                若你要保留原本文字排版，可考慮 `white-space: pre-wrap;`。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="spaceBadge">空白折疊</div>
+            <h3 id="spaceTitle">原始碼換行不會自動變成畫面換行</h3>
+            <p id="spaceDescription">
+              HTML 會把多餘空白折疊，所以你在程式裡按 Enter，通常不會直接得到多行顯示效果。
+            </p>
+            <pre class="code-block" id="spaceCode"></pre>
+            <div class="text-card">
+              <div class="compare-text" id="spacePreview"></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 不要拿 `&lt;br&gt;` 來硬做間距</h2>
+        <div class="stage-grid">
+          <section class="card">
+            <div class="choice-grid">
+              <button class="choice-button active" type="button" data-gap-mode="bad">
+                <strong>不建議</strong>
+                用很多個 `&lt;br&gt;` 把區塊往下推，只是碰巧看起來有空隙。
+              </button>
+              <button class="choice-button" type="button" data-gap-mode="good">
+                <strong>建議</strong>
+                用 CSS 控制間距，畫面和語意會更乾淨。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge danger" id="gapBadge">不建議</div>
+            <h3 id="gapTitle">間距是樣式問題，不是內容換行問題</h3>
+            <p id="gapDescription">
+              如果只是想讓兩塊區域離遠一點，應該交給 CSS，而不是插入一串沒有語意的 `&lt;br&gt;`。
+            </p>
+            <pre class="code-block" id="gapCode"></pre>
+            <div id="gapPreview"></div>
+            <div class="info-box" id="gapNote">
+              同樣的畫面距離，交給 CSS 控制會更穩定，也比較不會讓 HTML 難讀。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>5. 實務提醒</h2>
+        <div class="mini-grid">
+          <article class="mini-item">
+            <strong>優先判斷是不是新段落</strong>
+            若上下兩段已經是不同意思，先考慮拆成兩個 `&lt;p&gt;`。
+          </article>
+          <article class="mini-item">
+            <strong>逐行資訊才用 `&lt;br&gt;`</strong>
+            一行一行本身有意義的內容，才是 `&lt;br&gt;` 最自然的落點。
+          </article>
+          <article class="mini-item">
+            <strong>版面 spacing 用 CSS</strong>
+            `margin`、`padding`、`line-height` 才是控制視覺距離的正規工具。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const brButtons = [...document.querySelectorAll("[data-br-mode]")];
+    const brBadge = document.getElementById("brBadge");
+    const brTitle = document.getElementById("brTitle");
+    const brDescription = document.getElementById("brDescription");
+    const brCode = document.getElementById("brCode");
+    const brPreview = document.getElementById("brPreview");
+
+    const spaceButtons = [...document.querySelectorAll("[data-space-mode]")];
+    const spaceBadge = document.getElementById("spaceBadge");
+    const spaceTitle = document.getElementById("spaceTitle");
+    const spaceDescription = document.getElementById("spaceDescription");
+    const spaceCode = document.getElementById("spaceCode");
+    const spacePreview = document.getElementById("spacePreview");
+
+    const gapButtons = [...document.querySelectorAll("[data-gap-mode]")];
+    const gapBadge = document.getElementById("gapBadge");
+    const gapTitle = document.getElementById("gapTitle");
+    const gapDescription = document.getElementById("gapDescription");
+    const gapCode = document.getElementById("gapCode");
+    const gapPreview = document.getElementById("gapPreview");
+    const gapNote = document.getElementById("gapNote");
+
+    const brViews = {
+      address: {
+        badge: "Address",
+        title: "同一組資訊，逐行呈現",
+        description: "地址和聯絡方式通常是同一塊資訊，但每一行都需要清楚換開。",
+        code: `&lt;address&gt;
+  曙光設計工作室&lt;br&gt;
+  台北市大安區信義路三段 100 號 5 樓&lt;br&gt;
+  02-1234-5678
+&lt;/address&gt;`,
+        preview: `
+          <section class="line-sample">
+            <strong>曙光設計工作室</strong><br>
+            台北市大安區信義路三段 100 號 5 樓<br>
+            02-1234-5678
+          </section>
+        `
+      },
+      poem: {
+        badge: "Poem",
+        title: "詩句或歌詞，一行本身就是節奏",
+        description: "這類內容的每一行本身就承載節奏與排版意義，用 `<br>` 很自然。",
+        code: `&lt;p&gt;
+  風從窗邊慢慢吹過&lt;br&gt;
+  書頁停在午後的光裡&lt;br&gt;
+  連安靜都像一種回應
+&lt;/p&gt;`,
+        preview: `
+          <section class="paper">
+            風從窗邊慢慢吹過<br>
+            書頁停在午後的光裡<br>
+            連安靜都像一種回應
+          </section>
+        `
+      },
+      signature: {
+        badge: "Signature",
+        title: "信件結尾或署名區塊",
+        description: "署名與日期仍屬同一段收尾內容，但通常需要拆成多行顯示。",
+        code: `&lt;p&gt;
+  此致 敬禮&lt;br&gt;
+  前端課程教學團隊&lt;br&gt;
+  2026-05-03
+&lt;/p&gt;`,
+        preview: `
+          <section class="line-sample">
+            此致 敬禮<br>
+            前端課程教學團隊<br>
+            2026-05-03
+          </section>
+        `
+      }
+    };
+
+    const spaceViews = {
+      collapsed: {
+        badge: "空白折疊",
+        title: "原始碼換行不會自動變成畫面換行",
+        description: "HTML 預設會把多個空白和 Enter 折疊處理，所以看起來仍像一整行。",
+        code: `&lt;p&gt;
+  第一行文字
+  第二行文字
+  第三行文字
+&lt;/p&gt;`,
+        className: "compare-text",
+        text: "第一行文字 第二行文字 第三行文字"
+      },
+      br: {
+        badge: "明確換行",
+        title: "真的要換行，就寫出 `<br>`",
+        description: "當你要讓畫面明確換到下一行，應使用 HTML 提供的換行標籤。",
+        code: `&lt;p&gt;
+  第一行文字&lt;br&gt;
+  第二行文字&lt;br&gt;
+  第三行文字
+&lt;/p&gt;`,
+        className: "compare-text",
+        html: "第一行文字<br>第二行文字<br>第三行文字"
+      },
+      css: {
+        badge: "CSS 保留格式",
+        title: "若你要保留輸入格式，可交給 CSS",
+        description: "像詩稿、備忘錄或使用者輸入內容，若要保留原始換行，可考慮 `white-space: pre-wrap;`。",
+        code: `.note {\n  white-space: pre-wrap;\n}\n\n&lt;p class="note"&gt;\n第一行文字\n第二行文字\n第三行文字\n&lt;/p&gt;`,
+        className: "compare-text preserve-space",
+        text: "第一行文字\n第二行文字\n第三行文字"
+      }
+    };
+
+    const gapViews = {
+      bad: {
+        badge: "不建議",
+        badgeClass: "badge danger",
+        title: "間距是樣式問題，不是內容換行問題",
+        description: "用一串 `<br>` 撐空白，HTML 會變得難讀，之後調整距離也不方便。",
+        code: `&lt;h2&gt;課程介紹&lt;/h2&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;p&gt;這裡才是下一段內容。&lt;/p&gt;`,
+        preview: `
+          <section class="spacer-bars">
+            <div class="spacer-box"><strong>課程介紹</strong></div>
+            <div class="spacer-box fake-gap">這些空白其實是多個 &lt;br&gt; 疊出來的</div>
+            <div class="spacer-box">這裡才是下一段內容。</div>
+          </section>
+        `,
+        note: "這種寫法只是碰巧看起來有距離，並沒有清楚表達內容結構。"
+      },
+      good: {
+        badge: "建議",
+        badgeClass: "badge ok",
+        title: "用 CSS 控制區塊距離，會更穩定",
+        description: "HTML 保持乾淨的內容結構，視覺上的上下留白交給 `margin` 或 `padding`。",
+        code: `&lt;h2 class="section-title"&gt;課程介紹&lt;/h2&gt;
+&lt;p class="section-body"&gt;這裡才是下一段內容。&lt;/p&gt;
+
+.section-title {
+  margin-bottom: 32px;
+}`,
+        preview: `
+          <section class="gap-demo">
+            <div class="spacer-box" style="margin-bottom: 32px;"><strong>課程介紹</strong></div>
+            <div class="spacer-box">這裡才是下一段內容。</div>
+          </section>
+        `,
+        note: "這樣之後要改成 24px、40px 或不同斷點的距離，都只要調整 CSS。"
+      }
+    };
+
+    function setBrMode(mode) {
+      const view = brViews[mode];
+
+      brButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.brMode === mode);
+      });
+
+      brBadge.textContent = view.badge;
+      brTitle.textContent = view.title;
+      brDescription.textContent = view.description;
+      brCode.innerHTML = view.code;
+      brPreview.innerHTML = view.preview;
+    }
+
+    function setSpaceMode(mode) {
+      const view = spaceViews[mode];
+
+      spaceButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.spaceMode === mode);
+      });
+
+      spaceBadge.textContent = view.badge;
+      spaceTitle.textContent = view.title;
+      spaceDescription.textContent = view.description;
+      spaceCode.innerHTML = view.code;
+      spacePreview.className = view.className;
+
+      if (view.html) {
+        spacePreview.innerHTML = view.html;
+      } else {
+        spacePreview.textContent = view.text;
+      }
+    }
+
+    function setGapMode(mode) {
+      const view = gapViews[mode];
+
+      gapButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.gapMode === mode);
+      });
+
+      gapBadge.textContent = view.badge;
+      gapBadge.className = view.badgeClass;
+      gapTitle.textContent = view.title;
+      gapDescription.textContent = view.description;
+      gapCode.innerHTML = view.code;
+      gapPreview.innerHTML = view.preview;
+      gapNote.textContent = view.note;
+    }
+
+    brButtons.forEach((button) => {
+      button.addEventListener("click", () => setBrMode(button.dataset.brMode));
+    });
+
+    spaceButtons.forEach((button) => {
+      button.addEventListener("click", () => setSpaceMode(button.dataset.spaceMode));
+    });
+
+    gapButtons.forEach((button) => {
+      button.addEventListener("click", () => setGapMode(button.dataset.gapMode));
+    });
+
+    setBrMode("address");
+    setSpaceMode("collapsed");
+    setGapMode("bad");
+  </script>
+</body>
+</html>
