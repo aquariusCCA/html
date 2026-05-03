@@ -42,6 +42,11 @@
 - 圖片格式 vs `data URL` / `base64`：前者是檔案格式，後者是表示與嵌入方式。
 - 顯示尺寸 vs 原始檔案大小：把圖縮小顯示，不代表檔案本身變小。
 
+## 對應示例
+
+- [圖片標籤 Demo](./demos/image-tag-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
