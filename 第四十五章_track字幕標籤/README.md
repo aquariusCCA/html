@@ -85,6 +85,11 @@
 - 是否只有一條文字軌加上 `default`。
 - 伺服器是否正確提供 WebVTT 檔案，例如 MIME type、CORS、檔案路徑。
 
+## 對應示例
+
+- [`track` 字幕標籤 Demo](./demos/track-text-tracks-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)

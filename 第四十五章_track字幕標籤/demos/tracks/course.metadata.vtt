@@ -1,0 +1,11 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.000
+{"slide":1,"topic":"intro","highlight":"video"}
+
+00:00:03.500 --> 00:00:06.000
+{"slide":2,"topic":"track","highlight":"source-vs-track"}
+
+00:00:06.500 --> 00:00:10.000
+{"slide":3,"topic":"webvtt","highlight":"format"}
+
