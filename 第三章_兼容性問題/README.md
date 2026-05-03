@@ -40,6 +40,10 @@
 - `X-UA-Compatible` vs `renderer`：前者偏舊版 `IE` 文件模式，後者偏部分雙核瀏覽器的核心選擇。
 - `html5shiv` vs 一般 `script` 載入：前者是特定舊版瀏覽器的兼容性補丁，不是所有瀏覽器都需要。
 
+## 對應示例
+
+- [demos/compatibility-demo.html](./demos/compatibility-demo.html)：整合 `X-UA-Compatible`、`renderer`、`html5shiv` 與 `IE Conditional Comment` 的用途、差異與判讀方式。
+
 ## 導航
 
 - [返回首頁](../README.md)

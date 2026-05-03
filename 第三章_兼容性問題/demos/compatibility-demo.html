@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compatibility Demo</title>
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --panel: rgba(255, 251, 245, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #182128;
+      --muted: #616b72;
+      --line: #d8ccbc;
+      --accent: #8b3d2f;
+      --accent-strong: #6f3025;
+      --accent-soft: rgba(139, 61, 47, 0.12);
+      --cool: #1d6f8f;
+      --cool-soft: rgba(29, 111, 143, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --shadow: 0 24px 52px rgba(39, 30, 20, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(139, 61, 47, 0.14), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(29, 111, 143, 0.12), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1160px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(216, 204, 188, 0.94);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p,
+    li {
+      line-height: 1.7;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .summary-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(216, 204, 188, 0.84);
+      background: rgba(255, 247, 239, 0.84);
+    }
+
+    .summary-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 20px;
+    }
+
+    .pill-row,
+    .tab-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill,
+    .tab {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .pill.active {
+      background: var(--accent-soft);
+      border-color: rgba(139, 61, 47, 0.26);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .tab {
+      border-radius: 14px;
+    }
+
+    .tab.active {
+      background: #182128;
+      border-color: #182128;
+      color: #fff;
+    }
+
+    .tab-panel {
+      margin-top: 14px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--cool-soft);
+      color: var(--cool);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .status-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .status-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .status-item.active {
+      border-color: rgba(139, 61, 47, 0.26);
+      background: rgba(255, 244, 241, 0.92);
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .explain-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(29, 111, 143, 0.06);
+      color: var(--muted);
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .meta-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .meta-card.active {
+      border-color: rgba(29, 111, 143, 0.3);
+      box-shadow: inset 0 0 0 1px rgba(29, 111, 143, 0.12);
+    }
+
+    .browser-flow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .flow-step {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(29, 111, 143, 0.12);
+      background: rgba(242, 250, 253, 0.9);
+    }
+
+    .flow-step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--cool);
+    }
+
+    .browser-core {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .core-box {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .core-box.active {
+      border-color: rgba(47, 133, 90, 0.3);
+      background: rgba(239, 247, 242, 0.92);
+    }
+
+    .core-box.muted {
+      opacity: 0.55;
+    }
+
+    .compat-preview {
+      margin-top: 14px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px dashed rgba(139, 61, 47, 0.28);
+      background: rgba(255, 248, 245, 0.9);
+    }
+
+    .semantic-layout {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .semantic-box {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+    }
+
+    .semantic-box.dimmed {
+      opacity: 0.45;
+    }
+
+    .semantic-box.ok {
+      border-color: rgba(47, 133, 90, 0.3);
+      background: rgba(239, 247, 242, 0.92);
+    }
+
+    .condition-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .version-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .version-chip {
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+      cursor: pointer;
+    }
+
+    .version-chip.active {
+      border-color: rgba(139, 61, 47, 0.28);
+      background: rgba(255, 244, 241, 0.92);
+    }
+
+    .result-box {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .result-box.ok {
+      border-color: rgba(47, 133, 90, 0.3);
+      background: rgba(239, 247, 242, 0.92);
+    }
+
+    .result-box.no {
+      border-color: rgba(139, 61, 47, 0.24);
+      background: rgba(255, 248, 245, 0.92);
+    }
+
+    .table {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(29, 111, 143, 0.05);
+      border: 1px solid rgba(29, 111, 143, 0.08);
+    }
+
+    .row strong {
+      color: var(--cool);
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .section-grid,
+      .condition-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-board,
+      .meta-grid,
+      .browser-core {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1160px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>兼容性問題 Demo</h1>
+        <p class="lead">
+          這頁不是假裝你真的切進舊版 IE，而是幫你把第三章常見舊相容寫法和它們在補的問題對上：
+          <code>X-UA-Compatible</code>、<code>renderer</code>、<code>html5shiv</code>，以及 IE 條件註解。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>X-UA-Compatible</strong>
+            管的是舊版 IE 要用哪種文件模式解讀頁面。
+          </article>
+          <article class="summary-item">
+            <strong>renderer</strong>
+            管的是某些雙核瀏覽器傾向用哪個核心渲染頁面。
+          </article>
+          <article class="summary-item">
+            <strong>html5shiv</strong>
+            補的是舊版 IE 對 HTML5 新標籤的辨識能力。
+          </article>
+          <article class="summary-item">
+            <strong>條件註解</strong>
+            只讓特定版本的 IE 載入特定的舊相容程式碼。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>這頁怎麼看</h2>
+        <ul class="mini-list">
+          <li>先用第一區切換三種舊問題，確認每種手段補的是哪個洞。</li>
+          <li>再看 `X-UA-Compatible` 和 `renderer` 的差別，不要把它們混在一起。</li>
+          <li>接著看 `html5shiv` 對舊版 IE 的作用，理解它不是現代通用補丁。</li>
+          <li>最後切換 IE 版本與條件註解，練習判讀哪段程式碼會載入。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 這段舊寫法到底在補哪一種相容性問題？</h2>
+        <div class="pill-row" role="tablist" aria-label="兼容性手段切換">
+          <button class="pill active" type="button" data-tool="xua">X-UA-Compatible</button>
+          <button class="pill" type="button" data-tool="renderer">renderer</button>
+          <button class="pill" type="button" data-tool="shiv">html5shiv</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="toolBadge">IE 文件模式</span>
+            <h3 id="toolTitle">X-UA-Compatible：讓舊版 IE 盡量用較新的規則解析頁面</h3>
+            <p id="toolDescription">
+              這個 `meta` 標籤主要不是給現代瀏覽器看的，而是在提示舊版 IE：盡量使用它能提供的較新文件模式。
+            </p>
+            <pre class="code-block" id="toolCode">&lt;meta http-equiv="X-UA-Compatible" content="IE=Edge"&gt;</pre>
+          </section>
+
+          <section class="card">
+            <div class="explain-box" id="toolExplain">
+              這裡處理的是「IE 要怎麼解讀頁面」，不是「所有瀏覽器都一定會理會的標準功能」。
+            </div>
+            <div class="status-board">
+              <article class="status-item active" id="statusProblem">
+                <strong>問題類型</strong>
+                <p class="caption" id="statusProblemText">舊版 IE 可能進入不預期的舊文件模式。</p>
+              </article>
+              <article class="status-item" id="statusScope">
+                <strong>影響範圍</strong>
+                <p class="caption" id="statusScopeText">主要是舊版 IE，不是現代主流瀏覽器。</p>
+              </article>
+              <article class="status-item" id="statusModern">
+                <strong>現代專案</strong>
+                <p class="caption" id="statusModernText">通常不是現代專案的日常必備設定。</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. `X-UA-Compatible` 和 `renderer` 差在哪裡</h2>
+        <div class="meta-grid">
+          <article class="meta-card active" id="xuaCard">
+            <span class="badge">X-UA-Compatible</span>
+            <h3>偏向「IE 怎麼看」</h3>
+            <p class="caption">處理的是舊版 IE 的文件模式問題，例如不要退回過舊的相容模式。</p>
+            <pre class="code-block" style="margin-top: 12px;">&lt;meta http-equiv="X-UA-Compatible" content="IE=Edge"&gt;</pre>
+          </article>
+
+          <article class="meta-card" id="rendererCard">
+            <span class="badge">renderer</span>
+            <h3>偏向「瀏覽器怎麼畫」</h3>
+            <p class="caption">處理的是部分雙核瀏覽器傾向用哪個核心渲染頁面，例如偏向 WebKit。</p>
+            <pre class="code-block" style="margin-top: 12px;">&lt;meta name="renderer" content="webkit"&gt;</pre>
+          </article>
+        </div>
+
+        <div class="browser-flow">
+          <div class="flow-step">
+            <strong>記法 1</strong>
+            <span><code>X-UA-Compatible</code>：偏向規則怎麼看。</span>
+          </div>
+          <div class="flow-step">
+            <strong>記法 2</strong>
+            <span><code>renderer</code>：偏向頁面怎麼畫。</span>
+          </div>
+        </div>
+
+        <div class="browser-core">
+          <article class="core-box active" id="webkitCore">
+            <h3>WebKit 核心</h3>
+            <p class="caption">某些雙核瀏覽器會被提示優先用這一邊渲染。</p>
+          </article>
+          <article class="core-box muted" id="tridentCore">
+            <h3>IE Trident 核心</h3>
+            <p class="caption">雙核環境下也可能存在這一套舊核心。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. 為什麼舊版 IE 需要 html5shiv</h2>
+        <div class="tab-row" role="tablist" aria-label="html5shiv 切換">
+          <button class="tab active" type="button" data-shiv="before">沒補丁</button>
+          <button class="tab" type="button" data-shiv="after">載入 html5shiv</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <pre class="code-block" id="shivCode">&lt;header&gt;網站標頭&lt;/header&gt;
+&lt;section&gt;主內容區&lt;/section&gt;
+&lt;footer&gt;頁尾&lt;/footer&gt;
+
+&lt;!--[if lt IE 9]&gt;
+&lt;script src="./js/html5shiv.min.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;</pre>
+          </section>
+
+          <section class="card">
+            <div class="compat-preview">
+              <h3 id="shivTitle">舊版 IE 看到 HTML5 新標籤時，可能不太知道怎麼處理</h3>
+              <p id="shivDescription" class="caption">
+                問題不只是名字陌生，還可能進一步影響樣式套用與版面參與。
+              </p>
+
+              <div class="semantic-layout">
+                <div class="semantic-box dimmed" id="semanticHeader">&lt;header&gt;網站標頭&lt;/header&gt;</div>
+                <div class="semantic-box dimmed" id="semanticSection">&lt;section&gt;主內容區&lt;/section&gt;</div>
+                <div class="semantic-box dimmed" id="semanticFooter">&lt;footer&gt;頁尾&lt;/footer&gt;</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. IE Conditional Comment 怎麼判讀</h2>
+        <div class="condition-grid">
+          <section class="card">
+            <div class="pill-row" role="tablist" aria-label="條件註解切換">
+              <button class="pill active" type="button" data-condition="lt">lt IE 9</button>
+              <button class="pill" type="button" data-condition="lte">lte IE 8</button>
+              <button class="pill" type="button" data-condition="gt">gt IE 8</button>
+              <button class="pill" type="button" data-condition="gte">gte IE 8</button>
+            </div>
+
+            <pre class="code-block" id="conditionCode" style="margin-top: 14px;">&lt;!--[if lt IE 9]&gt;
+&lt;script src="./js/html5shiv.min.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;</pre>
+
+            <div class="table">
+              <div class="row">
+                <strong>lt</strong>
+                <span>less than，小於</span>
+              </div>
+              <div class="row">
+                <strong>lte</strong>
+                <span>less than or equal，小於等於</span>
+              </div>
+              <div class="row">
+                <strong>gt</strong>
+                <span>greater than，大於</span>
+              </div>
+              <div class="row">
+                <strong>gte</strong>
+                <span>greater than or equal，大於等於</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge" id="conditionBadge">目前條件：lt IE 9</span>
+            <h3>切換 IE 版本，看看這段條件註解會不會生效</h3>
+            <div class="version-list">
+              <button class="version-chip active" type="button" data-ie="8">IE 8</button>
+              <button class="version-chip" type="button" data-ie="9">IE 9</button>
+              <button class="version-chip" type="button" data-ie="10">IE 10</button>
+            </div>
+
+            <div class="result-box ok" id="conditionResult" style="margin-top: 14px;">
+              對 IE 8 來說，這段條件註解會成立，所以 `html5shiv` 會被載入。
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const toolButtons = [...document.querySelectorAll("[data-tool]")];
+    const toolBadge = document.getElementById("toolBadge");
+    const toolTitle = document.getElementById("toolTitle");
+    const toolDescription = document.getElementById("toolDescription");
+    const toolCode = document.getElementById("toolCode");
+    const toolExplain = document.getElementById("toolExplain");
+    const statusProblemText = document.getElementById("statusProblemText");
+    const statusScopeText = document.getElementById("statusScopeText");
+    const statusModernText = document.getElementById("statusModernText");
+
+    const xuaCard = document.getElementById("xuaCard");
+    const rendererCard = document.getElementById("rendererCard");
+    const webkitCore = document.getElementById("webkitCore");
+    const tridentCore = document.getElementById("tridentCore");
+
+    const shivButtons = [...document.querySelectorAll("[data-shiv]")];
+    const shivTitle = document.getElementById("shivTitle");
+    const shivDescription = document.getElementById("shivDescription");
+    const semanticHeader = document.getElementById("semanticHeader");
+    const semanticSection = document.getElementById("semanticSection");
+    const semanticFooter = document.getElementById("semanticFooter");
+
+    const conditionButtons = [...document.querySelectorAll("[data-condition]")];
+    const ieButtons = [...document.querySelectorAll("[data-ie]")];
+    const conditionCode = document.getElementById("conditionCode");
+    const conditionBadge = document.getElementById("conditionBadge");
+    const conditionResult = document.getElementById("conditionResult");
+
+    let currentCondition = "lt";
+    let currentIe = 8;
+
+    const toolViews = {
+      xua: {
+        badge: "IE 文件模式",
+        title: "X-UA-Compatible：讓舊版 IE 盡量用較新的規則解析頁面",
+        description: "這個 meta 標籤主要不是給現代瀏覽器看的，而是在提示舊版 IE：盡量使用它能提供的較新文件模式。",
+        code: "&lt;meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"&gt;",
+        explain: "這裡處理的是「IE 要怎麼解讀頁面」，不是「所有瀏覽器都一定會理會的標準功能」。",
+        problem: "舊版 IE 可能進入不預期的舊文件模式。",
+        scope: "主要是舊版 IE，不是現代主流瀏覽器。",
+        modern: "通常不是現代專案的日常必備設定。"
+      },
+      renderer: {
+        badge: "雙核瀏覽器核心選擇",
+        title: "renderer：提示某些雙核瀏覽器優先用哪個核心渲染",
+        description: "這個 meta 標籤偏歷史性相容寫法，重點在於某些雙核瀏覽器可能同時有多套渲染核心可選。",
+        code: "&lt;meta name=\"renderer\" content=\"webkit\"&gt;",
+        explain: "這裡處理的是「某些瀏覽器想用哪個核心畫頁面」，不是舊版 IE 的文件模式問題。",
+        problem: "雙核瀏覽器可能切到不預期的核心。",
+        scope: "主要出現在特定雙核瀏覽器語境，不是通用標準能力。",
+        modern: "現代專案大多不再把它當成常規設定。"
+      },
+      shiv: {
+        badge: "HTML5 新標籤相容性",
+        title: "html5shiv：讓舊版 IE 能辨識 HTML5 新標籤",
+        description: "它是一段舊相容 JavaScript，用來幫 IE6、IE7、IE8 先建立像 header、section、footer 這類新元素。",
+        code: "&lt;!--[if lt IE 9]&gt;\n&lt;script src=\"./js/html5shiv.min.js\"&gt;&lt;/script&gt;\n&lt;![endif]--&gt;",
+        explain: "這裡補的是「舊版 IE 不認得 HTML5 新標籤」，不是所有瀏覽器都需要的通用補丁。",
+        problem: "未知元素可能影響樣式與版面流程。",
+        scope: "主要針對 IE6、IE7、IE8 這類舊環境。",
+        modern: "現代瀏覽器通常不需要這種補丁。"
+      }
+    };
+
+    function setTool(tool) {
+      const view = toolViews[tool];
+
+      toolButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.tool === tool);
+      });
+
+      toolBadge.textContent = view.badge;
+      toolTitle.textContent = view.title;
+      toolDescription.textContent = view.description;
+      toolCode.innerHTML = view.code;
+      toolExplain.textContent = view.explain;
+      statusProblemText.textContent = view.problem;
+      statusScopeText.textContent = view.scope;
+      statusModernText.textContent = view.modern;
+    }
+
+    function setMetaFocus(mode) {
+      xuaCard.classList.toggle("active", mode === "xua");
+      rendererCard.classList.toggle("active", mode === "renderer");
+      webkitCore.classList.toggle("active", mode === "renderer");
+      webkitCore.classList.toggle("muted", mode !== "renderer");
+      tridentCore.classList.toggle("active", mode === "xua");
+      tridentCore.classList.toggle("muted", mode !== "xua");
+    }
+
+    function setShiv(mode) {
+      shivButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.shiv === mode);
+      });
+
+      const boxes = [semanticHeader, semanticSection, semanticFooter];
+
+      if (mode === "before") {
+        shivTitle.textContent = "舊版 IE 看到 HTML5 新標籤時，可能不太知道怎麼處理";
+        shivDescription.textContent = "問題不只是名字陌生，還可能進一步影響樣式套用與版面參與。";
+        boxes.forEach((box) => {
+          box.classList.remove("ok");
+          box.classList.add("dimmed");
+        });
+      } else {
+        shivTitle.textContent = "載入 html5shiv 後，舊版 IE 比較知道這些元素該怎麼參與頁面";
+        shivDescription.textContent = "這不是把瀏覽器升級，而是先幫它建立對新標籤的基本辨識能力。";
+        boxes.forEach((box) => {
+          box.classList.remove("dimmed");
+          box.classList.add("ok");
+        });
+      }
+    }
+
+    function getConditionText(condition) {
+      if (condition === "lt") return "lt IE 9";
+      if (condition === "lte") return "lte IE 8";
+      if (condition === "gt") return "gt IE 8";
+      return "gte IE 8";
+    }
+
+    function doesConditionMatch(condition, ieVersion) {
+      if (condition === "lt") return ieVersion < 9;
+      if (condition === "lte") return ieVersion <= 8;
+      if (condition === "gt") return ieVersion > 8;
+      return ieVersion >= 8;
+    }
+
+    function updateConditionView() {
+      const conditionText = getConditionText(currentCondition);
+      conditionBadge.textContent = `目前條件：${conditionText}`;
+      conditionCode.innerHTML = `&lt;!--[if ${conditionText}]&gt;\n&lt;script src="./js/html5shiv.min.js"&gt;&lt;/script&gt;\n&lt;![endif]--&gt;`;
+
+      const matched = doesConditionMatch(currentCondition, currentIe);
+      conditionResult.classList.toggle("ok", matched);
+      conditionResult.classList.toggle("no", !matched);
+
+      if (matched) {
+        conditionResult.textContent = `對 IE ${currentIe} 來說，這段條件註解會成立，所以 html5shiv 會被載入。`;
+      } else {
+        conditionResult.textContent = `對 IE ${currentIe} 來說，這段條件註解不成立，所以 html5shiv 不會被載入。`;
+      }
+    }
+
+    toolButtons.forEach((button) => {
+      button.addEventListener("click", () => setTool(button.dataset.tool));
+    });
+
+    xuaCard.addEventListener("click", () => setMetaFocus("xua"));
+    rendererCard.addEventListener("click", () => setMetaFocus("renderer"));
+
+    shivButtons.forEach((button) => {
+      button.addEventListener("click", () => setShiv(button.dataset.shiv));
+    });
+
+    conditionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        currentCondition = button.dataset.condition;
+        conditionButtons.forEach((item) => {
+          item.classList.toggle("active", item === button);
+        });
+        updateConditionView();
+      });
+    });
+
+    ieButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        currentIe = Number(button.dataset.ie);
+        ieButtons.forEach((item) => {
+          item.classList.toggle("active", item === button);
+        });
+        updateConditionView();
+      });
+    });
+
+    setTool("xua");
+    setMetaFocus("xua");
+    setShiv("before");
+    updateConditionView();
+  </script>
+</body>
+</html>
