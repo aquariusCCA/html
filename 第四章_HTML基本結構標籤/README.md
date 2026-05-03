@@ -42,6 +42,10 @@
 - `DOCTYPE` vs 一般標籤：前者是文檔類型聲明，不是普通 HTML 元素。
 - 註解 vs 頁面內容：前者給開發者看，後者才會實際顯示在頁面上。
 
+## 對應示例
+
+- [demos/html-structure-demo.html](./demos/html-structure-demo.html)：整合 `DOCTYPE`、`lang`、`charset`、HTML 屬性、布林屬性與註解的用途與差異。
+
 ## 導航
 
 - [返回首頁](../README.md)
