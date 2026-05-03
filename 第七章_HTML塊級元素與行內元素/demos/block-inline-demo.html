@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block And Inline Elements Demo</title>
+  <style>
+    :root {
+      --bg: #f3efe8;
+      --panel: rgba(255, 252, 247, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #182128;
+      --muted: #5f6a72;
+      --line: #d7ccbd;
+      --accent: #0b7285;
+      --accent-strong: #095969;
+      --accent-soft: rgba(11, 114, 133, 0.12);
+      --warm: #b85c38;
+      --warm-soft: rgba(184, 92, 56, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --danger: #c2410c;
+      --danger-soft: rgba(194, 65, 12, 0.12);
+      --shadow: 0 24px 52px rgba(39, 30, 20, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(11, 114, 133, 0.15), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(184, 92, 56, 0.11), transparent 24%),
+        linear-gradient(180deg, #faf7f1 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(215, 204, 189, 0.92);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li {
+      line-height: 1.7;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero,
+    .two-col,
+    .compare-grid,
+    .rule-grid,
+    .mini-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.2fr 0.8fr;
+      margin-bottom: 22px;
+    }
+
+    .two-col {
+      grid-template-columns: 1.02fr 0.98fr;
+    }
+
+    .compare-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rule-grid {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .summary-item,
+    .fact-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(215, 204, 189, 0.85);
+      background: rgba(255, 248, 240, 0.82);
+    }
+
+    .summary-item strong,
+    .fact-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+    }
+
+    .badge.danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .pill.active {
+      background: var(--accent-soft);
+      border-color: rgba(11, 114, 133, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .info-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(11, 114, 133, 0.06);
+      color: var(--muted);
+    }
+
+    .stage {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px dashed rgba(11, 114, 133, 0.28);
+      background: rgba(241, 250, 252, 0.9);
+    }
+
+    .demo-surface {
+      padding: 16px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(24, 33, 40, 0.08);
+    }
+
+    .demo-label {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .box-token {
+      display: block;
+      width: 100%;
+      margin: 0 0 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(11, 114, 133, 0.18);
+      background: rgba(11, 114, 133, 0.1);
+    }
+
+    .inline-token {
+      display: inline;
+      margin-right: 8px;
+      padding: 5px 8px;
+      border-radius: 10px;
+      background: rgba(184, 92, 56, 0.14);
+      border: 1px solid rgba(184, 92, 56, 0.16);
+    }
+
+    .inline-measure,
+    .inline-exception {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .inline-measure span.test-span {
+      width: 220px;
+      height: 72px;
+      padding: 10px;
+      color: #7c2d12;
+      background: rgba(194, 65, 12, 0.12);
+      border: 1px solid rgba(194, 65, 12, 0.2);
+    }
+
+    .inline-exception img,
+    .inline-exception input {
+      vertical-align: middle;
+    }
+
+    .rule-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rule-button {
+      text-align: left;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .rule-button.active {
+      background: rgba(240, 249, 252, 0.94);
+      border-color: rgba(11, 114, 133, 0.3);
+      box-shadow: inset 0 0 0 1px rgba(11, 114, 133, 0.08);
+    }
+
+    .rule-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .iframe-shell {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(24, 33, 40, 0.08);
+      background: #fff;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 180px;
+      border: 0;
+      background: #fff;
+    }
+
+    .note-line {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 248, 240, 0.84);
+      color: var(--muted);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .two-col,
+      .compare-grid,
+      .rule-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>HTML 塊級元素與行內元素 Demo</h1>
+        <p class="lead">
+          這個示例頁把第七章的核心觀念整理成可直接觀察的畫面：誰會獨占一行、誰只佔內容寬度、哪些巢狀是合法的、哪些寫法會被瀏覽器自動修正。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>塊級元素</strong>
+            通常會從新的一行開始，預設傾向佔滿可用寬度，適合段落、區塊、標題。
+          </article>
+          <article class="summary-item">
+            <strong>行內元素</strong>
+            通常和文字排在同一行，寬度主要跟內容走，適合局部語意或文字修飾。
+          </article>
+          <article class="summary-item">
+            <strong>巢狀規則</strong>
+            `p` 不能包 `div`，標題不能互相巢狀，`a` 不能再包另一個 `a`。
+          </article>
+          <article class="summary-item">
+            <strong>例外情況</strong>
+            `img`、`input` 雖常視為行內，但在尺寸控制上和純文字型行內元素不同。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>本頁會看到什麼</h2>
+        <ul class="mini-list">
+          <li>塊級元素和行內元素的實際排版差異</li>
+          <li>`div`、`p`、`span`、`a` 的典型使用位置</li>
+          <li>非法巢狀在瀏覽器中的實際結果</li>
+          <li>為什麼不能只靠「塊級 / 行內」決定所有布局</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 一眼看出排版差異</h2>
+        <div class="pill-row" role="tablist" aria-label="display demo mode">
+          <button class="pill active" type="button" data-display-mode="block">塊級元素</button>
+          <button class="pill" type="button" data-display-mode="inline">行內元素</button>
+        </div>
+
+        <div class="two-col" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="displayBadge">Block-level</span>
+            <h3 id="displayTitle">每個元素各佔一行</h3>
+            <p id="displayDescription">
+              塊級元素通常會從新的一行開始，後面的元素會被推到下一行，所以很適合拿來切段落和大區塊。
+            </p>
+            <pre class="code-block" id="displayCode">&lt;div&gt;商品資訊&lt;/div&gt;
+&lt;p&gt;這是一段介紹文字&lt;/p&gt;
+&lt;h2&gt;推薦重點&lt;/h2&gt;</pre>
+          </section>
+
+          <section class="stage">
+            <div class="demo-label">即時預覽</div>
+            <div class="demo-surface" id="displayPreview"></div>
+            <div class="note-line" id="displayNote">
+              觀察重點：每個盒子都自動換行，寬度也明顯往整列延伸。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. 同樣寫寬高，效果不一定一樣</h2>
+        <div class="compare-grid">
+          <section class="card">
+            <span class="badge">純文字型行內元素</span>
+            <h3>`span` 不會照單全收寬高設定</h3>
+            <p>
+              下方 `span` 雖然寫了 `width: 220px; height: 72px;`，但它仍會以行內方式流動，寬高不會像區塊盒子那樣主導版面。
+            </p>
+            <div class="inline-measure">
+              <div class="demo-label">示例</div>
+              <span class="test-span">我是 span，仍和文字排在同一行</span>
+              <span>後面的文字會緊接著流動排列。</span>
+            </div>
+          </section>
+
+          <section class="card">
+            <span class="badge">常見例外</span>
+            <h3>`img`、`input` 雖在行內流中，但尺寸可控</h3>
+            <p>
+              這類元素經常被拿來當作「行內但能設尺寸」的例子。它們不等於一般的純文字型行內元素。
+            </p>
+            <div class="inline-exception">
+              <div class="demo-label">示例</div>
+              <img
+                alt="尺寸示例"
+                width="96"
+                height="64"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='64' viewBox='0 0 96 64'><rect width='96' height='64' rx='12' fill='%230b7285'/><text x='48' y='38' text-anchor='middle' font-size='18' fill='white'>img</text></svg>"
+              >
+              <input type="text" value="input 也能設寬" style="width: 180px; padding: 8px 10px;">
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. 常見巢狀規則與實際結果</h2>
+        <div class="rule-grid">
+          <section class="card">
+            <div class="rule-list">
+              <button class="rule-button active" type="button" data-rule="p-div">
+                <strong>`p` 裡面放 `div`</strong>
+                這是常見錯誤，瀏覽器通常會自動提前結束 `p`。
+              </button>
+              <button class="rule-button" type="button" data-rule="heading-nest">
+                <strong>`h1` 裡面放 `h2`</strong>
+                標題元素不能互相巢狀。
+              </button>
+              <button class="rule-button" type="button" data-rule="anchor-block">
+                <strong>`a` 包住區塊內容</strong>
+                HTML5 中這種寫法是合法且常見的。
+              </button>
+              <button class="rule-button" type="button" data-rule="anchor-anchor">
+                <strong>`a` 裡再放 `a`</strong>
+                超連結不能彼此巢狀。
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="badge" id="ruleBadge">錯誤巢狀</div>
+            <h3 id="ruleTitle">`p` 不能包塊級容器</h3>
+            <p id="ruleDescription">
+              `p` 只適合承載段落文字內容。當你把 `div` 這類區塊元素塞進去時，瀏覽器會重組 DOM。
+            </p>
+            <pre class="code-block" id="ruleCode"></pre>
+            <div class="iframe-shell" style="margin-top: 14px;">
+              <iframe id="rulePreview" title="nesting rule preview"></iframe>
+            </div>
+            <div class="note-line" id="ruleNote"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 用語意挑標籤，不只看換不換行</h2>
+        <div class="mini-grid">
+          <article class="fact-item">
+            <strong>`p` vs `div`</strong>
+            `p` 是段落；`div` 是泛用區塊容器。不是只因為兩者都常換行就能互相替代。
+          </article>
+          <article class="fact-item">
+            <strong>`span` vs `a`</strong>
+            `span` 沒有超連結語意；`a` 是可導航的互動元素，語意和行為都不同。
+          </article>
+          <article class="fact-item">
+            <strong>CSS 才是布局主角</strong>
+            塊級 / 行內是理解 HTML 行為的起點，但真正的布局仍要靠 `display`、`flex`、`grid` 等 CSS。
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const displayButtons = [...document.querySelectorAll("[data-display-mode]")];
+    const displayBadge = document.getElementById("displayBadge");
+    const displayTitle = document.getElementById("displayTitle");
+    const displayDescription = document.getElementById("displayDescription");
+    const displayCode = document.getElementById("displayCode");
+    const displayPreview = document.getElementById("displayPreview");
+    const displayNote = document.getElementById("displayNote");
+
+    const ruleButtons = [...document.querySelectorAll("[data-rule]")];
+    const ruleBadge = document.getElementById("ruleBadge");
+    const ruleTitle = document.getElementById("ruleTitle");
+    const ruleDescription = document.getElementById("ruleDescription");
+    const ruleCode = document.getElementById("ruleCode");
+    const rulePreview = document.getElementById("rulePreview");
+    const ruleNote = document.getElementById("ruleNote");
+
+    const displayViews = {
+      block: {
+        badge: "Block-level",
+        title: "每個元素各佔一行",
+        description: "塊級元素通常會從新的一行開始，後面的元素會被推到下一行，所以很適合拿來切段落和大區塊。",
+        code: "&lt;div&gt;商品資訊&lt;/div&gt;\n&lt;p&gt;這是一段介紹文字&lt;/p&gt;\n&lt;h2&gt;推薦重點&lt;/h2&gt;",
+        preview: `
+          <div class="box-token">div：商品資訊</div>
+          <p class="box-token">p：這是一段介紹文字</p>
+          <h2 class="box-token" style="margin:0;">h2：推薦重點</h2>
+        `,
+        note: "觀察重點：每個盒子都自動換行，寬度也明顯往整列延伸。"
+      },
+      inline: {
+        badge: "Inline",
+        title: "元素跟著文字一起流動",
+        description: "行內元素通常不會自己另起一行，而是跟文字一起排在同一列，適合局部語意、連結、強調。",
+        code: "&lt;span&gt;新品&lt;/span&gt;\n&lt;em&gt;限時&lt;/em&gt;\n&lt;a href='#'&gt;立即查看&lt;/a&gt;",
+        preview: `
+          <span class="inline-token">span：新品</span>
+          <em class="inline-token" style="font-style: italic;">em：限時</em>
+          <a class="inline-token" href="javascript:void(0)" style="color:#9a3412; text-decoration:none;">a：立即查看</a>
+          <span>這些內容會接在同一行繼續排列。</span>
+        `,
+        note: "觀察重點：元素依附在文字流中，不會像區塊一樣自然切成一塊一塊。"
+      }
+    };
+
+    const ruleViews = {
+      "p-div": {
+        badge: "錯誤巢狀",
+        title: "`p` 不能包塊級容器",
+        description: "`p` 只適合承載段落文字內容。當你把 `div` 這類區塊元素塞進去時，瀏覽器會重組 DOM。",
+        code: "&lt;p&gt;\n  段落開頭\n  &lt;div&gt;我是 div&lt;/div&gt;\n  段落結尾\n&lt;/p&gt;",
+        note: "實際上常會被修正成：先結束 `p`，再放入 `div`，後面的文字可能又形成新的段落。",
+        srcdoc: `
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<style>
+body{font-family:'Microsoft JhengHei',sans-serif;margin:0;padding:14px;background:#fff;color:#182128}
+p,div{margin:0 0 10px}
+p{padding:10px 12px;background:#fff7ed;border:1px solid #fdba74;border-radius:10px}
+div{padding:10px 12px;background:#ecfeff;border:1px solid #67e8f9;border-radius:10px}
+</style>
+</head>
+<body>
+  <p>段落開頭</p>
+  <div>我是 div</div>
+  段落結尾
+</body>
+</html>`
+      },
+      "heading-nest": {
+        badge: "錯誤巢狀",
+        title: "標題不能互相巢狀",
+        description: "`h1` 到 `h6` 都是標題元素。它們代表層級，不應該把另一個標題直接塞進前一個標題裡。",
+        code: "&lt;h1&gt;\n  課程總覽\n  &lt;h2&gt;章節摘要&lt;/h2&gt;\n&lt;/h1&gt;",
+        note: "正確做法是把不同層級的標題分開寫，靠文件結構表達主次，而不是靠包裹關係。",
+        srcdoc: `
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<style>
+body{font-family:'Microsoft JhengHei',sans-serif;margin:0;padding:14px;background:#fff;color:#182128}
+h1,h2{margin:0 0 10px;padding:10px 12px;border-radius:10px}
+h1{background:#eff6ff;border:1px solid #93c5fd}
+h2{background:#fef3c7;border:1px solid #fcd34d}
+</style>
+</head>
+<body>
+  <h1>課程總覽</h1>
+  <h2>章節摘要</h2>
+</body>
+</html>`
+      },
+      "anchor-block": {
+        badge: "合法寫法",
+        title: "`a` 可以包整塊可點區域",
+        description: "在 HTML5 裡，`a` 可以包住整塊內容，這也是卡片式連結很常見的做法。",
+        code: "&lt;a href='https://example.com'&gt;\n  &lt;article&gt;\n    &lt;h3&gt;前端課程&lt;/h3&gt;\n    &lt;p&gt;點整張卡片都能進入&lt;/p&gt;\n  &lt;/article&gt;\n&lt;/a&gt;",
+        note: "重點不是它包了塊級元素，而是整塊內容只存在一個超連結語意。",
+        srcdoc: `
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<style>
+body{font-family:'Microsoft JhengHei',sans-serif;margin:0;padding:14px;background:#fff}
+a{display:block;text-decoration:none;color:#182128}
+article{padding:14px;border-radius:12px;background:#f0fdfa;border:1px solid #5eead4}
+h3,p{margin:0}
+h3{margin-bottom:8px}
+</style>
+</head>
+<body>
+  <a href="javascript:void(0)">
+    <article>
+      <h3>前端課程</h3>
+      <p>點整張卡片都能進入</p>
+    </article>
+  </a>
+</body>
+</html>`
+      },
+      "anchor-anchor": {
+        badge: "錯誤巢狀",
+        title: "`a` 不能再包另一個 `a`",
+        description: "超連結本身已經是互動元素，再把另一個超連結放進去，會造成語意和互動衝突。",
+        code: "&lt;a href='https://example.com'&gt;\n  外層連結\n  &lt;a href='https://openai.com'&gt;內層連結&lt;/a&gt;\n&lt;/a&gt;",
+        note: "如果需要多個目的地，應拆成多個平行連結，而不是巢狀連結。",
+        srcdoc: `
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<style>
+body{font-family:'Microsoft JhengHei',sans-serif;margin:0;padding:14px;background:#fff;color:#182128}
+a{display:inline-block;margin-right:10px;padding:10px 12px;border-radius:10px;text-decoration:none}
+.outer{background:#eff6ff;border:1px solid #93c5fd;color:#1d4ed8}
+.inner{background:#fff7ed;border:1px solid #fdba74;color:#c2410c}
+</style>
+</head>
+<body>
+  <a class="outer" href="javascript:void(0)">外層連結</a>
+  <a class="inner" href="javascript:void(0)">內層連結應拆開</a>
+</body>
+</html>`
+      }
+    };
+
+    function setDisplayMode(mode) {
+      const view = displayViews[mode];
+
+      displayButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.displayMode === mode);
+      });
+
+      displayBadge.textContent = view.badge;
+      displayTitle.textContent = view.title;
+      displayDescription.textContent = view.description;
+      displayCode.innerHTML = view.code;
+      displayPreview.innerHTML = view.preview;
+      displayNote.textContent = view.note;
+    }
+
+    function setRule(rule) {
+      const view = ruleViews[rule];
+
+      ruleButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.rule === rule);
+      });
+
+      ruleBadge.textContent = view.badge;
+      ruleBadge.className = "badge" + (view.badge === "合法寫法" ? " ok" : " danger");
+      ruleTitle.textContent = view.title;
+      ruleDescription.textContent = view.description;
+      ruleCode.innerHTML = view.code;
+      ruleNote.textContent = view.note;
+      rulePreview.srcdoc = view.srcdoc;
+    }
+
+    displayButtons.forEach((button) => {
+      button.addEventListener("click", () => setDisplayMode(button.dataset.displayMode));
+    });
+
+    ruleButtons.forEach((button) => {
+      button.addEventListener("click", () => setRule(button.dataset.rule));
+    });
+
+    setDisplayMode("block");
+    setRule("p-div");
+  </script>
+</body>
+</html>
