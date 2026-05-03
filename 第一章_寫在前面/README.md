@@ -35,6 +35,10 @@
 - Web 服務器的基本定義
 - 本地服務器與遠程服務器的差異
 
+## 對應示例
+
+- [demos/web-basics-demo.html](./demos/web-basics-demo.html)：把瀏覽器、Web 請求、前後端分工、HTML / CSS / JavaScript 三層分工串成單頁互動示例。
+
 ## 導航
 
 - [返回首頁](../README.md)
