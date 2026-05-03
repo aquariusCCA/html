@@ -149,6 +149,11 @@
 - 原生 HTML 語意優先，ARIA 用來補充，不是拿來取代原生標籤。
 - 如果只是想改樣式，請用 CSS。
 
+## 對應示例
+
+- [引用與註記文本標籤 Demo](./demos/quote-annotation-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
