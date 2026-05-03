@@ -308,6 +308,7 @@
 ### 第四十三章｜`template` 標籤
 
 - [查看本章導航](./第四十三章_template標籤/README.md)
+- [查看本章示例](./第四十三章_template標籤/demos/README.md)
 - [`template` 標籤](./第四十三章_template標籤/第43章_template標籤.md)
 
 ### 第四十四章｜結構化資料

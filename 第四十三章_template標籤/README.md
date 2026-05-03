@@ -90,6 +90,11 @@
 - 複製出來的節點如果要綁定事件，通常有哪些做法？
 - `<template>`、`hidden`、`display: none` 分別適合什麼情境？
 
+## 對應示例
+
+- [`template` 標籤 Demo](./demos/template-tag-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)

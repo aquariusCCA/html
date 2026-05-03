@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HTML template 標籤 demo，示範 inert 模板內容、template.content、DocumentFragment、cloneNode(true)、資料渲染與事件委派。">
+  <title>template 標籤 Demo</title>
+  <style>
+    :root {
+      --bg: #f6f7f3;
+      --surface: #fcfdf9;
+      --panel: #ffffff;
+      --ink: #232721;
+      --muted: #687164;
+      --line: #dde4d8;
+      --accent: #326f4e;
+      --accent-dark: #27553c;
+      --accent-soft: #e1f0e7;
+      --blue: #315f90;
+      --blue-soft: #e3edf8;
+      --gold: #956815;
+      --gold-soft: #f6ecd6;
+      --rust: #a34b34;
+      --rust-soft: #f5e1dc;
+      --purple: #67559c;
+      --purple-soft: #ece8f7;
+      --code-bg: #20271f;
+      --code-ink: #f8f4e8;
+      --shadow: 0 18px 48px rgba(35, 39, 33, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      background:
+        linear-gradient(135deg, rgba(50, 111, 78, 0.08), transparent 34%),
+        linear-gradient(180deg, #fffdf8 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 40px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.12;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 1.55rem;
+      line-height: 1.28;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+    }
+
+    p,
+    li,
+    td,
+    th,
+    label,
+    select {
+      line-height: 1.72;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    code {
+      border-radius: 6px;
+      padding: 0.08em 0.35em;
+      color: #1c4e37;
+      background: rgba(50, 111, 78, 0.12);
+    }
+
+    a {
+      color: var(--accent-dark);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    button,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      color: var(--ink);
+      background: #e8ece6;
+    }
+
+    button.secondary:hover {
+      background: #d9e1d7;
+    }
+
+    button.danger {
+      background: var(--rust);
+    }
+
+    button.danger:hover {
+      background: #7e3828;
+    }
+
+    select {
+      width: 100%;
+      border: 1px solid rgba(35, 39, 33, 0.2);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .shell {
+      display: grid;
+      gap: 18px;
+      border: 1px solid rgba(221, 228, 216, 0.95);
+      border-radius: 18px;
+      padding: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar,
+    .crumbs,
+    .status-list,
+    .footer-links,
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topbar {
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .status-chip {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 5px 8px;
+      background: #fff;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .hero,
+    .two-col,
+    .three-col,
+    .lab-grid,
+    .compare-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      align-items: stretch;
+    }
+
+    .two-col,
+    .lab-grid,
+    .compare-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .three-col {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .panel,
+    .card,
+    .hero-visual,
+    .result {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+    }
+
+    .panel,
+    .hero-visual {
+      padding: 22px;
+    }
+
+    .card,
+    .result {
+      padding: 18px;
+    }
+
+    .lead {
+      max-width: 830px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-visual {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+      background:
+        linear-gradient(135deg, rgba(50, 111, 78, 0.12), rgba(149, 104, 21, 0.12)),
+        #fff;
+    }
+
+    .semantic-line {
+      display: grid;
+      grid-template-columns: 152px 1fr;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid rgba(35, 39, 33, 0.08);
+      border-radius: 10px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .tag-name {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      border-radius: 8px;
+      padding: 4px 8px;
+      color: #fff;
+      background: var(--accent);
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+    }
+
+    .tag-name.blue {
+      background: var(--blue);
+    }
+
+    .tag-name.gold {
+      background: var(--gold);
+    }
+
+    .tag-name.rust {
+      background: var(--rust);
+    }
+
+    .tag-name.purple {
+      background: var(--purple);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .card p,
+    .result p,
+    .note-card p,
+    .notice p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .soft-green {
+      background: var(--accent-soft);
+    }
+
+    .soft-blue {
+      background: var(--blue-soft);
+    }
+
+    .soft-gold {
+      background: var(--gold-soft);
+    }
+
+    .soft-rust {
+      background: var(--rust-soft);
+    }
+
+    .soft-purple {
+      background: var(--purple-soft);
+    }
+
+    .code-block {
+      overflow: auto;
+      margin: 0;
+      border-radius: 10px;
+      padding: 15px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      line-height: 1.65;
+      font-size: 0.9rem;
+    }
+
+    .result {
+      min-height: 230px;
+      background: #fff;
+    }
+
+    .result pre {
+      margin-top: 12px;
+    }
+
+    .choice-panel {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .counter {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .counter strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1.35rem;
+    }
+
+    .note-list,
+    .notice-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .note-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .note-card,
+    .notice {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .note-card {
+      display: grid;
+      gap: 10px;
+      min-height: 170px;
+      align-content: start;
+    }
+
+    .note-card.is-selected {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 2px rgba(50, 111, 78, 0.16);
+    }
+
+    .note-card header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .note-card h3,
+    .notice h3 {
+      margin-bottom: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border-radius: 8px;
+      padding: 3px 8px;
+      color: #fff;
+      background: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .notice {
+      border-left: 5px solid var(--blue);
+    }
+
+    .notice[data-tone="warning"] {
+      border-left-color: var(--gold);
+    }
+
+    .notice[data-tone="danger"] {
+      border-left-color: var(--rust);
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .role-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .role-table caption {
+      padding: 12px;
+      color: var(--muted);
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .role-table th,
+    .role-table td {
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .role-table th {
+      background: #f1f5ef;
+    }
+
+    .log-list {
+      display: grid;
+      gap: 8px;
+      min-height: 130px;
+      max-height: 230px;
+      overflow: auto;
+      border-radius: 10px;
+      padding: 12px;
+      color: #dff8ea;
+      background: #121914;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.92rem;
+    }
+
+    .log-list p {
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .hint-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .note-list,
+      .counter-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      main {
+        width: min(100% - 20px, 1180px);
+        margin-top: 10px;
+      }
+
+      .shell {
+        padding: 16px;
+      }
+
+      .hero,
+      .two-col,
+      .three-col,
+      .lab-grid,
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .semantic-line {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="topbar">
+        <div class="crumbs">
+          <span>HTML Notes</span>
+          <span>/</span>
+          <strong>template 標籤</strong>
+        </div>
+        <div class="status-list" aria-label="本頁示範主題">
+          <span class="status-chip">&lt;template&gt;</span>
+          <span class="status-chip">content</span>
+          <span class="status-chip">DocumentFragment</span>
+          <span class="status-chip">cloneNode(true)</span>
+          <span class="status-chip">事件委派</span>
+        </div>
+      </div>
+
+      <section class="hero">
+        <div class="panel">
+          <h1><code>&lt;template&gt;</code> 標籤 Demo</h1>
+          <p class="lead">
+            這個範例把第 43 章筆記中的 inert 模板內容、<code>template.content</code>、<code>DocumentFragment</code>、<code>cloneNode(true)</code>、資料填入、批次插入與事件委派放在同一頁觀察。
+          </p>
+        </div>
+
+        <aside class="hero-visual" aria-label="template 流程速查">
+          <div class="semantic-line">
+            <span class="tag-name">&lt;template&gt;</span>
+            <span>先保存一段不直接渲染的 HTML 結構。</span>
+          </div>
+          <div class="semantic-line">
+            <span class="tag-name blue">content</span>
+            <span>真正的模板內容在 <code>template.content</code> 裡。</span>
+          </div>
+          <div class="semantic-line">
+            <span class="tag-name gold">cloneNode(true)</span>
+            <span>深層複製所有子節點，得到可修改的複製品。</span>
+          </div>
+          <div class="semantic-line">
+            <span class="tag-name rust">appendChild</span>
+            <span>把複製品插入 DOM 後，畫面才會出現內容。</span>
+          </div>
+          <div class="semantic-line">
+            <span class="tag-name purple">delegate</span>
+            <span>動態清單常用事件委派處理按鈕點擊。</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="three-col" aria-label="核心觀念">
+        <article class="card soft-green">
+          <h3>不是隱藏元素</h3>
+          <p><code>&lt;template&gt;</code> 是未啟用的結構藍圖，不是單純把元素藏起來。</p>
+        </article>
+        <article class="card soft-blue">
+          <h3>複製後再填資料</h3>
+          <p>每次使用 <code>template.content.cloneNode(true)</code> 複製，修改複製品後再插入頁面。</p>
+        </article>
+        <article class="card soft-rust">
+          <h3>避免重複 id</h3>
+          <p>模板會被複製多次，內部應優先使用 <code>class</code> 與 <code>data-*</code>。</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>1. 快速判斷器</h2>
+        <div class="lab-grid">
+          <div class="choice-panel">
+            <label for="scenario">選擇你的需求</label>
+            <select id="scenario">
+              <option value="template">先保存 HTML 結構，之後根據資料複製很多份</option>
+              <option value="hidden">讓已存在的元素暫時不顯示</option>
+              <option value="fragment">一次產生多個節點後再批次插入</option>
+              <option value="events">動態產生的項目需要處理按鈕點擊</option>
+              <option value="framework">複雜狀態、條件渲染、大量局部更新</option>
+            </select>
+            <button id="showChoice" type="button">顯示建議</button>
+          </div>
+
+          <article id="choiceResult" class="result" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. 用同一份模板產生卡片</h2>
+        <div class="button-row">
+          <button type="button" id="renderCards">重新產生卡片</button>
+          <button type="button" id="addCard" class="secondary">新增一張卡片</button>
+          <button type="button" id="clearCards" class="danger">清空已渲染內容</button>
+        </div>
+        <div class="counter-grid" aria-label="渲染狀態">
+          <div class="counter">
+            模板內容初始是否顯示
+            <strong>不顯示</strong>
+          </div>
+          <div class="counter">
+            已渲染卡片數
+            <strong id="cardCount">0</strong>
+          </div>
+          <div class="counter">
+            最近選取
+            <strong id="selectedNote">尚未選取</strong>
+          </div>
+        </div>
+        <section id="noteList" class="note-list" aria-live="polite"></section>
+      </section>
+
+      <section class="panel">
+        <h2>3. 通知模板與表格列模板</h2>
+        <div class="two-col">
+          <div>
+            <h3>通知項目</h3>
+            <div class="button-row">
+              <button type="button" id="addNotice">新增通知</button>
+              <button type="button" id="clearNotices" class="secondary">清空通知</button>
+            </div>
+            <section id="noticeList" class="notice-list" aria-live="polite"></section>
+          </div>
+          <div>
+            <h3>表格列</h3>
+            <div class="table-wrap">
+              <table class="role-table">
+                <caption>由 <code>&lt;template&gt;</code> 複製出的表格列</caption>
+                <thead>
+                  <tr>
+                    <th>步驟</th>
+                    <th>程式動作</th>
+                    <th>重點</th>
+                  </tr>
+                </thead>
+                <tbody id="stepTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 對照：<code>&lt;template&gt;</code>、<code>hidden</code>、<code>display: none</code></h2>
+        <table class="role-table">
+          <thead>
+            <tr>
+              <th>寫法</th>
+              <th>主要用途</th>
+              <th>關鍵差異</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>&lt;template&gt;</code></td>
+              <td>保存之後要複製使用的 HTML 結構。</td>
+              <td>內容在 <code>template.content</code> 中，尚未成為渲染內容。</td>
+            </tr>
+            <tr>
+              <td><code>hidden</code></td>
+              <td>讓已存在元素暫時不顯示。</td>
+              <td>元素已經是 DOM 的一部分，只是目前隱藏。</td>
+            </tr>
+            <tr>
+              <td><code>display: none</code></td>
+              <td>用 CSS 控制畫面顯示。</td>
+              <td>這是樣式控制，不是模板機制。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>5. 事件紀錄</h2>
+        <div id="eventLog" class="log-list" aria-live="polite">
+          <p>等待操作...</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>6. 回查清單</h2>
+        <ul class="hint-list">
+          <li><code>&lt;template&gt;</code> 內容初始不渲染，屬於 inert 模板內容。</li>
+          <li>真正要複製的是 <code>template.content</code>，不是 <code>&lt;template&gt;</code> 本身。</li>
+          <li><code>template.content</code> 是 <code>DocumentFragment</code>。</li>
+          <li>通常使用 <code>cloneNode(true)</code> 深層複製模板內容。</li>
+          <li>不要直接 <code>appendChild(template.content)</code>，否則會把原始模板內容移走。</li>
+          <li>填文字優先用 <code>textContent</code>，避免把不可信字串當 HTML 解析。</li>
+          <li>動態清單可用事件委派，減少每張卡片都綁事件的負擔。</li>
+        </ul>
+      </section>
+
+      <div class="footer-links">
+        <a href="../README.md">回到第 43 章 README</a>
+        <a href="../第43章_template標籤.md">閱讀完整筆記</a>
+        <a href="../../README.md">回到總目錄</a>
+      </div>
+    </div>
+  </main>
+
+  <template id="noteCardTemplate">
+    <article class="note-card" data-id="">
+      <header>
+        <h3 class="note-title"></h3>
+        <span class="badge note-type"></span>
+      </header>
+      <p class="note-description"></p>
+      <button type="button" class="note-button">查看</button>
+    </article>
+  </template>
+
+  <template id="noticeTemplate">
+    <article class="notice" data-tone="">
+      <h3 class="notice-title"></h3>
+      <p class="notice-message"></p>
+    </article>
+  </template>
+
+  <template id="stepRowTemplate">
+    <tr>
+      <td class="step-name"></td>
+      <td class="step-action"></td>
+      <td class="step-note"></td>
+    </tr>
+  </template>
+
+  <script>
+    const scenario = document.querySelector("#scenario");
+    const showChoice = document.querySelector("#showChoice");
+    const choiceResult = document.querySelector("#choiceResult");
+    const noteTemplate = document.querySelector("#noteCardTemplate");
+    const noticeTemplate = document.querySelector("#noticeTemplate");
+    const stepRowTemplate = document.querySelector("#stepRowTemplate");
+    const noteList = document.querySelector("#noteList");
+    const noticeList = document.querySelector("#noticeList");
+    const stepTableBody = document.querySelector("#stepTableBody");
+    const renderCardsButton = document.querySelector("#renderCards");
+    const addCardButton = document.querySelector("#addCard");
+    const clearCardsButton = document.querySelector("#clearCards");
+    const addNoticeButton = document.querySelector("#addNotice");
+    const clearNoticesButton = document.querySelector("#clearNotices");
+    const cardCount = document.querySelector("#cardCount");
+    const selectedNote = document.querySelector("#selectedNote");
+    const eventLog = document.querySelector("#eventLog");
+
+    const suggestions = {
+      template: {
+        title: "建議使用 <template>",
+        text: "適合先保存一段 HTML 結構，之後根據資料複製、填入內容並插入頁面。",
+        code: `<template id="cardTemplate">
+  <article class="card">
+    <h2 class="card-title"></h2>
+  </article>
+</template>`
+      },
+      hidden: {
+        title: "建議使用 hidden 或 CSS",
+        text: "如果元素已經是頁面內容，只是暫時不顯示，用 hidden 或 display: none 比 template 更符合目的。",
+        code: `<section hidden>這段內容目前不顯示。</section>`
+      },
+      fragment: {
+        title: "建議搭配 DocumentFragment",
+        text: "多筆資料渲染時，可以先把多個複製品放進 DocumentFragment，最後一次插入 DOM。",
+        code: `const fragment = document.createDocumentFragment();
+fragment.appendChild(template.content.cloneNode(true));
+list.appendChild(fragment);`
+      },
+      events: {
+        title: "建議使用事件委派",
+        text: "動態產生的清單可以把 click 綁在外層容器，再用 closest() 找到被點擊的按鈕或卡片。",
+        code: `list.addEventListener("click", (event) => {
+  const button = event.target.closest(".note-button");
+  if (!button) return;
+});`
+      },
+      framework: {
+        title: "可考慮前端框架",
+        text: "如果有複雜條件渲染、狀態管理、大量局部更新或元件生命週期，原生 template 可能不夠完整。",
+        code: `// <template> 是結構藍圖，不是狀態管理工具。`
+      }
+    };
+
+    const notes = [
+      {
+        id: "template-inert",
+        title: "inert 模板內容",
+        type: "觀念",
+        description: "template 裡的內容初始不渲染，也不直接參與頁面互動。"
+      },
+      {
+        id: "document-fragment",
+        title: "DocumentFragment",
+        type: "DOM",
+        description: "template.content 是一包尚未插入頁面的節點集合。"
+      },
+      {
+        id: "clone-node",
+        title: "cloneNode(true)",
+        type: "實作",
+        description: "深層複製模板內容後，填資料並插入頁面。"
+      }
+    ];
+
+    const extraNotes = [
+      {
+        id: "event-delegation",
+        title: "事件委派",
+        type: "事件",
+        description: "把 click 綁在外層容器，動態新增的卡片也能被處理。"
+      },
+      {
+        id: "text-content",
+        title: "textContent",
+        type: "安全",
+        description: "填入外部資料時，優先用 textContent 而不是 innerHTML。"
+      }
+    ];
+
+    const notices = [
+      {
+        title: "模板內容沒有直接顯示",
+        message: "這則通知是複製 noticeTemplate 後插入頁面才出現的。",
+        tone: "info"
+      },
+      {
+        title: "不要直接搬走 template.content",
+        message: "每次使用前先 cloneNode(true)，保留原始模板可重複使用。",
+        tone: "warning"
+      },
+      {
+        title: "避免模板內固定 id",
+        message: "同一份模板複製多次，固定 id 會造成頁面上重複 id。",
+        tone: "danger"
+      }
+    ];
+
+    const steps = [
+      ["1", "querySelector('#noteCardTemplate')", "找到 template 元素。"],
+      ["2", "template.content", "取得 DocumentFragment 模板內容。"],
+      ["3", "cloneNode(true)", "深層複製完整結構。"],
+      ["4", "textContent / dataset", "把資料填入複製品。"],
+      ["5", "appendChild(clone)", "插入 DOM 後才會顯示。"]
+    ];
+
+    let extraNoteIndex = 0;
+    let noticeIndex = 0;
+
+    function escapeHtml(text) {
+      return text
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    }
+
+    function addLog(message) {
+      if (eventLog.textContent.includes("等待操作")) {
+        eventLog.innerHTML = "";
+      }
+
+      const item = document.createElement("p");
+      item.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+      eventLog.prepend(item);
+    }
+
+    function renderSuggestion() {
+      const item = suggestions[scenario.value];
+      choiceResult.innerHTML = `
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.text)}</p>
+        <pre class="code-block"><code>${escapeHtml(item.code)}</code></pre>
+      `;
+    }
+
+    function createNoteCard(note) {
+      const clone = noteTemplate.content.cloneNode(true);
+      const card = clone.querySelector(".note-card");
+      const title = clone.querySelector(".note-title");
+      const type = clone.querySelector(".note-type");
+      const description = clone.querySelector(".note-description");
+
+      card.dataset.id = note.id;
+      title.textContent = note.title;
+      type.textContent = note.type;
+      description.textContent = note.description;
+
+      return clone;
+    }
+
+    function updateCardCount() {
+      cardCount.textContent = String(noteList.querySelectorAll(".note-card").length);
+    }
+
+    function renderCards() {
+      const fragment = document.createDocumentFragment();
+
+      notes.forEach((note) => {
+        fragment.appendChild(createNoteCard(note));
+      });
+
+      noteList.replaceChildren(fragment);
+      selectedNote.textContent = "尚未選取";
+      updateCardCount();
+      addLog("使用 DocumentFragment 批次插入 3 張卡片。");
+    }
+
+    function addOneCard() {
+      const note = extraNotes[extraNoteIndex % extraNotes.length];
+      const uniqueNote = {
+        ...note,
+        id: `${note.id}-${extraNoteIndex + 1}`,
+        title: `${note.title} ${extraNoteIndex + 1}`
+      };
+
+      noteList.appendChild(createNoteCard(uniqueNote));
+      extraNoteIndex += 1;
+      updateCardCount();
+      addLog(`複製 noteCardTemplate 並新增「${uniqueNote.title}」。`);
+    }
+
+    function renderNotice() {
+      const notice = notices[noticeIndex % notices.length];
+      const clone = noticeTemplate.content.cloneNode(true);
+      const noticeElement = clone.querySelector(".notice");
+
+      noticeElement.dataset.tone = notice.tone;
+      clone.querySelector(".notice-title").textContent = notice.title;
+      clone.querySelector(".notice-message").textContent = notice.message;
+
+      noticeList.prepend(clone);
+      noticeIndex += 1;
+      addLog(`複製 noticeTemplate 並插入通知「${notice.title}」。`);
+    }
+
+    function renderSteps() {
+      const fragment = document.createDocumentFragment();
+
+      steps.forEach(([name, action, note]) => {
+        const clone = stepRowTemplate.content.cloneNode(true);
+        clone.querySelector(".step-name").textContent = name;
+        clone.querySelector(".step-action").textContent = action;
+        clone.querySelector(".step-note").textContent = note;
+        fragment.appendChild(clone);
+      });
+
+      stepTableBody.appendChild(fragment);
+    }
+
+    noteList.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+
+      const button = event.target.closest(".note-button");
+      if (!button) return;
+
+      const card = button.closest(".note-card");
+      if (!card) return;
+
+      noteList.querySelectorAll(".note-card").forEach((item) => {
+        item.classList.toggle("is-selected", item === card);
+      });
+
+      const title = card.querySelector(".note-title").textContent;
+      selectedNote.textContent = title;
+      addLog(`事件委派：點擊 data-id="${card.dataset.id}" 的卡片。`);
+    });
+
+    renderCardsButton.addEventListener("click", renderCards);
+    addCardButton.addEventListener("click", addOneCard);
+    clearCardsButton.addEventListener("click", () => {
+      noteList.replaceChildren();
+      selectedNote.textContent = "尚未選取";
+      updateCardCount();
+      addLog("清空已渲染卡片；template 本身仍可繼續複製。");
+    });
+    addNoticeButton.addEventListener("click", renderNotice);
+    clearNoticesButton.addEventListener("click", () => {
+      noticeList.replaceChildren();
+      addLog("清空通知列表；noticeTemplate 沒有被移走。");
+    });
+    showChoice.addEventListener("click", renderSuggestion);
+    scenario.addEventListener("change", renderSuggestion);
+
+    renderSuggestion();
+    renderCards();
+    renderSteps();
+    renderNotice();
+  </script>
+</body>
+</html>
