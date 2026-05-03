@@ -125,6 +125,11 @@
    - 是：要謹慎使用 `<datalist>`，因為不同瀏覽器的呈現方式可能不同。
    - 否：可用 `<datalist>` 快速完成原生建議輸入。
 
+## 對應示例
+
+- [`datalist` 標籤 Demo](./demos/datalist-tags-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 最小語法印象
 
 ```html

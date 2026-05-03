@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datalist Tags Demo</title>
+  <style>
+    :root {
+      --bg: #eef3f1;
+      --surface: #fbfcf8;
+      --panel: #ffffff;
+      --ink: #172620;
+      --muted: #607068;
+      --line: #cddbd3;
+      --accent: #256b57;
+      --accent-strong: #1d5142;
+      --accent-soft: #e3f1ea;
+      --cool: #2c6682;
+      --cool-soft: #e3edf4;
+      --warm: #9a5a14;
+      --warm-soft: #f6ecdc;
+      --danger: #a4412d;
+      --danger-soft: #f6e3de;
+      --purple: #655aa8;
+      --purple-soft: #ece9f8;
+      --code-bg: #16251f;
+      --code-ink: #eef8f3;
+      --shadow: 0 18px 48px rgba(26, 42, 35, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(180deg, #fbfaf4 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 38px;
+      padding: 28px;
+      border: 1px solid rgba(205, 219, 211, 0.92);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li, label, td, th {
+      line-height: 1.72;
+    }
+
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid rgba(23, 38, 32, 0.18);
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      color: var(--ink);
+      background: #e5eee9;
+    }
+
+    button.secondary:hover {
+      background: #d7e6dd;
+    }
+
+    .hero,
+    .grid-2,
+    .grid-3,
+    .compare,
+    .form-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.08fr 0.92fr;
+      margin-bottom: 20px;
+    }
+
+    .grid-2,
+    .compare,
+    .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card,
+    .example-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .panel { padding: 22px; }
+    .card,
+    .example-card { padding: 18px; }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .lead {
+      max-width: 850px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-note {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+      min-height: 230px;
+      padding: 24px;
+      border-radius: 18px;
+      color: #f8fcfa;
+      background: #18352e;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: #d2e3dc;
+    }
+
+    .code {
+      overflow: auto;
+      margin: 0;
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border-radius: 10px;
+      padding: 3px 8px;
+      color: #fff;
+      background: var(--accent);
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .note,
+    .summary-item,
+    .result-box {
+      border: 1px solid rgba(205, 219, 211, 0.9);
+      border-radius: 14px;
+      padding: 14px;
+      background: #f7faf8;
+    }
+
+    .note p,
+    .summary-item p,
+    .card p,
+    .example-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .good {
+      border-color: #b9d9ca;
+      background: var(--accent-soft);
+    }
+
+    .cool {
+      border-color: #bfd4df;
+      background: var(--cool-soft);
+    }
+
+    .warn {
+      border-color: #e5c69a;
+      background: var(--warm-soft);
+    }
+
+    .danger {
+      border-color: #e5b7ad;
+      background: var(--danger-soft);
+    }
+
+    .purple {
+      border-color: #ccc6e8;
+      background: var(--purple-soft);
+    }
+
+    .role-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .role-table th,
+    .role-table td {
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .role-table th {
+      background: #edf4f0;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .result-box {
+      min-height: 130px;
+      background: #fff;
+    }
+
+    .result-box dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 8px 12px;
+      margin: 0;
+    }
+
+    .result-box dt {
+      font-weight: 700;
+    }
+
+    .result-box dd {
+      margin: 0;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .validation-message {
+      min-height: 42px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .compact-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 920px) {
+      main {
+        width: min(100% - 20px, 1180px);
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .hero,
+      .grid-2,
+      .grid-3,
+      .compare,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="panel">
+        <h1>第三十章：<code>datalist</code> 標籤 Demo</h1>
+        <p class="lead">這個示例展示 <code>&lt;input list="..."&gt;</code> 如何綁定 <code>&lt;datalist id="..."&gt;</code>，並對照 <code>datalist</code>、<code>select</code>、表單驗證與 <code>autocomplete</code> 的分工。</p>
+      </div>
+      <div class="hero-note">
+        <h2>一句話核心</h2>
+        <p><code>&lt;datalist&gt;</code> 是幫 <code>&lt;input&gt;</code> 補上一份建議清單，不是建立強制只能選清單內值的下拉選單。</p>
+      </div>
+    </section>
+
+    <section class="grid-3 section" aria-label="datalist 核心概念">
+      <article class="card good">
+        <h3><code>input</code> 負責輸入</h3>
+        <p>使用者真正輸入或送出的值都在 <code>&lt;input&gt;</code> 裡。</p>
+      </article>
+      <article class="card cool">
+        <h3><code>datalist</code> 負責建議</h3>
+        <p><code>&lt;option value="..."&gt;</code> 定義候選建議值。</p>
+      </article>
+      <article class="card warn">
+        <h3>不是驗證工具</h3>
+        <p>使用者通常仍可以輸入清單外的值。</p>
+      </article>
+    </section>
+
+    <section class="panel section">
+      <h2>1. 最小可用結構</h2>
+      <div class="form-grid">
+        <form id="basicForm" class="stack" action="#" method="get">
+          <label class="field" for="browser">
+            <span>請輸入或選擇瀏覽器</span>
+            <input id="browser" name="browser" type="text" list="browser-list" placeholder="例如：Chrome">
+            <span class="hint">點進欄位後輸入 C、F、S 等字母，可看到瀏覽器提供的建議清單。</span>
+          </label>
+
+          <datalist id="browser-list">
+            <option value="Chrome"></option>
+            <option value="Firefox"></option>
+            <option value="Safari"></option>
+            <option value="Edge"></option>
+            <option value="Opera"></option>
+          </datalist>
+
+          <div class="button-row">
+            <button type="submit">預覽表單資料</button>
+            <button class="secondary" type="reset">重設</button>
+          </div>
+
+          <pre class="code"><code>&lt;input id="browser" name="browser" type="text" list="browser-list"&gt;
+
+&lt;datalist id="browser-list"&gt;
+  &lt;option value="Chrome"&gt;&lt;/option&gt;
+  &lt;option value="Firefox"&gt;&lt;/option&gt;
+&lt;/datalist&gt;</code></pre>
+        </form>
+
+        <article class="result-box" aria-live="polite">
+          <h3>送出資料預覽</h3>
+          <dl id="formPreview">
+            <dt>欄位名稱</dt>
+            <dd>尚未送出</dd>
+            <dt>欄位值</dt>
+            <dd>尚未送出</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <h2>2. 多種輸入建議場景</h2>
+      <div class="grid-3">
+        <article class="example-card good">
+          <label class="field" for="city">
+            <span>城市名稱</span>
+            <input id="city" name="city" type="text" list="city-list" placeholder="輸入城市">
+          </label>
+          <datalist id="city-list">
+            <option value="台北市"></option>
+            <option value="新北市"></option>
+            <option value="桃園市"></option>
+            <option value="台中市"></option>
+            <option value="高雄市"></option>
+          </datalist>
+          <p>城市有常見選項，但仍可能允許輸入其他地區。</p>
+        </article>
+
+        <article class="example-card cool">
+          <label class="field" for="keyword">
+            <span>搜尋關鍵字</span>
+            <input id="keyword" name="keyword" type="search" list="keyword-list" placeholder="輸入關鍵字">
+          </label>
+          <datalist id="keyword-list">
+            <option value="HTML"></option>
+            <option value="CSS"></option>
+            <option value="JavaScript"></option>
+            <option value="Vue"></option>
+            <option value="Spring Boot"></option>
+          </datalist>
+          <p>搜尋可以參考熱門字，但不應限制使用者只能搜尋這些字。</p>
+        </article>
+
+        <article class="example-card purple">
+          <label class="field" for="category">
+            <span>商品分類代碼</span>
+            <input id="category" name="category" type="text" list="category-list" placeholder="例如：BOOK">
+          </label>
+          <datalist id="category-list">
+            <option value="BOOK"></option>
+            <option value="FOOD"></option>
+            <option value="CLOTHES"></option>
+            <option value="ELECTRONICS"></option>
+          </datalist>
+          <p>常用代碼可以先列出，降低輸入時拼錯的機率。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <h2>3. <code>list</code>、<code>id</code>、<code>name</code> 分工</h2>
+      <table class="role-table">
+        <thead>
+          <tr>
+            <th>屬性</th>
+            <th>放在哪裡</th>
+            <th>負責什麼</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag">list</span></td>
+            <td><code>&lt;input&gt;</code></td>
+            <td>指定要使用哪一份建議清單。</td>
+          </tr>
+          <tr>
+            <td><span class="tag">id</span></td>
+            <td><code>&lt;datalist&gt;</code></td>
+            <td>提供給 <code>input[list]</code> 對應。</td>
+          </tr>
+          <tr>
+            <td><span class="tag">name</span></td>
+            <td><code>&lt;input&gt;</code></td>
+            <td>表單送出時的欄位名稱，不是來自 <code>datalist</code>。</td>
+          </tr>
+          <tr>
+            <td><span class="tag">value</span></td>
+            <td><code>&lt;option&gt;</code></td>
+            <td>真正會被填入輸入框的建議值。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel section">
+      <h2>4. <code>datalist</code> vs <code>select</code></h2>
+      <div class="compare">
+        <article class="card good">
+          <h3><code>datalist</code>：可輸入，也可參考建議</h3>
+          <label class="field" for="browser-free">
+            <span>瀏覽器</span>
+            <input id="browser-free" name="browserFree" type="text" list="browser-free-list" value="Brave">
+          </label>
+          <datalist id="browser-free-list">
+            <option value="Chrome"></option>
+            <option value="Firefox"></option>
+            <option value="Safari"></option>
+            <option value="Edge"></option>
+          </datalist>
+          <p>這裡可以輸入清單外的 <code>Brave</code>。</p>
+        </article>
+
+        <article class="card warn">
+          <h3><code>select</code>：固定選項</h3>
+          <label class="field" for="browser-fixed">
+            <span>瀏覽器</span>
+            <select id="browser-fixed" name="browserFixed">
+              <option value="Chrome">Chrome</option>
+              <option value="Firefox">Firefox</option>
+              <option value="Safari">Safari</option>
+              <option value="Edge">Edge</option>
+            </select>
+          </label>
+          <p>如果需求是只能選固定值，<code>select</code> 通常更合適。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <h2>5. <code>datalist</code> 不是表單驗證</h2>
+      <div class="form-grid">
+        <form id="validationForm" class="stack" action="#" method="get">
+          <label class="field" for="limitedCity">
+            <span>城市建議清單</span>
+            <input id="limitedCity" name="limitedCity" type="text" list="limited-city-list" placeholder="試著輸入：高雄市">
+            <span class="hint">清單只有台北市、新北市、桃園市，但你仍可輸入其他值。</span>
+          </label>
+          <datalist id="limited-city-list">
+            <option value="台北市"></option>
+            <option value="新北市"></option>
+            <option value="桃園市"></option>
+          </datalist>
+          <div class="button-row">
+            <button type="submit">用 JavaScript 檢查是否在清單內</button>
+            <button class="secondary" type="reset">重設</button>
+          </div>
+        </form>
+        <article class="stack">
+          <div id="validationMessage" class="validation-message" aria-live="polite">尚未檢查。</div>
+          <pre class="code"><code>const allowed = ["台北市", "新北市", "桃園市"];
+const isValid = allowed.includes(input.value);</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="panel">
+        <h2>6. 常見錯誤</h2>
+        <div class="stack">
+          <div class="note danger">
+            <h3>以為 <code>datalist</code> 本身是輸入框</h3>
+            <p><code>&lt;datalist&gt;</code> 不會產生欄位；真正輸入的是 <code>&lt;input&gt;</code>。</p>
+          </div>
+          <div class="note danger">
+            <h3><code>list</code> 和 <code>id</code> 對不上</h3>
+            <pre class="code"><code>&lt;input list="browser-list"&gt;
+&lt;datalist id="browsers"&gt;...&lt;/datalist&gt;</code></pre>
+          </div>
+          <div class="note danger">
+            <h3>忘記 <code>input name</code></h3>
+            <p>沒有 <code>name</code> 時，表單送出不會有你期待的欄位名稱。</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>7. <code>datalist</code> vs <code>autocomplete</code></h2>
+        <div class="stack">
+          <div class="note good">
+            <h3><code>datalist</code></h3>
+            <p>建議值由開發者寫在 HTML 裡，例如城市、瀏覽器、商品代碼。</p>
+          </div>
+          <div class="note cool">
+            <h3><code>autocomplete</code></h3>
+            <p>建議來源通常是瀏覽器、欄位語意或使用者過去輸入資料。</p>
+          </div>
+          <label class="field" for="emailAuto">
+            <span>信箱欄位</span>
+            <input id="emailAuto" name="email" type="email" autocomplete="email" placeholder="name@example.com">
+          </label>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel section">
+      <h2>8. 判斷流程</h2>
+      <div class="grid-3">
+        <article class="summary-item good">
+          <h3>1. 要讓使用者自由輸入嗎？</h3>
+          <p>是的話，先用 <code>input</code> 思考。</p>
+        </article>
+        <article class="summary-item cool">
+          <h3>2. 只是提供常見建議嗎？</h3>
+          <p>是的話，<code>datalist</code> 很適合。</p>
+        </article>
+        <article class="summary-item warn">
+          <h3>3. 必須只能選固定值嗎？</h3>
+          <p>是的話，優先用 <code>select</code> 或額外驗證。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer-links">
+      <a href="../README.md">返回第三十章 README</a>
+      <a href="../第30章_datalist標籤.md">閱讀 datalist 標籤筆記</a>
+    </div>
+  </main>
+
+  <script>
+    const basicForm = document.querySelector("#basicForm");
+    const formPreview = document.querySelector("#formPreview");
+    const validationForm = document.querySelector("#validationForm");
+    const validationMessage = document.querySelector("#validationMessage");
+    const allowedCities = ["台北市", "新北市", "桃園市"];
+
+    basicForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(basicForm);
+      const value = formData.get("browser") || "空值";
+      formPreview.innerHTML = `
+        <dt>欄位名稱</dt>
+        <dd>browser</dd>
+        <dt>欄位值</dt>
+        <dd>${value}</dd>
+        <dt>來源</dt>
+        <dd>來自 input 的 name 與目前 value，不是 datalist 的 id。</dd>
+      `;
+    });
+
+    validationForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const input = document.querySelector("#limitedCity");
+      const value = input.value.trim();
+
+      if (!value) {
+        validationMessage.textContent = "請先輸入或選擇一個城市。";
+        validationMessage.style.color = "#9a5a14";
+        return;
+      }
+
+      if (allowedCities.includes(value)) {
+        validationMessage.textContent = `${value} 在建議清單內。`;
+        validationMessage.style.color = "#256b57";
+      } else {
+        validationMessage.textContent = `${value} 不在建議清單內，但 datalist 本身不會阻止你輸入它。`;
+        validationMessage.style.color = "#a4412d";
+      }
+    });
+  </script>
+</body>
+</html>
