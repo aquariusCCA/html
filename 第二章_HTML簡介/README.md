@@ -55,6 +55,10 @@
 - 父子元素 vs 祖先後代元素：前者是直接一層，後者可以跨多層。
 - `HTML5` vs 舊版 `HTML`：現在學習主線通常以 `HTML5` 為主，但舊版本仍需要能辨認。
 
+## 對應示例
+
+- [demos/html-intro-demo.html](./demos/html-intro-demo.html)：整合網頁與網站差異、HTML 骨架拆解、標籤父子兄弟關係，以及 HTML5 / HTML4 / XHTML 的版本辨識。
+
 ## 導航
 
 - [返回首頁](../README.md)
