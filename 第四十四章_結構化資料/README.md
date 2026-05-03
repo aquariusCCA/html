@@ -82,6 +82,11 @@
 - 分辨語意化 HTML、`meta description`、Open Graph、JSON-LD 的差異。
 - 知道加結構化資料前，應先確認頁面內容本身是完整、真實、可見的。
 
+## 對應示例
+
+- [結構化資料 Demo](./demos/structured-data-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
