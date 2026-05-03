@@ -48,6 +48,11 @@
 - `defer` vs `async`：前者保留順序並延後執行，後者下載完成後盡快執行。
 - `<noscript>` vs 錯誤提示：前者只處理腳本停用或不支援，不處理程式執行錯誤。
 
+## Demo 範例
+
+- [`script` 與 `noscript` 標籤 Demo](./demos/script-noscript-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
