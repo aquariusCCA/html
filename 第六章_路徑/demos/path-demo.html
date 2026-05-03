@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Path Demo</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: rgba(255, 251, 245, 0.95);
+      --panel-strong: #fffdfa;
+      --ink: #182128;
+      --muted: #5f6a72;
+      --line: #d8ccbc;
+      --accent: #2a6a93;
+      --accent-strong: #1f516f;
+      --accent-soft: rgba(42, 106, 147, 0.12);
+      --warm: #a95d2f;
+      --warm-soft: rgba(169, 93, 47, 0.12);
+      --ok: #2f855a;
+      --ok-soft: rgba(47, 133, 90, 0.12);
+      --shadow: 0 24px 52px rgba(39, 30, 20, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(42, 106, 147, 0.14), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(169, 93, 47, 0.1), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 36px;
+      padding: 28px;
+      border: 1px solid rgba(216, 204, 188, 0.94);
+      border-radius: 30px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+    h2 { margin-bottom: 12px; font-size: 24px; }
+    h3 { margin-bottom: 10px; font-size: 18px; }
+    p, li { line-height: 1.7; }
+
+    .lead {
+      max-width: 860px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .panel, .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel-strong);
+    }
+
+    .panel { padding: 22px; }
+    .card { padding: 20px; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .summary-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(216, 204, 188, 0.84);
+      background: rgba(255, 247, 239, 0.84);
+    }
+
+    .summary-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .stack { display: grid; gap: 18px; }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 0.98fr 1.02fr;
+      gap: 18px;
+    }
+
+    .pill-row, .tab-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .pill, .tab {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .pill.active {
+      background: var(--accent-soft);
+      border-color: rgba(42, 106, 147, 0.28);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .tab { border-radius: 14px; }
+    .tab.active {
+      background: #182128;
+      border-color: #182128;
+      color: #fff;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--warm-soft);
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #18222a;
+      color: #e7f1f4;
+      overflow: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .info-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(42, 106, 147, 0.06);
+      color: var(--muted);
+    }
+
+    .tree {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .tree-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .node {
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+    }
+
+    .node.active {
+      border-color: rgba(42, 106, 147, 0.3);
+      background: rgba(240, 249, 252, 0.94);
+    }
+
+    .node.target {
+      border-color: rgba(47, 133, 90, 0.3);
+      background: rgba(239, 247, 242, 0.94);
+    }
+
+    .step-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .step-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .step-item strong {
+      color: var(--accent-strong);
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .compare-card {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .compare-card.active {
+      border-color: rgba(42, 106, 147, 0.28);
+      background: rgba(240, 249, 252, 0.94);
+    }
+
+    .sample-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .sample-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.84);
+      cursor: pointer;
+    }
+
+    .sample-item.active {
+      border-color: rgba(169, 93, 47, 0.28);
+      background: rgba(255, 248, 243, 0.94);
+    }
+
+    .table {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(42, 106, 147, 0.05);
+      border: 1px solid rgba(42, 106, 147, 0.08);
+    }
+
+    .row strong { color: var(--accent-strong); }
+
+    .caption {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .section-grid, .compare-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      main {
+        width: min(100% - 18px, 1180px);
+        margin: 10px auto 20px;
+        padding: 16px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <section class="panel">
+        <h1>路徑 Demo</h1>
+        <p class="lead">
+          這頁把第六章的核心問題做成可切換示例：路徑到底是從哪裡開始算、什麼是同層 / 下一層 / 上一層、
+          以及絕對路徑和相對路徑各自常見的優缺點。
+        </p>
+
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>絕對路徑</strong>
+            不依賴目前檔案位置，直接指向固定位置或完整網址。
+          </article>
+          <article class="summary-item">
+            <strong>相對路徑</strong>
+            一定要先看「目前這個 HTML 檔案在哪裡」。
+          </article>
+          <article class="summary-item">
+            <strong><code>./</code> 與 <code>../</code></strong>
+            <code>./</code> 是目前層級，常可省略；<code>../</code> 代表上一層。
+          </article>
+          <article class="summary-item">
+            <strong>常見錯誤</strong>
+            搞錯基準位置、直接寫本地磁碟路徑、移動檔案後忘記更新相對路徑。
+          </article>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>這頁怎麼看</h2>
+        <ul class="mini-list">
+          <li>先看第一區，把「目前檔案」和「目標檔案」的相對位置走一次。</li>
+          <li>再切換同層、下一層、上一層，對照實際寫法。</li>
+          <li>最後看絕對路徑與常見錯誤，建立判讀框架。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="stack">
+      <section class="panel">
+        <h2>1. 相對路徑到底是以誰為基準</h2>
+        <div class="pill-row" role="tablist" aria-label="相對路徑切換">
+          <button class="pill active" type="button" data-relative="same">同一層</button>
+          <button class="pill" type="button" data-relative="down">下一層</button>
+          <button class="pill" type="button" data-relative="up">上一層</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="relativeBadge">同層尋找</span>
+            <h3 id="relativeTitle">同層：目前檔案和目標檔案在同一個資料夾</h3>
+            <p id="relativeDescription">
+              這時候通常直接寫檔名就夠了，不需要先進資料夾，也不需要退上一層。
+            </p>
+            <pre class="code-block" id="relativeCode">&lt;img src="logo.png" alt="logo"&gt;</pre>
+
+            <div class="step-list" id="relativeSteps">
+              <div class="step-item"><strong>Step 1</strong> 先看目前 HTML 檔案在哪裡。</div>
+              <div class="step-item"><strong>Step 2</strong> 再看目標檔案是不是在同一層。</div>
+              <div class="step-item"><strong>Step 3</strong> 如果是，就直接寫檔名。</div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="info-box" id="relativeExplain">
+              相對路徑不是先看專案根目錄，而是先看「你正在寫這條路徑的那個檔案」在哪裡。
+            </div>
+
+            <div class="tree" id="pathTree">
+              <div class="tree-row">
+                <div class="node active" id="currentNode">index.html</div>
+                <div class="node target" id="targetNode">logo.png</div>
+              </div>
+              <div class="tree-row" id="hintRow">
+                <div class="caption" id="hintText">目前與目標在同一層，所以直接寫 `logo.png`。</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. <code>./</code>、省略寫法、<code>../</code> 的差別</h2>
+        <div class="tab-row" role="tablist" aria-label="路徑符號切換">
+          <button class="tab active" type="button" data-symbol="dot">./</button>
+          <button class="tab" type="button" data-symbol="omit">省略 ./</button>
+          <button class="tab" type="button" data-symbol="parent">../</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="symbolBadge">目前層級</span>
+            <h3 id="symbolTitle"><code>./</code>：表示從目前層級開始找</h3>
+            <p id="symbolDescription">
+              在很多情況下，`./images/logo.png` 和 `images/logo.png` 的效果是一樣的。
+            </p>
+            <pre class="code-block" id="symbolCode">&lt;img src="./images/logo.png" alt="logo"&gt;</pre>
+          </section>
+
+          <section class="card">
+            <div class="compare-grid">
+              <article class="compare-card active" id="leftCompare">
+                <strong id="leftCompareTitle">常見理解</strong>
+                <p class="caption" id="leftCompareText">`./` 代表目前資料夾，寫出來會更明確。</p>
+              </article>
+              <article class="compare-card" id="rightCompare">
+                <strong id="rightCompareTitle">實務提醒</strong>
+                <p class="caption" id="rightCompareText">很多專案會直接省略 `./`，因為效果通常一樣。</p>
+              </article>
+            </div>
+            <div class="info-box" id="symbolExplain" style="margin-top: 14px;">
+              如果要回上一層才找得到目標，就不能省略成同層寫法，必須明確寫 `../`。
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>3. 絕對路徑和相對路徑怎麼分</h2>
+        <div class="pill-row" role="tablist" aria-label="絕對相對切換">
+          <button class="pill active" type="button" data-path-type="absolute">絕對路徑</button>
+          <button class="pill" type="button" data-path-type="relative">相對路徑</button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="typeBadge">固定位置</span>
+            <h3 id="typeTitle">絕對路徑：不依賴目前 HTML 檔案位置</h3>
+            <p id="typeDescription">
+              它可以是本地磁碟的完整位置，也可以是完整網址；共同點是不用先看目前檔案在哪。
+            </p>
+            <pre class="code-block" id="typeCode">D:\day01\images\1.jpg
+https://www.example.com/images/logo.png</pre>
+          </section>
+
+          <section class="card">
+            <div class="table" id="typeTable">
+              <div class="row">
+                <strong>參考基準</strong>
+                <span>固定位置，不依賴目前 HTML 檔案所在資料夾。</span>
+              </div>
+              <div class="row">
+                <strong>常見優點</strong>
+                <span>位置明確，一看就知道要去哪裡找。</span>
+              </div>
+              <div class="row">
+                <strong>常見限制</strong>
+                <span>本地磁碟路徑換環境容易壞；外部網址則可能碰到權限或防盜鏈。</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>4. 常見錯誤判讀</h2>
+        <div class="sample-list">
+          <button class="sample-item active" type="button" data-mistake="local">
+            把本地磁碟絕對路徑直接寫進網頁
+          </button>
+          <button class="sample-item" type="button" data-mistake="base">
+            把相對路徑誤以為是從專案根目錄開始算
+          </button>
+          <button class="sample-item" type="button" data-mistake="move">
+            移動 HTML 檔案位置後，忘記一起調整相對路徑
+          </button>
+          <button class="sample-item" type="button" data-mistake="hotlink">
+            外部圖片網址能打開，就以為一定能正常引用
+          </button>
+        </div>
+
+        <div class="section-grid" style="margin-top: 14px;">
+          <section class="card">
+            <span class="badge" id="mistakeBadge">環境依賴</span>
+            <h3 id="mistakeTitle">本地絕對路徑通常不適合直接寫進網頁</h3>
+            <p id="mistakeDescription">
+              這種寫法可能只在你的電腦有效，一旦換機器、換目錄或部署上伺服器，路徑就失效。
+            </p>
+            <pre class="code-block" id="mistakeCode">&lt;img src="D:\project\images\a.png" alt=""&gt;</pre>
+          </section>
+
+          <section class="card">
+            <div class="info-box" id="mistakeExplain">
+              路徑能不能成立，不是只看字串長相，而是要看目前檔案位置、目標位置與執行環境。
+            </div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const relativeButtons = [...document.querySelectorAll("[data-relative]")];
+    const relativeBadge = document.getElementById("relativeBadge");
+    const relativeTitle = document.getElementById("relativeTitle");
+    const relativeDescription = document.getElementById("relativeDescription");
+    const relativeCode = document.getElementById("relativeCode");
+    const relativeExplain = document.getElementById("relativeExplain");
+    const currentNode = document.getElementById("currentNode");
+    const targetNode = document.getElementById("targetNode");
+    const hintText = document.getElementById("hintText");
+
+    const symbolButtons = [...document.querySelectorAll("[data-symbol]")];
+    const symbolBadge = document.getElementById("symbolBadge");
+    const symbolTitle = document.getElementById("symbolTitle");
+    const symbolDescription = document.getElementById("symbolDescription");
+    const symbolCode = document.getElementById("symbolCode");
+    const leftCompareTitle = document.getElementById("leftCompareTitle");
+    const leftCompareText = document.getElementById("leftCompareText");
+    const rightCompareTitle = document.getElementById("rightCompareTitle");
+    const rightCompareText = document.getElementById("rightCompareText");
+    const symbolExplain = document.getElementById("symbolExplain");
+    const leftCompare = document.getElementById("leftCompare");
+    const rightCompare = document.getElementById("rightCompare");
+
+    const typeButtons = [...document.querySelectorAll("[data-path-type]")];
+    const typeBadge = document.getElementById("typeBadge");
+    const typeTitle = document.getElementById("typeTitle");
+    const typeDescription = document.getElementById("typeDescription");
+    const typeCode = document.getElementById("typeCode");
+    const typeTable = document.getElementById("typeTable");
+
+    const mistakeButtons = [...document.querySelectorAll("[data-mistake]")];
+    const mistakeBadge = document.getElementById("mistakeBadge");
+    const mistakeTitle = document.getElementById("mistakeTitle");
+    const mistakeDescription = document.getElementById("mistakeDescription");
+    const mistakeCode = document.getElementById("mistakeCode");
+    const mistakeExplain = document.getElementById("mistakeExplain");
+
+    const relativeViews = {
+      same: {
+        badge: "同層尋找",
+        title: "同層：目前檔案和目標檔案在同一個資料夾",
+        description: "這時候通常直接寫檔名就夠了，不需要先進資料夾，也不需要退上一層。",
+        code: "&lt;img src=\"logo.png\" alt=\"logo\"&gt;",
+        explain: "相對路徑不是先看專案根目錄，而是先看「你正在寫這條路徑的那個檔案」在哪裡。",
+        current: "index.html",
+        target: "logo.png",
+        hint: "目前與目標在同一層，所以直接寫 `logo.png`。"
+      },
+      down: {
+        badge: "下一層尋找",
+        title: "下一層：目標檔案在子資料夾裡",
+        description: "這時候要先進資料夾，再寫目標檔名，例如 `images/logo.png`。",
+        code: "&lt;img src=\"images/logo.png\" alt=\"logo\"&gt;",
+        explain: "如果圖片在目前 HTML 檔案的下一層資料夾，就把資料夾名稱寫進去。",
+        current: "index.html",
+        target: "images/logo.png",
+        hint: "目前檔案在外層，目標在 `images` 內，所以要先進 `images/`。"
+      },
+      up: {
+        badge: "上一層尋找",
+        title: "上一層：先回到外層，再進目標資料夾",
+        description: "如果目前 HTML 檔案放在 `pages/` 內，而圖片在外層 `images/`，就要用 `../images/logo.png`。",
+        code: "&lt;img src=\"../images/logo.png\" alt=\"logo\"&gt;",
+        explain: "只要目標不在同層，而是在上一層或更外層，就要先用 `../` 往回走。",
+        current: "pages/detail.html",
+        target: "../images/logo.png",
+        hint: "先從 `pages` 回上一層，再進入 `images` 找 `logo.png`。"
+      }
+    };
+
+    const symbolViews = {
+      dot: {
+        badge: "目前層級",
+        title: "<code>./</code>：表示從目前層級開始找",
+        description: "在很多情況下，`./images/logo.png` 和 `images/logo.png` 的效果是一樣的。",
+        code: "&lt;img src=\"./images/logo.png\" alt=\"logo\"&gt;",
+        leftTitle: "常見理解",
+        leftText: "`./` 代表目前資料夾，寫出來會更明確。",
+        rightTitle: "實務提醒",
+        rightText: "如果只是往下一層找，很多專案會把 `./` 省略。",
+        explain: "這個符號的重點不是多一個字元，而是提醒你：路徑是從目前檔案所在位置開始算。"
+      },
+      omit: {
+        badge: "省略寫法",
+        title: "省略 <code>./</code>：很多時候效果一樣",
+        description: "對同層或下一層來說，省略 `./` 仍然是在目前檔案位置出發。",
+        code: "&lt;img src=\"images/logo.png\" alt=\"logo\"&gt;",
+        leftTitle: "常見理解",
+        leftText: "省略 `./` 不代表變成絕對路徑，它仍然是相對路徑。",
+        rightTitle: "實務提醒",
+        rightText: "重點不是有沒有寫 `./`，而是你到底有沒有搞清楚起點在哪。",
+        explain: "很多錯誤不是因為少寫 `./`，而是因為搞錯了目前檔案和目標檔案的相對位置。"
+      },
+      parent: {
+        badge: "回上一層",
+        title: "<code>../</code>：先退回上一層資料夾",
+        description: "如果目標檔案不在目前層級，而是在外層或更外層，就要先寫 `../`。",
+        code: "&lt;img src=\"../images/logo.png\" alt=\"logo\"&gt;",
+        leftTitle: "常見理解",
+        leftText: "`../` 的重點是先離開目前資料夾，再繼續往目標走。",
+        rightTitle: "實務提醒",
+        rightText: "如果要回上兩層，就寫兩次，例如 `../../images/logo.png`。",
+        explain: "這是最常見的路徑錯誤來源之一：明明要先退一層，卻誤寫成同層或下一層路徑。"
+      }
+    };
+
+    const typeViews = {
+      absolute: {
+        badge: "固定位置",
+        title: "絕對路徑：不依賴目前 HTML 檔案位置",
+        description: "它可以是本地磁碟的完整位置，也可以是完整網址；共同點是不用先看目前檔案在哪。",
+        code: "D:\\day01\\images\\1.jpg\nhttps://www.example.com/images/logo.png",
+        rows: [
+          ["參考基準", "固定位置，不依賴目前 HTML 檔案所在資料夾。"],
+          ["常見優點", "位置明確，一看就知道要去哪裡找。"],
+          ["常見限制", "本地磁碟路徑換環境容易壞；外部網址則可能碰到權限或防盜鏈。"]
+        ]
+      },
+      relative: {
+        badge: "目前檔案位置",
+        title: "相對路徑：從目前這個檔案的位置出發",
+        description: "它最常用，也最適合專案內部資源引用；但只要移動檔案位置，原本路徑就可能要一起改。",
+        code: "logo.png\nimages/logo.png\n../images/logo.png",
+        rows: [
+          ["參考基準", "目前這條路徑所在的 HTML 檔案位置。"],
+          ["常見優點", "專案一起移動時通常比較方便，也更適合團隊開發。"],
+          ["常見限制", "非常依賴檔案彼此位置，只要結構變了就可能失效。"]
+        ]
+      }
+    };
+
+    const mistakeViews = {
+      local: {
+        badge: "環境依賴",
+        title: "本地絕對路徑通常不適合直接寫進網頁",
+        description: "這種寫法可能只在你的電腦有效，一旦換機器、換目錄或部署上伺服器，路徑就失效。",
+        code: "&lt;img src=\"D:\\project\\images\\a.png\" alt=\"\"&gt;",
+        explain: "本地磁碟路徑比較適合你自己在檔案總管找檔案，不適合當成網站資源路徑主線。"
+      },
+      base: {
+        badge: "基準搞錯",
+        title: "相對路徑是看目前檔案，不是看專案根目錄",
+        description: "很多人會誤以為 `images/logo.png` 一定是從網站最外層開始算，其實不是。",
+        code: "&lt;!-- 錯誤理解：把 images/ 當成固定根目錄 --&gt;\n&lt;img src=\"images/logo.png\" alt=\"logo\"&gt;",
+        explain: "判讀時要先問：這條路徑是寫在哪個 HTML 檔案裡？起點一定是那個檔案所在位置。"
+      },
+      move: {
+        badge: "位置變動",
+        title: "只要 HTML 或資源移動了，相對路徑就可能要一起改",
+        description: "相對路徑不是永遠固定，它依賴的是檔案之間的相對位置。",
+        code: "&lt;!-- 原本在 pages/detail.html 可用 --&gt;\n&lt;img src=\"../images/logo.png\" alt=\"logo\"&gt;",
+        explain: "這也是為什麼重構資料夾後，最常一起壞掉的就是圖片、CSS、JS 的引用路徑。"
+      },
+      hotlink: {
+        badge: "外部限制",
+        title: "外部圖片網址能打開，不代表你一定能在自己的頁面中引用",
+        description: "有些伺服器會做防盜鏈或權限限制，導致 `<img>`、`<video>` 或 `<audio>` 引用失敗。",
+        code: "&lt;img src=\"https://other-site.example/image.jpg\" alt=\"外部圖片\"&gt;",
+        explain: "所以判斷外部資源時，不只要看網址像不像正確，還要考慮對方是否允許你在自己的頁面中載入它。"
+      }
+    };
+
+    function setRelative(mode) {
+      const view = relativeViews[mode];
+      relativeButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.relative === mode);
+      });
+
+      relativeBadge.textContent = view.badge;
+      relativeTitle.textContent = view.title;
+      relativeDescription.textContent = view.description;
+      relativeCode.innerHTML = view.code;
+      relativeExplain.textContent = view.explain;
+      currentNode.textContent = view.current;
+      targetNode.textContent = view.target;
+      hintText.textContent = view.hint;
+    }
+
+    function setSymbol(mode) {
+      const view = symbolViews[mode];
+      symbolButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.symbol === mode);
+      });
+
+      symbolBadge.textContent = view.badge;
+      symbolTitle.innerHTML = view.title;
+      symbolDescription.textContent = view.description;
+      symbolCode.innerHTML = view.code;
+      leftCompareTitle.textContent = view.leftTitle;
+      leftCompareText.textContent = view.leftText;
+      rightCompareTitle.textContent = view.rightTitle;
+      rightCompareText.textContent = view.rightText;
+      symbolExplain.textContent = view.explain;
+      leftCompare.classList.toggle("active", mode !== "parent");
+      rightCompare.classList.toggle("active", mode === "parent");
+    }
+
+    function setType(mode) {
+      const view = typeViews[mode];
+      typeButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.pathType === mode);
+      });
+
+      typeBadge.textContent = view.badge;
+      typeTitle.textContent = view.title;
+      typeDescription.textContent = view.description;
+      typeCode.textContent = view.code;
+      typeTable.innerHTML = view.rows.map(([label, text]) => {
+        return `<div class="row"><strong>${label}</strong><span>${text}</span></div>`;
+      }).join("");
+    }
+
+    function setMistake(mode) {
+      const view = mistakeViews[mode];
+      mistakeButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.mistake === mode);
+      });
+
+      mistakeBadge.textContent = view.badge;
+      mistakeTitle.textContent = view.title;
+      mistakeDescription.textContent = view.description;
+      mistakeCode.innerHTML = view.code;
+      mistakeExplain.textContent = view.explain;
+    }
+
+    relativeButtons.forEach((button) => {
+      button.addEventListener("click", () => setRelative(button.dataset.relative));
+    });
+
+    symbolButtons.forEach((button) => {
+      button.addEventListener("click", () => setSymbol(button.dataset.symbol));
+    });
+
+    typeButtons.forEach((button) => {
+      button.addEventListener("click", () => setType(button.dataset.pathType));
+    });
+
+    mistakeButtons.forEach((button) => {
+      button.addEventListener("click", () => setMistake(button.dataset.mistake));
+    });
+
+    setRelative("same");
+    setSymbol("dot");
+    setType("absolute");
+    setMistake("local");
+  </script>
+</body>
+</html>
