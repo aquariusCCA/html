@@ -42,6 +42,11 @@
 - `href="#"` vs `href=""`：前者偏向頁內頂部，後者偏向當前文件本身。
 - 連結 vs 按鈕互動：不是所有可點擊行為都適合用 `<a>`。
 
+## 對應示例
+
+- [超鏈接標籤 Demo](./demos/anchor-tag-demo.html)
+- [demos 說明](./demos/README.md)
+
 ## 導航
 
 - [返回首頁](../README.md)
