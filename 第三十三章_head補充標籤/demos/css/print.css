@@ -1,0 +1,22 @@
+body {
+  background: #fff;
+}
+
+.shell {
+  border: 0;
+  box-shadow: none;
+}
+
+.topbar,
+.button-row,
+.pill-row,
+.footer-links {
+  display: none;
+}
+
+.print-note {
+  display: block;
+  border: 1px solid #777;
+  padding: 10px;
+  margin-bottom: 14px;
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Head demo icon">
+  <rect width="64" height="64" rx="12" fill="#176b72"/>
+  <path d="M15 18h34v8H25v8h19v8H25v8H15z" fill="#fffef9"/>
+  <circle cx="49" cy="46" r="6" fill="#e0a431"/>
+</svg>
