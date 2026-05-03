@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Tags Demo</title>
+  <style>
+    :root {
+      --bg: #edf3f5;
+      --surface: #fbfcf8;
+      --panel: #ffffff;
+      --ink: #17242c;
+      --muted: #5f6d72;
+      --line: #cbd9de;
+      --accent: #2b6678;
+      --accent-strong: #214f5e;
+      --accent-soft: #e3eff4;
+      --green: #2f6d52;
+      --green-soft: #e4f1e9;
+      --warm: #9a5a14;
+      --warm-soft: #f6ecdc;
+      --danger: #a4412d;
+      --danger-soft: #f6e3de;
+      --purple: #655aa8;
+      --purple-soft: #ece9f8;
+      --code-bg: #17252c;
+      --code-ink: #eef7f8;
+      --shadow: 0 18px 48px rgba(26, 39, 44, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(180deg, #fbfaf4 0%, var(--bg) 100%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 24px auto 38px;
+      padding: 28px;
+      border: 1px solid rgba(203, 217, 222, 0.92);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    p, li, label, td, th {
+      line-height: 1.72;
+    }
+
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: #fff;
+      background: var(--accent);
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    button:hover {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      color: var(--ink);
+      background: #e5edf0;
+    }
+
+    button.secondary:hover {
+      background: #d5e2e7;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    progress,
+    meter {
+      width: 100%;
+      height: 28px;
+    }
+
+    .hero,
+    .grid-2,
+    .grid-3,
+    .compare,
+    .lab-grid,
+    .field-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      grid-template-columns: 1.08fr 0.92fr;
+      margin-bottom: 20px;
+    }
+
+    .grid-2,
+    .compare,
+    .lab-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .field-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel,
+    .card,
+    .task-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .panel { padding: 22px; }
+    .card,
+    .task-card { padding: 18px; }
+
+    .section {
+      margin-top: 18px;
+    }
+
+    .lead {
+      max-width: 850px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-note {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+      min-height: 230px;
+      padding: 24px;
+      border-radius: 18px;
+      color: #f8fcfa;
+      background: #18323b;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: #d0e2e7;
+    }
+
+    .code {
+      overflow: auto;
+      margin: 0;
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--code-ink);
+      background: var(--code-bg);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border-radius: 10px;
+      padding: 3px 8px;
+      color: #fff;
+      background: var(--accent);
+      font-family: Consolas, "Courier New", monospace;
+      font-weight: 700;
+    }
+
+    .task-card {
+      display: grid;
+      gap: 12px;
+    }
+
+    .task-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    .task-head strong {
+      font-size: 18px;
+    }
+
+    .task-value {
+      color: var(--muted);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .note,
+    .summary-item {
+      border: 1px solid rgba(203, 217, 222, 0.9);
+      border-radius: 14px;
+      padding: 14px;
+      background: #f7faf9;
+    }
+
+    .note p,
+    .summary-item p,
+    .card p,
+    .task-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .good {
+      border-color: #b9d9ca;
+      background: var(--green-soft);
+    }
+
+    .cool {
+      border-color: #bfd4df;
+      background: var(--accent-soft);
+    }
+
+    .warn {
+      border-color: #e5c69a;
+      background: var(--warm-soft);
+    }
+
+    .danger {
+      border-color: #e5b7ad;
+      background: var(--danger-soft);
+    }
+
+    .purple {
+      border-color: #ccc6e8;
+      background: var(--purple-soft);
+    }
+
+    .role-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .role-table th,
+    .role-table td {
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .role-table th {
+      background: #edf4f5;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field output {
+      justify-self: start;
+      border-radius: 999px;
+      padding: 3px 8px;
+      color: #1e4f5d;
+      background: #e5f0f4;
+      font-weight: 700;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .status-text {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 12px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .compact-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 920px) {
+      main {
+        width: min(100% - 20px, 1180px);
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .hero,
+      .grid-2,
+      .grid-3,
+      .compare,
+      .lab-grid,
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="panel">
+        <h1>第二十九章：進度條標籤 Demo</h1>
+        <p class="lead">這個示例用原生 <code>&lt;progress&gt;</code> 表示任務完成進度，並對照定進度、不定進度、<code>value="0"</code>、<code>max</code> 預設值、JavaScript 動態更新，以及和 <code>&lt;meter&gt;</code> 的差異。</p>
+      </div>
+      <div class="hero-note">
+        <h2>核心語意</h2>
+        <p><code>&lt;progress&gt;</code> 表示「任務完成到哪裡」，不是表示電量、分數、磁碟用量這類狀態值。</p>
+      </div>
+    </section>
+
+    <section class="grid-3 section" aria-label="progress 重點">
+      <article class="card good">
+        <h3>任務進度</h3>
+        <p>上傳、下載、安裝、載入、批次處理，才是 <code>&lt;progress&gt;</code> 的主場景。</p>
+      </article>
+      <article class="card cool">
+        <h3><code>value</code> / <code>max</code></h3>
+        <p><code>value</code> 是目前完成量，<code>max</code> 是總工作量，最小值固定為 0。</p>
+      </article>
+      <article class="card warn">
+        <h3>省略 <code>value</code></h3>
+        <p>沒有 <code>value</code> 是不定進度，不是 0%。</p>
+      </article>
+    </section>
+
+    <section class="panel section">
+      <h2>1. 常見進度任務範例</h2>
+      <div class="grid-2">
+        <article class="task-card good">
+          <div class="task-head">
+            <strong>檔案上傳</strong>
+            <span class="task-value">35 / 100</span>
+          </div>
+          <label for="upload-static">上傳進度：</label>
+          <progress id="upload-static" value="35" max="100">35%</progress>
+          <p>這是定進度，因為已知目前完成比例。</p>
+        </article>
+
+        <article class="task-card cool">
+          <div class="task-head">
+            <strong>下載進度</strong>
+            <span class="task-value">8 / 10</span>
+          </div>
+          <label for="download-static">下載進度：</label>
+          <progress id="download-static" value="8" max="10">8 / 10</progress>
+          <p><code>max</code> 不一定要是 100，只要表示總工作量即可。</p>
+        </article>
+
+        <article class="task-card warn">
+          <div class="task-head">
+            <strong>資料載入中</strong>
+            <span class="task-value">未知比例</span>
+          </div>
+          <label for="loading-static">資料載入中：</label>
+          <progress id="loading-static"></progress>
+          <p>沒有 <code>value</code> 時是不定進度，代表正在處理但不知道完成比例。</p>
+        </article>
+
+        <article class="task-card purple">
+          <div class="task-head">
+            <strong>程式內部比例</strong>
+            <span class="task-value">0.75 / 1</span>
+          </div>
+          <label for="ratio-static">任務進度：</label>
+          <progress id="ratio-static" value="0.75" max="1">75%</progress>
+          <p>如果程式用 0 到 1 表示比例，也可以直接搭配 <code>max="1"</code>。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <h2>2. 定進度、不定進度與 0%</h2>
+      <table class="role-table">
+        <thead>
+          <tr>
+            <th>狀態</th>
+            <th>寫法</th>
+            <th>顯示</th>
+            <th>語意</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>定進度</td>
+            <td><code>&lt;progress value="50" max="100"&gt;</code></td>
+            <td><progress value="50" max="100">50%</progress></td>
+            <td>知道目前完成比例，這裡是 50%。</td>
+          </tr>
+          <tr>
+            <td>不定進度</td>
+            <td><code>&lt;progress&gt;</code></td>
+            <td><progress></progress></td>
+            <td>任務正在進行，但不知道完成比例。</td>
+          </tr>
+          <tr>
+            <td>進度為 0</td>
+            <td><code>&lt;progress value="0" max="100"&gt;</code></td>
+            <td><progress value="0" max="100">0%</progress></td>
+            <td>這是定進度，目前完成 0%。</td>
+          </tr>
+          <tr>
+            <td>已完成</td>
+            <td><code>&lt;progress value="100" max="100"&gt;</code></td>
+            <td><progress value="100" max="100">100%</progress></td>
+            <td>任務完成。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel section">
+      <h2>3. 互動觀察：動態更新 <code>value</code></h2>
+      <div class="lab-grid">
+        <div class="stack">
+          <div class="field-grid">
+            <label class="field">
+              <span>目前完成量 <code>value</code></span>
+              <input id="valueControl" type="range" min="0" max="100" value="40">
+              <output id="valueOutput" for="valueControl">40</output>
+            </label>
+            <label class="field">
+              <span>總工作量 <code>max</code></span>
+              <input id="maxControl" type="range" min="1" max="200" value="100">
+              <output id="maxOutput" for="maxControl">100</output>
+            </label>
+          </div>
+
+          <div class="note">
+            <div class="progress-label">
+              <strong>互動 progress</strong>
+              <span id="percentText">40%</span>
+            </div>
+            <label for="interactiveProgress">批次處理進度：</label>
+            <progress id="interactiveProgress" value="40" max="100">40%</progress>
+          </div>
+
+          <div class="button-row">
+            <button id="startButton" type="button">模擬上傳</button>
+            <button id="pauseButton" class="secondary" type="button">暫停</button>
+            <button id="resetButton" class="secondary" type="button">重設</button>
+          </div>
+
+          <div id="statusText" class="status-text">目前完成 40 / 100。</div>
+
+          <pre class="code" id="interactiveCode"><code>&lt;label for="interactiveProgress"&gt;批次處理進度：&lt;/label&gt;
+&lt;progress id="interactiveProgress" value="40" max="100"&gt;40%&lt;/progress&gt;</code></pre>
+        </div>
+
+        <div class="stack">
+          <article class="card good">
+            <h3>JavaScript 更新重點</h3>
+            <pre class="code"><code>progress.value = current;
+text.textContent = `${percent}%`;</code></pre>
+            <p>原生 <code>&lt;progress&gt;</code> 已有進度語意，JavaScript 只需要更新 <code>value</code> 和輔助文字。</p>
+          </article>
+          <article class="card warn">
+            <h3>不要只靠條狀外觀</h3>
+            <p>建議搭配 <code>&lt;label&gt;</code> 與文字百分比，讓使用者知道這條進度代表哪個任務。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2 section">
+      <article class="panel">
+        <h2>4. <code>max</code> 預設值與沒有 <code>min</code></h2>
+        <div class="stack">
+          <div class="note cool">
+            <h3><code>max</code> 預設是 1</h3>
+            <pre class="code"><code>&lt;progress value="0.5"&gt;50%&lt;/progress&gt;</code></pre>
+            <progress value="0.5">50%</progress>
+            <p>沒有寫 <code>max</code> 時，<code>0.5 / 1</code> 表示完成一半。</p>
+          </div>
+          <div class="note danger">
+            <h3><code>progress</code> 不支援 <code>min</code></h3>
+            <pre class="code"><code>&lt;progress min="10" value="50" max="100"&gt;&lt;/progress&gt;</code></pre>
+            <p>任務進度最小值固定是 0。如果需要 <code>min</code>、<code>low</code>、<code>high</code>、<code>optimum</code>，通常該重新判斷是否要用 <code>&lt;meter&gt;</code>。</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>5. <code>&lt;progress&gt;</code> vs <code>&lt;meter&gt;</code></h2>
+        <div class="stack">
+          <div class="note good">
+            <h3>下載 80%：任務進度</h3>
+            <label for="download-compare">下載進度：</label>
+            <progress id="download-compare" value="80" max="100">80%</progress>
+            <pre class="code"><code>&lt;progress value="80" max="100"&gt;80%&lt;/progress&gt;</code></pre>
+          </div>
+          <div class="note warn">
+            <h3>電量 80%：狀態值</h3>
+            <label for="battery-compare">手機電量：</label>
+            <meter id="battery-compare" value="80" min="0" max="100">80%</meter>
+            <pre class="code"><code>&lt;meter value="80" min="0" max="100"&gt;80%&lt;/meter&gt;</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel section">
+      <h2>6. 常見錯誤</h2>
+      <div class="grid-3">
+        <article class="summary-item danger">
+          <h3>把狀態值寫成進度</h3>
+          <p>手機電量、磁碟用量、考試分數通常不是任務進度，應考慮 <code>&lt;meter&gt;</code>。</p>
+        </article>
+        <article class="summary-item danger">
+          <h3>以為省略 <code>value</code> 是 0%</h3>
+          <p><code>&lt;progress&gt;</code> 是不定進度；<code>value="0"</code> 才是 0%。</p>
+        </article>
+        <article class="summary-item danger">
+          <h3>只放進度條不放文字</h3>
+          <p>建議用 <code>&lt;label&gt;</code>、百分比文字或狀態說明補足可讀性。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <h2>7. 判斷流程</h2>
+      <div class="grid-3">
+        <article class="summary-item good">
+          <h3>1. 任務完成到哪裡？</h3>
+          <p>是上傳、下載、安裝、載入、批次處理，通常用 <code>&lt;progress&gt;</code>。</p>
+        </article>
+        <article class="summary-item warn">
+          <h3>2. 狀態落在哪裡？</h3>
+          <p>是電量、分數、磁碟用量、溫度，通常用 <code>&lt;meter&gt;</code>。</p>
+        </article>
+        <article class="summary-item cool">
+          <h3>3. 只是普通資訊？</h3>
+          <p>如果不是任務進度，也不是範圍值，可能直接用文字或其他 UI 更合適。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer-links">
+      <a href="../README.md">返回第二十九章 README</a>
+      <a href="../第29章_進度條標籤.md">閱讀進度條標籤筆記</a>
+    </div>
+  </main>
+
+  <script>
+    const valueControl = document.querySelector("#valueControl");
+    const maxControl = document.querySelector("#maxControl");
+    const valueOutput = document.querySelector("#valueOutput");
+    const maxOutput = document.querySelector("#maxOutput");
+    const progress = document.querySelector("#interactiveProgress");
+    const percentText = document.querySelector("#percentText");
+    const statusText = document.querySelector("#statusText");
+    const interactiveCode = document.querySelector("#interactiveCode code");
+    const startButton = document.querySelector("#startButton");
+    const pauseButton = document.querySelector("#pauseButton");
+    const resetButton = document.querySelector("#resetButton");
+
+    let timer = null;
+
+    function clampValue() {
+      const max = Number(maxControl.value);
+      const current = Math.min(Number(valueControl.value), max);
+      valueControl.value = current;
+      return { current, max };
+    }
+
+    function updateProgress() {
+      const { current, max } = clampValue();
+      const percent = Math.round((current / max) * 100);
+
+      valueOutput.textContent = current;
+      maxOutput.textContent = max;
+      progress.value = current;
+      progress.max = max;
+      progress.textContent = `${percent}%`;
+      percentText.textContent = `${percent}%`;
+
+      if (current >= max) {
+        statusText.textContent = `任務完成：${current} / ${max}。`;
+      } else {
+        statusText.textContent = `目前完成 ${current} / ${max}。`;
+      }
+
+      interactiveCode.textContent = `<label for="interactiveProgress">批次處理進度：</label>
+<progress id="interactiveProgress" value="${current}" max="${max}">${percent}%</progress>`;
+    }
+
+    function stopTimer() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    valueControl.addEventListener("input", () => {
+      stopTimer();
+      updateProgress();
+    });
+
+    maxControl.addEventListener("input", () => {
+      stopTimer();
+      updateProgress();
+    });
+
+    startButton.addEventListener("click", () => {
+      stopTimer();
+      timer = setInterval(() => {
+        const max = Number(maxControl.value);
+        const next = Math.min(Number(valueControl.value) + 10, max);
+        valueControl.value = next;
+        updateProgress();
+
+        if (next >= max) {
+          stopTimer();
+        }
+      }, 500);
+    });
+
+    pauseButton.addEventListener("click", stopTimer);
+
+    resetButton.addEventListener("click", () => {
+      stopTimer();
+      valueControl.value = 0;
+      maxControl.value = 100;
+      updateProgress();
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>
