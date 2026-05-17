@@ -16,7 +16,8 @@ html/
   prompts/
     ├── system/
     ├── workflows/
-    └── formats/
+    ├── formats/
+    └── requests/
 ```
 
 ## 目錄說明
@@ -30,7 +31,7 @@ html/
 | `practice/` | 練習題區 | 根據 `notes/` 生成練習題、實作任務、改錯題、重構題。 |
 | `review/` | 複習材料區 | 根據 `notes/` 生成重點摘要、問答題、填空題、複習卡片。 |
 | `supplements/` | 補充資料區 | 根據 `notes/` 延伸補充底層原理、進階觀念、相關比較與實務案例。 |
-| `prompts/` | AI 提示詞區 | 存放用來生成、整理、轉換、複習筆記的提示詞模板。 |
+| `prompts/` | AI 提示詞區 | 存放用來生成、整理、轉換、複習筆記的提示詞模板與實際提問範例。 |
 
 ### `prompts/` 子目錄說明
 
@@ -39,6 +40,7 @@ html/
 | `prompts/system/` | 系統規則提示詞 | 存放穩定的 AI 角色設定與總體規則，例如語言、教學風格、輸出原則。 |
 | `prompts/workflows/` | 工作流程提示詞 | 存放一套完整的生成流程，例如從 `origin/` 生成 `notes/`，或從 `notes/` 生成練習題、複習材料。 |
 | `prompts/formats/` | 輸出格式提示詞 | 存放各種固定輸出格式，例如教書型筆記格式、練習題格式、複習卡格式、API 表格格式。 |
+| `prompts/requests/` | 實際提問範例 | 存放實際向 AI 發問時可直接使用或參考的提問內容，例如針對某章節、某份原始資料、某個任務的具體問題。 |
 
 ## 資料流
 
@@ -60,3 +62,5 @@ prompts/
 * `origin/` 是原始資料來源
 * `notes/` 是主幹知識
 * 其他目錄是根據 `notes/` 生成的不同用途內容
+* `prompts/system/`、`prompts/workflows/`、`prompts/formats/` 偏向可重複使用的提示詞模板
+* `prompts/requests/` 偏向實際使用時的具體提問內容，可作為日後複用、微調與回顧的紀錄
