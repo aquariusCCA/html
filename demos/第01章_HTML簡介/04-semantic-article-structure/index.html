@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>語意化文章結構與常見錯誤</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Semantic HTML</p>
+    <h1>語意化文章結構與常見錯誤</h1>
+    <p>比較語意清楚的文章頁，以及只靠 `div` 和錯誤標題層級組成的頁面。</p>
+  </header>
+
+  <main>
+    <section class="comparison">
+      <article class="sample sample-good">
+        <p class="label">較佳寫法</p>
+        <header>
+          <h2>HTML 入門文章</h2>
+        </header>
+        <section class="article-content" aria-label="文章內容">
+          <article>
+            <h3>什麼是 HTML？</h3>
+            <p>HTML 是用來描述網頁內容與結構的標記語言。</p>
+            <h3>HTML 可以放哪些內容？</h3>
+            <p>HTML 可以標記文字、圖片、連結、表單與多媒體內容。</p>
+            <a href="https://developer.mozilla.org/zh-TW/docs/Web/HTML" target="_blank" rel="noreferrer">閱讀更多 HTML 文件</a>
+          </article>
+        </section>
+      </article>
+
+      <article class="sample sample-risk">
+        <p class="label">常見錯誤</p>
+        <div class="fake-title">HTML 入門文章</div>
+        <div>
+          <h4>什麼是 HTML？</h4>
+          <p>HTML 是用來描述網頁內容與結構的標記語言。</p>
+          <h1>HTML 可以放哪些內容？</h1>
+          <p>HTML 可以標記文字、圖片、連結、表單與多媒體內容。</p>
+          <div class="fake-link">閱讀更多 HTML 文件</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="inspection">
+      <h2>結構檢查</h2>
+      <div class="inspection-actions">
+        <button type="button" data-target="good" class="is-active">檢查較佳寫法</button>
+        <button type="button" data-target="risk">檢查常見錯誤</button>
+      </div>
+      <ul id="inspection-list"></ul>
+    </section>
+  </main>
+</body>
+</html>

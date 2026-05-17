@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML 標籤、元素與階層關係</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Tags / Elements / Relationships</p>
+    <h1>標籤、元素與階層關係</h1>
+    <p>這個 demo 用一段文章結構示範標籤、元素、父子、兄弟、祖先與後代關係。</p>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="選擇要觀察的 HTML 關係">
+      <button type="button" data-mode="element" class="is-active">元素</button>
+      <button type="button" data-mode="parent-child">父子</button>
+      <button type="button" data-mode="siblings">兄弟</button>
+      <button type="button" data-mode="ancestor">祖先後代</button>
+      <button type="button" data-mode="void">單標籤</button>
+    </section>
+
+    <section class="layout">
+      <article class="demo-document" id="demo-document">
+        <header data-role="ancestor">
+          <h2 data-role="sibling">HTML 簡介</h2>
+          <p data-role="sibling">HTML 用標籤描述網頁內容與結構。</p>
+        </header>
+
+        <section data-role="parent">
+          <h3 data-role="child">什麼是元素？</h3>
+          <p data-role="child">
+            一個常見元素包含開始標籤、內容與結束標籤。
+          </p>
+          <img data-role="void" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='240' viewBox='0 0 640 240'%3E%3Crect width='640' height='240' fill='%23e7f0f8'/%3E%3Ctext x='320' y='112' text-anchor='middle' font-family='Arial' font-size='28' fill='%231f2937'%3Eimg 是常見單標籤元素%3C/text%3E%3Ctext x='320' y='152' text-anchor='middle' font-family='Arial' font-size='18' fill='%234b5563'%3E它不需要包住文字內容%3C/text%3E%3C/svg%3E" alt="示意圖：img 是常見單標籤元素">
+        </section>
+      </article>
+
+      <aside class="explanation">
+        <h2 id="mode-title">元素</h2>
+        <p id="mode-description">元素是由標籤與內容組成的完整結構，例如 `<p>這是一段文字。</p>`。</p>
+        <pre><code id="mode-code">&lt;p&gt;這是一段文字。&lt;/p&gt;</code></pre>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
