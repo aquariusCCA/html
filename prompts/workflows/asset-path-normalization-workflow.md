@@ -61,18 +61,18 @@ prompts/system/asset-path-rules.md
 * Markdown 所屬章節目錄。
 * 原始資產清單。
 * 原始資產路徑。
-* 是否能取得檔案內容 hash。
+* 是否能讀取實體資產檔案並計算內容 hash。
 
-如果使用者沒有提供 hash，仍可先使用佔位符：
+hash 不需要使用者人工提供。若能讀取實體資產檔案，必須根據檔案內容自動產生 hash。
+
+預設使用 SHA-256，取前 6 碼小寫十六進位字元。
+
+如果無法讀取實體資產檔案，不得使用 `<hash6>` 作為檔名或 Markdown 路徑的一部分。
+
+此時應在輸出中標記為：
 
 ```text
-<hash6>
-```
-
-或在輸出中標記為：
-
-```text
-需根據檔案內容產生 hash
+缺少實體檔案，無法計算 hash
 ```
 
 ---
@@ -163,6 +163,8 @@ attachment.zip
 <md-slug>-<asset-kind>-<index>-<hash6>.<ext>
 ```
 
+`<hash6>` 是格式說明中的欄位名稱，不是最終檔名文字。實際輸出時必須替換成檔案內容 hash 前 6 碼。
+
 其中：
 
 ```text
@@ -187,10 +189,10 @@ file  -> file
 則命名為：
 
 ```text
-xxx-img-001-<hash6>.png
-xxx-pdf-001-<hash6>.pdf
-xxx-img-002-<hash6>.png
-xxx-file-001-<hash6>.zip
+xxx-img-001-a82f91.png
+xxx-pdf-001-c19d20.pdf
+xxx-img-002-f8e201.png
+xxx-file-001-d91f3a.zip
 ```
 
 ---
@@ -261,5 +263,6 @@ PDF：
 * 因圖片沒有 alt 就跳過。
 * 因附件沒有 link text 就跳過。
 * 在不同內容檔案同名時直接覆蓋。
-* 自行假設 hash 已經正確，除非使用者提供。
+* 自行假設 hash 已經正確；hash 必須來自已讀取的檔案內容。
+* 在最終檔名或 Markdown 引用中保留 `<hash6>`、`hash6`、`<hash>` 等佔位文字。
 * 修改外部網址。

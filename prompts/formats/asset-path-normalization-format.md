@@ -50,7 +50,7 @@ prompts/workflows/asset-path-normalization-workflow.md
 | 編號 | 類型 | 原始寫法 | 原始路徑 | 整理後路徑 | 命名原因 | 備註 |
 |---|---|---|---|---|---|---|
 | 1 | image | `![](image.png)` | `image.png` | `./assets/images/html-basic-img-001-a82f91.png` | 原始檔名無語意，使用統一命名格式 | 需搬移檔案 |
-| 2 | pdf | `[講義](HTML%20Basic.pdf)` | `HTML%20Basic.pdf` | `./assets/pdfs/html-basic-pdf-001-c19d20.pdf` | URL encoded 路徑，轉為安全檔名 | 需確認 hash |
+| 2 | pdf | `[講義](HTML%20Basic.pdf)` | `HTML%20Basic.pdf` | `./assets/pdfs/html-basic-pdf-001-c19d20.pdf` | URL encoded 路徑，轉為安全檔名 | hash 已由檔案內容計算 |
 ```
 
 欄位說明：
@@ -63,7 +63,7 @@ prompts/workflows/asset-path-normalization-workflow.md
 | 原始路徑  | 原始 path              |
 | 整理後路徑 | 轉換後相對路徑              |
 | 命名原因  | 為什麼使用該檔名             |
-| 備註    | 是否需搬移、確認 hash、確認語意等  |
+| 備註    | 是否需搬移、hash 是否已由檔案內容計算、確認語意等 |
 
 ---
 
@@ -123,7 +123,7 @@ pdfs/
 格式：
 
 ```md
-- `xxx.png`：無法取得檔案內容 hash，需實際讀取檔案後產生 hash。
+- `xxx.png`：缺少實體檔案，無法計算 hash；需實際讀取檔案後產生 SHA-256 前 6 碼。
 - `[附件](demo.zip)`：link text 過於籠統，建議確認附件內容後改成更具語意的文字。
 - `../Downloads/file.pdf`：原始路徑疑似不在章節目錄內，需確認檔案是否存在。
 ```
@@ -176,7 +176,7 @@ pdfs/
 
 ```md
 1. 建議先實際搬移資產檔案，再批次重寫 Markdown。
-2. 若無法取得檔案 hash，可先用 `<hash6>` 佔位，待程式處理時替換。
+2. 若無法讀取實體資產檔案，請不要產生含 `<hash6>` 的檔名或 Markdown 路徑；應列入「需要人工確認的項目」，待可讀取檔案後再計算 SHA-256 前 6 碼。
 3. 建議將本規則整合進 Markdown 匯入或整理腳本，避免人工重複處理。
 ```
 
@@ -192,3 +192,4 @@ pdfs/
 * 附件的圖片語法。
 * 未分類的 `./assets/<file>` 路徑。
 * 未說明原因的檔名變更。
+* 含 `<hash6>`、`hash6`、`<hash>` 等佔位文字的最終檔名或 Markdown 路徑。

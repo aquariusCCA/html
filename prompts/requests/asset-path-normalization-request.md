@@ -50,8 +50,8 @@ prompts/formats/asset-path-normalization-format.md
 - Markdown 檔名：`<請填入，例如 html-tag-composition.md>`
 - Markdown slug：`<請填入，例如 html-tag-composition>`
 - 所屬章節目錄：`<請填入，例如 HTML>`
-- 是否已取得檔案 hash：`<是/否>`
-- 若未提供 hash：請先使用 `<hash6>` 佔位，並在「需要人工確認的項目」中標記。
+- 是否可讀取實體資產檔案並計算 hash：`<是/否>`
+- 若無法讀取實體資產檔案：請不要使用 `<hash6>` 佔位，應列入「需要人工確認的項目」。
 
 ---
 
@@ -94,8 +94,8 @@ demo.zip
 - Markdown 檔名：`html-tag-composition.md`
 - Markdown slug：`html-tag-composition`
 - 所屬章節目錄：`HTML`
-- 是否已取得檔案 hash：`否`
-- 若未提供 hash：請先使用 `<hash6>` 佔位，並在「需要人工確認的項目」中標記。
+- 是否可讀取實體資產檔案並計算 hash：`否`
+- 若無法讀取實體資產檔案：請不要使用 `<hash6>` 佔位，應列入「需要人工確認的項目」。
 
 ---
 
@@ -143,7 +143,7 @@ demo.zip
 Markdown 檔名：`<file-name>.md`
 Markdown slug：`<md-slug>`
 章節目錄：`<chapter-name>`
-是否已取得 hash：否，請先用 `<hash6>` 佔位。
+是否可讀取實體資產檔案並計算 hash：否；請不要使用 `<hash6>` 佔位，應列入「需要人工確認的項目」。
 
 原始 Markdown：
 
