@@ -21,9 +21,9 @@
 
 ## 生成範圍
 
-- notes 路徑：`notes/第01章_HTML簡介/HTML簡介.md`
+- notes 路徑：`notes/第02章_兼容性問題/兼容性問題.md`
 - 章節名稱：{chapter-title}
-- 目標輸出路徑：`appendix/第01章_HTML簡介/HTML簡介-appendix.md`
+- 目標輸出路徑：`appendix/第02章_兼容性問題/兼容性問題.md`
 - 生成完整度：完整附錄查表資料
 - 附錄類型：依 notes 內容自動判斷
 - 範例策略：只保留最小可用範例
