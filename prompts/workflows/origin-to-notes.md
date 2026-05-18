@@ -281,45 +281,6 @@ notes/html-metadata.md
 
 ---
 
-## 可直接使用的提示詞模板
-
-請根據以下規則，將我提供的 `origin/` 原始資料整理成 `notes/` 的正式教書型筆記。
-
-請同時遵守：
-
-```text
-prompts/system/base-role.md
-prompts/system/html-teacher-role.md
-prompts/formats/teaching-note-format.md
-```
-
-### 輸入資料
-
-```text
-來源路徑：{{origin_path}}
-目標主題：{{target_topic}}
-預期輸出路徑：{{output_path}}
-補充要求：{{extra_requirements}}
-```
-
-### 原始內容
-
-```text
-{{origin_content}}
-```
-
-### 任務要求
-
-1. 先判斷原始內容是否適合整理成一份筆記。
-2. 如果內容過大，請提出拆分建議。
-3. 如果內容足夠聚焦，請產生一份正式教書型筆記。
-4. 筆記應保留原始資料核心意思。
-5. 可補充必要背景，但不得偏離主題。
-6. 輸出應符合 `teaching-note-format.md`。
-7. 若有不確定資訊，請列為「待確認」。
-
----
-
 ## 禁止事項
 
 1. 不要只做摘要。
