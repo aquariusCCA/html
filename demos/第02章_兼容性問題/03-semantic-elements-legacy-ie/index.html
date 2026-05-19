@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 語意化元素與舊版 IE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="eyebrow">Demo 03</p>
+    <h1>HTML5 語意化元素與舊版 IE</h1>
+    <p>這個 demo 用「現代瀏覽器正常呈現」與「模擬舊版 IE 未識別元素」對照，理解 `html5shiv` 要解決的問題。</p>
+  </header>
+
+  <main>
+    <section class="compare-grid" aria-label="語意化元素對照">
+      <article class="sample modern-sample">
+        <h2>現代瀏覽器</h2>
+        <header class="demo-header">
+          <strong>網站標題</strong>
+        </header>
+        <nav class="demo-nav">
+          <a href="#modern-article">導覽連結</a>
+        </nav>
+        <section class="demo-section">
+          <article id="modern-article" class="demo-article">
+            <h3>文章標題</h3>
+            <p>現代瀏覽器可以正確解析 `header`、`nav`、`section`、`article`、`footer`。</p>
+          </article>
+        </section>
+        <footer class="demo-footer">頁尾資訊</footer>
+      </article>
+
+      <article id="legacy-sample" class="sample legacy-sample">
+        <h2>模擬舊版 IE 未識別元素</h2>
+        <header class="demo-header">
+          <strong>網站標題</strong>
+        </header>
+        <nav class="demo-nav">
+          <a href="#legacy-article">導覽連結</a>
+        </nav>
+        <section class="demo-section">
+          <article id="legacy-article" class="demo-article">
+            <h3>文章標題</h3>
+            <p>非常舊的 IE 可能無法正確識別 HTML5 新元素，導致樣式或 DOM 行為不如預期。</p>
+          </article>
+        </section>
+        <footer class="demo-footer">頁尾資訊</footer>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>模擬 html5shiv 後的狀態</h2>
+      <p>`html5shiv` 的核心目的，是讓 IE6、IE7、IE8 能建立並識別部分 HTML5 新元素，使它們比較能被樣式化。</p>
+      <button type="button" id="toggle-shiv">套用 html5shiv 後的模擬狀態</button>
+      <p id="state-text" class="state-text">目前右側區塊正在模擬舊版 IE 未識別 HTML5 元素的狀態。</p>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

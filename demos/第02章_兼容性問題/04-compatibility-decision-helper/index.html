@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>相容性寫法判斷小工具</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>相容性寫法判斷小工具</h1>
+    <p>根據專案支援範圍，練習判斷是否需要保留 `X-UA-Compatible`、`renderer` 與 `html5shiv`。</p>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <h2>選擇專案條件</h2>
+      <label>
+        <input type="checkbox" id="legacy-ie">
+        需要支援 IE8 或更舊版本
+      </label>
+      <label>
+        <input type="checkbox" id="semantic-html" checked>
+        頁面使用 HTML5 語意化元素
+      </label>
+      <label>
+        <input type="checkbox" id="dual-core-browser">
+        目標環境包含特定雙核瀏覽器
+      </label>
+      <label>
+        <input type="checkbox" id="modern-only" checked>
+        專案只支援現代瀏覽器
+      </label>
+    </section>
+
+    <section class="panel">
+      <h2>建議保留或移除</h2>
+      <ul id="recommendations" class="recommendations"></ul>
+    </section>
+
+    <section class="panel">
+      <h2>建議 HTML 片段</h2>
+      <pre><code id="snippet"></code></pre>
+    </section>
+
+    <section class="notice">
+      <h2>判斷原則</h2>
+      <p>相容性處理應根據專案的瀏覽器支援範圍決定。新專案通常不應無條件照抄舊版 IE 相容程式碼。</p>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
