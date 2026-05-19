@@ -21,9 +21,9 @@
 
 ## 生成範圍
 
-- notes 路徑：`notes/第03章_HTML基本結構標籤/HTML基本結構標籤.md`
+- notes 路徑：`notes/第04章_全局屬性/全局屬性.md`
 - 章節名稱：{chapter-title}
-- 目標輸出路徑：`appendix/第03章_HTML基本結構標籤/HTML基本結構標籤-appendix.md`
+- 目標輸出路徑：`appendix/第04章_全局屬性/全局屬性-appendix.md`
 - 生成完整度：完整附錄查表資料
 - 附錄類型：依 notes 內容自動判斷
 - 範例策略：只保留最小可用範例
@@ -79,4 +79,4 @@
 
 ## Notes 內容
 
-`notes/第03章_HTML基本結構標籤/HTML基本結構標籤.md`
+`notes/第04章_全局屬性/全局屬性.md`
