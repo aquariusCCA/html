@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML 屬性常見錯誤</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 03</p>
+    <h1>HTML 屬性的正確寫法與常見錯誤</h1>
+    <p>這個頁面比較屬性寫在開始標籤內、使用空格分隔、避免重複同名屬性的差異。</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>正確屬性寫法</h2>
+      <pre><code>&lt;input type="text" name="username" placeholder="請輸入帳號"&gt;</code></pre>
+      <form class="sample-form" action="#" method="get">
+        <label for="username">帳號</label>
+        <input id="username" type="text" name="username" placeholder="請輸入帳號">
+      </form>
+      <p>屬性寫在開始標籤中，屬性與標籤名之間、不同屬性之間都要用空格隔開。</p>
+    </section>
+
+    <section class="panel">
+      <h2>屬性順序通常不影響結果</h2>
+      <div class="compare-grid">
+        <article class="example-box">
+          <h3>寫法 A</h3>
+          <pre><code>&lt;input type="email" name="email"&gt;</code></pre>
+          <label for="email-a">Email A</label>
+          <input id="email-a" type="email" name="email">
+        </article>
+
+        <article class="example-box">
+          <h3>寫法 B</h3>
+          <pre><code>&lt;input name="email" type="email"&gt;</code></pre>
+          <label for="email-b">Email B</label>
+          <input id="email-b" name="email" type="email">
+        </article>
+      </div>
+      <p>兩個輸入框的屬性順序不同，但都清楚寫出 <code>type</code> 與 <code>name</code>，瀏覽器可以正常解析。</p>
+    </section>
+
+    <section class="panel">
+      <h2>常見錯誤對照</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>錯誤寫法</th>
+              <th>問題</th>
+              <th>修正方式</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>&lt;inputtype="text"name="username"&gt;</code></td>
+              <td>標籤名與屬性沒有用空格隔開，瀏覽器無法按照預期解析。</td>
+              <td><code>&lt;input type="text" name="username"&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>&lt;input type="text" type="password"&gt;</code></td>
+              <td>同一元素重複寫同名屬性，結果不清楚。</td>
+              <td><code>&lt;input type="password" name="password"&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>&lt;p CLASS="intro"&gt;</code></td>
+              <td>HTML 屬性名稱通常不區分大小寫，但團隊實務建議統一小寫。</td>
+              <td><code>&lt;p class="intro"&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>&lt;a href=https://example.com&gt;</code></td>
+              <td>部分屬性值可以省略引號，但正式開發不利於一致維護。</td>
+              <td><code>&lt;a href="https://example.com"&gt;</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

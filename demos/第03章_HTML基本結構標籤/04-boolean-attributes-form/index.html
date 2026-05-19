@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布林屬性表單觀察</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>布林屬性只要出現就代表啟用</h1>
+    <p>這個頁面用表單欄位觀察 <code>disabled</code>、<code>checked</code>、<code>required</code> 的行為。</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>可直接觀察的表單</h2>
+      <form class="sample-form" action="#" method="get">
+        <div class="field">
+          <label for="student-id">學員編號</label>
+          <input id="student-id" type="text" name="studentId" value="系統自動產生" disabled>
+          <p class="hint"><code>disabled</code> 出現後，欄位不能輸入或聚焦。</p>
+        </div>
+
+        <div class="field">
+          <label for="wrong-disabled">常見誤解欄位</label>
+          <input id="wrong-disabled" type="text" name="wrongDisabled" value="disabled=&quot;false&quot; 仍然停用" disabled="false">
+          <p class="hint"><code>disabled="false"</code> 仍然代表有 <code>disabled</code> 屬性，所以欄位依然停用。</p>
+        </div>
+
+        <div class="field checkbox-field">
+          <input id="newsletter" type="checkbox" name="newsletter" checked>
+          <label for="newsletter">預設訂閱課程通知</label>
+          <p class="hint"><code>checked</code> 出現後，核取方塊預設被勾選。</p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required>
+          <p class="hint"><code>required</code> 出現後，送出前瀏覽器會檢查欄位是否填寫。</p>
+        </div>
+
+        <button type="submit">測試 required</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>程式碼對照</h2>
+      <pre><code>&lt;input type="text" name="studentId" disabled&gt;
+&lt;input type="checkbox" name="newsletter" checked&gt;
+&lt;input type="email" name="email" required&gt;</code></pre>
+      <p>布林屬性不是只有屬性值，像 <code>disabled</code> 本身就是屬性名。</p>
+    </section>
+
+    <section class="notice">
+      <h2>取消布林狀態的方式</h2>
+      <p>若要取消停用、預設勾選或必填，不是把值寫成 <code>false</code>，而是移除整個屬性。</p>
+    </section>
+  </main>
+</body>
+</html>
