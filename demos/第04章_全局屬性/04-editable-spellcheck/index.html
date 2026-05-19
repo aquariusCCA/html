@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>contenteditable 與 spellcheck Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>`contenteditable` 與 `spellcheck`</h1>
+    <p>
+      直接修改頁面中的個人簡介，再按「讀取內容」觀察 JavaScript 如何取得編輯後的文字。
+    </p>
+  </header>
+
+  <main>
+    <section class="editor-layout">
+      <div class="editor-panel">
+        <h2>可編輯內容</h2>
+        <p id="bio" class="editable-box" contenteditable="true" spellcheck="true">
+          I am learning HTML global attributes. 這段文字可以直接在頁面上編輯。
+        </p>
+        <div class="actions">
+          <button type="button" id="read-content">讀取內容</button>
+          <button type="button" id="reset-content">還原內容</button>
+        </div>
+      </div>
+
+      <div class="editor-panel">
+        <h2>讀取結果</h2>
+        <output id="preview" class="preview-box">
+          尚未讀取內容。
+        </output>
+      </div>
+    </section>
+
+    <section class="compare-section">
+      <h2>`spellcheck` 對照</h2>
+      <div class="compare-grid">
+        <label class="field">
+          <span>啟用拼字檢查</span>
+          <textarea spellcheck="true">Thiss sentense has typo words.</textarea>
+        </label>
+
+        <label class="field">
+          <span>停用拼字檢查</span>
+          <textarea spellcheck="false">Thiss sentense has typo words.</textarea>
+        </label>
+      </div>
+      <p class="note">
+        拼字檢查是否顯示提示，會受到瀏覽器、作業系統語言與使用者設定影響。
+      </p>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
+

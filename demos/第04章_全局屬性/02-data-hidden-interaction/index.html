@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>data-* 與 hidden 互動 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 02</p>
+    <h1>`data-*` 與 `hidden` 的實務互動</h1>
+    <p>
+      點擊商品卡片的按鈕，觀察 JavaScript 如何透過 `dataset` 讀取自訂資料，
+      並用 `hidden` 切換詳細資訊。
+    </p>
+  </header>
+
+  <main>
+    <section class="product-grid" aria-label="商品清單">
+      <article class="product-card" data-product-id="cup-101" data-category="drinkware" data-stock="12">
+        <h2>經典馬克杯</h2>
+        <p class="price" data-currency="TWD">NT$ 450</p>
+        <p>適合日常使用的陶瓷杯。</p>
+        <button type="button" data-action="toggle-detail" aria-expanded="false">
+          查看資料
+        </button>
+        <div class="detail" hidden>
+          <p><strong>商品 ID：</strong><span data-field="id"></span></p>
+          <p><strong>分類：</strong><span data-field="category"></span></p>
+          <p><strong>庫存：</strong><span data-field="stock"></span></p>
+        </div>
+      </article>
+
+      <article class="product-card" data-product-id="bag-205" data-category="accessory" data-stock="3">
+        <h2>帆布收納袋</h2>
+        <p class="price" data-currency="TWD">NT$ 320</p>
+        <p>可以收納課本、筆記本與小物。</p>
+        <button type="button" data-action="toggle-detail" aria-expanded="false">
+          查看資料
+        </button>
+        <div class="detail" hidden>
+          <p><strong>商品 ID：</strong><span data-field="id"></span></p>
+          <p><strong>分類：</strong><span data-field="category"></span></p>
+          <p><strong>庫存：</strong><span data-field="stock"></span></p>
+        </div>
+      </article>
+
+      <article class="product-card" data-product-id="pen-318" data-category="stationery" data-stock="0">
+        <h2>鋼珠筆組</h2>
+        <p class="price" data-currency="TWD">NT$ 180</p>
+        <p>三色筆組，適合做 HTML 筆記。</p>
+        <button type="button" data-action="toggle-detail" aria-expanded="false">
+          查看資料
+        </button>
+        <div class="detail" hidden>
+          <p><strong>商品 ID：</strong><span data-field="id"></span></p>
+          <p><strong>分類：</strong><span data-field="category"></span></p>
+          <p><strong>庫存：</strong><span data-field="stock"></span></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>目前選取資料</h2>
+      <p id="selected-message">尚未選取商品。</p>
+      <p class="note">
+        提醒：`data-*` 會出現在 DOM 中，適合存放互動所需的非敏感資料，不適合存放密碼或 token。
+      </p>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
+

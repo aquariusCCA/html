@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>id、class、style 與 title 對照 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>id、class、style 與 title 的用途差異</h1>
+    <p>
+      這個頁面用同一組文章卡片觀察：唯一識別用 `id`，重複分類用 `class`，
+      樣式管理優先使用 CSS class，重要說明不要只放在 `title`。
+    </p>
+  </header>
+
+  <main>
+    <nav class="jump-nav" aria-label="頁內導覽">
+      <a href="#notice-panel">跳到唯一 notice 區塊</a>
+      <a href="#class-examples">跳到 class 範例</a>
+      <a href="#style-examples">跳到 style 範例</a>
+    </nav>
+
+    <section id="notice-panel" class="panel notice-panel">
+      <h2>唯一區塊：`id` 適合識別單一元素</h2>
+      <p>
+        這個區塊使用 <code>id="notice-panel"</code>，上方頁內連結可以透過
+        <code>href="#notice-panel"</code> 跳到這裡。
+      </p>
+    </section>
+
+    <section id="class-examples" class="demo-section">
+      <h2>重複分類：`class` 適合套用在多個元素</h2>
+
+      <div class="card-grid">
+        <article class="card featured">
+          <h3>文章卡片 A</h3>
+          <p>這張卡片同時有 <code>card</code> 與 <code>featured</code> 兩個 class。</p>
+          <span class="badge">featured</span>
+        </article>
+
+        <article class="card">
+          <h3>文章卡片 B</h3>
+          <p>這張卡片只有 <code>card</code> class，因此共用基本卡片樣式。</p>
+          <span class="badge badge-muted">normal</span>
+        </article>
+
+        <article class="card">
+          <h3>文章卡片 C</h3>
+          <p>同一個 class 可以重複用在多個元素上。</p>
+          <span class="badge badge-muted">normal</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="style-examples" class="demo-section">
+      <h2>樣式管理：優先用 class，少量才用 `style`</h2>
+
+      <div class="compare-grid">
+        <div class="example-box">
+          <h3 class="good-title">使用 class 管理樣式</h3>
+          <p>樣式集中在 <code>style.css</code>，比較容易維護與重複使用。</p>
+        </div>
+
+        <div class="example-box">
+          <h3 style="color: #a33a2a; text-decoration: underline;">使用行內 style</h3>
+          <p>行內樣式會散落在 HTML 中，頁面變大時較難統一調整。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>`title` 只適合補充，不適合承載重要資訊</h2>
+      <p>
+        將滑鼠停在
+        <abbr title="HyperText Markup Language">HTML</abbr>
+        上，部分瀏覽器會顯示工具提示。
+      </p>
+      <p class="visible-note">
+        重要資訊應直接放在頁面可見文字中，而不是只放在 `title` 屬性。
+      </p>
+    </section>
+  </main>
+</body>
+</html>
+
