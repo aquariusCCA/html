@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="這個範例示範 charset、viewport、description、robots 與 Open Graph metadata。">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="HTML Demo">
+  <meta property="og:title" content="基本 head metadata Demo">
+  <meta property="og:description" content="觀察 meta 不顯示於頁面內容，但可被工具讀取。">
+  <meta property="og:type" content="article">
+  <title>基本 head metadata Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>觀察 head 裡的 meta 資訊</h1>
+    <p>
+      <code>&lt;meta&gt;</code> 不會直接變成頁面上的文字，但瀏覽器、搜尋引擎、社群平台或 JavaScript
+      可以讀取這些文件層級資訊。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="source-title">
+      <h2 id="source-title">範例中的 head 設定</h2>
+      <pre><code>&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="description" content="這個範例示範 charset、viewport、description、robots 與 Open Graph metadata。"&#62;
+&lt;meta name="robots" content="index, follow"&gt;
+&lt;meta property="og:title" content="基本 head metadata Demo"&gt;</code></pre>
+    </section>
+
+    <section class="demo-section" aria-labelledby="dom-title">
+      <h2 id="dom-title">JavaScript 讀到的 metadata</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>類型</th>
+              <th>名稱</th>
+              <th>內容</th>
+            </tr>
+          </thead>
+          <tbody data-metadata-list></tbody>
+        </table>
+      </div>
+      <p class="note">觀察重點：畫面主內容沒有顯示 <code>&lt;meta&gt;</code>，但 DOM 裡仍然能讀到。</p>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>

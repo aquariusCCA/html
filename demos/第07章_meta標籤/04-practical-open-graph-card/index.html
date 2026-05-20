@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="用可編輯表單觀察 Open Graph metadata 如何對應社群分享卡片。">
+  <meta property="og:title" content="HTML meta 標籤教學">
+  <meta property="og:description" content="理解 meta 如何幫助瀏覽器、搜尋引擎與社群平台讀取頁面資訊。">
+  <meta property="og:image" content="https://example.com/images/html-meta-cover.png">
+  <meta property="og:url" content="https://example.com/html-meta">
+  <meta property="og:type" content="article">
+  <title>Open Graph 分享卡片 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>用分享卡片理解 Open Graph metadata</h1>
+    <p>
+      Open Graph metadata 不會直接改變頁面內容，但社群平台或通訊軟體可能讀取它們，
+      產生分享時的標題、描述、圖片與網址。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section editor-layout" aria-labelledby="editor-title">
+      <form class="editor-panel" aria-labelledby="editor-title" data-og-form>
+        <h2 id="editor-title">編輯 metadata</h2>
+
+        <label>
+          og:title
+          <input type="text" name="title">
+        </label>
+
+        <label>
+          og:description
+          <textarea name="description" rows="4"></textarea>
+        </label>
+
+        <label>
+          og:image
+          <input type="url" name="image">
+        </label>
+
+        <label>
+          og:url
+          <input type="url" name="url">
+        </label>
+
+        <label>
+          og:type
+          <select name="type">
+            <option value="article">article</option>
+            <option value="website">website</option>
+          </select>
+        </label>
+      </form>
+
+      <aside class="preview-panel" aria-labelledby="preview-title">
+        <h2 id="preview-title">分享卡片預覽</h2>
+        <article class="share-card">
+          <div class="preview-image">
+            <span data-card-image></span>
+          </div>
+          <div class="share-content">
+            <p class="share-url" data-card-url></p>
+            <h3 data-card-title></h3>
+            <p data-card-description></p>
+            <p class="share-type" data-card-type></p>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="demo-section" aria-labelledby="code-title">
+      <h2 id="code-title">目前對應的 head 程式碼</h2>
+      <pre><code data-og-code></code></pre>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
+
