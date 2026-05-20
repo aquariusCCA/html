@@ -8,7 +8,7 @@
 >
 > - `prompts/system/base-role.md`
 > - `prompts/system/appendix-generator.md`
-> - `prompts/workflows/notes-to-appendix.workflow.md`
+> - `prompts/workflows/notes-to-appendix-workflow.md`
 > - `prompts/formats/appendix-format.md`
 
 ---
@@ -21,7 +21,7 @@
 
 1. 先提供 `base-role.md` 作為 Knowledge Pack 基本規則。
 2. 再提供 `appendix-generator.md` 作為附錄資料生成規則。
-3. 再提供 `notes-to-appendix.workflow.md` 作為生成流程。
+3. 再提供 `notes-to-appendix-workflow.md` 作為生成流程。
 4. 再提供 `appendix-format.md` 作為輸出格式。
 5. 最後使用本檔案中的 request 提問範本。
 
@@ -53,8 +53,9 @@ appendix/{chapter-slug}-appendix.md
 3. 內容要適合查找、對照、速查與複用，不要重新寫成完整教學筆記。
 4. 優先使用表格、索引與最小可用範例。
 5. 請依照 `prompts/formats/appendix-format.md` 的格式輸出。
-6. 如果 notes 資訊不足以產生某個區塊，請標示「原筆記資訊不足」，不要硬補。
+6. 正文只輸出 notes 可支撐、且與章節主題直接相關的區塊，不要硬補。
 7. 若需要補充推論，必須明確標示為「補充理解」或「延伸提醒」。
+8. 如果某個區塊不適用，請集中列在「未生成區塊」，不要保留完整空標題與空表格。
 
 ## Notes 資訊
 
@@ -82,7 +83,7 @@ appendix/{chapter-slug}-appendix.md
 
 - 基本規則：`prompts/system/base-role.md`
 - 系統規則：`prompts/system/appendix-generator.md`
-- 工作流程：`prompts/workflows/notes-to-appendix.workflow.md`
+- 工作流程：`prompts/workflows/notes-to-appendix-workflow.md`
 - 輸出格式：`prompts/formats/appendix-format.md`
 
 ## 任務目標
@@ -102,37 +103,50 @@ appendix/{chapter-slug}-appendix.md
 - notes 路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
 - 目標輸出路徑：`appendix/{chapter-slug}/{topic-slug}-appendix.md`
-- 生成完整度：完整附錄查表資料
+- 生成完整度：主題裁切式完整附錄，只輸出 notes 可支撐的區塊
 - 附錄類型：依 notes 內容自動判斷
 - 範例策略：只保留最小可用範例
 - 來源索引：需要
 
-## 請先輸出 Appendix 規劃
+## Appendix 區塊規劃
 
-請先整理：
+請先在內部整理：
 
 | 附錄區塊 | 對應 notes 知識點 | 產出形式 | 是否有足夠來源 |
 |---|---|---|---|
 
-確認規劃後，直接繼續輸出完整附錄資料，不需要再問我。
+規劃只作為生成判斷，不要輸出 `Appendix 規劃` 表。請直接輸出正式 appendix 內容。
 
 ## 輸出要求
 
-請依 notes 內容適合程度生成：
+請依 notes 內容適合程度生成有來源支撐的區塊，不需要硬產生全部類型。
 
-1. 附錄定位
-2. 附錄索引
-3. 名詞表
-4. HTML 元素表
-5. 屬性表
-6. API / 方法表
-7. 指令表
-8. 設定檔範例
-9. 常用片段
-10. 錯誤速查表
-11. 相似概念對照表
-12. 來源索引
-13. 維護備註
+固定保留：
+
+- 附錄定位
+- 附錄索引
+- 來源索引
+- 維護備註
+
+依內容選用：
+
+- 未生成區塊
+- 名詞表
+- HTML 元素表
+- 屬性表
+- API / 方法表
+- 指令表
+- 設定檔範例
+- 常用片段
+- 錯誤速查表
+- 相似概念對照表
+
+HTML appendix 請特別注意：
+
+1. `HTML 元素表` 只在章節主題是元素、語意結構、文件骨架或標籤關係時完整生成。
+2. 若元素只是範例載體，不要擴寫成完整元素表。
+3. `API / 方法表` 只在 notes 明確教 API、方法或事件時生成。
+4. 範例中的輔助 JavaScript 不要自動抽成 API 表。
 
 ## 限制條件
 
@@ -154,6 +168,8 @@ appendix/{chapter-slug}-appendix.md
 - `原筆記資訊不足，暫不生成此區塊。`
 - `此 notes 內容不足以生成「{附錄類型}」，原因：{不足原因}`
 - `notes 路徑未提供，來源索引只能標示章節或小節名稱。`
+
+不適用區塊請集中列在「未生成區塊」，不要在正文保留完整空標題與空表格。
 
 ## Notes 內容
 
@@ -183,6 +199,9 @@ appendix/{chapter-slug}-appendix.md
 4. 如果指定區塊缺乏 notes 支撐，請標示「原筆記資訊不足」。
 5. 每個條目都要能對應到 notes 中的知識點。
 6. 請保留來源欄位或來源索引。
+7. 若指定區塊不適合本章主題，請說明原因，不要硬生成。
+8. 若指定 `HTML 元素表` 但元素只是範例載體，請改為說明不適合生成完整元素表；必要時只輸出「範例載體索引」。
+9. 若指定 `API / 方法表` 但 notes 沒有明確教 API、方法或事件，請標示資訊不足，不要把範例中的輔助 JavaScript 擴寫成 API 表。
 
 ## Notes 資訊
 
@@ -213,6 +232,9 @@ appendix/{chapter-slug}-appendix.md
 4. 只根據我提供的 notes 生成。
 5. 輸出繁體中文。
 6. 請依照 `prompts/formats/appendix-format.md` 的格式輸出。
+7. 正文只輸出有 notes 支撐、且與章節主題直接相關的區塊。
+8. 不適用的區塊請集中列在「未生成區塊」，不要保留完整空標題與空表格。
+9. 不要輸出 `Appendix 規劃` 表，除非我另外要求。
 
 ## 章節資訊
 

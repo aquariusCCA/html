@@ -2,9 +2,11 @@
 
 ## 目的
 
-本格式用於規範「Markdown 本地資產路徑整理」任務的輸出形式。
+本格式只規範「Markdown 本地資產路徑整理」任務的輸出形式。
 
-請搭配以下規則使用：
+本文件回答「最後怎麼呈現」。資產規則請以 `prompts/system/asset-path-rules.md` 為準，處理流程請以 `prompts/workflows/asset-path-normalization-workflow.md` 為準。
+
+請搭配以下文件使用：
 
 ```text
 prompts/system/asset-path-rules.md

@@ -4,7 +4,7 @@
 
 當我需要整理 Markdown 筆記中的圖片、PDF、附件路徑時，使用這份 request。
 
-請根據以下規則與格式協助我整理：
+請根據以下規則、流程與格式協助我整理：
 
 ```text
 prompts/system/asset-path-rules.md
@@ -30,16 +30,17 @@ prompts/formats/asset-path-normalization-format.md
 3. 輸出格式：
    `prompts/formats/asset-path-normalization-format.md`
 
-請嚴格依照 `asset-path-normalization-workflow.md` 的 Step 1 到 Step 8 執行：
+請嚴格依照 `asset-path-normalization-workflow.md` 的 Step 1 到 Step 9 執行：
 
 1. 確認輸入資料。
-2. 掃描 Markdown 中的本地資產連結。
-3. 判斷資產類型。
+2. 掃描 Markdown 中的連結。
+3. 判斷資產類型與目標資料夾。
 4. 判斷檔名策略。
-5. 建立序號。
-6. 產生目標資產路徑。
+5. 建立序號與資產對照表。
+6. 產生整理後目錄結構。
 7. 重寫 Markdown 連結。
-8. 產生整理報告。
+8. 檢查違規與風險。
+9. 依格式輸出整理報告。
 
 最後請依照 `asset-path-normalization-format.md` 的格式輸出結果。
 
@@ -83,9 +84,18 @@ demo.zip
 ````md
 你現在是 Markdown 筆記資產整理助手。
 
-請根據 `prompts/system/asset-path-rules.md` 的規則，幫我整理以下 Markdown 中的本地資產路徑。
+請根據以下三份提示詞，幫我整理以下 Markdown 中的本地資產路徑：
 
-請使用 `prompts/formats/asset-path-normalization-format.md` 的格式輸出。
+1. 規則依據：
+   `prompts/system/asset-path-rules.md`
+
+2. 執行流程：
+   `prompts/workflows/asset-path-normalization-workflow.md`
+
+3. 輸出格式：
+   `prompts/formats/asset-path-normalization-format.md`
+
+請嚴格依照 workflow 的 Step 1 到 Step 9 執行，最後使用 format 的格式輸出。
 
 ---
 
@@ -130,15 +140,13 @@ demo.zip
 ## 簡短版提問
 
 ````md
-請根據 `prompts/system/asset-path-rules.md`，幫我整理下面 Markdown 的本地資產路徑，並依照 `prompts/formats/asset-path-normalization-format.md` 輸出整理對照表、目錄結構與重寫後 Markdown。
-
-請根據：
+請根據以下三份提示詞，幫我整理下面 Markdown 的本地資產路徑，並依照 `prompts/formats/asset-path-normalization-format.md` 輸出整理對照表、目錄結構與重寫後 Markdown。
 
 - `prompts/system/asset-path-rules.md`
 - `prompts/workflows/asset-path-normalization-workflow.md`
 - `prompts/formats/asset-path-normalization-format.md`
 
-幫我整理下面 Markdown 的本地資產路徑
+請依照 workflow 的 Step 1 到 Step 9 執行。
 
 Markdown 檔名：`<file-name>.md`
 Markdown slug：`<md-slug>`
