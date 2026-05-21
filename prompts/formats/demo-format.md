@@ -4,8 +4,8 @@
 > 用途：規範從 `notes/` 生成 `demos/` 時的固定輸出格式。  
 > 建議搭配：
 >
-> - `prompts/system/demo-generator.system.md`
-> - `prompts/workflows/notes-to-demos.workflow.md`
+> - `prompts/system/demo-generator-system.md`
+> - `prompts/workflows/notes-to-demos-workflow.md`
 
 ---
 

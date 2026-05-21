@@ -1,12 +1,12 @@
 # Notes 轉 Demos 工作流程提示詞
 
-> 檔案位置：`prompts/workflows/notes-to-demos.workflow.md`  
+> 檔案位置：`prompts/workflows/notes-to-demos-workflow.md`
 > 用途：定義如何從 `notes/` 正式筆記生成 `demos/` 範例程式。  
 > 建議搭配：
 >
-> - `prompts/system/demo-generator.system.md`
+> - `prompts/system/demo-generator-system.md`
 > - `prompts/formats/demo-format.md`
-> - `prompts/requests/generate-demo-from-note.request.md`
+> - `prompts/requests/generate-demo-from-note-request.md`
 
 ---
 
