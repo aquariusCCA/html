@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課程卡片與狀態文字 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>實務應用：卡片容器與狀態文字</h1>
+    <p>
+      這個 demo 使用 <code>&lt;div&gt;</code> 包住卡片區塊，
+      使用 <code>&lt;span&gt;</code> 標記狀態、價格與可被 JavaScript 更新的數字。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="course-title">
+      <h2 id="course-title">課程卡片</h2>
+      <div class="card-grid">
+        <div class="course-card">
+          <p class="course-status">
+            狀態：
+            <span id="status-text" class="status is-open">開放報名</span>
+          </p>
+          <h3>HTML 盒子標籤</h3>
+          <p>學習如何選擇 `div` 與 `span`，並理解無語意容器的使用限制。</p>
+          <p>
+            價格：
+            <span class="price">NT$ 990</span>
+          </p>
+          <p>
+            目前人數：
+            <span id="count">0</span>
+          </p>
+          <div class="actions">
+            <button type="button" id="add-count">增加人數</button>
+            <button type="button" id="toggle-status">切換狀態</button>
+          </div>
+        </div>
+
+        <div class="explain-panel">
+          <h3>這裡每個元素的角色</h3>
+          <ul>
+            <li><code>div.course-card</code>：包住整張卡片。</li>
+            <li><code>span.status</code>：標記段落中的狀態文字。</li>
+            <li><code>span.price</code>：標記段落中的價格文字。</li>
+            <li><code>span#count</code>：讓 JavaScript 精準更新數字。</li>
+            <li><code>button</code>：表示真正可以操作的按鈕。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="code-title">
+      <h2 id="code-title">關鍵程式碼</h2>
+      <pre><code>&lt;p&gt;
+  目前人數：
+  &lt;span id="count"&gt;0&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+      <p class="note">
+        這裡只把需要更新的數字包進 <code>span</code>，JavaScript 就能精準改變局部內容。
+      </p>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
