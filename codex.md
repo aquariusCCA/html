@@ -1,46 +1,75 @@
-你現在要協助我整理 HTML Knowledge Pack。
+請你扮演「Demo 生成器」，根據我提供的 HTML 正式筆記，生成 `demos/` 範例程式。
 
-請依序套用以下提示詞規則：
+請套用以下規則：
 
-1. `prompts/system/base-role.md`
-2. `prompts/system/html-teacher-role.md`
-3. `prompts/workflows/origin-to-notes.md`
-4. `prompts/formats/teaching-note-format.md`
+- 系統規則：`prompts/system/demo-generator-system.md`
+- 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
+- 輸出格式：`prompts/formats/demo-format.md`
 
-任務目標：
+## 任務目標
 
-請將我提供的 `origin/` 原始資料，整理成可以放入 `notes/` 的正式教書型筆記。
+請從以下 notes 生成適合初學者觀察、執行、修改的 demo。
 
-輸入資料：
+生成結果要能幫助我：
 
-```text
-來源路徑：`origin/第09章_標題標籤/標題標籤.md`
-目標主題：`標題標籤`
-預期輸出路徑：`notes/第09章_標題標籤/標題標籤.md`
-補充要求：`無`
-```
+1. 把筆記中的抽象概念轉成可執行範例。
+2. 觀察不同 HTML 寫法造成的差異。
+3. 透過修改程式碼加深理解。
+4. 後續可以銜接到 `practice/` 練習題。
 
-任務要求：
+## 輸入資料
 
-1. 先判斷原始內容是否適合整理成一份筆記。
-2. 如果內容過大，請提出拆分建議。
-3. 如果內容足夠聚焦，請產生一份正式教書型筆記。
-4. 筆記應保留原始資料核心意思。
-5. 可補充必要背景，但不得偏離主題。
-6. 輸出應符合 `prompts/formats/teaching-note-format.md`。
-7. 若有不確定資訊，請列為「待確認」。
+- 筆記檔案路徑：`notes/第09章_標題標籤/標題標籤.md`
+- 章節名稱：`第09章_標題標籤`
+- 目標知識點：標題標籤
+- 希望產生的 由 AI 判斷
+- 難度：基礎 / 進階 / 整合
+- 是否拆檔：
+  - 優先拆成 `index.html`、`style.css`、`main.js`、`README.md`
+  - 如果 demo 很小，可以只使用 `index.html` 與 `README.md`
+- 目標輸出路徑：`demos/第09章_標題標籤/`
+- Demo 類型偏好：
+  - 單一概念 demo
+  - 對照型 demo
+  - 常見錯誤 demo
+  - 實務應用 demo
+  - 小型整合 demo
 
-輸出要求：
+## 請先輸出 Demo 規劃
 
-- 使用繁體中文
-- 保留原始資料中的重要知識
-- 補足初學者需要理解的背景
-- 使用 HTML 專業觀念說明
-- 提供必要的範例程式
-- 補充常見錯誤與實務注意事項
-- 最終輸出為 Markdown
-- 不要輸出與筆記無關的閒聊內容
+請先整理：
 
-以下是 origin 原始資料：
+| Demo | 類型 | 對應 notes 知識點 | 學習目標 | 建議路徑 |
+|---|---|---|---|---|
 
-`origin/第09章_標題標籤/標題標籤.md`
+確認規劃後，直接繼續輸出完整 demo，不需要再問我。
+
+## 輸出要求
+
+每個 demo 請包含：
+
+1. 基本資訊
+2. 學習目標
+3. 對應 notes 知識點
+4. 檔案結構
+5. 完整檔案內容
+6. 執行方式
+7. 觀察重點
+8. 修改練習
+9. 常見錯誤或注意事項
+10. 自我檢查
+
+## 限制條件
+
+請避免：
+
+1. 生成與 notes 無關的 demo。
+2. 一次產生過度龐大的專案。
+3. 使用 Vue、React、Bootstrap 或其他第三方框架。
+4. 將 appendix、practice、review 的內容混入 demo。
+5. 只給程式碼但沒有教學說明。
+6. 產生不可執行或缺少關鍵檔案的範例。
+
+## Notes 內容
+
+`notes/第09章_標題標籤/標題標籤.md`

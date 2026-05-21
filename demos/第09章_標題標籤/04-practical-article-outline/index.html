@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章頁標題結構 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>用標題建立可掃描的文章結構</h1>
+    <p>
+      這個 demo 把文章頁分成清楚的標題層級，並用 JavaScript 從 DOM 中產生右側 outline，
+      觀察標題如何幫助使用者快速理解內容。
+    </p>
+  </header>
+
+  <main class="layout">
+    <article class="article-content" data-article>
+      <h1 id="article-title">如何開始學習 HTML</h1>
+      <p>
+        HTML 是用來描述網頁內容與結構的標記語言。學習 HTML 時，
+        先理解內容層級，再學習常見標籤，會比只記畫面效果更穩定。
+      </p>
+
+      <section>
+        <h2 id="purpose">先理解 HTML 的用途</h2>
+        <p>
+          HTML 的工作是描述頁面有哪些內容，以及這些內容彼此之間的關係。
+          標題標籤就是用來指出主題、段落主題與子段落主題。
+        </p>
+
+        <h3 id="content-structure">內容與結構</h3>
+        <p>
+          同一段文字可以被做成普通段落，也可以被做成標題。
+          選擇哪個標籤，應該取決於它是不是一個新的內容區塊名稱。
+        </p>
+      </section>
+
+      <section>
+        <h2 id="common-tags">再學習常見標籤</h2>
+        <p>
+          初學者可以從標題、段落、連結、圖片與表單元素開始。
+          每個標籤都先看語意，再看預設外觀。
+        </p>
+
+        <h3 id="heading-tags">標題標籤</h3>
+        <p>
+          <code>h1</code> 表示最高層級標題，<code>h2</code> 表示主要段落，
+          <code>h3</code> 可以表示更細的子段落。
+        </p>
+
+        <h3 id="paragraph-links">段落與連結</h3>
+        <p>
+          段落用來承載一般文字，連結用來表示可前往其他位置的文字或內容。
+        </p>
+      </section>
+
+      <section>
+        <h2 id="learning-order">安排學習順序</h2>
+        <p>
+          先用標題建立頁面骨架，再補上段落與其他內容。
+          這樣比較容易檢查整篇文章是否有清楚的主題與章節。
+        </p>
+      </section>
+    </article>
+
+    <aside class="outline-panel" aria-labelledby="outline-title">
+      <h2 id="outline-title">文章標題 outline</h2>
+      <ol class="outline-list" data-outline></ol>
+      <p class="note">
+        觀察重點：outline 是從文章內的 <code>h1</code>、<code>h2</code>、<code>h3</code> 產生的。
+      </p>
+    </aside>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
