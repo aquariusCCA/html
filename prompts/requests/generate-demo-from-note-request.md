@@ -16,7 +16,7 @@
 
 建議使用順序：
 
-1. 先提供 `demo-generator.system.md` 作為系統規則。
+1. 先提供 `demo-generator-system.md` 作為系統規則。
 2. 再提供 `notes-to-demos-workflow.md` 作為生成流程。
 3. 再提供 `demo-format.md` 作為輸出格式。
 4. 最後使用本檔案中的 request 提問範本。
@@ -52,11 +52,11 @@
    - 常見錯誤或注意事項
 5. 如果 notes 資訊不足，請明確標註不足處，不要憑空生成複雜功能。
 
-## Notes 資訊
+## 輸入資料
 
-- notes 路徑：`notes/{chapter}/{note-file}.md`
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
-- 預計輸出路徑：`demos/{chapter-slug}/`
+- 目標輸出路徑：`demos/{chapter-slug}/`
 
 ## Notes 內容
 
@@ -91,26 +91,23 @@
 3. 透過修改程式碼加深理解。
 4. 後續可以銜接到 `practice/` 練習題。
 
-## 生成範圍
+## 輸入資料
 
-- notes 路徑：`notes/{chapter}/{note-file}.md`
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
-- 目標輸出路徑：`demos/{chapter-slug}/`
-- 預計 demo 數量：{請填入數量，例如 3 個；若不確定，請填「由 AI 判斷」}
+- 目標知識點：{請填入目標知識點；若不指定，請填「由 AI 判斷」}
+- 希望產生的 demo 數量：{請填入數量，例如 3 個；若不確定，請填「由 AI 判斷」}
 - 難度：基礎 / 進階 / 整合
-- 檔案形式：
+- 是否拆檔：
   - 優先拆成 `index.html`、`style.css`、`main.js`、`README.md`
   - 如果 demo 很小，可以只使用 `index.html` 與 `README.md`
-
-## Demo 類型偏好
-
-請優先考慮以下類型：
-
-1. 單一概念 demo
-2. 對照型 demo
-3. 常見錯誤 demo
-4. 實務應用 demo
-5. 小型整合 demo
+- 目標輸出路徑：`demos/{chapter-slug}/`
+- Demo 類型偏好：
+  - 單一概念 demo
+  - 對照型 demo
+  - 常見錯誤 demo
+  - 實務應用 demo
+  - 小型整合 demo
 
 ## 請先輸出 Demo 規劃
 
@@ -161,7 +158,7 @@
 適合只想針對某個知識點生成一個 demo。
 
 ````markdown
-請根據以下 notes 中的指定知識點，生成一個小而清楚的 demo。
+請根據以下 notes 中的目標知識點，生成一個小而清楚的 demo。
 
 請套用以下規格：
 
@@ -169,9 +166,16 @@
 - 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
 - 輸出格式：`prompts/formats/demo-format.md`
 
-## 指定知識點
+## 輸入資料
 
-{例如：label 與 input 的綁定關係}
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
+- 章節名稱：{chapter-title}
+- 目標知識點：{例如：label 與 input 的綁定關係}
+- 希望產生的 demo 數量：1 個
+- 難度：基礎
+- 是否拆檔：使用 `index.html` 與 `README.md`，必要時加 `style.css`、`main.js`
+- 目標輸出路徑：`demos/{chapter-slug}/{demo-slug}/`
+- Demo 類型偏好：單一概念 demo
 
 ## Demo 要求
 
@@ -180,10 +184,6 @@
 3. 可以直接在瀏覽器打開。
 4. 請包含 README 說明。
 5. 請提供至少 3 個修改練習。
-
-## 建議輸出路徑
-
-`demos/{chapter-slug}/{demo-slug}/`
 
 ## Notes 內容
 
@@ -207,7 +207,20 @@
 - 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
 - 輸出格式：`prompts/formats/demo-format.md`
 
-## 對照主題
+## 輸入資料
+
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
+- 章節名稱：{chapter-title}
+- 目標知識點：{例如：label 與 input 的綁定關係}
+- 希望產生的 demo 數量：1 個
+- 難度：基礎
+- 是否拆檔：使用 `index.html` 與 `README.md`，必要時加 `style.css`
+- 目標輸出路徑：`demos/{chapter-slug}/{demo-slug}/`
+- Demo 類型偏好：對照型 demo
+
+## 範本專用輸入
+
+### 對照主題
 
 請比較：
 
@@ -221,10 +234,6 @@
 3. 請列出使用者可以觀察的行為差異。
 4. 請列出至少 3 個修改練習。
 5. 不要使用第三方套件。
-
-## 建議輸出路徑
-
-`demos/{chapter-slug}/{demo-slug}/`
 
 ## Notes 內容
 
@@ -248,7 +257,20 @@
 - 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
 - 輸出格式：`prompts/formats/demo-format.md`
 
-## 錯誤主題
+## 輸入資料
+
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
+- 章節名稱：{chapter-title}
+- 目標知識點：{例如：表單欄位的 name 屬性}
+- 希望產生的 demo 數量：1 個
+- 難度：基礎
+- 是否拆檔：使用 `index.html` 與 `README.md`，必要時加 `style.css`
+- 目標輸出路徑：`demos/{chapter-slug}/{demo-slug}/`
+- Demo 類型偏好：常見錯誤 demo
+
+## 範本專用輸入
+
+### 錯誤主題
 
 {例如：表單欄位缺少 name 屬性}
 
@@ -259,10 +281,6 @@
 3. 說明正確寫法如何修正問題。
 4. 程式碼要保持小而清楚。
 5. README 要包含常見錯誤表格。
-
-## 建議輸出路徑
-
-`demos/{chapter-slug}/{demo-slug}/`
 
 ## Notes 內容
 
@@ -286,7 +304,20 @@
 - 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
 - 輸出格式：`prompts/formats/demo-format.md`
 
-## 實務場景
+## 輸入資料
+
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
+- 章節名稱：{chapter-title}
+- 目標知識點：{例如：語意標籤、表單結構、列表結構}
+- 希望產生的 demo 數量：1 個
+- 難度：基礎 / 進階
+- 是否拆檔：使用 `index.html`、`style.css`、`README.md`，必要時加 `main.js`
+- 目標輸出路徑：`demos/{chapter-slug}/{demo-slug}/`
+- Demo 類型偏好：實務應用 demo
+
+## 範本專用輸入
+
+### 實務場景
 
 {例如：文章頁、商品卡片、登入表單、FAQ 區塊、聯絡我們表單}
 
@@ -297,10 +328,6 @@
 3. 只使用原生 HTML / CSS / JavaScript。
 4. README 要說明每個重要結構對應的 notes 概念。
 5. 請提供修改練習，讓我能延伸成 practice 題目。
-
-## 建議輸出路徑
-
-`demos/{chapter-slug}/{demo-slug}/`
 
 ## Notes 內容
 
@@ -325,6 +352,17 @@
 - 系統規則：`prompts/system/demo-generator-system.md`
 - 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
 - 輸出格式：`prompts/formats/demo-format.md`
+
+## 輸入資料
+
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
+- 章節名稱：{chapter-title}
+- 目標知識點：{請填入目標知識點；若不指定，請填「由 AI 判斷」}
+- 希望產生的 demo 數量：由 AI 規劃
+- 難度：基礎 / 進階 / 整合
+- 是否拆檔：由 AI 根據 demo 規劃建議
+- 目標輸出路徑：`demos/{chapter-slug}/`
+- Demo 類型偏好：單一概念、對照型、常見錯誤優先
 
 ## 請輸出
 
@@ -360,6 +398,16 @@
 - 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
 - 輸出格式：`prompts/formats/demo-format.md`
 
+## 輸入資料
+
+- 筆記檔案路徑：`notes/{chapter}/{note-file}.md`
+- 章節名稱：{chapter-title}
+- 目標知識點：{請填入 demo 對應知識點；若不確定，請填「由 AI 判斷」}
+- 難度：基礎 / 進階 / 整合
+- 是否拆檔：{例如：單一 `index.html`，或拆成 `index.html`、`style.css`、`main.js`、`README.md`}
+- 目標輸出路徑：`demos/{chapter-slug}/{demo-slug}/`
+- Demo 類型偏好：{單一概念 / 對照型 / 常見錯誤 / 實務應用 / 小型整合}
+
 ## 檢查目標
 
 請檢查：
@@ -380,7 +428,9 @@
 {貼上 notes 內容}
 ```
 
-## Demo 內容
+## 範本專用輸入
+
+### Demo 內容
 
 ```text
 {貼上 demo 檔案結構與程式碼}
@@ -393,13 +443,20 @@
 
 | 變數 | 說明 | 範例 |
 |---|---|---|
+| `{notes-path}` | 筆記檔案路徑 | `notes/html-form/form-basic.md` |
 | `{chapter-title}` | 章節名稱 | HTML 表單 |
 | `{chapter-slug}` | 章節資料夾名稱 | `html-form` |
 | `{note-file}` | 筆記檔名 | `form-basic.md` |
 | `{demo-slug}` | demo 資料夾名稱 | `01-basic-input-types` |
 | `{concept}` | 目標知識點 | `input type` |
-| `{demo-count}` | demo 數量 | `3` |
+| `{demo-count}` | 希望產生的 demo 數量 | `3` |
 | `{difficulty}` | 難度 | `基礎`、`進階`、`整合` |
+| `{split-mode}` | 是否拆檔 | `index.html` + `README.md` |
+| `{output-path}` | 目標輸出路徑 | `demos/html-form/` |
+| `{demo-type-preference}` | Demo 類型偏好 | 單一概念、對照型、常見錯誤 |
+| `{compare-topic}` | 對照主題 | 有 `label for` vs 沒有 `label for` |
+| `{mistake-topic}` | 錯誤主題 | 表單欄位缺少 `name` 屬性 |
+| `{scenario}` | 實務場景 | 登入表單 |
 
 ---
 
@@ -409,10 +466,10 @@
 
 | 項目 | 預設值 |
 |---|---|
-| Demo 數量 | 由 AI 根據 notes 判斷 |
-| Demo 類型 | 單一概念、對照型、常見錯誤優先 |
+| 希望產生的 demo 數量 | 由 AI 根據 notes 判斷 |
+| Demo 類型偏好 | 單一概念、對照型、常見錯誤優先 |
 | 程式碼 | 原生 HTML / CSS / JavaScript |
-| 檔案結構 | `index.html` + `README.md`，必要時加 `style.css`、`main.js` |
+| 是否拆檔 | `index.html` + `README.md`，必要時加 `style.css`、`main.js` |
 | 語言 | 繁體中文 |
 | 難度 | 基礎到進階 |
 | 輸出格式 | 完整輸出 |
@@ -432,14 +489,16 @@
 - 工作流程：`prompts/workflows/notes-to-demos-workflow.md`
 - 輸出格式：`prompts/formats/demo-format.md`
 
-## Notes 資訊
+## 輸入資料
 
-- notes 路徑：`notes/html-form/form-basic.md`
+- 筆記檔案路徑：`notes/html-form/form-basic.md`
 - 章節名稱：HTML 表單基礎
-- 預計輸出路徑：`demos/html-form/`
-- Demo 數量：3 個
+- 目標知識點：form、label、input、select、textarea、button、name 屬性
+- 希望產生的 demo 數量：3 個
 - 難度：基礎
-- Demo 類型：單一概念、對照型、常見錯誤
+- 是否拆檔：`index.html` + `README.md`，必要時加 `style.css`、`main.js`
+- 目標輸出路徑：`demos/html-form/`
+- Demo 類型偏好：單一概念、對照型、常見錯誤
 
 ## 輸出要求
 
