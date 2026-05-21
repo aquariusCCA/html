@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本段落與自動換行 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>觀察 p 段落與自動換行</h1>
+    <p>
+      這個 demo 使用多個 <code>&lt;p&gt;</code> 建立文章正文，
+      並用不同寬度的容器觀察段落文字如何自動換行。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="paragraph-stack-title">
+      <h2 id="paragraph-stack-title">多個段落形成正文內容</h2>
+      <article class="sample-frame article-sample">
+        <h3>學習 HTML 的第一步</h3>
+        <p>HTML 是建立網頁內容結構的基礎。透過不同的標籤，我們可以描述標題、段落、連結、圖片與表單等內容。</p>
+        <p>在撰寫文章或說明文件時，應該使用段落標籤把文字切分成容易閱讀的段落，而不是把所有文字放在同一大段中。</p>
+        <p>每一個 <code>&lt;p&gt;</code> 都代表一段完整文字，段落之間的視覺距離則可以交給 CSS 控制。</p>
+      </article>
+      <p class="note">
+        觀察重點：三段正文分別使用三個 <code>&lt;p&gt;</code>，瀏覽器會讓它們成為獨立段落。
+      </p>
+    </section>
+
+    <section class="demo-section" aria-labelledby="wrap-title">
+      <h2 id="wrap-title">同一段文字在不同寬度下自動換行</h2>
+      <div class="compare-grid">
+        <article class="sample-frame width-demo width-demo-wide">
+          <h3>較寬的容器</h3>
+          <p>這是一段較長的文字。當容器比較寬時，瀏覽器可以在同一行放下更多文字，所以換行次數比較少。</p>
+        </article>
+
+        <article class="sample-frame width-demo width-demo-narrow">
+          <h3>較窄的容器</h3>
+          <p>這是一段較長的文字。當容器比較窄時，瀏覽器會在同一個段落中自動換行，而不需要手動加入換行標籤。</p>
+        </article>
+      </div>
+      <p class="note">
+        只要內容仍然屬於同一段意思，就應該留在同一個 <code>&lt;p&gt;</code> 裡。
+      </p>
+    </section>
+
+    <section class="demo-section" aria-labelledby="summary-title">
+      <h2 id="summary-title">段落元素重點對照</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>觀察項目</th>
+              <th>說明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>語意</td>
+              <td><code>&lt;p&gt;</code> 表示一段完整文字內容。</td>
+            </tr>
+            <tr>
+              <td>分段</td>
+              <td>不同段落應使用不同的 <code>&lt;p&gt;</code>。</td>
+            </tr>
+            <tr>
+              <td>自動換行</td>
+              <td>段落文字會依照容器寬度自然換行。</td>
+            </tr>
+            <tr>
+              <td>視覺間距</td>
+              <td>段落間距應使用 CSS 控制，而不是用空白或連續換行硬排。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

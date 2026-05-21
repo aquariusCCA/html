@@ -57,7 +57,7 @@ appendix/{chapter-slug}-appendix.md
 7. 若需要補充推論，必須明確標示為「補充理解」或「延伸提醒」。
 8. 如果某個區塊不適用，請集中列在「未生成區塊」，不要保留完整空標題與空表格。
 
-## Notes 資訊
+## 輸入資料
 
 - notes 路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
@@ -99,7 +99,7 @@ appendix/{chapter-slug}-appendix.md
 4. 根據來源索引回到 notes 深入閱讀。
 5. 長期維護本章的參考資料。
 
-## 生成範圍
+## 輸入資料
 
 - notes 路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
@@ -205,7 +205,7 @@ HTML appendix 請特別注意：
 8. 若指定 `HTML 元素表` 但元素只是範例載體，請改為說明不適合生成完整元素表；必要時只輸出「範例載體索引」。
 9. 若指定 `API / 方法表` 但 notes 沒有明確教 API、方法或事件，請標示資訊不足，不要把範例中的輔助 JavaScript 擴寫成 API 表。
 
-## Notes 資訊
+## 輸入資料
 
 - notes 路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
@@ -239,7 +239,7 @@ HTML appendix 請特別注意：
 8. 不適用的區塊請集中列在「未生成區塊」，不要保留完整空標題與空表格。
 9. 不要輸出 `Appendix 規劃` 表，除非我另外要求。
 
-## 章節資訊
+## 輸入資料
 
 - 章節名稱：{chapter-title}
 - 目標輸出路徑：`appendix/{chapter-slug}/{chapter-slug}-appendix.md`
@@ -289,10 +289,12 @@ HTML appendix 請特別注意：
 4. 若某條目找不到來源，請標示「來源待確認」。
 5. 不要為找不到來源的條目捏造來源。
 
-## 生成範圍
+## 輸入資料
 
 - 條目粒度：來源索引重建
 - 來源索引需求：補上或重建
+- Appendix 內容：已提供
+- 對應 notes 內容：已提供
 
 ## Appendix 內容
 

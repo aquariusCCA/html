@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>實務文章頁段落 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body data-spacing="comfortable">
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>文章頁中的段落結構</h1>
+    <p>
+      這個 demo 使用文章頁情境示範標題與段落的分工，
+      並透過控制按鈕調整段落間距，觀察 HTML 結構與 CSS 樣式的責任差異。
+    </p>
+  </header>
+
+  <main class="layout">
+    <article class="article-card" data-article>
+      <header class="article-header">
+        <p class="category">HTML 基礎</p>
+        <h2>為什麼文章需要清楚的段落？</h2>
+      </header>
+
+      <p>段落是文章閱讀節奏的基本單位。當一篇文章被拆成多個清楚段落時，讀者可以更快掌握每一段正在說明的重點。</p>
+
+      <p>在 HTML 中，段落應使用 <code>&lt;p&gt;</code> 表示。這不只是為了讓畫面看起來有空隙，而是為了讓文件結構清楚地表達「這是一段正文」。</p>
+
+      <p>如果需要調整段落之間的距離，應該修改 CSS，而不是在 HTML 中加入多個空白、空段落或連續換行標籤。</p>
+
+      <p>這樣的分工可以讓內容結構保持穩定，也讓樣式在不同頁面或不同裝置上更容易統一管理。</p>
+    </article>
+
+    <aside class="control-panel" aria-labelledby="panel-title">
+      <h2 id="panel-title">段落觀察面板</h2>
+
+      <section class="panel-section" aria-labelledby="stats-title">
+        <h3 id="stats-title">DOM 統計</h3>
+        <dl class="stats-list">
+          <div>
+            <dt>段落數量</dt>
+            <dd data-paragraph-count>0</dd>
+          </div>
+          <div>
+            <dt>總字數</dt>
+            <dd data-character-count>0</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="panel-section" aria-labelledby="spacing-title">
+        <h3 id="spacing-title">段落間距</h3>
+        <div class="button-group" role="group" aria-label="切換段落間距">
+          <button type="button" data-spacing-option="compact">緊湊</button>
+          <button type="button" data-spacing-option="comfortable" aria-pressed="true">舒適</button>
+          <button type="button" data-spacing-option="loose">寬鬆</button>
+        </div>
+        <p class="panel-note" data-spacing-message>
+          目前使用舒適間距，適合一般文章閱讀。
+        </p>
+      </section>
+
+      <section class="panel-section" aria-labelledby="structure-title">
+        <h3 id="structure-title">結構重點</h3>
+        <ul>
+          <li>文章標題使用 <code>h2</code>。</li>
+          <li>正文每段使用獨立的 <code>p</code>。</li>
+          <li>段落距離由 CSS 控制。</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>

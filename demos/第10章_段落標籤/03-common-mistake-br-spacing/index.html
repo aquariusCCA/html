@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常見錯誤：用 br 製造段落間距 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 03</p>
+    <h1>不要用連續 br 製造段落間距</h1>
+    <p>
+      這個 demo 比較錯誤寫法與正確寫法，並用 JavaScript 統計每組範例中的
+      <code>&lt;p&gt;</code> 與 <code>&lt;br&gt;</code> 數量。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="samples-title">
+      <h2 id="samples-title">錯誤與正確寫法對照</h2>
+      <div class="compare-grid">
+        <article class="sample-card mistake-card" data-sample="錯誤寫法">
+          <p class="sample-label">錯誤寫法</p>
+          <div class="sample-content">
+            <p>
+              HTML 是用來描述網頁內容與結構的標記語言。<br><br>
+              CSS 則用來控制畫面樣式。
+            </p>
+          </div>
+          <p class="sample-note">
+            兩段不同意思被塞在同一個 <code>&lt;p&gt;</code> 裡，並用連續
+            <code>&lt;br&gt;</code> 製造空隙。
+          </p>
+        </article>
+
+        <article class="sample-card correct-card" data-sample="正確寫法">
+          <p class="sample-label">正確寫法</p>
+          <div class="sample-content">
+            <p>HTML 是用來描述網頁內容與結構的標記語言。</p>
+            <p>CSS 則用來控制畫面樣式。</p>
+          </div>
+          <p class="sample-note">
+            兩段不同意思各自使用一個 <code>&lt;p&gt;</code>，段落間距交給 CSS 控制。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="analysis-title">
+      <h2 id="analysis-title">DOM 結構觀察</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>範例</th>
+              <th><code>&lt;p&gt;</code> 數量</th>
+              <th><code>&lt;br&gt;</code> 數量</th>
+              <th>判斷</th>
+            </tr>
+          </thead>
+          <tbody data-analysis-body></tbody>
+        </table>
+      </div>
+      <p class="note">
+        觀察重點：段落分段應該反映在 HTML 結構中，而不是只靠換行標籤模擬畫面。
+      </p>
+    </section>
+
+    <section class="demo-section" aria-labelledby="code-title">
+      <h2 id="code-title">修正方向</h2>
+      <div class="fix-list">
+        <p><strong>第一步：</strong>確認哪些文字屬於不同段落。</p>
+        <p><strong>第二步：</strong>每個獨立段落使用一個 <code>&lt;p&gt;</code>。</p>
+        <p><strong>第三步：</strong>需要調整段落距離時，修改 CSS 的 <code>margin</code> 或 <code>line-height</code>。</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>

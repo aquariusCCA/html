@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>段落與 div 語意對照 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 02</p>
+    <h1>比較 p、div 與標題的語意</h1>
+    <p>
+      這個 demo 比較兩組看起來相似的內容。左側使用符合語意的 HTML，
+      右側主要使用 <code>&lt;div&gt;</code> 模擬外觀。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="compare-title">
+      <h2 id="compare-title">相似外觀，不同語意</h2>
+      <div class="compare-grid">
+        <article class="sample-card semantic-sample">
+          <p class="sample-label">語意清楚的寫法</p>
+          <h3>網站維護公告</h3>
+          <p>本網站將於週末進行系統維護，部分功能可能暫時無法使用。</p>
+          <p>維護完成後，所有服務將恢復正常，感謝你的理解。</p>
+        </article>
+
+        <div class="sample-card nonsemantic-sample">
+          <div class="sample-label">主要靠外觀模擬</div>
+          <div class="fake-heading">網站維護公告</div>
+          <div class="fake-paragraph">本網站將於週末進行系統維護，部分功能可能暫時無法使用。</div>
+          <div class="fake-paragraph">維護完成後，所有服務將恢復正常，感謝你的理解。</div>
+        </div>
+      </div>
+      <p class="note">
+        觀察重點：兩側可以被 CSS 做成相似外觀，但左側的 <code>h3</code> 與 <code>p</code>
+        會直接表達標題與段落語意。
+      </p>
+    </section>
+
+    <section class="demo-section" aria-labelledby="structure-title">
+      <h2 id="structure-title">結構對照</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>內容角色</th>
+              <th>建議元素</th>
+              <th>不建議只用</th>
+              <th>原因</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>文章或區塊標題</td>
+              <td><code>h1</code> 到 <code>h6</code></td>
+              <td><code>p</code>、<code>div</code></td>
+              <td>標題元素能表達內容層級。</td>
+            </tr>
+            <tr>
+              <td>正文段落</td>
+              <td><code>p</code></td>
+              <td><code>div</code></td>
+              <td><code>p</code> 直接表示一段完整文字。</td>
+            </tr>
+            <tr>
+              <td>無特定語意的容器</td>
+              <td><code>div</code></td>
+              <td>用有語意元素硬包</td>
+              <td>沒有更適合元素時才使用無語意容器。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="code-title">
+      <h2 id="code-title">程式碼片段對照</h2>
+      <div class="code-grid">
+        <pre><code>&lt;h3&gt;網站維護公告&lt;/h3&gt;
+&lt;p&gt;本網站將於週末進行系統維護。&lt;/p&gt;
+&lt;p&gt;維護完成後，所有服務將恢復正常。&lt;/p&gt;</code></pre>
+
+        <pre><code>&lt;div class="fake-heading"&gt;網站維護公告&lt;/div&gt;
+&lt;div class="fake-paragraph"&gt;本網站將於週末進行系統維護。&lt;/div&gt;
+&lt;div class="fake-paragraph"&gt;維護完成後，所有服務將恢復正常。&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
