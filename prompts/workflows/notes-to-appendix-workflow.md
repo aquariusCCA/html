@@ -7,7 +7,7 @@
 > - `prompts/system/base-role.md`
 > - `prompts/system/appendix-generator.md`
 > - `prompts/formats/appendix-format.md`
-> - `prompts/requests/generate-appendix-from-notes.request.md`
+> - `prompts/requests/generate-appendix-from-notes-request.md`
 
 ---
 
@@ -39,6 +39,8 @@
 2. 某章節的正式筆記片段。
 3. 某個明確知識點的筆記內容。
 
+若是來源索引重建模式，需同時提供既有 `Appendix 內容` 與對應的 `notes` 內容。
+
 若使用者有提供，請一併參考：
 
 | 資料 | 用途 |
@@ -48,6 +50,10 @@
 | 目標輸出路徑 | 判斷輸出位置 |
 | 指定附錄類型 | 限制只生成特定區塊 |
 | 條目粒度 | 決定章節級、主題級或單一語法級 |
+| 生成完整度 | 判斷輸出應為完整附錄或裁切式附錄 |
+| 範例策略 | 決定範例是否只保留最小可用片段 |
+| 來源索引需求 | 決定是否建立、補上或重建來源索引 |
+| Appendix 內容 | 僅用於已存在附錄的來源索引重建模式 |
 
 缺少但可由 `notes` 合理推斷的資訊可以推斷；無法推斷時標示「待確認」。
 

@@ -1,6 +1,6 @@
 # 從 Notes 生成 Appendix 的實際提問範本
 
-> 檔案位置：`prompts/requests/generate-appendix-from-notes.request.md`
+> 檔案位置：`prompts/requests/generate-appendix-from-notes-request.md`
 >
 > 用途：存放實際向 AI 發問時，可以直接複製使用的提問內容。
 >
@@ -61,7 +61,8 @@ appendix/{chapter-slug}-appendix.md
 
 - notes 路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
-- 預計輸出路徑：`appendix/{chapter-slug}/{topic-slug}-appendix.md`
+- 目標輸出路徑：`appendix/{chapter-slug}/{topic-slug}-appendix.md`
+- 條目粒度：主題級
 
 ## Notes 內容
 
@@ -77,7 +78,7 @@ appendix/{chapter-slug}-appendix.md
 適合正式生成一份可放入 `appendix/` 的完整查表資料。
 
 ````markdown
-請你扮演「查表型附錄資料生成助手」，根據我提供的 HTML 正式筆記，生成 `appendix/` 附錄查表資料。
+請你扮演「查表型附錄資料生成助手」，根據我提供的正式筆記，生成 `appendix/` 附錄查表資料。
 
 請套用以下規則：
 
@@ -103,10 +104,11 @@ appendix/{chapter-slug}-appendix.md
 - notes 路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
 - 目標輸出路徑：`appendix/{chapter-slug}/{topic-slug}-appendix.md`
+- 條目粒度：主題級完整附錄
 - 生成完整度：主題裁切式完整附錄，只輸出 notes 可支撐的區塊
-- 附錄類型：依 notes 內容自動判斷
+- 指定附錄類型：依 notes 內容自動判斷
 - 範例策略：只保留最小可用範例
-- 來源索引：需要
+- 來源索引需求：需要
 
 ## Appendix 區塊規劃
 
@@ -207,6 +209,7 @@ HTML appendix 請特別注意：
 
 - notes 路徑：`notes/{chapter}/{note-file}.md`
 - 章節名稱：{chapter-title}
+- 條目粒度：指定區塊
 
 ## Notes 內容
 
@@ -240,6 +243,7 @@ HTML appendix 請特別注意：
 
 - 章節名稱：{chapter-title}
 - 目標輸出路徑：`appendix/{chapter-slug}/{chapter-slug}-appendix.md`
+- 條目粒度：章節級
 
 ## Notes 內容
 
@@ -284,6 +288,11 @@ HTML appendix 請特別注意：
 3. 來源索引需標示附錄區塊、notes 路徑、對應章節或小節、備註。
 4. 若某條目找不到來源，請標示「來源待確認」。
 5. 不要為找不到來源的條目捏造來源。
+
+## 生成範圍
+
+- 條目粒度：來源索引重建
+- 來源索引需求：補上或重建
 
 ## Appendix 內容
 
