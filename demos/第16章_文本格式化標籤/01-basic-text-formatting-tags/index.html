@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本文本格式化標籤 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>基本文本格式化標籤</h1>
+    <p>
+      觀察四組常見文本格式化標籤：加粗、底線、傾斜與刪除線。
+      這個 demo 的重點不是只看外觀，而是理解相近外觀背後的語意差異。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="overview-title">
+      <h2 id="overview-title">四組常見標籤</h2>
+
+      <div class="format-grid">
+        <article class="format-card">
+          <h3>加粗</h3>
+          <p><b>這是 b：視覺上醒目的文字。</b></p>
+          <p><strong>這是 strong：內容上重要的文字。</strong></p>
+          <pre><code>&lt;b&gt;醒目文字&lt;/b&gt;
+&lt;strong&gt;重要文字&lt;/strong&gt;</code></pre>
+        </article>
+
+        <article class="format-card">
+          <h3>底線</h3>
+          <p><u>這是 u：帶有底線的標註。</u></p>
+          <p><ins>這是 ins：後來新增的內容。</ins></p>
+          <pre><code>&lt;u&gt;標註文字&lt;/u&gt;
+&lt;ins&gt;新增內容&lt;/ins&gt;</code></pre>
+        </article>
+
+        <article class="format-card">
+          <h3>傾斜</h3>
+          <p><i>這是 i：不同語氣或術語。</i></p>
+          <p><em>這是 em：語氣上的強調。</em></p>
+          <pre><code>&lt;i&gt;術語或外文詞&lt;/i&gt;
+&lt;em&gt;強調語氣&lt;/em&gt;</code></pre>
+        </article>
+
+        <article class="format-card">
+          <h3>刪除線</h3>
+          <p><s>這是 s：不再準確或不再適用。</s></p>
+          <p><del>這是 del：被刪除的內容。</del></p>
+          <pre><code>&lt;s&gt;不再適用&lt;/s&gt;
+&lt;del&gt;刪除內容&lt;/del&gt;</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="summary-title">
+      <h2 id="summary-title">選用判斷</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>如果你想表達</th>
+            <th>優先考慮</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>內容非常重要</td>
+            <td><code>&lt;strong&gt;</code></td>
+          </tr>
+          <tr>
+            <td>內容是新增的</td>
+            <td><code>&lt;ins&gt;</code></td>
+          </tr>
+          <tr>
+            <td>語氣需要強調</td>
+            <td><code>&lt;em&gt;</code></td>
+          </tr>
+          <tr>
+            <td>內容被刪除</td>
+            <td><code>&lt;del&gt;</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
+

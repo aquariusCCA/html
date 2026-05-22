@@ -47,6 +47,26 @@ prompts/formats/asset-path-normalization-format.md
 - 原始資產路徑。
 - 是否能讀取實體資產檔案並計算內容 hash。
 
+`Markdown slug` 是用來代表這份 Markdown 檔案或主題的安全識別字，會作為無語意資產檔名中的 `<md-slug>` 前綴。它不是 Markdown 內建語法，也不是章節錨點。
+
+產生 `Markdown slug` 時，應遵守以下原則：
+
+- 以 Markdown 檔名或主題名稱為來源，不包含 `.md` 副檔名。
+- 優先使用小寫英文字母、數字與連字號 `-`。
+- 將空白、底線與分隔符號轉成連字號。
+- 移除或轉換括號、`#`、`?`、`%`、反斜線與其他不適合放入檔名的特殊符號。
+- 合併連續連字號，並移除開頭與結尾的連字號。
+- 若原名稱是中文，應轉成簡短、可讀且能代表主題的英文 slug。
+
+範例：
+
+```text
+HTML 標籤結構.md        -> html-tag-structure
+01 CSS 盒模型.md        -> css-box-model
+表單驗證範例.md         -> form-validation-example
+JavaScript: DOM API.md  -> javascript-dom-api
+```
+
 若缺少 Markdown slug，根據 Markdown 檔名或主題名稱產生安全 slug。
 
 hash 不需要使用者人工提供。若能讀取實體資產檔案，必須根據檔案內容自動產生 SHA-256，取前 6 碼小寫十六進位字元。

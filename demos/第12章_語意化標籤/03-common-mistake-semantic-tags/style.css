@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f8fb;
+  color: #1f2933;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  line-height: 1.6;
+}
+
+.page-header,
+.page-main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.page-header {
+  padding: 40px 0 24px;
+}
+
+.eyebrow,
+.sample-label {
+  margin: 0 0 8px;
+  color: #8a3a18;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.demo-section {
+  margin-bottom: 28px;
+}
+
+.compare-grid,
+.code-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sample-box,
+.result-list {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.mistake-box {
+  border-left: 6px solid #b45309;
+}
+
+.correct-box {
+  border-left: 6px solid #0f766e;
+}
+
+.product-card {
+  border: 1px solid #d6dee8;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 12px;
+}
+
+.product-card + .product-card {
+  margin-top: 10px;
+}
+
+.fake-title,
+h3,
+h4 {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+a {
+  color: #2457a7;
+}
+
+nav a {
+  border: 1px solid #b7c7da;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 8px 10px;
+  text-decoration: none;
+}
+
+.support-links {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+pre {
+  overflow-x: auto;
+  border-radius: 8px;
+  background: #172033;
+  color: #f8fafc;
+  padding: 16px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.result-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.result-list div {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+.result-list div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.result-list dt {
+  font-weight: 700;
+}
+
+.result-list dd {
+  margin: 4px 0 0;
+  color: #4b5d70;
+}
+
+@media (max-width: 780px) {
+  .compare-grid,
+  .code-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

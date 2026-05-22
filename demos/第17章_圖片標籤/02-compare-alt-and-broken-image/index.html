@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alt 與圖片載入失敗 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 02</p>
+    <h1>比較 alt 與圖片載入失敗</h1>
+    <p>
+      這個 demo 刻意放入正確圖片與錯誤圖片路徑，用來觀察圖片失敗時
+      <code>alt</code> 是否能補上必要資訊。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="compare-title">
+      <h2 id="compare-title">三種圖片狀態</h2>
+
+      <div class="compare-grid">
+        <article class="compare-card">
+          <h3>正常圖片</h3>
+          <div class="image-box">
+            <img src="../assets/images/avatar-profile.svg" alt="使用者個人頭像示意圖">
+          </div>
+          <pre><code>&lt;img src="../assets/images/avatar-profile.svg"
+     alt="使用者個人頭像示意圖"&gt;</code></pre>
+        </article>
+
+        <article class="compare-card is-good">
+          <h3>圖片失敗，但有 alt</h3>
+          <div class="image-box">
+            <img src="../assets/images/missing-avatar.svg" alt="使用者個人頭像">
+          </div>
+          <pre><code>&lt;img src="../assets/images/missing-avatar.svg"
+     alt="使用者個人頭像"&gt;</code></pre>
+        </article>
+
+        <article class="compare-card is-risk">
+          <h3>圖片失敗，缺少 alt</h3>
+          <div class="image-box">
+            <img src="../assets/images/missing-avatar.svg">
+          </div>
+          <pre><code>&lt;img src="../assets/images/missing-avatar.svg"&gt;</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="summary-title">
+      <h2 id="summary-title">比較結果</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>狀態</th>
+            <th>使用者能否理解圖片內容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>圖片正常</td>
+            <td>可以直接從圖片理解內容。</td>
+          </tr>
+          <tr>
+            <td>圖片失敗但有 <code>alt</code></td>
+            <td>仍可透過替代文字知道圖片用途。</td>
+          </tr>
+          <tr>
+            <td>圖片失敗且缺少 <code>alt</code></td>
+            <td>很難知道這張圖片原本代表什麼。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

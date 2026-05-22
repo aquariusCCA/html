@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" role="img" aria-labelledby="title desc">
+  <title id="title">使用者頭像示意圖</title>
+  <desc id="desc">圓形背景中的使用者頭像插圖。</desc>
+  <rect width="360" height="360" rx="40" fill="#f8efe6"/>
+  <circle cx="180" cy="138" r="66" fill="#2f6f68"/>
+  <circle cx="180" cy="124" r="38" fill="#f7d7bf"/>
+  <path d="M94 304C104 244 136 214 180 214C224 214 256 244 266 304Z" fill="#1f2933"/>
+  <circle cx="164" cy="122" r="5" fill="#1f2933"/>
+  <circle cx="196" cy="122" r="5" fill="#1f2933"/>
+  <path d="M164 150C175 160 187 160 198 150" fill="none" stroke="#1f2933" stroke-width="5" stroke-linecap="round"/>
+</svg>

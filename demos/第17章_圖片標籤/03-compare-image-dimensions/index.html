@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圖片尺寸與比例 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 03</p>
+    <h1>比較 width、height 與圖片比例</h1>
+    <p>
+      同一張 640 x 360 的圖片，用不同尺寸寫法顯示。觀察只設定寬度、
+      同時設定錯誤寬高，以及 CSS 響應式圖片的差異。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="dimension-title">
+      <h2 id="dimension-title">四種尺寸寫法</h2>
+
+      <div class="dimension-grid">
+        <article class="dimension-card">
+          <h3>原始比例</h3>
+          <img src="../assets/images/photo-landscape.svg" alt="山景示意圖原始比例" width="320">
+          <pre><code>&lt;img src="../assets/images/photo-landscape.svg"
+     alt="山景示意圖原始比例"
+     width="320"&gt;</code></pre>
+        </article>
+
+        <article class="dimension-card">
+          <h3>只設定寬度</h3>
+          <img src="../assets/images/photo-landscape.svg" alt="只設定寬度的山景示意圖" width="240">
+          <p>高度會依照原始比例縮放。</p>
+        </article>
+
+        <article class="dimension-card is-warning">
+          <h3>錯誤寬高比例</h3>
+          <img src="../assets/images/photo-landscape.svg" alt="被壓成正方形的山景示意圖" width="240" height="240">
+          <p>原本寬版圖片被強制壓成正方形。</p>
+        </article>
+
+        <article class="dimension-card">
+          <h3>CSS 響應式圖片</h3>
+          <img class="responsive-image" src="../assets/images/photo-landscape.svg" alt="可隨容器縮放的山景示意圖">
+          <pre><code>.responsive-image {
+  max-width: 100%;
+  height: auto;
+}</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="rule-title">
+      <h2 id="rule-title">判斷原則</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>寫法</th>
+            <th>結果</th>
+            <th>適合程度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>只設定 <code>width</code></td>
+            <td>高度依比例縮放</td>
+            <td>常見且安全</td>
+          </tr>
+          <tr>
+            <td>只設定 <code>height</code></td>
+            <td>寬度依比例縮放</td>
+            <td>可用，但較少見</td>
+          </tr>
+          <tr>
+            <td>同時設定錯誤比例</td>
+            <td>圖片可能變形</td>
+            <td>應避免</td>
+          </tr>
+          <tr>
+            <td>CSS <code>max-width: 100%; height: auto;</code></td>
+            <td>圖片可隨容器縮放並維持比例</td>
+            <td>適合響應式頁面</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

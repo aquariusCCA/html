@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f8fb;
+  color: #1f2933;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  line-height: 1.6;
+}
+
+.page-header,
+main {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.page-header {
+  padding: 40px 0 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #8a4b0f;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+.demo-section {
+  margin-bottom: 32px;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.compare-card {
+  border: 1px solid #cbd5e1;
+  border-top: 6px solid #2d6cdf;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 16px;
+}
+
+.compare-card.is-good {
+  border-top-color: #0f766e;
+}
+
+.compare-card.is-risk {
+  border-top-color: #b42318;
+}
+
+.image-box {
+  display: grid;
+  min-height: 190px;
+  place-items: center;
+  border: 1px dashed #a7b4c4;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 12px;
+}
+
+.image-box img {
+  display: block;
+  max-width: 160px;
+  height: auto;
+}
+
+code {
+  border-radius: 4px;
+  background: #e9eef3;
+  padding: 2px 5px;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+pre {
+  overflow-x: auto;
+  margin: 14px 0 0;
+  border-radius: 6px;
+  background: #f1f5f9;
+  padding: 12px;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  white-space: pre;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+th,
+td {
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #fff6df;
+}
+
+@media (max-width: 900px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+}

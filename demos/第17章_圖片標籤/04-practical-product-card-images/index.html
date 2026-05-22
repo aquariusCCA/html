@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>產品卡片圖片 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>實務應用：產品卡片中的圖片</h1>
+    <p>
+      這個 demo 把 <code>&lt;img&gt;</code> 放進常見的產品卡片情境。
+      重點是圖片要有正確來源、清楚替代文字，產品名稱與價格也應使用真正的
+      HTML 文字呈現。
+    </p>
+  </header>
+
+  <main>
+    <section class="product-layout" aria-labelledby="product-title">
+      <article class="product-card">
+        <p class="badge">新品</p>
+        <img
+          class="product-image"
+          src="../assets/images/product-headphones.svg"
+          alt="黑色無線耳機產品照片"
+        >
+        <div class="product-content">
+          <h2 id="product-title">Nimbus 無線耳機</h2>
+          <p class="description">
+            適合通勤、線上會議與日常聆聽。產品名稱、價格與重點資訊使用文字呈現，
+            不依賴圖片本身承載所有資訊。
+          </p>
+          <p class="price" aria-label="售價 2490 元">NT$ 2,490</p>
+          <button type="button">加入收藏</button>
+        </div>
+      </article>
+
+      <aside class="checklist" aria-labelledby="checklist-title">
+        <h2 id="checklist-title">這張產品圖片做了什麼</h2>
+        <ul>
+          <li><code>src</code> 指向本地圖片檔案。</li>
+          <li><code>alt</code> 說明圖片是黑色無線耳機產品照片。</li>
+          <li>圖片使用 CSS 維持比例並適應卡片寬度。</li>
+          <li>產品名稱與價格不是只放在圖片裡。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="demo-section" aria-labelledby="code-title">
+      <h2 id="code-title">關鍵 HTML</h2>
+      <pre><code>&lt;img
+  class="product-image"
+  src="../assets/images/product-headphones.svg"
+  alt="黑色無線耳機產品照片"
+&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>

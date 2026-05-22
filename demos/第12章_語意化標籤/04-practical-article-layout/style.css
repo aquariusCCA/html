@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f6f8fb;
+  color: #1f2933;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  line-height: 1.6;
+}
+
+.site-header,
+.page-main,
+.site-footer {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  padding: 40px 0 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #0f766e;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+a {
+  color: #2457a7;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.site-nav a {
+  border: 1px solid #b7c7da;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+.page-main {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 0.8fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.travel-article,
+.tips-panel,
+.site-footer {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 20px;
+}
+
+.article-header {
+  border-bottom: 1px solid #dbe4ee;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+}
+
+.content-section {
+  margin-bottom: 24px;
+}
+
+.spot-card {
+  border-left: 6px solid #0f766e;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 14px 16px;
+}
+
+.spot-card + .spot-card {
+  margin-top: 12px;
+}
+
+.spot-card p,
+.article-footer p,
+.site-footer p {
+  margin-bottom: 0;
+}
+
+.article-footer {
+  border-top: 1px solid #dbe4ee;
+  color: #4b5d70;
+  padding-top: 16px;
+}
+
+.tips-panel {
+  border-top: 6px solid #8a3a18;
+}
+
+.tips-panel ul {
+  margin-bottom: 0;
+  padding-left: 22px;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  color: #4b5d70;
+}
+
+@media (max-width: 820px) {
+  .site-header,
+  .site-footer {
+    display: block;
+  }
+
+  .site-nav {
+    margin-top: 16px;
+  }
+
+  .page-main {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer p + p {
+    margin-top: 8px;
+  }
+}
+

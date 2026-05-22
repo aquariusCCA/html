@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>div 與語意化版面比較 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 02</p>
+    <h1>比較：div 版面與語意化版面</h1>
+    <p>兩種寫法都能排出相似畫面，但 HTML 元素本身傳達的資訊不同。</p>
+  </header>
+
+  <main class="page-main">
+    <section class="compare-grid" aria-labelledby="compare-title">
+      <h2 id="compare-title" class="section-title">同一個頁面骨架，兩種 HTML 寫法</h2>
+
+      <article class="sample-panel">
+        <h3>只使用 `div` 與 class</h3>
+        <pre><code>&lt;div class="header"&gt;網站頁首&lt;/div&gt;
+&lt;div class="nav"&gt;主要導覽&lt;/div&gt;
+&lt;div class="main"&gt;
+  &lt;div class="article"&gt;文章內容&lt;/div&gt;
+  &lt;div class="aside"&gt;延伸閱讀&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;頁尾資訊&lt;/div&gt;</code></pre>
+
+        <div class="visual-layout" aria-label="div 寫法的視覺示意">
+          <div class="visual-box">div.header</div>
+          <div class="visual-box">div.nav</div>
+          <div class="visual-row">
+            <div class="visual-box grow">div.article</div>
+            <div class="visual-box">div.aside</div>
+          </div>
+          <div class="visual-box">div.footer</div>
+        </div>
+      </article>
+
+      <article class="sample-panel sample-panel-strong">
+        <h3>使用語意化標籤</h3>
+        <pre><code>&lt;header&gt;網站頁首&lt;/header&gt;
+&lt;nav&gt;主要導覽&lt;/nav&gt;
+&lt;main&gt;
+  &lt;article&gt;文章內容&lt;/article&gt;
+  &lt;aside&gt;延伸閱讀&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;頁尾資訊&lt;/footer&gt;</code></pre>
+
+        <div class="visual-layout semantic-visual" aria-label="語意化寫法的視覺示意">
+          <div class="visual-box">header</div>
+          <div class="visual-box">nav</div>
+          <div class="visual-row">
+            <div class="visual-box grow">article</div>
+            <div class="visual-box">aside</div>
+          </div>
+          <div class="visual-box">footer</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="demo-section" aria-labelledby="difference-title">
+      <h2 id="difference-title">觀察差異</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>只用 `div`</th>
+            <th>語意化標籤</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">元素本身</th>
+            <td>都是無語意容器，需要看 class 才知道用途。</td>
+            <td>標籤名稱直接表達內容角色。</td>
+          </tr>
+          <tr>
+            <th scope="row">維護閱讀</th>
+            <td>後續維護者必須依賴命名與上下文判斷。</td>
+            <td>原始碼較像一份有結構的文件。</td>
+          </tr>
+          <tr>
+            <th scope="row">可訪問性與 SEO</th>
+            <td>機器較難直接理解區域角色。</td>
+            <td>輔助工具與搜尋引擎較容易判斷頁面區塊。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
+

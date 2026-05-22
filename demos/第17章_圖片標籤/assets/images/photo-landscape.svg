@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">山景示意圖片</title>
+  <desc id="desc">一張用來示範 HTML 圖片標籤的寬版山景插圖。</desc>
+  <rect width="640" height="360" fill="#e8f3ff"/>
+  <circle cx="515" cy="82" r="44" fill="#f7c948"/>
+  <path d="M0 244L136 124L246 220L354 102L640 262V360H0Z" fill="#5a8f7b"/>
+  <path d="M0 282L168 170L285 272L398 160L640 296V360H0Z" fill="#2f6f68"/>
+  <path d="M354 102L392 158L322 138Z" fill="#f7fbff" opacity="0.92"/>
+  <path d="M136 124L170 154L108 148Z" fill="#f7fbff" opacity="0.86"/>
+  <rect x="28" y="28" width="184" height="58" rx="8" fill="#ffffff" opacity="0.9"/>
+  <text x="48" y="61" fill="#1f2933" font-family="Arial, sans-serif" font-size="20" font-weight="700">640 x 360</text>
+</svg>
