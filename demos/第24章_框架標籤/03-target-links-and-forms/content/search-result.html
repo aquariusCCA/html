@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜尋結果</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fdf2f8;
+      color: #831843;
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    code {
+      border-radius: 4px;
+      background: #fce7f3;
+      padding: 2px 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>表單提交結果</h1>
+  <p>
+    這個頁面是透過 <code>&lt;form target="content-frame"&gt;</code>
+    載入 iframe 的。
+  </p>
+  <p>你送出的關鍵字是：<strong id="keyword-output">讀取中</strong></p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const keyword = params.get("keyword") || "沒有收到 keyword";
+    document.querySelector("#keyword-output").textContent = keyword;
+  </script>
+</body>
+</html>

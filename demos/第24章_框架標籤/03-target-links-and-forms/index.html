@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iframe name 與 target Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 03</p>
+    <h1>使用 target 把內容載入指定 iframe</h1>
+    <p>
+      這個 demo 示範 <code>iframe name</code> 如何搭配
+      <code>&lt;a target&gt;</code> 與 <code>&lt;form target&gt;</code>。
+    </p>
+  </header>
+
+  <main class="app-layout">
+    <section class="control-panel" aria-labelledby="control-title">
+      <h2 id="control-title">控制區</h2>
+
+      <div class="demo-group">
+        <h3>連結 target</h3>
+        <p>點擊連結後，頁面會載入到右側名為 <code>content-frame</code> 的 iframe。</p>
+        <div class="actions">
+          <a href="./content/page-a.html" target="content-frame">載入課程公告</a>
+          <a href="./content/page-b.html" target="content-frame">載入課程資源</a>
+        </div>
+      </div>
+
+      <div class="demo-group">
+        <h3>表單 target</h3>
+        <p>送出表單後，結果頁會顯示在同一個 iframe 中。</p>
+        <form action="./content/search-result.html" method="get" target="content-frame">
+          <label for="keyword">搜尋關鍵字</label>
+          <input type="text" id="keyword" name="keyword" value="iframe">
+          <button type="submit">在 iframe 中顯示搜尋結果</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="preview-panel" aria-labelledby="preview-title">
+      <h2 id="preview-title">iframe 顯示區</h2>
+      <iframe
+        src="./content/default.html"
+        name="content-frame"
+        title="連結與表單結果顯示區"
+      ></iframe>
+    </section>
+  </main>
+</body>
+</html>
