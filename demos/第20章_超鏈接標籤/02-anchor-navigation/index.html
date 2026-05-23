@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>錨點連結 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body id="top">
+  <header class="page-header">
+    <p class="eyebrow">Demo 02</p>
+    <h1>錨點連結：href="#id"</h1>
+    <p>
+      這個 demo 示範如何使用 <code>href="#區塊id"</code>
+      跳到目前頁面中的指定位置。
+    </p>
+  </header>
+
+  <main>
+    <nav class="toc" aria-label="本頁目錄">
+      <h2>本頁目錄</h2>
+      <ol>
+        <li><a href="#intro">超鏈接用途</a></li>
+        <li><a href="#target">target 開啟方式</a></li>
+        <li><a href="#file-link">檔案連結</a></li>
+        <li><a href="#app-link">應用程式連結</a></li>
+      </ol>
+    </nav>
+
+    <section class="content-section" id="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title">超鏈接用途</h2>
+      <p>
+        <code>&lt;a&gt;</code> 可以讓使用者從目前頁面前往其他頁面、其他網站、檔案，
+        或頁面中的特定位置。頁面內部跳轉就是錨點連結的常見用途。
+      </p>
+      <p><a href="#top">回到頁首</a></p>
+    </section>
+
+    <section class="content-section" id="target" aria-labelledby="target-title">
+      <h2 id="target-title">target 開啟方式</h2>
+      <p>
+        <code>target="_self"</code> 代表在目前頁面開啟，<code>target="_blank"</code> 代表嘗試在新分頁或新視窗開啟。
+      </p>
+      <p><a href="#top">回到頁首</a></p>
+    </section>
+
+    <section class="content-section" id="file-link" aria-labelledby="file-title">
+      <h2 id="file-title">檔案連結</h2>
+      <p>
+        <code>href</code> 可以指向圖片、PDF、文字檔、壓縮檔等資源。瀏覽器會依檔案類型與伺服器設定決定開啟或下載。
+      </p>
+      <p><a href="#top">回到頁首</a></p>
+    </section>
+
+    <section class="content-section" id="app-link" aria-labelledby="app-title">
+      <h2 id="app-title">應用程式連結</h2>
+      <p>
+        <code>tel:</code> 與 <code>mailto:</code> 這類 URL scheme 可以嘗試喚起電話或郵件應用，但實際結果會依裝置與瀏覽器而不同。
+      </p>
+      <p><a href="#top">回到頁首</a></p>
+    </section>
+
+    <section class="demo-section" aria-labelledby="code-title">
+      <h2 id="code-title">對應 HTML</h2>
+      <pre><code>&lt;a href="#file-link"&gt;檔案連結&lt;/a&gt;
+
+&lt;section id="file-link"&gt;
+  &lt;h2&gt;檔案連結&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+    </section>
+  </main>
+</body>
+</html>

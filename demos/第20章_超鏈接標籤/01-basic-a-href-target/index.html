@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本超鏈接 href target Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body id="top">
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>基本超鏈接：href、target、rel</h1>
+    <p>
+      這個 demo 示範 <code>&lt;a&gt;</code> 如何透過 <code>href</code>
+      指定目標，並比較目前頁面開啟與新分頁開啟的寫法。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="basic-title">
+      <h2 id="basic-title">三種常見連結</h2>
+
+      <div class="link-grid">
+        <article class="link-card">
+          <h3>外部連結</h3>
+          <p>前往其他網站。這裡使用安全的新分頁寫法。</p>
+          <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+            前往 Example 網站
+          </a>
+        </article>
+
+        <article class="link-card">
+          <h3>內部頁面連結</h3>
+          <p>前往同一個 demo 資料夾中的另一個 HTML 檔案。</p>
+          <a href="./target-page.html">查看本地目標頁面</a>
+        </article>
+
+        <article class="link-card">
+          <h3>頁內區塊連結</h3>
+          <p>前往目前頁面下方的程式碼說明區塊。</p>
+          <a href="#code-example">跳到對應 HTML</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="target-title">
+      <h2 id="target-title">target 的差異</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>寫法</th>
+            <th>效果</th>
+            <th>適合情境</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>target="_self"</code></td>
+            <td>在目前頁面開啟，也是預設行為。</td>
+            <td>網站內部主要導覽。</td>
+          </tr>
+          <tr>
+            <td><code>target="_blank"</code></td>
+            <td>在新分頁或新視窗開啟。</td>
+            <td>開啟外部網站或參考資料。</td>
+          </tr>
+          <tr>
+            <td><code>rel="noopener noreferrer"</code></td>
+            <td>搭配新分頁外部連結使用，降低安全與隱私風險。</td>
+            <td>外部網站連結。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="demo-section" id="code-example" aria-labelledby="code-title">
+      <h2 id="code-title">對應 HTML</h2>
+      <pre><code>&lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;
+  前往 Example 網站
+&lt;/a&gt;
+
+&lt;a href="./target-page.html"&gt;查看本地目標頁面&lt;/a&gt;
+
+&lt;a href="#code-example"&gt;跳到對應 HTML&lt;/a&gt;</code></pre>
+      <p><a href="#top">回到頁首</a></p>
+    </section>
+  </main>
+</body>
+</html>
