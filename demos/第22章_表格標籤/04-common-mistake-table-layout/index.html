@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格常見錯誤 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>常見錯誤：把表格當布局工具</h1>
+    <p>
+      這個 demo 比較錯誤的表格布局與正確的資料表結構。
+      表格應該用來呈現欄列資料，不應拿來切頁面版面。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="layout-title">
+      <h2 id="layout-title">錯誤布局與正確布局對照</h2>
+      <div class="compare-grid">
+        <article class="example-card problem">
+          <h3>不建議：用 <code>&lt;table&gt;</code> 排版</h3>
+          <table class="layout-table" aria-label="錯誤的表格布局示意">
+            <tr>
+              <td class="sidebar-cell">左側選單</td>
+              <td class="content-cell">主要內容區</td>
+            </tr>
+          </table>
+          <p>
+            這不是表格資料，而是頁面布局。使用表格會讓語意變得不清楚。
+          </p>
+        </article>
+
+        <article class="example-card solution">
+          <h3>建議：用語意元素與 CSS 排版</h3>
+          <div class="semantic-layout">
+            <nav>左側選單</nav>
+            <section>主要內容區</section>
+          </div>
+          <p>
+            HTML 表達區域語意，CSS 負責排列方式，語意與樣式分工更清楚。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="inspect-title">
+      <h2 id="inspect-title">資料表語意檢查</h2>
+      <p>
+        下面兩張表格都能顯示資料，但語意完整度不同。按鈕會檢查表格是否包含
+        <code>&lt;caption&gt;</code>、<code>&lt;th&gt;</code>、<code>&lt;thead&gt;</code> 與 <code>&lt;tbody&gt;</code>。
+      </p>
+
+      <button type="button" data-action>檢查表格語意</button>
+
+      <div class="compare-grid table-checks">
+        <article class="example-card problem">
+          <h3>不完整：缺少表格標題與表頭語意</h3>
+          <table data-check-table="不完整表格">
+            <tr>
+              <td>商品</td>
+              <td>庫存</td>
+              <td>狀態</td>
+            </tr>
+            <tr>
+              <td>鍵盤</td>
+              <td>18</td>
+              <td>正常</td>
+            </tr>
+          </table>
+        </article>
+
+        <article class="example-card solution">
+          <h3>較完整：有標題、表頭與主體</h3>
+          <table data-check-table="完整表格">
+            <caption>商品庫存</caption>
+            <thead>
+              <tr>
+                <th>商品</th>
+                <th>庫存</th>
+                <th>狀態</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>鍵盤</td>
+                <td>18</td>
+                <td>正常</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+      <div class="inspection-output" data-output aria-live="polite">
+        尚未檢查。請按下「檢查表格語意」。
+      </div>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>

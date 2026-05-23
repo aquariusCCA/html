@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本表格結構 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>基本表格結構：table、tr、th、td</h1>
+    <p>
+      這個 demo 示範最基本的 HTML 表格：一張表格由列與儲存格組成，
+      表頭使用 <code>&lt;th&gt;</code>，一般資料使用 <code>&lt;td&gt;</code>。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="student-title">
+      <h2 id="student-title">學生資料表</h2>
+      <p>
+        每一列 <code>&lt;tr&gt;</code> 代表一筆學生資料，每一欄代表同一種資料欄位。
+      </p>
+
+      <table>
+        <tr>
+          <th>姓名</th>
+          <th>性別</th>
+          <th>年齡</th>
+          <th>課程</th>
+        </tr>
+        <tr>
+          <td>劉德華</td>
+          <td>男</td>
+          <td>56</td>
+          <td>HTML 基礎</td>
+        </tr>
+        <tr>
+          <td>張學友</td>
+          <td>男</td>
+          <td>58</td>
+          <td>CSS 入門</td>
+        </tr>
+        <tr>
+          <td>郭富城</td>
+          <td>男</td>
+          <td>51</td>
+          <td>JavaScript 基礎</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="demo-section" aria-labelledby="structure-title">
+      <h2 id="structure-title">結構觀察</h2>
+      <div class="structure-grid">
+        <article>
+          <h3><code>&lt;table&gt;</code></h3>
+          <p>定義整張表格，是所有表格列與儲存格的容器。</p>
+        </article>
+        <article>
+          <h3><code>&lt;tr&gt;</code></h3>
+          <p>定義表格中的一列，列裡面才放表頭或資料儲存格。</p>
+        </article>
+        <article>
+          <h3><code>&lt;th&gt;</code></h3>
+          <p>表示表頭儲存格，適合放欄位名稱或列標題。</p>
+        </article>
+        <article>
+          <h3><code>&lt;td&gt;</code></h3>
+          <p>表示一般資料儲存格，放實際資料內容。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

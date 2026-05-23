@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>後台會員資料表 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 05</p>
+    <h1>實務應用：後台會員資料表</h1>
+    <p>
+      這個 demo 把表格用在後台資料管理情境中。
+      HTML 負責表格語意，CSS 負責外觀，JavaScript 負責簡單篩選與排序。
+    </p>
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="會員表格操作">
+      <div class="filter-group" role="group" aria-label="依狀態篩選">
+        <button type="button" data-filter="all" class="active">全部</button>
+        <button type="button" data-filter="active">啟用</button>
+        <button type="button" data-filter="paused">停用</button>
+      </div>
+      <button type="button" data-sort-score>依積分排序</button>
+      <p data-summary aria-live="polite">目前顯示 5 筆會員資料。</p>
+    </section>
+
+    <section class="demo-section" aria-labelledby="member-title">
+      <h2 id="member-title">會員清單</h2>
+
+      <table>
+        <caption>會員清單與帳號狀態</caption>
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>Email</th>
+            <th>會員狀態</th>
+            <th>積分</th>
+            <th>最後登入</th>
+          </tr>
+        </thead>
+        <tbody data-member-body>
+          <tr data-status="active" data-score="1280">
+            <td>王小明</td>
+            <td>ming@example.com</td>
+            <td><span class="status active">啟用</span></td>
+            <td>1280</td>
+            <td>2026-05-20</td>
+          </tr>
+          <tr data-status="paused" data-score="320">
+            <td>林小華</td>
+            <td>hua@example.com</td>
+            <td><span class="status paused">停用</span></td>
+            <td>320</td>
+            <td>2026-04-28</td>
+          </tr>
+          <tr data-status="active" data-score="760">
+            <td>陳志豪</td>
+            <td>hao@example.com</td>
+            <td><span class="status active">啟用</span></td>
+            <td>760</td>
+            <td>2026-05-18</td>
+          </tr>
+          <tr data-status="active" data-score="2150">
+            <td>張雅婷</td>
+            <td>ting@example.com</td>
+            <td><span class="status active">啟用</span></td>
+            <td>2150</td>
+            <td>2026-05-22</td>
+          </tr>
+          <tr data-status="paused" data-score="540">
+            <td>周建安</td>
+            <td>an@example.com</td>
+            <td><span class="status paused">停用</span></td>
+            <td>540</td>
+            <td>2026-03-30</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>顯示筆數</th>
+            <td colspan="4" data-count-cell>5 筆</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <section class="demo-section" aria-labelledby="notes-title">
+      <h2 id="notes-title">這個 demo 的分工</h2>
+      <div class="notes-grid">
+        <article>
+          <h3>HTML</h3>
+          <p>使用 <code>&lt;caption&gt;</code>、<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>、<code>&lt;tfoot&gt;</code> 表達表格結構。</p>
+        </article>
+        <article>
+          <h3>CSS</h3>
+          <p>控制表格寬度、邊框、間距、狀態標籤與小螢幕捲動。</p>
+        </article>
+        <article>
+          <h3>JavaScript</h3>
+          <p>只處理篩選與排序，不改變表格本身應有的 HTML 語意。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>

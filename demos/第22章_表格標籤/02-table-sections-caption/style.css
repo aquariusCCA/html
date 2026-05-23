@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #1f2937;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  line-height: 1.6;
+}
+
+.page-header,
+main {
+  width: min(1040px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.page-header {
+  padding: 40px 0 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #0f766e;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+.demo-section {
+  margin-bottom: 32px;
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.score-table caption {
+  caption-side: top;
+  padding: 10px;
+  background: #dbeafe;
+  color: #1e3a8a;
+  font-weight: 700;
+  text-align: left;
+}
+
+.score-table th,
+.score-table td {
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.score-table thead th {
+  background: #fef3c7;
+}
+
+.score-table tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.score-table tfoot th,
+.score-table tfoot td {
+  background: #ecfdf5;
+  font-weight: 700;
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.parts-grid article {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+code {
+  border-radius: 4px;
+  background: #e8eef5;
+  padding: 2px 5px;
+  font-family: Consolas, "Courier New", monospace;
+}
