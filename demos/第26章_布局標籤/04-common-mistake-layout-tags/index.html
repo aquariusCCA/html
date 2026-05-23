@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局標籤常見錯誤</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="demo-header">
+    <p class="eyebrow">Demo 04</p>
+    <h1>布局標籤常見錯誤與修正</h1>
+    <p>按下檢查按鈕，觀察錯誤寫法與修正寫法在結構上的差異。</p>
+  </header>
+
+  <main class="comparison">
+    <section class="example-card bad" aria-labelledby="bad-title" data-example="bad">
+      <h2 id="bad-title">錯誤寫法：語意不清楚</h2>
+
+      <div class="fake-page">
+        <div class="visual-block">
+          <span class="tag-label">div.header</span>
+          <h3>購物學習站</h3>
+        </div>
+
+        <nav class="visual-block">
+          <span class="tag-label">nav 沒有 label</span>
+          <a href="#bad-title">首頁</a>
+          <a href="#bad-title">商品</a>
+          <a href="#bad-title">會員</a>
+        </nav>
+
+        <section class="visual-block layout-only">
+          <span class="tag-label">section 只為排版</span>
+          <div class="small-card">商品 A</div>
+          <div class="small-card">商品 B</div>
+        </section>
+
+        <div class="visual-block">
+          <span class="tag-label">div.content</span>
+          <h3>如何挑選商品</h3>
+          <p>這段內容是頁面的主要內容，但外層沒有使用 main。</p>
+        </div>
+      </div>
+
+      <button type="button" data-check-target="bad">檢查錯誤寫法</button>
+      <ul class="check-result" data-result="bad" aria-live="polite"></ul>
+    </section>
+
+    <section class="example-card good" aria-labelledby="good-title" data-example="good">
+      <h2 id="good-title">修正寫法：語意更清楚</h2>
+
+      <div class="fake-page">
+        <header class="visual-block">
+          <span class="tag-label">header</span>
+          <h3>購物學習站</h3>
+        </header>
+
+        <nav class="visual-block" aria-label="主要導覽">
+          <span class="tag-label">nav aria-label</span>
+          <a href="#good-title">首頁</a>
+          <a href="#good-title">商品</a>
+          <a href="#good-title">會員</a>
+        </nav>
+
+        <main class="visual-block">
+          <span class="tag-label">main</span>
+          <article>
+            <h3>如何挑選商品</h3>
+            <p>這段內容可以獨立閱讀，因此使用 article。</p>
+
+            <section aria-labelledby="good-section-title">
+              <h4 id="good-section-title">先確認需求</h4>
+              <p>文章中的主題分段使用 section，且有清楚標題。</p>
+            </section>
+          </article>
+        </main>
+      </div>
+
+      <button type="button" data-check-target="good">檢查修正寫法</button>
+      <ul class="check-result" data-result="good" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <section class="mistake-list" aria-labelledby="mistake-title">
+    <h2 id="mistake-title">本 demo 對應的常見錯誤</h2>
+    <ul>
+      <li>缺少 <code>main</code>，導致主要內容範圍不明確。</li>
+      <li>把 <code>section</code> 當成純排版容器。</li>
+      <li><code>nav</code> 沒有清楚標示用途，頁面有多組導覽時容易混淆。</li>
+      <li>明明是可獨立閱讀的內容，卻只用沒有語意的 <code>div</code> 包住。</li>
+    </ul>
+  </section>
+
+  <script src="./main.js"></script>
+</body>
+</html>

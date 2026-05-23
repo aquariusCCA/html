@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小型整合：商品活動頁布局</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Demo 05</p>
+      <h1>尚品匯活動頁</h1>
+      <p>用語意化布局標籤組成一個簡化版商品活動頁。</p>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="主要導覽">
+    <a href="#home">首頁</a>
+    <a href="#orders">訂單</a>
+    <a href="#cart">購物車</a>
+    <a href="#account">我的</a>
+  </nav>
+
+  <main class="page-layout">
+    <aside class="campaign-sidebar" aria-labelledby="campaign-title">
+      <h2 id="campaign-title">活動專區</h2>
+      <p>這裡是和主內容相關的補充導覽，因此放在 <code>aside</code>。</p>
+
+      <nav aria-label="活動導覽">
+        <ul>
+          <li><a href="#flash-sale">秒殺專區</a></li>
+          <li><a href="#member">會員專區</a></li>
+          <li><a href="#coupon">領取優惠券</a></li>
+          <li><a href="#brands">品牌專區</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="main-article" aria-labelledby="article-title">
+      <header class="article-header">
+        <p class="eyebrow">article</p>
+        <h2 id="article-title">如何規劃一個商品活動頁</h2>
+        <p>這篇內容可以獨立閱讀，因此使用 <code>article</code>。文章內部再用多個 <code>section</code> 分段。</p>
+      </header>
+
+      <section id="flash-sale" aria-labelledby="flash-sale-title">
+        <h3 id="flash-sale-title">第一段：秒殺專區</h3>
+        <p>秒殺專區通常需要清楚標示活動時間、商品重點與立即操作入口。</p>
+      </section>
+
+      <section id="member" aria-labelledby="member-title">
+        <h3 id="member-title">第二段：會員專區</h3>
+        <p>會員專區可以放會員限定折扣、累積點數或專屬商品。</p>
+      </section>
+
+      <section id="coupon" aria-labelledby="coupon-title">
+        <h3 id="coupon-title">第三段：優惠券區</h3>
+        <p>優惠券區應讓使用者快速理解可領取的折扣與使用條件。</p>
+      </section>
+
+      <section id="brands" aria-labelledby="brands-title">
+        <h3 id="brands-title">第四段：品牌專區</h3>
+        <p>品牌專區可以依品牌分組，方便使用者瀏覽相關商品。</p>
+      </section>
+
+      <footer class="article-footer">
+        <p>文章 footer：可放更新時間、作者或延伸閱讀。</p>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <nav aria-label="頁尾連結">
+      <a href="#about">關於我們</a>
+      <a href="#help">幫助中心</a>
+      <a href="#contact">聯絡我們</a>
+    </nav>
+  </footer>
+</body>
+</html>
