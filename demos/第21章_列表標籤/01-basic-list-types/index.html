@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本列表類型 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>基本列表類型：ul、ol、dl</h1>
+    <p>
+      這個 demo 用同一個頁面比較無序列表、有序列表與描述列表。
+      重點是觀察內容語意，而不是只看預設樣式。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="compare-title">
+      <h2 id="compare-title">三種列表的適合情境</h2>
+
+      <div class="list-grid">
+        <article class="list-card">
+          <h3>無序列表 <code>&lt;ul&gt;</code></h3>
+          <p>項目彼此並列，沒有排名或步驟順序。</p>
+          <ul>
+            <li>課程公告</li>
+            <li>前端讀書會</li>
+            <li>作業繳交提醒</li>
+          </ul>
+        </article>
+
+        <article class="list-card">
+          <h3>有序列表 <code>&lt;ol&gt;</code></h3>
+          <p>項目的順序會影響理解，例如步驟或排名。</p>
+          <ol>
+            <li>建立 HTML 檔案</li>
+            <li>撰寫基本文件結構</li>
+            <li>加入列表內容</li>
+            <li>用瀏覽器檢查結果</li>
+          </ol>
+        </article>
+
+        <article class="list-card">
+          <h3>描述列表 <code>&lt;dl&gt;</code></h3>
+          <p>適合名詞與說明、欄位與內容的配對。</p>
+          <dl>
+            <dt>HTML</dt>
+            <dd>描述網頁內容與結構的標記語言。</dd>
+            <dt>CSS</dt>
+            <dd>控制網頁外觀與排版的樣式語言。</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section class="demo-section" aria-labelledby="choose-title">
+      <h2 id="choose-title">如何選擇</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>問題</th>
+            <th>建議標籤</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>這些項目只是同一組內容，沒有順序差異嗎？</td>
+            <td><code>&lt;ul&gt;</code></td>
+          </tr>
+          <tr>
+            <td>這些項目是步驟、流程或排名嗎？</td>
+            <td><code>&lt;ol&gt;</code></td>
+          </tr>
+          <tr>
+            <td>這些內容是名詞與說明的配對嗎？</td>
+            <td><code>&lt;dl&gt;</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
+

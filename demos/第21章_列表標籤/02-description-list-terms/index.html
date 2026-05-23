@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>描述列表 dt dd Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 02</p>
+    <h1>描述列表：dt 與 dd</h1>
+    <p>
+      這個 demo 專門觀察 <code>&lt;dl&gt;</code>、<code>&lt;dt&gt;</code>
+      與 <code>&lt;dd&gt;</code> 如何表達「項目名稱」與「項目說明」。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="terms-title">
+      <h2 id="terms-title">HTML 常見名詞</h2>
+      <dl class="term-list">
+        <div class="term-item">
+          <dt>HTML</dt>
+          <dd>用來描述網頁內容與結構的標記語言。</dd>
+          <dd>它負責說明頁面有哪些內容，以及這些內容具有什麼語意。</dd>
+        </div>
+
+        <div class="term-item">
+          <dt>CSS</dt>
+          <dd>用來控制網頁外觀、排版、顏色與間距的樣式語言。</dd>
+        </div>
+
+        <div class="term-item">
+          <dt>DOM</dt>
+          <dd>瀏覽器根據 HTML 建立出的文件物件模型。</dd>
+          <dd>JavaScript 通常透過 DOM API 操作頁面節點。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="demo-section" aria-labelledby="profile-title">
+      <h2 id="profile-title">聯絡資訊也可以用描述列表</h2>
+      <dl class="info-list">
+        <dt>客服信箱</dt>
+        <dd><a href="mailto:service@example.com">service@example.com</a></dd>
+
+        <dt>服務時間</dt>
+        <dd>週一至週五 09:00 - 18:00</dd>
+
+        <dt>課程地點</dt>
+        <dd>線上教室</dd>
+      </dl>
+    </section>
+
+    <section class="demo-section" aria-labelledby="compare-title">
+      <h2 id="compare-title">什麼時候不適合用 dl？</h2>
+      <p>
+        如果內容只是「一組並列項目」，例如課程公告、商品特色、選單連結，
+        通常使用 <code>&lt;ul&gt;</code> 比較清楚。
+      </p>
+    </section>
+  </main>
+</body>
+</html>
+
