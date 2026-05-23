@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表單 name/value 提交資料 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 01</p>
+    <h1>表單資料：name 與 value</h1>
+    <p>
+      這個 demo 示範表單提交時，瀏覽器如何根據每個控制項的
+      <code>name</code> 與目前值組成資料。
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section" aria-labelledby="form-title">
+      <h2 id="form-title">課程報名表單</h2>
+      <form id="signup-form" action="/signup" method="get">
+        <div class="field">
+          <label for="username">使用者名稱</label>
+          <input type="text" id="username" name="username" value="alex" maxlength="20">
+        </div>
+
+        <fieldset>
+          <legend>通知方式</legend>
+          <label>
+            <input type="radio" name="notice" value="email" checked>
+            電子信箱
+          </label>
+          <label>
+            <input type="radio" name="notice" value="sms">
+            簡訊
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>感興趣的主題</legend>
+          <label>
+            <input type="checkbox" name="topics" value="html" checked>
+            HTML
+          </label>
+          <label>
+            <input type="checkbox" name="topics" value="css">
+            CSS
+          </label>
+          <label>
+            <input type="checkbox" name="topics" value="javascript">
+            JavaScript
+          </label>
+        </fieldset>
+
+        <div class="field">
+          <label for="city">所在城市</label>
+          <select id="city" name="city">
+            <option value="">請選擇</option>
+            <option value="taipei" selected>台北</option>
+            <option value="taichung">台中</option>
+            <option value="kaohsiung">高雄</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">備註</label>
+          <textarea id="message" name="message" rows="4">想學會 HTML 表單。</textarea>
+        </div>
+
+        <input type="hidden" name="source" value="demo-01">
+
+        <div class="actions">
+          <button type="submit">觀察提交資料</button>
+          <button type="reset">重置</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="demo-section output-section" aria-labelledby="output-title">
+      <h2 id="output-title">提交資料觀察區</h2>
+      <p>點擊提交後，JavaScript 會攔截表單，並顯示瀏覽器收集到的資料。</p>
+      <pre id="output">尚未提交表單。</pre>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>

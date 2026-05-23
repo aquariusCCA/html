@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表單常見錯誤：button 與 name Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <p class="eyebrow">Demo 03</p>
+    <h1>常見錯誤：缺少 name 與 button 預設 submit</h1>
+    <p>
+      這個 demo 對照錯誤與正確寫法，觀察缺少 <code>name</code>
+      與未指定 <code>button type</code> 會造成什麼差異。
+    </p>
+  </header>
+
+  <main>
+    <div class="compare-layout">
+      <section class="demo-section mistake" aria-labelledby="wrong-title">
+        <h2 id="wrong-title">錯誤寫法</h2>
+        <p>電子信箱缺少 <code>name</code>，驗證碼按鈕也沒有設定 <code>type</code>。</p>
+
+        <form id="wrong-form" action="/send-code" method="post">
+          <div class="field">
+            <label for="wrong-email">電子信箱</label>
+            <input type="email" id="wrong-email" value="student@example.com">
+          </div>
+
+          <div class="field">
+            <label for="wrong-phone">手機號碼</label>
+            <input type="tel" id="wrong-phone" name="phone" value="0912-345-678">
+          </div>
+
+          <button>取得驗證碼</button>
+        </form>
+      </section>
+
+      <section class="demo-section correct" aria-labelledby="correct-title">
+        <h2 id="correct-title">正確寫法</h2>
+        <p>欄位有清楚的 <code>name</code>，普通按鈕明確設定 <code>type="button"</code>。</p>
+
+        <form id="correct-form" action="/send-code" method="post">
+          <div class="field">
+            <label for="correct-email">電子信箱</label>
+            <input type="email" id="correct-email" name="email" value="student@example.com">
+          </div>
+
+          <div class="field">
+            <label for="correct-phone">手機號碼</label>
+            <input type="tel" id="correct-phone" name="phone" value="0912-345-678">
+          </div>
+
+          <div class="actions">
+            <button type="button" id="send-code">取得驗證碼</button>
+            <button type="submit">送出表單</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <section class="demo-section output-section" aria-labelledby="output-title">
+      <h2 id="output-title">觀察區</h2>
+      <p id="status">尚未操作。</p>
+      <pre id="output">請點擊兩個表單中的按鈕，觀察輸出差異。</pre>
+    </section>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
