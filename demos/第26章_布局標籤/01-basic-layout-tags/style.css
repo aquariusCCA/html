@@ -21,12 +21,15 @@ code {
   background: #eef2f7;
 }
 
+[data-role] {
+  position: relative;
+}
+
 .site-header,
 .site-nav,
 .lesson-article,
 .side-note,
 .site-footer {
-  position: relative;
   border: 2px solid #8aa4c2;
   border-radius: 8px;
   background: #fff;
@@ -62,6 +65,7 @@ code {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
   gap: 16px;
+  padding-top: 36px;
 }
 
 .lesson-article,
