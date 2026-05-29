@@ -32,7 +32,7 @@ origin/
     *.md
 ```
 
-一開始會先使用 `prompts/requests/rewrite-origin-asset-paths.md` 將 Markdown 原始資料中的本地資產引用重新命名為標準檔名。
+一開始會先使用 `prompts/workflows/rewrite-origin-asset-paths.md` 將 Markdown 原始資料中的本地資產引用重新命名為標準檔名。
 
 標準檔名格式如下：
 
