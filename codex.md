@@ -1,26 +1,35 @@
-請依照 `prompts/workflows/generate-html-teaching-demos.md` 的完整規則，為以下正式筆記產生 HTML 教學範例：
+我目前有一個 HTML 筆記包，目錄結構如下：
 
-`notes/測試/標籤組成和關係.md`
+```text
+html/
+  origin/
+  notes/
+  appendix/
+  demos/
+  practice/
+  review/
+  supplements/
+  prompts/
+```
 
-請務必先閱讀 workflow 文件，並嚴格遵守其中的角色、任務背景、任務要求、HTML Demo 規則、檔案命名與輸出路徑、README 要求、限制條件、品質標準與輸出回報格式。
+其中：
 
-請執行以下工作：
+```text
+notes/
+  <章節>/
+    *.md
+```
 
-1. 只讀取並處理上述指定的單一 Markdown 檔案。
-2. 分析這篇筆記的學習目標、核心概念、重要範例、常見錯誤與自我檢查重點。
-3. 根據學習目標拆分出 3 到 5 個 demo 主題。
-4. 每個 demo 只聚焦一個主要觀念，不要把太多概念塞在同一個檔案。
-5. 為每個 demo 建立一個可直接用瀏覽器開啟的獨立 `.html` 檔案。
-6. 每個 HTML 檔案都要使用完整基本結構，並以短、清楚、適合初學者修改的程式碼呈現。
-7. 可以加入少量內嵌 CSS，但只能用來凸顯結構、層級、狀態、錯誤對照或觀察重點。
-8. 不要引入外部 CDN、CSS 框架、JavaScript 框架或複雜互動。
-9. 除非筆記主題本身需要，否則不要加入 JavaScript。
-10. 不要把 demo 做成 landing page、作品集、完整網站或炫技視覺效果。
-11. 如果 demo 中包含錯誤寫法，必須清楚標示「錯誤寫法」，並搭配正確寫法或修正說明。
-12. Demo 文字、標題、註解與 README 請使用繁體中文。
-13. 請直接建立或覆蓋目標目錄 `demos/<章節>/<筆記名>/` 中的 demo 檔案與 `README.md`。
-14. `README.md` 需要包含來源筆記、建議學習順序、每個 demo 對應的觀念、觀察重點與建議修改任務。
-15. 不要修改 `notes/`、`origin/`、`practice/`、`review/`、`supplements/`、`appendix/` 或 `prompts/` 內的其他檔案。
-16. 完成後回報目標路徑、產生的檔案清單、每個 demo 對應的學習重點與品質檢查結果。
+規則如下：
 
-請只根據上述指定筆記產生 demo，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
+`notes/<章節>/*.md` 存放的是從 `origin/<章節>/*.md` 原始學習資料重構成高品質、可長期維護、適合初學者逐步學習的教學筆記。
+
+例如：
+
+```text
+origin/HTML簡介/標籤組成和關係.md
+  -> notes/HTML簡介/標籤組成和關係.md
+```
+
+我想製作一個 `prompt` 根據 `notes/<章節>/*.md` 的教學筆記，製作出 **查表型資料**。
+
