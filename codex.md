@@ -1,61 +1,19 @@
-我目前有一個 HTML 筆記包，目錄結構如下：
+請依照 `prompts/_drafts/origin-to-atomic-notes-draft.md` 的完整規則，處理以下章節：
 
-```text
-html/
-  origin/
-  notes/
-  appendix/
-  demos/
-  practice/
-  review/
-  supplements/
-  prompts/
-```
+`origin/測試/`
 
-其中：
+請務必先閱讀 workflow 文件，並嚴格遵守其中的角色、任務、上下文、Atomic 粒度原則、重構權限、圖片與附件路徑規則、Atomic Note 格式、兩階段輸出規則、長章節處理策略與品質檢查清單。
 
-```text
-origin/
-  <章節>/
-    assets/
-      images/
-      pdfs/
-      excels/
-      word/
-      files/
-      ...
-    *.md
-```
+請先執行第一階段：
 
-規則如下：
+1. 只掃描指定章節根目錄下的 *.md 原始筆記。
+2. 不要把 atomic/<章節>/*.md 當成原始資料。
+3. 不要建立、修改或刪除任何檔案。
+4. 分析原始筆記中過長、過短、重複、錯置或主題混雜的內容。
+5. 以「一個完整主題概念」作為 atomic note 的主要切分粒度。
+6. 產生切分提案表，列出目標檔案、Atomic 主題、來源、操作、理由與 Assets。
+7. 明確列出需要人工確認的內容。
+8. 明確列出不納入 atomic 的內容與原因。
+9. 如果章節內容太長，請先輸出原始檔 inventory，再產生全章切分提案。
 
-1. `origin/` 只存放 `.md` 原始資料文件。
-2. `origin/<章節>/` 下面的 `.md` 是原始資料。
-3. `origin/<章節>/assets/` 存放該章節使用到的圖片、PDF、Excel、Word 或其他附件。
-4. 不會有 `origin/<章節>/notes/`。
-
-但是有時候 `origin/<章節>/*.md` 的原始筆記，有些單篇筆記中的章節切分的很不合理、或是某單篇筆記特別長、某單篇筆記特別短。
-
-舉例：
-
-```text
-`origin/二分查找/二分查找.md`  ->  三千多行筆記內容
-`origin/二分查找/二分查找-LeetCode習題.md`  ->  五百行筆記內容
-```
-
-再舉例：
-
-```text
-`origin/二分查找/二分查找.md`
-
-裡面的章節切分
-    -> 二分查找基礎版
-    -> 二分查找改動版
-    -> 二分查找平衡版 (此時錯誤的將二分查找Leftmost 与 Rightmost內容錯誤放到這)
-```
-
-我目前的想法是將 `origin/<章節>/*.md` 的原始筆記透過 prompt 切分或合併成新的原始資料放在 `origin/<章節>/atomic/*.md`。
-
-然後輸出建議，讓使用者自行決定是否要取代原來的原始資料。
-
-你認為這樣好嗎？
+請只輸出第一階段切分提案。等我確認後，再產生 atomic/<章節>/*.md。
