@@ -6,8 +6,10 @@
 
 ![新增 input 類型與輸入限制表](../../origin/測試/assets/images/form-controls-img-003-b918e4.png)
 
+> 注意：上圖中的 `type="data"` 應為 `type="date"`。
+
 ```html
-<!-- 我們驗證的時候必須添加 form 表單域。 -->
+<!-- 若要透過提交按鈕觸發瀏覽器內建驗證，通常需要放在 form 表單域中。 -->
 <form action="">
   <ul>
     <li>郵箱: <input type="email"></li>

@@ -6,7 +6,7 @@
 
 ```html
 <form action="">
-  <input type="search" name="sear" id="" required="required" placeholder="pink老師" autofocus="autofocus" autocomplete="off">
+  <input type="search" name="sear" required="required" placeholder="pink老師" autofocus="autofocus" autocomplete="off">
   <input type="submit" value="提交">
 </form>
 ```
