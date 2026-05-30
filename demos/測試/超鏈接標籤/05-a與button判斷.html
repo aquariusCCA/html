@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>a 與 button 判斷</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      max-width: 780px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .case {
+      border: 2px solid #d8dde6;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-color: #b85c5c;
+      background: #fff8f8;
+    }
+
+    .correct {
+      border-color: #4f6f52;
+      background: #f3f8f1;
+    }
+  </style>
+</head>
+<body>
+  <h1><code>&lt;a&gt;</code> 與 <code>&lt;button&gt;</code> 的判斷</h1>
+
+  <p>
+    如果點擊後是「前往另一個資源」，使用 <code>&lt;a&gt;</code>。
+    如果點擊後是「執行操作」，優先考慮 <code>&lt;button&gt;</code>。
+  </p>
+
+  <div class="grid">
+    <section class="case correct">
+      <h2>正確寫法：前往資源</h2>
+      <p><a href="https://example.com">查看外部網站</a></p>
+      <p>使用者會前往另一個網址，所以使用 <code>&lt;a&gt;</code>。</p>
+    </section>
+
+    <section class="case wrong">
+      <h2>錯誤寫法：用連結假裝按鈕</h2>
+      <p><a href="#">送出表單</a></p>
+      <p>
+        這是操作，不是前往資源。用 <code>href="#"</code>
+        只是假連結，容易造成語意混亂。
+      </p>
+    </section>
+
+    <section class="case correct">
+      <h2>正確寫法：執行操作</h2>
+      <p><button type="button">送出表單</button></p>
+      <p>如果要搭配 JavaScript 執行動作，通常從 <code>&lt;button&gt;</code> 開始。</p>
+    </section>
+  </div>
+</body>
+</html>

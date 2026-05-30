@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>錨點連結</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 1px solid #d8dde6;
+      padding: 12px 0;
+    }
+
+    section {
+      min-height: 420px;
+      padding-top: 20px;
+      border-bottom: 1px solid #d8dde6;
+    }
+
+    .wrong {
+      border: 2px solid #b85c5c;
+      padding: 12px;
+    }
+  </style>
+</head>
+<body id="top">
+  <h1>錨點連結</h1>
+
+  <nav>
+    <a href="#intro">跳到介紹</a> |
+    <a href="#details">跳到細節</a> |
+    <a href="#summary">跳到整理</a> |
+    <a href="#top">回到頂部</a>
+  </nav>
+
+  <section id="intro">
+    <h2>介紹</h2>
+    <p>
+      錨點連結使用 <code>href="#id名稱"</code>，
+      目標元素要有相同名稱的 <code>id</code>。
+    </p>
+  </section>
+
+  <section id="details">
+    <h2>細節</h2>
+    <p>
+      例如 <code>href="#details"</code> 會尋找
+      <code>id="details"</code> 的元素。
+    </p>
+  </section>
+
+  <section id="summary">
+    <h2>整理</h2>
+    <p>
+      如果 <code>href</code> 與 <code>id</code> 對不起來，
+      使用者點擊後就不會跳到預期位置。
+    </p>
+  </section>
+
+  <div class="wrong">
+    <h2>錯誤寫法</h2>
+    <p><a href="#section-two">跳到第二段</a></p>
+    <p>
+      這個連結會尋找 <code>id="section-two"</code>，
+      但本頁沒有這個目標，所以不會跳到正確段落。
+    </p>
+  </div>
+</body>
+</html>
