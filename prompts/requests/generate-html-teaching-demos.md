@@ -2,7 +2,7 @@
 
 ## 用途
 
-用來請 AI 依照 `prompts/workflows/generate-html-teaching-demos.md` 的規則，將指定的單一 `notes/<章節>/<檔名>.md` 正式教學筆記，轉換成可直接開啟的 HTML 教學範例。
+用來請 AI 依照 `prompts/_drafts/notes-to-html-teaching-demos-draft.md` 的規則，將指定的單一 `notes/<章節>/<檔名>.md` 正式教學筆記，轉換成可直接開啟的 HTML 教學範例。
 
 這份模板會要求 AI 同步處理：
 
@@ -30,7 +30,7 @@
 ## 可直接複製的提問
 
 ```text
-請依照 prompts/workflows/generate-html-teaching-demos.md 的完整規則，為以下正式筆記產生 HTML 教學範例：
+請依照 prompts/_drafts/notes-to-html-teaching-demos-draft.md 的完整規則，為以下正式筆記產生 HTML 教學範例：
 
 <正式筆記路徑>
 

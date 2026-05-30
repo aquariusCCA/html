@@ -2,7 +2,7 @@
 
 ## 用途
 
-用來請 AI 依照 `prompts/workflows/rewrite-origin-alt-and-link-text.md` 的規則，整理指定 `origin/<章節>/` 內 Markdown 文件中的圖片替代文字與本地附件連結文字。
+用來請 AI 依照 `prompts/_drafts/origin-asset-alt-and-link-text-draft.md` 的規則，整理指定 `origin/<章節>/` 內 Markdown 文件中的圖片替代文字與本地附件連結文字。
 
 這份模板只處理文字描述，不處理資產路徑或實體檔案名稱。
 
@@ -10,7 +10,7 @@
 
 當指定章節的本地資產路徑已經整理完成，但圖片 alt、HTML `alt` 屬性或附件連結文字仍然過於籠統時使用。
 
-建議在執行 `rewrite-origin-asset-paths.md` 並確認路徑正常後，再執行本模板。
+建議在執行 `prompts/_drafts/origin-asset-standardization-draft.md` 並確認路徑正常後，再執行本模板。
 
 ## 使用方式
 
@@ -22,7 +22,7 @@
 ## 可直接複製的提問
 
 ```text
-請依照 prompts/workflows/rewrite-origin-alt-and-link-text.md 的完整規則，處理以下章節：
+請依照 prompts/_drafts/origin-asset-alt-and-link-text-draft.md 的完整規則，處理以下章節：
 
 <章節路徑>
 

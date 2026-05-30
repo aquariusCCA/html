@@ -2,7 +2,7 @@
 
 ## 用途
 
-用來請 AI 依照 `prompts/workflows/rewrite-origin-html-teaching-notes.md` 的規則，將指定的單一 `origin/<章節>/<檔名>.md` 原始資料，重構成高品質 HTML 教學筆記。
+用來請 AI 依照 `prompts/_drafts/origin-to-html-teaching-notes-draft.md` 的規則，將指定的單一 `origin/<章節>/<檔名>.md` 原始資料，重構成高品質 HTML 教學筆記。
 
 這份模板會要求 AI 同步處理：
 
@@ -17,7 +17,7 @@
 
 當單一 `origin/<章節>/<檔名>.md` 已經放入原始學習資料，並準備轉換成正式教學筆記時使用。
 
-建議在執行本模板之前，先確認該章節的本地資產已依照 `prompts/workflows/rewrite-origin-asset-paths.md` 完成檔名與引用路徑標準化。
+建議在執行本模板之前，先確認該章節的本地資產已依照 `prompts/_drafts/origin-asset-standardization-draft.md` 完成檔名與引用路徑標準化。
 
 ## 使用方式
 
@@ -29,7 +29,7 @@
 ## 可直接複製的提問
 
 ```text
-請依照 prompts/workflows/rewrite-origin-html-teaching-notes.md 的完整規則，重構以下原始筆記：
+請依照 prompts/_drafts/origin-to-html-teaching-notes-draft.md 的完整規則，重構以下原始筆記：
 
 <原始筆記路徑>
 

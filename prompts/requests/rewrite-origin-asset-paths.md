@@ -2,7 +2,7 @@
 
 ## 用途
 
-用來請 AI 依照 `prompts/workflows/rewrite-origin-asset-paths.md` 的規則，處理指定 `origin/<章節>/` 內 Markdown 文件中的本地資產引用。
+用來請 AI 依照 `prompts/_drafts/origin-asset-standardization-draft.md` 的規則，處理指定 `origin/<章節>/` 內 Markdown 文件中的本地資產引用。
 
 這份模板會要求 AI 同步處理：
 
@@ -27,7 +27,7 @@
 ## 可直接複製的提問
 
 ```text
-請依照 prompts/workflows/rewrite-origin-asset-paths.md 的完整規則，處理以下章節：
+請依照 prompts/_drafts/origin-asset-standardization-draft.md 的完整規則，處理以下章節：
 
 <章節路徑>
 
@@ -54,4 +54,3 @@
 | 欄位 | 說明 | 範例 |
 | --- | --- | --- |
 | `<章節路徑>` | 要處理的 `origin/` 章節目錄 | `origin/第17章_圖片標籤/` |
-
