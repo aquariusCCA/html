@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>label 包住控件</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 420px;
+    }
+
+    label {
+      display: block;
+      margin-top: 8px;
+    }
+
+    button {
+      display: block;
+      margin-top: 16px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>label 包住控件</h1>
+  <p>也可以把控件直接包在 <code>&lt;label&gt;</code> 裡，讓文字與控件形成關聯。</p>
+
+  <form action="/profile" method="post" name="genderForm">
+    <p>性別</p>
+
+    <label>
+      <input type="radio" name="gender" value="female">
+      女
+    </label>
+
+    <label>
+      <input type="radio" name="gender" value="male">
+      男
+    </label>
+
+    <button type="submit">儲存</button>
+  </form>
+
+  <p class="note">觀察重點：點擊「女」或「男」文字，也會選取對應的 radio。</p>
+</body>
+</html>

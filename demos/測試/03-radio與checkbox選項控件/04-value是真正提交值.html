@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>value 是真正提交值</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    label {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+
+    button {
+      display: block;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>value 是真正提交值</h1>
+  <p>畫面文字是給使用者看的，<code>value</code> 才是表單提交出去的資料值。</p>
+
+  <form action="/payment" method="post" name="paymentForm">
+    <p>付款方式</p>
+
+    <label>
+      <input type="radio" name="payment" value="credit-card">
+      信用卡
+    </label>
+    <p class="note">選這項時，提交值是 <code>credit-card</code>。</p>
+
+    <label>
+      <input type="radio" name="payment" value="bank-transfer">
+      銀行轉帳
+    </label>
+    <p class="note">選這項時，提交值是 <code>bank-transfer</code>。</p>
+
+    <button type="submit">送出</button>
+  </form>
+</body>
+</html>

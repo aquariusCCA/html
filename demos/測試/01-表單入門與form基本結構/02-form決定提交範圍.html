@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>form 決定提交範圍</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    .example {
+      border: 1px solid #aaa;
+      margin-bottom: 20px;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    .wrong {
+      border-color: #b84a4a;
+    }
+
+    .right {
+      border-color: #2f6f73;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>form 決定提交範圍</h1>
+  <p>送出表單時，瀏覽器會收集同一個 <code>&lt;form&gt;</code> 範圍內的控件資料。</p>
+
+  <section class="example wrong">
+    <h2>錯誤寫法</h2>
+    <p>帳號輸入框在 <code>&lt;form&gt;</code> 外面，不屬於這份登入表單。</p>
+
+    <label for="wrong-username">帳號</label>
+    <input type="text" id="wrong-username" name="username">
+
+    <form action="/login" method="post" name="wrongLoginForm">
+      <button type="submit">登入</button>
+    </form>
+  </section>
+
+  <section class="example right">
+    <h2>正確寫法</h2>
+    <p>帳號輸入框放在 <code>&lt;form&gt;</code> 裡，送出時才會跟著這份表單一起提交。</p>
+
+    <form action="/login" method="post" name="loginForm">
+      <label for="right-username">帳號</label>
+      <input type="text" id="right-username" name="username">
+
+      <button type="submit">登入</button>
+    </form>
+  </section>
+</body>
+</html>

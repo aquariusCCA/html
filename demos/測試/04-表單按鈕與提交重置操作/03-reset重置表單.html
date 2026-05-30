@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>reset 重置表單</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 440px;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .warning {
+      color: #8a3a00;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>reset 重置表單</h1>
+  <p><code>type="reset"</code> 會把表單恢復成頁面載入時的初始狀態。</p>
+
+  <form action="/profile" method="post" name="profileForm">
+    <label for="nickname">暱稱</label>
+    <input type="text" id="nickname" name="nickname" value="小明">
+
+    <label for="city">城市</label>
+    <input type="text" id="city" name="city" value="台北">
+
+    <button type="reset">重新填寫</button>
+  </form>
+
+  <p class="warning">觀察重點：先修改欄位內容，再按重置，欄位會回到原本的 value。</p>
+</body>
+</html>

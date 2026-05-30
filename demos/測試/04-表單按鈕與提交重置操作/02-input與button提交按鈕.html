@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>input 與 button 提交按鈕</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      margin-bottom: 20px;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>input 與 button 提交按鈕</h1>
+  <p>兩種寫法都可以提交表單，但按鈕文字的放置位置不同。</p>
+
+  <form action="/register" method="post" name="inputSubmitForm">
+    <label for="input-username">帳號</label>
+    <input type="text" id="input-username" name="username">
+
+    <input type="submit" value="使用 input 提交">
+    <p class="note"><code>&lt;input type="submit"&gt;</code> 使用 <code>value</code> 當按鈕文字。</p>
+  </form>
+
+  <form action="/register" method="post" name="buttonSubmitForm">
+    <label for="button-username">帳號</label>
+    <input type="text" id="button-username" name="username">
+
+    <button type="submit">使用 button 提交</button>
+    <p class="note"><code>&lt;button type="submit"&gt;</code> 使用標籤中間的內容當按鈕文字。</p>
+  </form>
+</body>
+</html>

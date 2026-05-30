@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>button 普通按鈕</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>button 普通按鈕</h1>
+  <p><code>type="button"</code> 是一般操作按鈕，不會自動提交表單。</p>
+
+  <form action="/login" method="post" name="loginForm">
+    <label for="phone">手機號碼</label>
+    <input type="text" id="phone" name="phone">
+
+    <button type="button">取得簡訊驗證碼</button>
+    <button type="submit">登入</button>
+  </form>
+
+  <p class="note">觀察重點：「取得簡訊驗證碼」只是普通按鈕；「登入」才是提交按鈕。</p>
+</body>
+</html>

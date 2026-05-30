@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>value 不是提示文字</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    .example {
+      border: 1px solid #aaa;
+      margin-bottom: 20px;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    .wrong {
+      border-color: #b84a4a;
+    }
+
+    .right {
+      border-color: #2f6f73;
+    }
+
+    label,
+    input {
+      display: block;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>value 不是提示文字</h1>
+  <p><code>value</code> 是真正的資料值，<code>placeholder</code> 才是輸入前的提示文字。</p>
+
+  <section class="example wrong">
+    <h2>錯誤寫法</h2>
+    <p>把提示文字放進 <code>value</code>，使用者沒修改時可能會把「請輸入帳號」送出去。</p>
+
+    <label for="wrong-username">帳號</label>
+    <input type="text" id="wrong-username" name="username" value="請輸入帳號">
+  </section>
+
+  <section class="example right">
+    <h2>正確寫法</h2>
+    <p>提示文字應該放在 <code>placeholder</code>，它會在使用者輸入後消失。</p>
+
+    <label for="right-username">帳號</label>
+    <input type="text" id="right-username" name="username" placeholder="請輸入帳號">
+  </section>
+</body>
+</html>

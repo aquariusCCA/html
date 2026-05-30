@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>type 提供基本驗證</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>type 提供基本驗證</h1>
+  <p>把欄位放進 <code>&lt;form&gt;</code>，提交時瀏覽器才容易觸發內建檢查。</p>
+
+  <form action="/subscribe" method="post" name="subscribeForm">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required placeholder="example@mail.com">
+
+    <label for="website">個人網站</label>
+    <input type="url" id="website" name="website" placeholder="請輸入完整網址">
+
+    <label for="quantity">數量</label>
+    <input type="number" id="quantity" name="quantity" min="1" max="10">
+
+    <button type="submit">提交</button>
+  </form>
+
+  <p class="note">觀察重點：試著輸入不完整的 Email 或網址，再按提交，瀏覽器會提供基本檢查。</p>
+</body>
+</html>

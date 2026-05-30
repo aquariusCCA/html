@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>依需求選擇控件</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 480px;
+    }
+
+    label,
+    select,
+    textarea,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .group {
+      margin-bottom: 16px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>依需求選擇控件</h1>
+  <p>固定選項很多時用下拉列表；需要輸入長文字時用多行文本域。</p>
+
+  <form action="/support" method="post" name="supportForm">
+    <div class="group">
+      <label for="topic">問題類型</label>
+      <select id="topic" name="topic">
+        <option value="account">帳號問題</option>
+        <option value="payment">付款問題</option>
+        <option value="course">課程問題</option>
+      </select>
+      <p class="note">固定選項使用 <code>&lt;select&gt;</code>，可以節省畫面空間。</p>
+    </div>
+
+    <div class="group">
+      <label for="detail">問題描述</label>
+      <textarea id="detail" name="detail" rows="5" cols="32"></textarea>
+      <p class="note">較長內容使用 <code>&lt;textarea&gt;</code>，比單行文字框更適合。</p>
+    </div>
+
+    <button type="submit">送出</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>submit 提交表單</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 440px;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>submit 提交表單</h1>
+  <p><code>type="submit"</code> 會把同一個 <code>&lt;form&gt;</code> 裡的資料送出去。</p>
+
+  <form action="/register" method="post" name="registerForm">
+    <label for="username">帳號</label>
+    <input type="text" id="username" name="username">
+
+    <button type="submit">免費註冊</button>
+  </form>
+
+  <p class="note">觀察重點：提交按鈕放在表單裡，點擊後會依照表單的 action 與 method 提交。</p>
+</body>
+</html>

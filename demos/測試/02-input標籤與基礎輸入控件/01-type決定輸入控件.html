@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>type 決定輸入控件</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>type 決定輸入控件</h1>
+  <p>同樣是 <code>&lt;input&gt;</code>，不同的 <code>type</code> 會產生不同用途的控件。</p>
+
+  <form action="/register" method="post" name="typeDemoForm">
+    <label for="username">文字框：帳號</label>
+    <input type="text" id="username" name="username">
+
+    <label for="password">密碼框：密碼</label>
+    <input type="password" id="password" name="password">
+
+    <input type="hidden" name="source" value="basic-input-demo">
+
+    <button type="submit">送出</button>
+  </form>
+
+  <p class="note">觀察重點：文字框會顯示輸入內容，密碼框會遮蔽輸入內容，隱藏欄位不會出現在畫面上。</p>
+</body>
+</html>

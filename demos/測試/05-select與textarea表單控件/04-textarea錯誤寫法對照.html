@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>textarea 錯誤寫法對照</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    .example {
+      border: 1px solid #aaa;
+      margin-bottom: 20px;
+      padding: 16px;
+      max-width: 480px;
+    }
+
+    .wrong {
+      border-color: #b84a4a;
+    }
+
+    .right {
+      border-color: #2f6f73;
+    }
+
+    label,
+    textarea {
+      display: block;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>textarea 錯誤寫法對照</h1>
+  <p><code>&lt;textarea&gt;</code> 不是 <code>&lt;input&gt;</code>，不靠 <code>type</code> 或 <code>value</code> 設定內容。</p>
+
+  <section class="example wrong">
+    <h2>錯誤寫法</h2>
+    <p>把 <code>type</code> 與 <code>value</code> 寫在 textarea 上，不能正確表達多行輸入的預設內容。</p>
+
+    <label for="wrong-message">留言內容</label>
+    <textarea id="wrong-message" type="text" value="留言內容"></textarea>
+  </section>
+
+  <section class="example right">
+    <h2>正確寫法</h2>
+    <p>textarea 的預設內容要放在開始標籤與結束標籤中間。</p>
+
+    <label for="right-message">留言內容</label>
+    <textarea id="right-message" name="message" rows="4" cols="30">留言內容</textarea>
+  </section>
+</body>
+</html>

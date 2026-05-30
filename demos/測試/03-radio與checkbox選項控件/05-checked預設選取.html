@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>checked 預設選取</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    label {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+
+    button {
+      display: block;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>checked 預設選取</h1>
+  <p><code>checked</code> 可以讓 radio 或 checkbox 在頁面載入時先被選取。</p>
+
+  <form action="/delivery" method="post" name="deliveryForm">
+    <p>配送方式</p>
+
+    <label>
+      <input type="radio" name="delivery" value="standard" checked>
+      一般配送
+    </label>
+
+    <label>
+      <input type="radio" name="delivery" value="express">
+      快速配送
+    </label>
+
+    <p>通知選項</p>
+
+    <label>
+      <input type="checkbox" name="notice" value="email" checked>
+      Email 通知
+    </label>
+
+    <label>
+      <input type="checkbox" name="notice" value="sms">
+      簡訊通知
+    </label>
+
+    <button type="submit">儲存</button>
+  </form>
+
+  <p class="note">觀察重點：預設值可以幫助使用者，但不應該誤導使用者。</p>
+</body>
+</html>

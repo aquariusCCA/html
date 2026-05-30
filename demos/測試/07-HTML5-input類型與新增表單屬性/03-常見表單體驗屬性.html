@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>常見表單體驗屬性</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      border: 2px solid #2f6f73;
+      padding: 16px;
+      max-width: 460px;
+    }
+
+    label,
+    input,
+    button {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>常見表單體驗屬性</h1>
+  <p><code>required</code>、<code>placeholder</code>、<code>autofocus</code>、<code>autocomplete</code> 可以改善表單操作體驗。</p>
+
+  <form action="/search" method="get" name="searchForm">
+    <label for="keyword">搜尋</label>
+    <input
+      type="search"
+      id="keyword"
+      name="keyword"
+      required
+      placeholder="請輸入關鍵字"
+      autofocus
+      autocomplete="off"
+    >
+
+    <button type="submit">搜尋</button>
+  </form>
+
+  <p class="note">觀察重點：頁面載入後搜尋欄會自動聚焦，空白提交會被瀏覽器阻擋。</p>
+</body>
+</html>
