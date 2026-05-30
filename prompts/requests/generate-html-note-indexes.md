@@ -41,8 +41,8 @@
 1. 只讀取並處理上述指定的單一 Markdown 檔案。
 2. 不要讀取或處理同章節的其他筆記。
 3. 不要讀取或處理其他章節的筆記。
-4. 不要把 origin/ 作為索引主要依據。
-5. 不要修改 notes/、origin/、demos/、practice/、review/、supplements/ 或 prompts/ 內的內容。
+4. 不要把 origin/ 或 atomic/ 作為索引資料來源，也不要從其中補充索引條目、標題或說明。
+5. 不要修改 notes/、origin/、atomic/、demos/、practice/、review/、supplements/ 或 prompts/ 內的內容。
 6. 從指定筆記萃取 note_title、note_path、link_path、chapter、note_name、summary、headings、section_links、keywords、html_elements、context_elements、html_attributes、topics、categories、scenarios、faqs 與 tags；其中 context_elements 是可選欄位。
 7. html_elements 只放本篇主要教學或直接操作的 HTML 標籤；context_elements 用來記錄只作為比較、反例、注意事項或語意邊界判斷的 HTML 標籤。
 8. 只產生來源筆記能支撐的索引項目，不要為了完整度發明筆記沒有提到的標籤、屬性、概念、FAQ、場景或 tag。
@@ -72,7 +72,7 @@
 25. 所有內容請使用繁體中文撰寫，並以初學者方便查找與回讀為優先。
 26. 完成後請回報指定正式筆記路徑、章節名稱、筆記名稱、產生或更新的檔案清單、每個索引檔案的條目數、資料不足的索引類型、段落連結檢查結果、退回整篇筆記連結的索引項目，以及主要去重或合併規則。
 
-請只根據上述指定筆記產生或更新索引，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
+請只根據上述指定的 notes/ 正式筆記產生或更新索引。如果提供的是 origin/ 或 atomic/ 路徑，請停止並要求改提供對應的 notes/<章節>/<筆記名>.md；不要處理其他章節、其他 Markdown 檔案或其他資料夾。
 ```
 
 ## 可替換欄位
