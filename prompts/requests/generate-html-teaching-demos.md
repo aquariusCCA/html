@@ -52,7 +52,7 @@
 12. Demo 文字、標題、註解與 README 請使用繁體中文。
 13. 請直接建立或覆蓋目標目錄 `demos/<章節>/<筆記名>/` 中的 demo 檔案與 `README.md`。
 14. `README.md` 需要包含來源筆記、建議學習順序、每個 demo 對應的觀念、觀察重點與建議修改任務。
-15. 不要修改 `notes/`、`origin/`、`practice/`、`review/`、`supplements/`、`appendix/` 或 `prompts/` 內的其他檔案。
+15. 不要修改 `notes/`、`origin/`、`atomic/`、`practice/`、`review/`、`supplements/`、`appendix/` 或 `prompts/` 內的其他檔案。
 16. 完成後回報目標路徑、產生的檔案清單、每個 demo 對應的學習重點與品質檢查結果。
 
 請只根據上述指定筆記產生 demo，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
