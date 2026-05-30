@@ -52,6 +52,7 @@
 ```text
 html/
   origin/
+  atomic/
   notes/
   appendix/
   demos/
