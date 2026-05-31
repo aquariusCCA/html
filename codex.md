@@ -3,7 +3,7 @@
 1. 章節名稱：`測試`
 2. 改動位置：`notes/測試`
 3. 任務 / 改動類型：`初次產物製作`
-4. 改動摘要：`使用 atomic-to-html-teaching-notes-draft.md，讀取指定章節的 atomic/<章節>/*.md 原子化資料，先建立正式筆記映射，再重構成一組高品質 HTML 教學筆記。`
+4. 改動摘要：`使用 html-teaching-notes-content-review-draft.md 審查指定 notes/<章節>/ 內的正式 HTML 教學筆記，確認它們是否達到高品質教學筆記標準。`
 5. 我希望 AI 判斷或處理：
 6. 限制條件：
    - 請先判斷，不改檔。

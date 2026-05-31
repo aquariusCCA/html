@@ -122,6 +122,7 @@ html/
 
 | 目錄 | 角色 |
 | --- | --- |
+| `meta/` | 保存章節處理狀態、更新規則與 repo 維護流程。 |
 | `origin/` | 保存原始資料與章節資產。 |
 | `atomic/` | 保存由原始資料整理後產生的候選原子資料。 |
 | `notes/` | 保存正式 HTML 教學筆記，是本任務主要審查對象。 |
@@ -183,7 +184,7 @@ notes 內容審查：教材是否值得交給初學者讀。
 1. 主要審查對象只限指定的 `notes/<章節>/*.md`。
 2. `atomic/<章節>/*.md` 只作為內容覆蓋、映射合理性與追溯對照。
 3. `origin/<章節>/*.md` 只在需要判斷來源錯誤或資產脈絡時回查。
-4. 不要把 `demos/`、`practice/`、`review/`、`appendix/`、`supplements/` 當成 notes 內容審查輸入。
+4. 不要把 `meta/`、`demos/`、`practice/`、`review/`、`appendix/`、`supplements/` 當成 notes 內容審查輸入。
 5. 不要修改、刪除或搬移 `origin/<章節>/assets/`。
 
 ## 2. 第一階段限制
@@ -211,7 +212,7 @@ notes 內容審查：教材是否值得交給初學者讀。
 3. 不要修改 `atomic/<章節>/*.md`。
 4. 不要修改 `origin/<章節>/*.md`。
 5. 不要修改、刪除或搬移 `origin/<章節>/assets/`。
-6. 不要修改 `demos/`、`practice/`、`review/`、`appendix/` 或 `supplements/`。
+6. 不要修改 `meta/`、`demos/`、`practice/`、`review/`、`appendix/` 或 `supplements/`。
 7. 以最小必要變更修正問題。
 8. 不要將整篇 notes 重新生成，除非使用者明確要求。
 
@@ -487,4 +488,3 @@ S2 高風險教學誤導
 是否沒有重新生成整篇章節？
 是否回報修正清單與檢查結果？
 ```
-

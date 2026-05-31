@@ -171,6 +171,15 @@ checkbox 適合可以同時選多個答案的情境。是否共用同一個 `nam
 
 `type="file"` 用於上傳檔案。加上 `multiple` 時，可以選擇多個檔案。
 
+如果要真的透過表單提交檔案，外層 `<form>` 通常需要使用 `method="post"`，並加上 `enctype="multipart/form-data"`，瀏覽器才會用適合檔案內容的格式送出資料。
+
+```html
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="avatar">
+  <button type="submit">上傳</button>
+</form>
+```
+
 ## HTML5 新增 input 類型
 
 HTML5 提供了更多符合資料型態的 input 類型，例如 Email、網址、日期、時間、數字、電話、搜尋與顏色。
