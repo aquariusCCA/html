@@ -15,7 +15,7 @@
 2. 改動類型是什麼？
 3. 哪些下游可能過期？
 4. 要檢查或重生成哪些內容？
-5. chapter-status.md 要怎麼更新？
+5. meta/chapter-status.md 要怎麼更新？
 ```
 
 核心原則：
@@ -121,7 +121,7 @@ notes 改了 → 先看下游材料是否過期
 
 ```text
 不確定
-  → chapter-status.md 對應欄位標記為「待確認」
+  → meta/chapter-status.md 對應欄位標記為「待確認」
   → 在「下一步」或「備註」寫明需檢查或需更新的內容
 ```
 
@@ -170,7 +170,7 @@ notes 改了 → 先看下游材料是否過期
 origin 小修
   → 檢查 atomic 是否也有同樣問題
   → 必要時同步 notes
-  → 必要時更新 chapter-status.md
+  → 必要時更新 meta/chapter-status.md
 ```
 
 #### 新增重要概念、範例或注意事項
@@ -183,7 +183,7 @@ origin 新增重要內容
   → 使用 prompts/requests/review-atomic-content.md 執行 atomic review
   → 更新 notes
   → 檢查 appendix / demos / practice / review
-  → 更新 chapter-status.md
+  → 更新 meta/chapter-status.md
 ```
 
 #### 刪除、合併或移除錯誤內容
@@ -196,14 +196,14 @@ origin 刪除或合併
   → 使用 prompts/requests/review-atomic-content.md 執行 atomic review
   → 更新 notes
   → 清除下游過期內容
-  → 更新 chapter-status.md
+  → 更新 meta/chapter-status.md
 ```
 
 ---
 
 ### 5.2 `origin/<章節>/assets/` 改動
 
-資產命名、分類、hash 與引用路徑細節，以 `prompts/_drafts/origin-asset-standardization-draft.md` 為準；`update-rules.md` 只負責判斷何時需要執行資產標準化流程，以及哪些下游可能過期。
+資產命名、分類、hash 與引用路徑細節，以 `prompts/_drafts/origin-asset-standardization-draft.md` 為準；`meta/update-rules.md` 只負責判斷何時需要執行資產標準化流程，以及哪些下游可能過期。
 
 #### 新增資產
 
@@ -250,7 +250,7 @@ appendix 連結
 atomic 修正技術錯誤
   → 更新 notes
   → 檢查 appendix / demos / practice / review 是否仍保留舊說法
-  → 更新 chapter-status.md
+  → 更新 meta/chapter-status.md
 ```
 
 #### 調整切分、合併或順序
@@ -260,7 +260,7 @@ atomic 結構調整
   → 更新 notes
   → 更新 appendix
   → 檢查 demos / practice / review 的來源是否失效
-  → 更新 chapter-status.md
+  → 更新 meta/chapter-status.md
 ```
 
 ---
@@ -338,7 +338,7 @@ demo 新增新觀念
 ```text
 修正來源文字
   → 檢查是否影響標題 / anchor / 關鍵字
-  → 必要時同步 chapter-status.md
+  → 必要時同步 meta/chapter-status.md
 ```
 
 ### 6.2 技術概念修正
@@ -350,7 +350,7 @@ demo 新增新觀念
   → 檢查 demos
   → 更新 practice
   → 更新 review
-  → 更新 chapter-status.md
+  → 更新 meta/chapter-status.md
 ```
 
 ### 6.3 章節重構
@@ -362,7 +362,7 @@ demo 新增新觀念
   → 重產 notes
   → 重產 appendix
   → 重產 demos / practice / review
-  → 更新 chapter-status.md
+  → 更新 meta/chapter-status.md
 ```
 
 ### 6.4 資產重整
@@ -372,7 +372,7 @@ demo 新增新觀念
   → 執行 prompts/requests/rewrite-origin-asset-paths.md
   → 執行 prompts/requests/rewrite-origin-alt-and-link-text.md
   → 檢查 atomic / notes / demos / appendix 引用
-  → 更新 chapter-status.md
+  → 更新 meta/chapter-status.md
 ```
 
 ---
@@ -387,7 +387,7 @@ demo 新增新觀念
 - [ ] 已確認輸出路徑
 - [ ] 已確認不會覆蓋未備份的人工修改
 - [ ] 已確認舊檔案要保留、覆蓋或人工比對
-- [ ] 已確認是否需要更新 `chapter-status.md`
+- [ ] 已確認是否需要更新 `meta/chapter-status.md`
 
 ### 7.2 重生成後
 
@@ -400,28 +400,28 @@ demo 新增新觀念
 - [ ] practice 的題目、答案與來源是否一致
 - [ ] review 的題庫、排程、錯題回流是否一致
 - [ ] appendix 的 anchor 是否能對應到 notes 標題
-- [ ] `chapter-status.md` 是否已同步更新
+- [ ] `meta/chapter-status.md` 是否已同步更新
 
 ---
 
-## 8. `chapter-status.md` 同步規則
+## 8. `meta/chapter-status.md` 同步規則
 
-每次完成更新或重生成後，都要同步 `chapter-status.md`。
+每次完成更新或重生成後，都要同步 `meta/chapter-status.md`。
 
-`chapter-status.md` 是狀態欄位與狀態值的唯一來源。本文件只描述何時同步、如何判斷影響範圍，以及維護概念如何對應到狀態表欄位；不要在本文件另行定義欄位或狀態清單。
+`meta/chapter-status.md` 是狀態欄位與狀態值的唯一來源。本文件只描述何時同步、如何判斷影響範圍，以及維護概念如何對應到狀態表欄位；不要在本文件另行定義欄位或狀態清單。
 
 同步原則：
 
 - 只更新受影響章節的相關欄位。
-- 不要為了配合本文件而修改 `chapter-status.md` 的欄位結構。
-- 不確定下游是否已過期時，依 `chapter-status.md` 的狀態選項標記為「待確認」。
+- 不要為了配合本文件而修改 `meta/chapter-status.md` 的欄位結構。
+- 不確定下游是否已過期時，依 `meta/chapter-status.md` 的狀態選項標記為「待確認」。
 - 需要檢查或補做的事項，寫在 `下一步` 或 `備註`。
 - 下游已重生成並檢查後，標記為「已完成」。
 - 某層不需要產出時，標記為「不適用」，並在 `備註` 說明原因。
 
 維護概念對應：
 
-| 維護概念 | `chapter-status.md` 對應欄位 |
+| 維護概念 | `meta/chapter-status.md` 對應欄位 |
 | --- | --- |
 | `origin` | `origin整理` |
 | `asset` | `資產命名`、`alt與連結文字` |
@@ -471,11 +471,11 @@ demo 新增新觀念
 建議指令：
 
 ```text
-請依 update-rules.md 判斷這次改動的影響範圍。
+請依 meta/update-rules.md 判斷這次改動的影響範圍。
 只輸出：
 1. 需要檢查的下游
 2. 需要重生成的下游
-3. chapter-status.md 應標記的狀態
+3. meta/chapter-status.md 應標記的狀態
 4. 是否有過期內容風險
 ```
 
@@ -495,10 +495,10 @@ appendix 已根據 notes 建立
 demos 已根據 notes 建立或確認不需要
 practice 已根據 notes 建立
 review 已根據 notes 建立
-chapter-status.md 已同步更新
+meta/chapter-status.md 已同步更新
 ```
 
-如果某一層不需要產出，必須在 `chapter-status.md` 備註原因。
+如果某一層不需要產出，必須在 `meta/chapter-status.md` 備註原因。
 
 ---
 
