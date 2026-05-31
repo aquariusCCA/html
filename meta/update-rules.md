@@ -568,32 +568,7 @@ meta/chapter-status.md 已同步更新
 
 ---
 
-## 9. 給 AI 使用時的最小輸入
-
-與 AI 協作時，不需要每次貼完整筆記。優先提供以下資訊：
-
-```text
-1. 章節名稱
-2. 改動位置：origin / origin/<章節>/assets / atomic / notes / appendix / demos / practice / review
-3. 改動類型：小修 / 技術概念 / 結構 / 範例 / 資產 / 標題
-4. 改動摘要
-5. 你希望 AI 判斷什麼
-```
-
-建議指令：
-
-```text
-請依 meta/update-rules.md 判斷這次改動的影響範圍。
-只輸出：
-1. 需要檢查的下游
-2. 需要重生成的下游
-3. meta/chapter-status.md 應標記的狀態
-4. 是否有過期內容風險
-```
-
----
-
-## 10. 快速口訣
+## 9. 快速口訣
 
 ```text
 改 origin，要想到 atomic。
@@ -608,7 +583,7 @@ meta/chapter-status.md 已同步更新
 
 ---
 
-## 11. 一句話總結
+## 10. 一句話總結
 
 ```text
 先找改動位置，再判斷改動類型；
