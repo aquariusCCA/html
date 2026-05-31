@@ -3,7 +3,7 @@
 1. 章節名稱：`測試`
 2. 改動位置：`origin/測試`
 3. 任務 / 改動類型：`初次產物製作`
-4. 改動摘要：`使用 prompts/_drafts/origin-asset-standardization-draft.md 處理「本地資產檔案名稱」與「本地資產引用路徑」。`
+4. 改動摘要：`使用 prompts/_drafts/origin-asset-alt-and-link-text-draft.md 整理本地圖片的替代文字與本地附件的連結文字`
 5. 我希望 AI 判斷或處理：
 6. 限制條件：
    - 請先判斷，不改檔。
