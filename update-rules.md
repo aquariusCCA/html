@@ -1,590 +1,282 @@
 # HTML 筆記包更新與重生成規則
 
-## 1. 文件目的
+> 用途：當 `origin/`、`atomic/`、`notes/` 或下游材料任一層改動時，用這份規則判斷哪些內容需要檢查、同步或重生成。
 
-`update-rules.md` 用來規範 HTML 筆記包中各層資料改動後，哪些下游內容需要重新檢查、重新生成或同步更新。
-
-這份文件的核心目的不是增加流程負擔，而是避免出現以下問題：
-
-```text
-origin 改了，但 atomic 沒有同步
-atomic 修正了，但 notes 還是舊內容
-notes 改了，但 demos / practice / review / appendix 沒有重產
-資產路徑改了，但下游筆記仍然引用舊路徑
-```
-
-一句話理解：
-
-```text
-只要上游資料變動，就要判斷哪些下游產物可能過期。
-```
+這份文件是全 repo 維護規則。它不是單一 prompt，也不是學習內容本身；它用來讓人與 AI 在更新既有內容時，用同一套方式判斷影響範圍。
 
 ---
 
-## 2. 標準資料流
+## 0. 快速使用方式
 
-HTML 筆記包的主要資料流如下：
+每次更新先做 5 個判斷：
 
 ```text
-origin/
+1. 改動發生在哪一層？
+2. 改動類型是什麼？
+3. 哪些下游可能過期？
+4. 要檢查或重生成哪些內容？
+5. chapter-status.md 要怎麼更新？
+```
+
+核心原則：
+
+```text
+上游變動，不代表全部重跑；
+但一定要判斷下游是否過期。
+```
+
+AI 執行任務時，應先回報影響範圍與預計處理流程，再進行大範圍重生成或狀態同步。
+
+---
+
+## 1. 筆記包資料流
+
+```text
+origin/<章節>/*.md
+origin/<章節>/assets/
   ↓
-資產整理
+資料整理
+  - 資產路徑標準化
+  - alt / 連結文字整理
+  - origin 內容整理與切分準備
   ↓
 atomic/
   ↓
-atomic 內容審查
+atomic review（atomic 內容審查）
   ↓
 notes/
   ↓
-appendix/
-demos/
-practice/
-review/
+appendix/  demos/  practice/  review/
 ```
 
-可以理解成：
+`origin/<章節>/*.md` 與 `origin/<章節>/assets/` 都是原始來源；`origin/<章節>/assets/` 是 `origin/` 的章節資產區，不是 repo 根目錄下的獨立資料層。
 
-```text
-origin  = 原始資料來源
-atomic  = 原始資料整理後的候選原子資料
-notes   = 正式教學筆記
-appendix / demos / practice / review = 從 notes 延伸出的下游學習材料
-```
+| 層級 | 類型 | 是否為內容來源 | 主要責任 |
+| --- | --- | --- | --- |
+| `origin/` | 原始資料 | 是 | 保存原始筆記與素材，不直接當正式筆記 |
+| `origin/<章節>/assets/` | 章節資產 | 是 | 保存圖片、PDF、Excel、Word 等附件 |
+| `資料整理` | 處理流程 | 否 | 標準化資產路徑、整理 alt / 連結文字，並準備 origin -> atomic 切分 |
+| `atomic/` | 原子化候選內容 | 是 | 從 origin 整理出可重組的概念單元 |
+| `atomic review` | 審查流程 / 狀態 | 否 | 檢查 atomic 的正確性、完整性、缺漏與轉換風險 |
+| `notes/` | 正式教學筆記 | 是 | 作為 appendix / demos / practice / review 的正式來源 |
+| `appendix/` | 下游材料 | 否 | 由 notes 產生索引、FAQ、查表資料 |
+| `demos/` | 下游材料 | 否 | 由 notes 產生可執行教學範例 |
+| `practice/` | 下游材料 | 否 | 由 notes 產生練習題與實作任務 |
+| `review/` | 下游材料 | 否 | 由 notes 產生複習、錯題、間隔複習材料 |
+| `supplements/` | 補充資料 | 視內容而定 | 若補充正式知識，需回補 notes |
+| `prompts/` | AI 協作規則 | 否 | 管理 AI 工作流程，不作為 HTML 知識來源 |
+
+以下對應表只用來定位各資料流階段的細則來源。
+
+| 資料流階段 | 細則來源 |
+| --- | --- |
+| 資產路徑標準化 | `prompts/_drafts/origin-asset-standardization-draft.md` |
+| alt / 連結文字整理 | `prompts/_drafts/origin-asset-alt-and-link-text-draft.md` |
+| origin -> atomic | `prompts/_drafts/origin-to-atomic-notes-draft.md` |
+| atomic review | `prompts/_drafts/atomic-content-review-draft.md` |
+| atomic -> notes | `prompts/_drafts/atomic-to-html-teaching-notes-draft.md` |
+| notes -> appendix | `prompts/_drafts/notes-to-index-system-draft.md` |
+| notes -> demos | `prompts/_drafts/notes-to-html-teaching-demos-draft.md` |
+| notes -> practice | `prompts/_drafts/notes-to-html-practice-draft.md` |
+| notes -> review | `prompts/_drafts/notes-to-review-system-draft.md` |
 
 ---
 
-## 3. 各層資料責任
+## 2. 來源規則
 
-| 目錄 | 定位 | 是否可視為來源 |
+### 2.1 先找最新正確來源
+
+更新前先判斷最新正確內容在哪一層。
+
+```text
+origin 改了 → 先看 atomic / notes 是否過期
+atomic 改了 → 先看 notes 是否過期
+notes 改了 → 先看下游材料是否過期
+```
+
+### 2.2 不要在下游修正上游錯誤
+
+如果錯誤來自 `notes/`，不要只改 `demos/` 或 `practice/`。
+
+```text
+錯誤來源在 notes
+  → 先修 notes
+  → 再重生成受影響的下游
+```
+
+### 2.3 下游不得自行新增核心知識
+
+`appendix/`、`demos/`、`practice/`、`review/` 只能延伸 `notes/` 已經教過的內容。
+
+如果下游需要加入新觀念：
+
+```text
+先補 notes
+  → 再更新下游
+```
+
+### 2.4 不確定時標記為「待確認」
+
+如果無法判斷某個下游是否過期，不要假設它是最新的。
+
+```text
+不確定
+  → chapter-status.md 對應欄位標記為「待確認」
+  → 在「下一步」或「備註」寫明需檢查或需更新的內容
+```
+
+### 2.5 只重跑必要範圍
+
+不要因為一個小修就全部重跑。先確認改動類型，再決定範圍。
+
+---
+
+## 3. 改動類型判斷
+
+| 改動類型 | 常見情境 | 影響程度 |
 | --- | --- | --- |
-| `origin/` | 原始資料與章節資產 | 是，最上游來源 |
-| `atomic/` | 由 origin 整理出的原子化候選資料 | 是，notes 的直接來源 |
-| `notes/` | 正式教學筆記 | 是，下游內容的直接來源 |
-| `appendix/` | 索引與查表資料 | 否，由 notes 產生 |
-| `demos/` | 教學範例 | 否，由 notes 產生 |
-| `practice/` | 練習題與實作任務 | 否，由 notes 產生 |
-| `review/` | 複習系統與錯題回流 | 否，由 notes 產生 |
-| `supplements/` | 補充資料 | 視內容而定 |
-| `prompts/` | AI 協作規則 | 不屬於學習內容來源 |
+| 小修文字 | 錯字、標點、格式、清單縮排 | 低 |
+| 技術概念改動 | 修正標籤、屬性、行為、規則、常見錯誤 | 高 |
+| 結構改動 | 拆分、合併、重排章節或 atomic | 高 |
+| 範例改動 | 新增、刪除、修正 HTML / CSS / JS 範例 | 中到高 |
+| 資產改動 | 新增、改名、搬移圖片或附件 | 中 |
+| 標題改動 | 修改 H2 / H3 標題 | 中，特別影響 appendix anchor |
 
 ---
 
-## 4. 基本原則
+## 4. 影響範圍總表
 
-### 4.1 上游改動，下游要檢查
-
-只要上游資料發生變動，就要檢查下游是否需要重生成。
-
-```text
-origin 改動
-  → 檢查 atomic、notes、appendix、demos、practice、review
-
-atomic 改動
-  → 檢查 notes、appendix、demos、practice、review
-
-notes 改動
-  → 檢查 appendix、demos、practice、review
-```
-
-### 4.2 不要直接改下游來修正上游問題
-
-如果發現 `demos/` 或 `practice/` 的錯誤其實來自 `notes/`，應先修正 `notes/`，再重生成下游內容。
-
-不建議：
-
-```text
-只改 demos，notes 保持錯誤
-```
-
-建議：
-
-```text
-修正 notes
-  ↓
-重新產生 demos
-```
-
-### 4.3 先確認影響範圍，再重生成
-
-不要每次小改都全部重跑。
-
-應先判斷：
-
-```text
-改的是錯字？
-改的是技術概念？
-改的是章節結構？
-改的是圖片路徑？
-改的是正式筆記標題？
-```
-
-不同改動影響範圍不同。
+| 改動位置 | 小修文字 | 技術概念改動 | 結構改動 | 範例改動 | 資產 / 標題改動 |
+| --- | --- | --- | --- | --- | --- |
+| `origin/` | 檢查 atomic / notes 是否也有同錯誤 | 更新 atomic → atomic review → notes → 下游 | 更新 atomic → atomic review → notes → 下游 | 視是否進入 notes | 檢查所有引用路徑 |
+| `atomic/` | 檢查 notes | 更新 notes → 下游 | 更新 notes → appendix，檢查 demos / practice / review | 視 notes 是否受影響 | 檢查 notes 路徑 |
+| `notes/` | 通常不重跑下游 | 更新 appendix / practice / review，檢查 demos | 更新 appendix，檢查 demos / practice / review | 更新 demos，檢查 practice / review | 標題改動必查 appendix |
+| `appendix/` | 可直接修 | 先查 notes 是否缺漏 | 先查 notes | 不直接新增教學內容 | 檢查 anchor |
+| `demos/` | 可直接修 | 先查 notes 是否已教 | 視情況 | 可直接修，但不得超出 notes | 檢查引用路徑 |
+| `practice/` | 可直接修 | 先查 notes 與答案來源 | 視情況 | 檢查題目與答案 | 檢查來源連結 |
+| `review/` | 可直接修 | 先查 notes | 視情況 | 檢查題庫與錯題回流 | 檢查來源連結 |
 
 ---
 
-## 5. 改動類型與重生成規則
+## 5. 分層更新規則
 
-## 5.1 `origin/` 改動
+### 5.1 `origin/` 改動
 
-### 情境 A：只修正錯字、標點、格式
+#### 小修文字
 
-例如：
-
-```text
-修正錯字
-調整 Markdown 清單縮排
-修正標題層級
-```
-
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `atomic/` | 視情況 | 如果 atomic 已經吸收過該內容，可不重跑；若錯字也存在於 atomic，應同步修正 |
-| `notes/` | 視情況 | 如果正式筆記已經沒有該錯字，可不處理 |
-| `demos/` | 不一定 | 通常不需要 |
-| `practice/` | 不一定 | 通常不需要 |
-| `review/` | 不一定 | 通常不需要 |
-| `appendix/` | 不一定 | 通常不需要 |
-
-建議流程：
+只需要檢查下游是否也存在同樣錯誤。
 
 ```text
 origin 小修
-  ↓
-檢查 atomic 是否也有同樣問題
-  ↓
-必要時同步修正 atomic / notes
+  → 檢查 atomic 是否也有同樣問題
+  → 必要時同步 notes
+  → 必要時更新 chapter-status.md
 ```
 
----
+#### 新增重要概念、範例或注意事項
 
-### 情境 B：新增重要概念、範例或注意事項
-
-例如：
-
-```text
-新增 HTML 標籤說明
-新增常見錯誤
-新增重要範例
-新增實務判斷
-```
-
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `atomic/` | 需要 | 重新評估 atomic 切分 |
-| `atomic review` | 需要 | 新增內容要檢查技術正確性 |
-| `notes/` | 需要 | 正式筆記可能要補充 |
-| `demos/` | 視情況 | 若新增內容適合觀察或實作，需重產 |
-| `practice/` | 視情況 | 若新增內容可出題，需重產 |
-| `review/` | 視情況 | 若新增核心概念，需重產 |
-| `appendix/` | 需要 | 索引可能要新增關鍵字、FAQ、場景 |
-
-建議流程：
+需要重新評估整條資料流。
 
 ```text
 origin 新增重要內容
-  ↓
-重新產生或更新 atomic
-  ↓
-重新審查 atomic
-  ↓
-重新生成 notes
-  ↓
-重生成 appendix / demos / practice / review
+  → 更新 atomic
+  → 使用 prompts/requests/review-atomic-content.md 執行 atomic review
+  → 更新 notes
+  → 檢查 appendix / demos / practice / review
+  → 更新 chapter-status.md
 ```
 
----
+#### 刪除、合併或移除錯誤內容
 
-### 情境 C：刪除或合併原始內容
-
-例如：
+重點是避免下游殘留舊資料。
 
 ```text
-刪除重複段落
-合併兩篇 origin 筆記
-移除錯誤說法
+origin 刪除或合併
+  → 更新 atomic
+  → 使用 prompts/requests/review-atomic-content.md 執行 atomic review
+  → 更新 notes
+  → 清除下游過期內容
+  → 更新 chapter-status.md
 ```
-
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `atomic/` | 需要 | 避免保留已刪除或已合併的舊內容 |
-| `atomic review` | 需要 | 確認刪除沒有造成概念斷裂 |
-| `notes/` | 需要 | 避免正式筆記仍引用舊內容 |
-| `demos/` | 視情況 | 若 demo 依賴被刪內容，需要更新 |
-| `practice/` | 視情況 | 若題目依賴被刪內容，需要更新 |
-| `review/` | 視情況 | 若複習題依賴被刪內容，需要更新 |
-| `appendix/` | 需要 | 移除過期索引 |
 
 ---
 
-## 5.2 `origin/<章節>/assets/` 改動
+### 5.2 `origin/<章節>/assets/` 改動
 
-### 情境 A：新增圖片、PDF、Word、Excel 或其他附件
+資產命名、分類、hash 與引用路徑細節，以 `prompts/_drafts/origin-asset-standardization-draft.md` 為準；`update-rules.md` 只負責判斷何時需要執行資產標準化流程，以及哪些下游可能過期。
 
-處理方式：
+#### 新增資產
 
 ```text
 新增資產
-  ↓
-更新 origin 中的引用
-  ↓
-執行資產標準化命名
-  ↓
-檢查 alt / 連結文字
-  ↓
-視內容更新 atomic / notes
+  → 放入 origin/<章節>/assets/
+  → 執行 prompts/requests/rewrite-origin-asset-paths.md
+  → 執行 prompts/requests/rewrite-origin-alt-and-link-text.md
+  → 檢查 atomic / notes / demos / appendix 是否受影響
 ```
 
-需要檢查：
+新增資產必查：
 
 | 檢查項目 | 說明 |
 | --- | --- |
-| 是否有被 Markdown 正確引用 | 不要只放檔案但沒有引用 |
-| 是否符合標準命名 | `<md-slug>-<asset-kind>-<index>-<hash6>.<ext>` |
-| 是否有清楚 alt 或連結文字 | 圖片與附件要可理解 |
-| 下游路徑是否正確 | atomic / notes 應指向 `../../origin/<章節>/assets/...` |
+| origin 引用 | 不要只放檔案但沒有被 `origin/<章節>/*.md` 引用 |
+| 資產標準化 | 是否已依 `prompts/requests/rewrite-origin-asset-paths.md` 完成 |
+| alt / 連結文字 | 是否已依 `prompts/requests/rewrite-origin-alt-and-link-text.md` 完成 |
+| 下游引用 | atomic / notes / demos / appendix 是否仍引用舊路徑 |
 
----
+#### 資產改名或搬移
 
-### 情境 B：資產重新命名或搬移
+禁止只改檔名、不改引用。實體資產改名、分類或引用路徑標準化，應以 `prompts/requests/rewrite-origin-asset-paths.md` 作為實際操作入口。
 
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `origin/` | 需要同步 | Markdown 引用要同步更新 |
-| `atomic/` | 需要檢查 | 可能仍指向舊路徑 |
-| `notes/` | 需要檢查 | 可能仍指向舊路徑 |
-| `demos/` | 視情況 | 若 demo 引用該資產，需更新 |
-| `appendix/` | 視情況 | 若索引中有資產連結，需更新 |
-
-禁止只改實體檔案名稱而不更新引用。
-
----
-
-## 5.3 `atomic/` 改動
-
-### 情境 A：修正技術錯誤
-
-例如：
+必查：
 
 ```text
-修正錯誤標籤說明
-修正錯誤屬性行為
-修正錯誤範例程式碼
+origin 引用
+atomic 引用
+notes 引用
+demos 引用
+appendix 連結
 ```
 
-處理方式：
+如果無法確認某個下游是否引用舊路徑，將該下游狀態標記為「待確認」，並在「下一步」或「備註」寫明需檢查引用路徑。
 
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `notes/` | 需要 | 正式筆記必須吸收正確內容 |
-| `demos/` | 視情況 | 若 demo 與錯誤觀念有關，需重產 |
-| `practice/` | 視情況 | 若題目或答案受影響，需重產 |
-| `review/` | 視情況 | 若複習題受影響，需重產 |
-| `appendix/` | 視情況 | 若索引條目受影響，需重產 |
+---
 
-建議流程：
+### 5.3 `atomic/` 改動
+
+#### 修正技術錯誤
 
 ```text
 atomic 修正技術錯誤
-  ↓
-重新生成 notes
-  ↓
-重新檢查下游內容是否引用舊說法
+  → 更新 notes
+  → 檢查 appendix / demos / practice / review 是否仍保留舊說法
+  → 更新 chapter-status.md
 ```
 
----
-
-### 情境 B：調整 atomic 切分、合併或順序
-
-例如：
+#### 調整切分、合併或順序
 
 ```text
-兩篇 atomic 合併
-一篇 atomic 拆成兩篇
-調整學習順序
-移動段落到更合適的 atomic
-```
-
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `notes/` | 需要 | `atomic -> notes` 映射可能改變 |
-| `appendix/` | 需要 | 索引路徑與段落可能改變 |
-| `demos/` | 視情況 | 若正式筆記拆分或合併，demo 也可能要調整 |
-| `practice/` | 視情況 | 題目來源筆記可能改變 |
-| `review/` | 視情況 | 知識地圖與題庫可能改變 |
-
----
-
-## 5.4 `notes/` 改動
-
-`notes/` 是正式教學筆記，也是下游內容的直接來源。
-
-### 情境 A：只修正文句或小錯字
-
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `appendix/` | 通常不需要 | 除非標題、關鍵字或段落連結改變 |
-| `demos/` | 不需要 | 除非範例程式碼改變 |
-| `practice/` | 不需要 | 除非題目依據改變 |
-| `review/` | 不需要 | 除非複習觀念改變 |
-
----
-
-### 情境 B：修改標題或段落結構
-
-例如：
-
-```text
-修改 H2 / H3 標題
-合併段落
-調整章節順序
-刪除某個小節
-```
-
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `appendix/` | 需要 | 段落 anchor 可能失效 |
-| `demos/` | 視情況 | 若學習順序或範例來源改變，需檢查 |
-| `practice/` | 視情況 | 題目來源小節可能改變 |
-| `review/` | 視情況 | 知識地圖可能改變 |
-
-必做檢查：
-
-```text
-所有 appendix 連到 notes 的 anchor 是否仍存在？
+atomic 結構調整
+  → 更新 notes
+  → 更新 appendix
+  → 檢查 demos / practice / review 的來源是否失效
+  → 更新 chapter-status.md
 ```
 
 ---
 
-### 情境 C：新增或修改 HTML 範例
+### 5.4 `notes/` 改動
 
-處理方式：
+`notes/` 是正式筆記，也是下游材料的直接來源。
 
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `demos/` | 需要 | demo 應反映最新範例 |
-| `practice/` | 視情況 | 題目可能可新增或需更新答案 |
-| `review/` | 視情況 | 應用型複習題可能需更新 |
-| `appendix/` | 視情況 | 若新增標籤、屬性、場景，需更新索引 |
-
----
-
-### 情境 D：新增核心概念或重要規則
-
-處理方式：
-
-| 下游 | 是否需要重跑 | 說明 |
-| --- | --- | --- |
-| `appendix/` | 需要 | 新增關鍵字、FAQ、場景、標籤 |
-| `demos/` | 視情況 | 若概念適合觀察，新增 demo |
-| `practice/` | 需要 | 新增或更新題目 |
-| `review/` | 需要 | 更新知識地圖、題庫、間隔複習、檢查點 |
-
----
-
-## 5.5 `appendix/` 改動
-
-`appendix/` 是由 `notes/` 產生的索引資料。
-
-### 原則
-
-如果只是修正索引文字，可以直接改。
-
-但如果發現索引缺少內容，應先確認 `notes/` 是否也缺少相關說明。
-
-處理方式：
-
-```text
-發現 appendix 缺漏
-  ↓
-先檢查 notes 是否有該內容
-  ↓
-如果 notes 有，重生成 appendix
-  ↓
-如果 notes 沒有，先補 notes，再重生成 appendix
-```
-
----
-
-## 5.6 `demos/` 改動
-
-`demos/` 是由 `notes/` 延伸出的可執行教學範例。
-
-### 原則
-
-可以手動微調 demo，但不要讓 demo 學到 notes 沒有教的觀念。
-
-如果 demo 加入新的教學概念，應回補到 notes。
-
-處理方式：
-
-```text
-demo 新增教學概念
-  ↓
-檢查 notes 是否已有說明
-  ↓
-若沒有，補 notes
-  ↓
-再重新檢查 practice / review 是否需要更新
-```
-
----
-
-## 5.7 `practice/` 改動
-
-`practice/` 是由 `notes/` 延伸出的練習題。
-
-### 原則
-
-如果題目答案錯誤，先判斷錯誤來源：
-
-| 錯誤來源 | 處理方式 |
+| notes 改動 | 必做處理 |
 | --- | --- |
-| 題目自己設計錯 | 直接修正 practice |
-| 來源 notes 說法錯 | 先修正 notes，再重產 practice |
-| 題目超出 notes 範圍 | 刪除題目或先補 notes |
-
----
-
-## 5.8 `review/` 改動
-
-`review/` 是由 `notes/` 延伸出的複習系統。
-
-### 原則
-
-如果正式筆記的核心觀念、標題或範例改變，`review/` 很可能需要更新。
-
-尤其需要重跑的情況：
-
-```text
-notes 新增核心概念
-notes 刪除核心概念
-notes 修改重要規則
-notes 修改常見錯誤
-notes 修改 HTML 範例
-```
-
----
-
-## 6. 影響範圍判斷表
-
-| 改動位置 | 小改文字 | 技術概念改動 | 結構改動 | 資產改動 | 標題改動 |
-| --- | --- | --- | --- | --- | --- |
-| `origin/` | 檢查 atomic | 重跑 atomic → notes → 下游 | 重跑 atomic → notes → 下游 | 重跑資產流程 | 視情況 |
-| `atomic/` | 檢查 notes | 重跑 notes → 下游 | 重跑 notes → 下游 | 檢查 notes 路徑 | 視情況 |
-| `notes/` | 通常不重跑 | 重跑下游 | 重跑 appendix，檢查其他下游 | 檢查下游路徑 | 重跑 appendix |
-| `appendix/` | 可直接改 | 先查 notes | 先查 notes | 檢查連結 | 檢查 anchor |
-| `demos/` | 可直接改 | 先查 notes | 視情況 | 檢查資產 | 不影響 |
-| `practice/` | 可直接改 | 先查 notes | 視情況 | 不影響 | 檢查來源路徑 |
-| `review/` | 可直接改 | 先查 notes | 視情況 | 不影響 | 檢查來源路徑 |
-
----
-
-## 7. 標準更新流程
-
-### 7.1 更新前
-
-更新任何章節前，先確認：
-
-```text
-1. 要改的是哪一章？
-2. 改動發生在哪一層？
-3. 是小修、技術修正、結構調整，還是資產變更？
-4. 下游有哪些內容可能過期？
-5. chapter-status.md 是否需要更新狀態？
-```
-
----
-
-### 7.2 更新中
-
-建議按照以下順序處理：
-
-```text
-1. 修改最上游來源
-2. 根據影響範圍重跑必要 workflow
-3. 檢查路徑、標題、來源、索引
-4. 檢查是否有舊內容殘留
-5. 更新 chapter-status.md
-```
-
----
-
-### 7.3 更新後
-
-每次更新完成後，建議記錄：
-
-```md
-## 更新紀錄
-
-| 日期 | 章節 | 改動位置 | 改動摘要 | 已重跑流程 | 尚待處理 |
-| --- | --- | --- | --- | --- | --- |
-| YYYY-MM-DD | HTML簡介 | notes | 新增 HTML5 語意說明 | appendix, review | demos 待確認 |
-```
-
----
-
-## 8. 重生成前檢查清單
-
-重生成任何下游內容前，請先檢查：
-
-- [ ] 是否已確認最新來源是哪一層？
-- [ ] 是否已確認上游內容是正確版本？
-- [ ] 是否已確認不會覆蓋人工修改但尚未備份的內容？
-- [ ] 是否已確認需要重生成的目標範圍？
-- [ ] 是否已確認輸出路徑？
-- [ ] 是否已確認舊檔案是否要保留、覆蓋或人工比對？
-- [ ] 是否已確認重生成後要更新 `chapter-status.md`？
-
----
-
-## 9. 重生成後檢查清單
-
-重生成完成後，請檢查：
-
-- [ ] 下游內容是否根據最新 `notes/` 產生？
-- [ ] 是否仍引用已刪除的標題、段落或檔案？
-- [ ] Markdown 連結是否有效？
-- [ ] 圖片與附件路徑是否有效？
-- [ ] 程式碼區塊是否完整？
-- [ ] demos 是否能直接用瀏覽器開啟？
-- [ ] practice 的題目、答案與來源筆記是否一致？
-- [ ] review 的題庫、排程、錯題回流是否一致？
-- [ ] appendix 的 anchor 是否能對應到 notes 中的標題？
-- [ ] `chapter-status.md` 是否已同步更新？
-
----
-
-## 10. 避免過期內容的規則
-
-### 10.1 不保留無來源支撐的下游內容
-
-如果 `notes/` 已經刪除某個概念，下游也不應繼續保留相關題目、索引或 demo。
-
-### 10.2 下游不要自行擴展新知識
-
-`demos/`、`practice/`、`review/`、`appendix/` 不應自行加入 `notes/` 沒有教的核心知識。
-
-如果需要加入，應先回補到 `notes/`。
-
-### 10.3 標題改名後必查 appendix
-
-只要 `notes/` 的 H2 / H3 標題改名，就必須檢查 `appendix/` 裡的 anchor 是否失效。
-
-### 10.4 範例程式碼改動後必查 demos / practice
+| 只修正文句 | 通常不重跑下游；若標題、關鍵字或 anchor 改變，檢查 appendix |
+| 修改 H2 / H3 | 必查 appendix anchor |
+| 調整段落結構 | 更新 appendix，檢查 demos / practice / review |
+| 新增或修改 HTML 範例 | 更新 demos，檢查 practice / review |
+| 新增核心概念 | 更新 appendix / practice / review，視情況新增 demos |
+| 刪除核心概念 | 移除下游相關 demo、題目、索引、複習材料 |
 
 只要 `notes/` 的 HTML 範例改動，就必須檢查：
 
@@ -598,141 +290,209 @@ review/
 
 ---
 
-## 11. 建議更新順序
+### 5.5 下游材料改動
 
-### 11.1 小型文字修正
+#### `appendix/`
 
-```text
-notes 小修
-  ↓
-檢查 appendix anchor 是否受影響
-  ↓
-更新 chapter-status.md
-```
-
-### 11.2 技術概念修正
+`appendix/` 只能索引 `notes/` 已有內容。
 
 ```text
-origin / atomic / notes 修正
-  ↓
-重新生成 notes
-  ↓
-重新生成 appendix
-  ↓
-檢查 demos
-  ↓
-重新生成 practice
-  ↓
-重新生成 review
-  ↓
-更新 chapter-status.md
+appendix 缺內容
+  → 先查 notes
+  → notes 有：更新 appendix
+  → notes 沒有：先補 notes
 ```
 
-### 11.3 章節重構
+只要 `notes/` 的 H2 / H3 標題改名，就必須檢查 `appendix/` 裡的 anchor 是否失效。
+
+#### `demos/`
+
+`demos/` 可以手動微調，但不能教 `notes/` 沒有的核心知識。
 
 ```text
-origin 重新整理
-  ↓
-重新產生 atomic
-  ↓
-atomic content review
-  ↓
-重新產生 notes
-  ↓
-重新產生 appendix
-  ↓
-重新產生 demos
-  ↓
-重新產生 practice
-  ↓
-重新產生 review
-  ↓
-更新 chapter-status.md
+demo 新增新觀念
+  → 先補 notes
+  → 再檢查 practice / review
 ```
 
-### 11.4 資產重整
+#### `practice/`
+
+先判斷錯誤來源。
+
+| 錯誤來源 | 處理方式 |
+| --- | --- |
+| 題目設計錯 | 直接修 practice |
+| notes 說法錯 | 先修 notes，再更新 practice |
+| 題目超出 notes | 刪題，或先補 notes |
+
+#### `review/`
+
+只要 `notes/` 的核心觀念、範例、常見錯誤或章節結構改變，`review/` 通常需要檢查。
+
+---
+
+## 6. 標準工作流程
+
+### 6.1 小型文字修正
+
+```text
+修正來源文字
+  → 檢查是否影響標題 / anchor / 關鍵字
+  → 必要時同步 chapter-status.md
+```
+
+### 6.2 技術概念修正
+
+```text
+修正 origin / atomic / notes
+  → 更新 notes
+  → 更新 appendix
+  → 檢查 demos
+  → 更新 practice
+  → 更新 review
+  → 更新 chapter-status.md
+```
+
+### 6.3 章節重構
+
+```text
+整理 origin
+  → 重產 atomic
+  → 執行 atomic review（atomic 內容審查）
+  → 重產 notes
+  → 重產 appendix
+  → 重產 demos / practice / review
+  → 更新 chapter-status.md
+```
+
+### 6.4 資產重整
 
 ```text
 整理 origin/<章節>/assets/
-  ↓
-更新 origin 引用路徑
-  ↓
-執行資產標準化命名
-  ↓
-執行 alt / 連結文字整理
-  ↓
-檢查 atomic / notes 資產路徑
-  ↓
-檢查 demos 是否引用資產
-  ↓
-更新 chapter-status.md
+  → 執行 prompts/requests/rewrite-origin-asset-paths.md
+  → 執行 prompts/requests/rewrite-origin-alt-and-link-text.md
+  → 檢查 atomic / notes / demos / appendix 引用
+  → 更新 chapter-status.md
 ```
 
 ---
 
-## 12. 章節狀態表同步規則
+## 7. 重生成檢查清單
 
-每次完成重生成後，請同步更新：
+### 7.1 重生成前
+
+- [ ] 已確認最新來源是哪一層
+- [ ] 已確認改動類型
+- [ ] 已確認影響範圍
+- [ ] 已確認輸出路徑
+- [ ] 已確認不會覆蓋未備份的人工修改
+- [ ] 已確認舊檔案要保留、覆蓋或人工比對
+- [ ] 已確認是否需要更新 `chapter-status.md`
+
+### 7.2 重生成後
+
+- [ ] 下游內容是否根據最新 `notes/` 產生
+- [ ] 是否仍引用已刪除的標題、段落或檔案
+- [ ] Markdown 連結是否有效
+- [ ] 圖片與附件路徑是否有效
+- [ ] 程式碼區塊是否完整
+- [ ] demos 是否可直接開啟
+- [ ] practice 的題目、答案與來源是否一致
+- [ ] review 的題庫、排程、錯題回流是否一致
+- [ ] appendix 的 anchor 是否能對應到 notes 標題
+- [ ] `chapter-status.md` 是否已同步更新
+
+---
+
+## 8. `chapter-status.md` 同步規則
+
+每次完成更新或重生成後，都要同步 `chapter-status.md`。
+
+`chapter-status.md` 是狀態欄位與狀態值的唯一來源。本文件只描述何時同步、如何判斷影響範圍，以及維護概念如何對應到狀態表欄位；不要在本文件另行定義欄位或狀態清單。
+
+同步原則：
+
+- 只更新受影響章節的相關欄位。
+- 不要為了配合本文件而修改 `chapter-status.md` 的欄位結構。
+- 不確定下游是否已過期時，依 `chapter-status.md` 的狀態選項標記為「待確認」。
+- 需要檢查或補做的事項，寫在 `下一步` 或 `備註`。
+- 下游已重生成並檢查後，標記為「已完成」。
+- 某層不需要產出時，標記為「不適用」，並在 `備註` 說明原因。
+
+維護概念對應：
+
+| 維護概念 | `chapter-status.md` 對應欄位 |
+| --- | --- |
+| `origin` | `origin整理` |
+| `asset` | `資產命名`、`alt與連結文字` |
+| `atomic` | `atomic切分提案`、`atomic產生` |
+| `atomic review` | `atomic內容審查` |
+| `notes` | `notes生成`、`notes完成檢查` |
+| `demos` | `demos生成` |
+| `practice` | `practice生成` |
+| `review` | `review生成` |
+| `appendix` | `appendix索引` |
+| 完成驗收 | `最終驗收`、`完成率`、`整體狀態`、`下一步`、`備註` |
+
+狀態判斷：
 
 ```text
-chapter-status.md
-```
+上游被修改
+  → 相關下游標記為「待確認」
+  → 在「下一步」或「備註」寫明需檢查或需更新的內容
 
-建議欄位：
+下游已重生成並檢查
+  → 標記為「已完成」
 
-```text
-章節
-origin
-asset
-atomic
-atomic review
-notes
-demos
-practice
-review
-appendix
-最後更新日
-備註
-```
-
-狀態建議使用：
-
-```text
-未開始
-進行中
-待審查
-需更新
-完成
-暫緩
-```
-
-如果上游被修改，相關下游應標記為：
-
-```text
-需更新
+某層不需要產出
+  → 標記為「不適用」，並在備註說明原因
 ```
 
 例如：
 
 ```text
-notes 已修改
-  → appendix / demos / practice / review 標記為需更新
+本章無圖片資產，因此 asset 標記為「不適用」，備註「無本地資產」。
 ```
 
 ---
 
-## 13. 完成標準
+## 9. 給 AI 使用時的最小輸入
 
-一個章節可以視為完整完成，至少需要符合：
+與 AI 協作時，不需要每次貼完整筆記。優先提供以下資訊：
+
+```text
+1. 章節名稱
+2. 改動位置：origin / origin/<章節>/assets / atomic / notes / appendix / demos / practice / review
+3. 改動類型：小修 / 技術概念 / 結構 / 範例 / 資產 / 標題
+4. 改動摘要
+5. 你希望 AI 判斷什麼
+```
+
+建議指令：
+
+```text
+請依 update-rules.md 判斷這次改動的影響範圍。
+只輸出：
+1. 需要檢查的下游
+2. 需要重生成的下游
+3. chapter-status.md 應標記的狀態
+4. 是否有過期內容風險
+```
+
+---
+
+## 10. 完成標準
+
+一個章節可視為完成，至少符合：
 
 ```text
 origin 已整理
-asset 已標準化
+asset 已標準化或確認無資產
 atomic 已產生
-atomic 已完成內容審查
-notes 已產生並通過檢查
+atomic review 已完成
+notes 已產生並檢查
 appendix 已根據 notes 建立
-demos 已根據 notes 建立
+demos 已根據 notes 建立或確認不需要
 practice 已根據 notes 建立
 review 已根據 notes 建立
 chapter-status.md 已同步更新
@@ -740,15 +500,9 @@ chapter-status.md 已同步更新
 
 如果某一層不需要產出，必須在 `chapter-status.md` 備註原因。
 
-例如：
-
-```text
-本章無圖片資產，因此 asset 標記為「完成」，備註「無本地資產」。
-```
-
 ---
 
-## 14. 快速判斷口訣
+## 11. 快速口訣
 
 ```text
 改 origin，要想到 atomic。
@@ -757,20 +511,15 @@ chapter-status.md 已同步更新
 改標題，要想到 appendix。
 改範例，要想到 demos / practice / review。
 改資產，要想到所有引用路徑。
+下游新增新知識，要先回補 notes。
+不確定是否過期，要標記待確認，並寫明需檢查或需更新的內容。
 ```
 
 ---
 
-## 15. 總結
-
-`update-rules.md` 的核心不是要求每次都全部重跑，而是建立一個穩定判斷方式：
+## 12. 一句話總結
 
 ```text
-1. 先找改動位置
-2. 再判斷改動類型
-3. 再決定影響範圍
-4. 再重跑必要流程
-5. 最後更新 chapter-status.md
+先找改動位置，再判斷改動類型；
+只重跑必要下游，但不能讓下游停留在舊版本。
 ```
-
-這樣可以讓 HTML 筆記包在長期維護時保持一致，不會出現上游已更新、下游卻仍停留在舊版本的情況。

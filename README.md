@@ -15,10 +15,6 @@ html/
   review/
   supplements/
   prompts/
-    ├── system/
-    ├── workflows/
-    ├── formats/
-    └── requests/
 ```
 
 ## 目錄說明
@@ -33,24 +29,7 @@ html/
 | `practice/` | 練習題區 | 根據 `notes/` 生成練習題、實作任務、改錯題、重構題。 |
 | `review/` | 複習材料區 | 根據 `notes/` 生成重點摘要、問答題、填空題、複習卡片。 |
 | `supplements/` | 補充資料區 | 根據 `notes/` 延伸補充底層原理、進階觀念、相關比較與實務案例。 |
-| `prompts/` | AI 提示詞管理區 | 存放可複用的 AI 提示詞資源，包括系統規則、工作流程、輸出格式、實際提問範例、必要上下文、輸入欄位與使用備註。詳細格式見 [`prompts/README.md`](prompts/README.md)。 |
-
-## 資料流
-
-```text
-origin/
-  ↓
-atomic/
-  ↓
-notes/
-  ↓
-appendix/
-demos/
-practice/
-review/
-supplements/
-prompts/
-```
+| `prompts/` | AI 提示詞管理區 | 存放可複用的 AI 提示詞資源，詳細說明見 [`prompts/README.md`](prompts/README.md)。 |
 
 ## 核心原則
 
