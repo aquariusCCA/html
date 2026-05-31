@@ -568,7 +568,39 @@ meta/chapter-status.md 已同步更新
 
 ---
 
-## 9. 快速口訣
+## 9. 給 AI 使用時的最小輸入
+
+與 AI 協作時，不需要每次貼完整筆記。優先提供以下資訊：
+
+```text
+1. 章節名稱
+2. 改動位置：origin / origin/<章節>/assets / atomic / notes / appendix / demos / practice / review / supplements
+3. 任務 / 改動類型：初次產物製作 / 小修 / 技術概念 / 結構 / 範例 / 資產 / 標題
+4. 改動摘要
+5. 你希望 AI 判斷什麼
+```
+
+提問範本：
+
+```text
+請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
+
+1. 章節名稱：
+2. 改動位置：
+3. 任務 / 改動類型：
+4. 改動摘要：
+5. 我希望 AI 判斷或處理：
+6. 限制條件：
+   - 是否只判斷、不改檔：
+   - 是否允許重生成：
+   - 是否需要同步 meta/chapter-status.md：
+
+請先判斷影響範圍，再說明需要檢查或重生成的內容。
+```
+
+---
+
+## 10. 快速口訣
 
 ```text
 改 origin，要想到 atomic。
@@ -583,7 +615,7 @@ meta/chapter-status.md 已同步更新
 
 ---
 
-## 10. 一句話總結
+## 11. 一句話總結
 
 ```text
 先找改動位置，再判斷改動類型；
