@@ -1,9 +1,9 @@
 請依 `meta/update-rules.md` 協助處理這次 HTML 筆記包更新。
 
 1. 章節名稱：`測試`
-2. 改動位置：`origin/測試`
+2. 改動位置：`atomic/測試`
 3. 任務 / 改動類型：`初次產物製作`
-4. 改動摘要：`使用 prompts/_drafts/origin-asset-alt-and-link-text-draft.md 整理本地圖片的替代文字與本地附件的連結文字`
+4. 改動摘要：`使用 prompts/_drafts/origin-to-atomic-notes-draft.md 將指定 origin/<章節>/ 內的原始 Markdown 筆記重新切分、合併、修正為 atomic notes。`
 5. 我希望 AI 判斷或處理：
 6. 限制條件：
    - 請先判斷，不改檔。
