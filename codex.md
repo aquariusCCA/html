@@ -3,7 +3,7 @@
 1. 章節名稱：`測試`
 2. 改動位置：`atomic/測試`
 3. 任務 / 改動類型：`初次產物製作`
-4. 改動摘要：`使用 prompts/_drafts/origin-to-atomic-notes-draft.md 將指定 origin/<章節>/ 內的原始 Markdown 筆記重新切分、合併、修正為 atomic notes。`
+4. 改動摘要：`使用 prompts/_drafts/atomic-content-review-draft.md 審查指定 atomic/<章節>/ 內的 atomic notes，找出技術事實錯誤、範例程式碼錯誤、原始資料錯誤、轉換錯誤、主題歸屬錯誤、邏輯順序問題與容易誤導初學者的表述`
 5. 我希望 AI 判斷或處理：
 6. 限制條件：
    - 請先判斷，不改檔。

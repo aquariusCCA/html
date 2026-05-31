@@ -7,7 +7,7 @@
 ![HTML5 input 新增類型與用途表](../../origin/測試/assets/images/form-controls-img-003-b918e4.png)
 
 ```html
-<!-- 我們驗證的時候必須添加 form 表單域。 -->
+<!-- 若要透過提交按鈕觸發瀏覽器內建表單驗證，範例應放在 form 表單域中。 -->
 <form action="">
   <ul>
     <li>邮箱: <input type="email" /></li>
