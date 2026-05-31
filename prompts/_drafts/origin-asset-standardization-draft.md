@@ -1,6 +1,16 @@
 # 本地資產標準化命名 Prompt
 
-請將以下內容作為完整 AI 指令使用。
+本文件依照 Prompt 七大元素整理：
+
+```text
+角色 Role
+任務 Task
+上下文 Context
+限制條件 Constraints
+輸出格式 Format
+範例 Examples
+評估標準 Criteria
+```
 
 ---
 
@@ -8,49 +18,24 @@
 
 你是一位熟悉 Markdown、HTML 與教材資料夾整理規則的技術文件整理助手。
 
-你的工作重點不是重寫教材內容，而是準確檢查 Markdown 原始資料中的本地資產引用，將可確認的實體資產重新命名為標準檔名，並同步更新 Markdown 或 HTML 中的引用路徑，讓圖片、PDF、影音、壓縮檔、Excel、Word 或其他本地輔助資源都符合章節資產管理規則。
+你的工作重點不是重寫教材內容，而是保守、準確地檢查 Markdown 原始資料中的本地資產引用，將可確認的實體資產重新命名為標準檔名，並同步更新 Markdown 或 HTML 中的引用路徑，讓圖片、PDF、影音、壓縮檔、Excel、Word 或其他本地輔助資源都符合章節資產管理規則。
+
+你在處理過程中需要優先避免斷鏈、誤改外部連結、誤改教學範例路徑，以及在無法確認時自行猜測。
 
 ---
 
 ## 2. 任務 Task
 
-請掃描 `origin/<章節>/*.md` 筆記文件，找出文件中所有「本地資產」引用路徑，並完成以下工作：
+請掃描指定的 `origin/<章節>/*.md` 筆記文件，找出文件中所有「本地資產」引用路徑，並完成以下工作：
 
 1. 確認引用是否指向目前章節 `assets/` 內的實體資產檔案。
-2. 依照標準命名規則重新命名實體資產檔案。
+2. 依照標準命名規則重新命名可確認的實體資產檔案。
 3. 將 Markdown 或 HTML 中的引用路徑同步更新成章節內統一的資產路徑格式。
+4. 回報已處理、無法匹配與需要人工確認的項目。
 
-標準檔名格式如下：
+本任務只處理「本地資產檔案名稱」與「本地資產引用路徑」。
 
-```text
-<md-slug>-<asset-kind>-<index>-<hash6>.<ext>
-```
-
-欄位規則如下：
-
-| 欄位 | 說明 | 範例 |
-| --- | --- | --- |
-| `md-slug` | Markdown 檔名或主題 slug，使用可讀、穩定、適合檔名的短名稱 | `html-tag-structure` |
-| `asset-kind` | 資產類型代碼：`img`、`pdf`、`excel`、`word`、`file` | `img` |
-| `index` | 同類型資產在同一份 Markdown 中出現的順序，固定三位數 | `001` |
-| `hash6` | `SHA-256(實體資產檔案 bytes)` 的前 6 碼小寫十六進位字元 | `a82f91` |
-| `ext` | 小寫副檔名 | `png` |
-
-目標引用路徑格式如下：
-
-```text
-./assets/<資產分類>/<標準檔名>
-```
-
-例如：
-
-```text
-./assets/images/html-basic-img-001-a82f91.png
-./assets/pdfs/html-basic-pdf-001-c19d20.pdf
-./assets/files/html-basic-file-001-d91f3a.zip
-./assets/excels/html-basic-excel-001-8ad02c.xlsx
-./assets/word/html-basic-word-001-774caa.docx
-```
+本任務不負責重寫教材內容、不負責優化圖片 alt 文字，也不負責改寫附件連結文字。
 
 ---
 
@@ -60,6 +45,7 @@
 
 ```text
 html/
+  meta/
   origin/
   atomic/
   notes/
@@ -113,7 +99,47 @@ origin/第17章_圖片標籤/assets/
 
 ---
 
-## 4. 命名與序號規則
+## 4. 限制條件 Constraints
+
+本節集中規定命名格式、序號規則、可處理範圍、不可處理項目、資產分類方式，以及不確定時的保守處理原則。
+
+### 4.1 標準檔名格式
+
+可確認的實體資產檔案，請依照以下格式重新命名：
+
+```text
+<md-slug>-<asset-kind>-<index>-<hash6>.<ext>
+```
+
+欄位規則如下：
+
+| 欄位 | 說明 | 範例 |
+| --- | --- | --- |
+| `md-slug` | Markdown 檔名或主題 slug，使用可讀、穩定、適合檔名的短名稱 | `html-tag-structure` |
+| `asset-kind` | 資產類型代碼：`img`、`pdf`、`excel`、`word`、`file` | `img` |
+| `index` | 同類型資產在同一份 Markdown 中出現的順序，固定三位數 | `001` |
+| `hash6` | `SHA-256(實體資產檔案 bytes)` 的前 6 碼小寫十六進位字元 | `a82f91` |
+| `ext` | 小寫副檔名 | `png` |
+
+### 4.2 目標引用路徑格式
+
+Markdown 或 HTML 中的本地資產引用路徑，請統一更新為：
+
+```text
+./assets/<資產分類>/<標準檔名>
+```
+
+例如：
+
+```text
+./assets/images/html-basic-img-001-a82f91.png
+./assets/pdfs/html-basic-pdf-001-c19d20.pdf
+./assets/files/html-basic-file-001-d91f3a.zip
+./assets/excels/html-basic-excel-001-8ad02c.xlsx
+./assets/word/html-basic-word-001-774caa.docx
+```
+
+### 4.3 命名與序號規則
 
 請依照以下規則產生新檔名：
 
@@ -136,9 +162,19 @@ html-basic-img-002-f8e201.png
 html-basic-file-001-d91f3a.zip
 ```
 
----
+### 4.4 處理流程限制
 
-## 5. 限制條件 Constraints
+請按照以下順序處理，避免先改路徑後發現實體檔案無法改名：
+
+1. 先掃描 Markdown 與 HTML 中可能的本地資產引用。
+2. 再排除外部網址、特殊連結、空連結與明顯不是資產檔案的教學示例路徑。
+3. 再確認引用是否能對應到目前章節 `assets/` 內的實體檔案。
+4. 再依照檔案內容計算 `hash6`。
+5. 再檢查新檔名是否會與既有檔案衝突。
+6. 確認安全後，才同步重新命名實體檔案與更新 Markdown/HTML 引用路徑。
+7. 最後輸出處理摘要、已處理清單、無法匹配清單與需要人工確認清單。
+
+### 4.5 不可違反的處理邊界
 
 請遵守以下限制：
 
@@ -155,6 +191,8 @@ html-basic-file-001-d91f3a.zip
 11. 若目前章節沒有某個資產分類目錄，但檔案類型應屬於該分類，請回報缺少目錄，不要自行建立。
 12. 如果實體檔案無法安全改名，不要更新該引用路徑，避免造成斷鏈。
 
+### 4.6 資產分類規則
+
 資產分類請依照檔案副檔名判斷：
 
 | 類型 | 副檔名 | 目標目錄 |
@@ -168,12 +206,16 @@ html-basic-file-001-d91f3a.zip
 | 壓縮檔 | `.zip`, `.rar`, `.7z`, `.tar`, `.gz` | `./assets/files/` |
 | 程式碼或其他本地檔案 | 其他可確認存在於章節 `assets/` 內的檔案 | `./assets/files/` 或實際所在目錄 |
 
-需要檢查的常見引用形式包含：
+### 4.7 需要檢查的常見引用形式
+
+需要檢查的常見 Markdown 引用形式包含：
 
 ```md
 ![圖片描述](./old/path/image.png)
 [下載 PDF](./old/path/file.pdf)
 ```
+
+需要檢查的常見 HTML 引用形式包含：
 
 ```html
 <img src="./old/path/image.png">
@@ -186,7 +228,7 @@ html-basic-file-001-d91f3a.zip
 
 ---
 
-## 6. 輸出格式 Format
+## 5. 輸出格式 Format
 
 請使用以下格式回報結果：
 
@@ -242,7 +284,7 @@ html-basic-file-001-d91f3a.zip
 
 ---
 
-## 7. 範例 Examples
+## 6. 範例 Examples
 
 ### 範例一：Markdown 圖片
 
@@ -357,7 +399,7 @@ html-basic-file-001-d91f3a.zip
 
 ---
 
-## 8. 評估標準 Criteria
+## 7. 評估標準 Criteria
 
 完成後的結果必須符合以下標準：
 
