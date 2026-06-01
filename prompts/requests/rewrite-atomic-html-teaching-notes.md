@@ -2,7 +2,7 @@
 
 ## 用途
 
-用來請 AI 依照 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md` 的規則，讀取指定章節的 `atomic/<章節>/*.md` 原子化資料，先建立正式筆記映射，再重構成一組高品質 HTML 教學筆記。
+用來請 AI 依照 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md` 的規則，讀取指定章節的 `atomic/<章節>/*.md` 原子化資料，先建立正式筆記映射，再重構成一組高品質 HTML 教學筆記，並在每篇 notes 開頭加入 `source_atomic` 隱藏註解作為 atomic 來源追溯。
 
 ## 適用場景
 
@@ -18,7 +18,7 @@
 2. 將 `<atomic章節路徑>` 替換成實際章節資料夾路徑。
 3. 確認該章節已完成 `prompts/requests/rewrite-origin-asset-paths.md` 的資產標準化流程。
 4. 一次只處理一個章節，避免跨章節誤改。
-5. 執行後檢查 `notes/<章節>/` 與 git diff，確認篇章映射、內容與圖片、附件路徑正確。
+5. 執行後檢查 `notes/<章節>/` 與 git diff，確認篇章映射、`source_atomic` 隱藏註解、內容與圖片、附件路徑正確。
 
 ## 可直接複製的提問
 
