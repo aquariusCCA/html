@@ -251,7 +251,7 @@ appendix 連結
 
 ### 5.1 一般判斷任務輸出格式
 
-當使用者要你判斷某次改動影響範圍時，請優先使用以下格式：
+當使用者要你判斷某次改動影響範圍時，預設使用以下完整格式，不要自行省略欄位：
 
 ```text
 ## 1. 改動摘要
@@ -273,18 +273,7 @@ appendix 連結
 ## 9. 建議下一步
 ```
 
-### 5.2 最小輸出格式
-
-如果使用者只要求快速判斷，使用以下最小格式：
-
-```text
-1. 需要檢查的下游
-2. 需要重生成的下游
-3. meta/chapter-status.md 應標記的狀態
-4. 是否有過期內容風險
-```
-
-### 5.3 影響範圍總表
+### 5.2 影響範圍總表
 
 | 改動位置 | 小修文字 | 技術概念改動 | 結構改動 | 範例改動 | 資產 / 標題改動 |
 | --- | --- | --- | --- | --- | --- |
@@ -300,12 +289,64 @@ appendix 連結
 
 ## 6. 範例 Examples
 
-### 6.1 範例一：`origin/` 小修文字
+本節先定義給 AI 使用時的最小輸入格式，再提供可直接模仿的使用者輸入與建議輸出範例。
+
+若使用者只提供口語描述，AI 應先轉換成 6.1 的欄位，再判斷影響範圍與處理邊界。
+
+本節範例的「建議輸出」均應完整示範第 5.1 節格式，不應省略欄位。
+
+### 6.1 給 AI 使用時的最小輸入
+
+與 AI 協作時，不需要每次貼完整筆記。優先提供以下資訊：
+
+```text
+1. 章節名稱
+2. 改動位置：origin / origin/<章節>/assets / atomic / notes / appendix / demos / practice / review / supplements
+3. 任務 / 改動類型：初次產物製作 / 小修 / 技術概念 / 結構 / 範例 / 資產 / 標題
+4. 改動摘要
+5. 你希望 AI 判斷什麼
+```
+
+提問範本：
+
+```text
+請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
+
+1. 章節名稱：
+2. 改動位置：
+3. 任務 / 改動類型：
+4. 改動摘要：
+5. 我希望 AI 判斷或處理：
+6. 限制條件：
+   - 是否只判斷、不改檔：
+   - 是否需要同步 meta/chapter-status.md：
+
+請先判斷影響範圍，再說明需要檢查或重生成的內容。
+除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
+```
+
+預設情況下，AI 只能判斷影響範圍、列出需要檢查或重生成的內容，並提出建議處理順序。實際重生成下游產物必須由使用者明確指定目標與範圍後才可執行。
+
+以下範例均依此格式撰寫，可直接模仿。
+
+### 6.2 範例一：`origin/` 小修文字
 
 使用者輸入：
 
 ```text
-我修正了 origin/forms/input.md 裡的一個錯字，請判斷是否需要重生成。
+請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
+
+1. 章節名稱：forms
+2. 改動位置：origin/forms/input.md
+3. 任務 / 改動類型：小修
+4. 改動摘要：修正 origin/forms/input.md 裡的一個錯字。
+5. 我希望 AI 判斷或處理：判斷是否需要重生成。
+6. 限制條件：
+   - 是否只判斷、不改檔：是
+   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
+
+請先判斷影響範圍，再說明需要檢查或重生成的內容。
+除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
@@ -314,37 +355,65 @@ appendix 連結
 ## 1. 改動摘要
 
 改動位置：origin/forms/input.md
-改動類型：小修文字
+改動摘要：修正 origin/forms/input.md 裡的一個錯字。
 
 ## 2. 最新正確來源
 
-最新正確來源在 origin。
+最新正確來源在 origin/forms/input.md。
 
-## 3. 影響範圍
+## 3. 改動類型
+
+改動類型：小修文字
+
+## 4. 影響範圍
 
 通常不需要全部重跑，但需要檢查 atomic / notes 是否也有相同錯字。
 
-## 4. 需要檢查的下游
+若錯字出現在標題、anchor、關鍵字或下游引用文字，需擴大檢查 appendix 與相關連結。
+
+## 5. 需要檢查的下游
 
 - atomic
 - notes
 - 若錯字出現在標題或 anchor，需檢查 appendix
 
-## 5. 需要重生成的下游
+## 6. 需要重生成的下游
 
-目前不一定需要重生成，除非 atomic / notes 已同步更新且影響下游內容。
+無。除非 atomic / notes 已同步更新且影響下游內容，才需要重生成受影響下游。
 
-## 6. meta/chapter-status.md 建議標記
+## 7. meta/chapter-status.md 建議標記
 
 若僅修正 origin 且下游尚未確認，可將 atomic / notes 相關欄位標記為「待確認」。
+
+## 8. 過期內容風險
+
+低。主要風險是 atomic / notes 仍保留同一錯字，或標題 / anchor 文字變動造成 appendix 連結不同步。
+
+## 9. 建議下一步
+
+1. 搜尋 atomic / notes 是否有相同錯字。
+2. 若錯字不涉及標題、anchor 或關鍵字，通常不需要重生成下游。
+3. 若有同步修正 atomic / notes，再依影響範圍更新 meta/chapter-status.md 建議標記。
 ```
 
-### 6.2 範例二：`notes/` 新增 HTML 範例
+### 6.3 範例二：`notes/` 新增 HTML 範例
 
 使用者輸入：
 
 ```text
-我在 notes/form/input.md 新增了一個 input type="email" 的範例，請判斷影響範圍。
+請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
+
+1. 章節名稱：forms
+2. 改動位置：notes/forms/input.md
+3. 任務 / 改動類型：範例
+4. 改動摘要：在 notes/forms/input.md 新增一個 input type="email" 的範例。
+5. 我希望 AI 判斷或處理：判斷影響範圍與需要檢查或重生成的下游。
+6. 限制條件：
+   - 是否只判斷、不改檔：是
+   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
+
+請先判斷影響範圍，再說明需要檢查或重生成的內容。
+除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
@@ -352,26 +421,30 @@ appendix 連結
 ```text
 ## 1. 改動摘要
 
-改動位置：notes/form/input.md
-改動類型：範例改動
+改動位置：notes/forms/input.md
+改動摘要：在 notes/forms/input.md 新增一個 input type="email" 的範例。
 
 ## 2. 最新正確來源
 
-最新正確來源在 notes。
+最新正確來源在 notes/forms/input.md。
 
-## 3. 影響範圍
+## 3. 改動類型
+
+改動類型：範例改動
+
+## 4. 影響範圍
 
 notes 完成內容審查後，才是 demos / practice / review / appendix 的正式來源。
 新增 HTML 範例後，應先執行 notes content review，再檢查 demos、practice、review 是否需要同步。
 
-## 4. 需要檢查的下游
+## 5. 需要檢查的下游
 
 - demos：是否需要新增對應展示範例
 - practice：是否需要新增或調整練習題
 - review：是否需要加入複習卡片或題目
 - appendix：若新增標題或索引項目，需同步更新
 
-## 5. 需要重生成的下游
+## 6. 需要重生成的下游
 
 完成 notes content review 後，視需求重生成：
 - demos
@@ -379,17 +452,39 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 - review
 - appendix
 
-## 6. meta/chapter-status.md 建議標記
+## 7. meta/chapter-status.md 建議標記
 
 將受影響的 demos / practice / review / appendix 欄位標記為「待確認」。
+
+## 8. 過期內容風險
+
+中。若下游未同步，demos / practice / review 可能缺少新增範例，appendix 也可能缺少新的索引或 anchor。
+
+## 9. 建議下一步
+
+1. 依 html-teaching-notes-content-review-draft 完成 notes content review。
+2. 檢查新增範例是否影響 appendix 索引與 demos / practice / review。
+3. 只重生成或修正受影響的下游材料，並同步 meta/chapter-status.md 建議標記。
 ```
 
-### 6.3 範例三：資產改名或搬移
+### 6.4 範例三：資產改名或搬移
 
 使用者輸入：
 
 ```text
-我把 origin/table/assets/old-table.png 改名為 table-layout-example.png。
+請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
+
+1. 章節名稱：table
+2. 改動位置：origin/table/assets/old-table.png
+3. 任務 / 改動類型：資產
+4. 改動摘要：將 origin/table/assets/old-table.png 改名為 origin/table/assets/table-layout-example.png。
+5. 我希望 AI 判斷或處理：判斷資產改名後需要檢查哪些引用與狀態。
+6. 限制條件：
+   - 是否只判斷、不改檔：是
+   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
+
+請先判斷影響範圍，再說明需要檢查或重生成的內容。
+除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
@@ -397,14 +492,24 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 ```text
 ## 1. 改動摘要
 
-改動位置：origin/<章節>/assets/
+改動位置：origin/table/assets/old-table.png
+改動摘要：將 origin/table/assets/old-table.png 改名為 origin/table/assets/table-layout-example.png。
+
+## 2. 最新正確來源
+
+最新正確來源在 origin/table/assets/。
+
+## 3. 改動類型
+
 改動類型：資產改動
 
-## 2. 影響範圍
+## 4. 影響範圍
 
 資產改名不能只改檔案本身，必須同步所有引用路徑。
 
-## 3. 需要檢查的下游
+若下游仍引用舊檔名，會造成圖片或附件連結失效。
+
+## 5. 需要檢查的下游
 
 - origin 引用
 - atomic 引用
@@ -412,38 +517,92 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 - demos 引用
 - appendix 連結
 
-## 4. 需要執行的流程
+## 6. 需要重生成的下游
 
-1. 執行 prompts/requests/rewrite-origin-asset-paths.md
-2. 執行 prompts/requests/rewrite-origin-alt-and-link-text.md
-3. 檢查 atomic / notes / demos / appendix 是否仍引用舊路徑
+目前不一定需要重生成。若 atomic / notes / demos / appendix 已產生舊路徑，需更新或重生成受影響內容。
 
-## 5. meta/chapter-status.md 建議標記
+## 7. meta/chapter-status.md 建議標記
 
 若尚未檢查引用路徑，相關欄位標記為「待確認」。
+
+## 8. 過期內容風險
+
+高。資產改名後若引用未同步，會造成圖片、附件或 appendix 連結失效。
+
+## 9. 建議下一步
+
+1. 執行 prompts/requests/rewrite-origin-asset-paths.md。
+2. 執行 prompts/requests/rewrite-origin-alt-and-link-text.md。
+3. 搜尋 old-table.png，確認 origin / atomic / notes / demos / appendix 是否仍引用舊路徑。
+4. 只更新或重生成仍引用舊路徑的受影響內容。
 ```
 
-### 6.4 範例四：下游想新增新觀念
+### 6.5 範例四：下游想新增新觀念
 
 使用者輸入：
 
 ```text
-我想直接在 practice 新增一題 notes 沒教過的 CSS Grid 題目，可以嗎？
+請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
+
+1. 章節名稱：layout
+2. 改動位置：practice
+3. 任務 / 改動類型：技術概念 / 下游新增內容判斷
+4. 改動摘要：想直接在 practice 新增一題 notes 沒教過的 CSS Grid 題目。
+5. 我希望 AI 判斷或處理：判斷是否可以直接新增，或是否需要先回補 notes。
+6. 限制條件：
+   - 是否只判斷、不改檔：是
+   - 是否需要同步 meta/chapter-status.md：否
+
+請先判斷影響範圍，再說明需要檢查或重生成的內容。
+除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
 
 ```text
-不建議直接新增。
+## 1. 改動摘要
 
-原因：practice 只能延伸 notes 已經教過的內容，不能自行新增核心知識。
+改動位置：practice
+改動摘要：想直接在 practice 新增一題 notes 沒教過的 CSS Grid 題目。
 
-建議流程：
+## 2. 最新正確來源
 
-1. 先確認 notes 是否已有 CSS Grid 相關內容
-2. 如果 notes 沒有，先補 notes
-3. 再根據 notes 產生 practice
-4. 最後檢查 review 是否也需要同步
+最新正確來源應在 notes。若 notes 尚未教 CSS Grid，practice 不應自行新增該核心知識。
+
+## 3. 改動類型
+
+改動類型：技術概念 / 下游新增內容判斷
+
+## 4. 影響範圍
+
+不建議直接新增。practice 只能延伸 notes 已經教過的內容，不能自行新增核心知識。
+
+若確實需要加入 CSS Grid 題目，應先確認或補充 notes，再依完成審查後的 notes 產生 practice。
+
+## 5. 需要檢查的下游
+
+- notes：是否已有 CSS Grid 相關內容
+- practice：題目是否超出 notes 已教範圍
+- review：若 notes 補充新概念，是否需要同步複習材料
+
+## 6. 需要重生成的下游
+
+目前不應直接重生成 practice。若 notes 補充 CSS Grid 並完成 notes content review，才可視需求重生成 practice 與 review。
+
+## 7. meta/chapter-status.md 建議標記
+
+若 notes 尚未確認是否包含 CSS Grid，將 notes / practice 相關欄位標記為「待確認」。
+
+## 8. 過期內容風險
+
+高。若 practice 直接新增 notes 沒教過的核心知識，會破壞 notes 作為正式來源的資料流一致性。
+
+## 9. 建議下一步
+
+1. 先確認 notes 是否已有 CSS Grid 相關內容。
+2. 如果 notes 沒有，先補 notes 並完成 notes content review。
+3. 再根據完成審查的 notes 產生或修正 practice。
+4. 最後檢查 review 是否也需要同步。
 ```
 
 ---
@@ -515,7 +674,8 @@ origin 已整理
 asset 已標準化或確認無資產
 atomic 已產生
 atomic review 已完成
-notes 已產生，且已依 html-teaching-notes-content-review-draft 完成內容審查
+notes 已產生
+notes content review 已完成
 appendix 已根據 notes 建立
 demos 已根據 notes 建立或確認不需要
 practice 已根據 notes 建立
@@ -576,39 +736,7 @@ meta/chapter-status.md 已同步更新
 
 ---
 
-## 9. 給 AI 使用時的最小輸入
-
-與 AI 協作時，不需要每次貼完整筆記。優先提供以下資訊：
-
-```text
-1. 章節名稱
-2. 改動位置：origin / origin/<章節>/assets / atomic / notes / appendix / demos / practice / review / supplements
-3. 任務 / 改動類型：初次產物製作 / 小修 / 技術概念 / 結構 / 範例 / 資產 / 標題
-4. 改動摘要
-5. 你希望 AI 判斷什麼
-```
-
-提問範本：
-
-```text
-請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
-
-1. 章節名稱：
-2. 改動位置：
-3. 任務 / 改動類型：
-4. 改動摘要：
-5. 我希望 AI 判斷或處理：
-6. 限制條件：
-   - 是否只判斷、不改檔：
-   - 是否允許重生成：
-   - 是否需要同步 meta/chapter-status.md：
-
-請先判斷影響範圍，再說明需要檢查或重生成的內容。
-```
-
----
-
-## 10. 快速口訣
+## 9. 快速口訣
 
 ```text
 改 origin，要想到 atomic。
@@ -624,7 +752,7 @@ meta/chapter-status.md 已同步更新
 
 ---
 
-## 11. 一句話總結
+## 10. 一句話總結
 
 ```text
 先找改動位置，再判斷改動類型；
