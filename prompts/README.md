@@ -2,23 +2,25 @@
 
 `prompts/` 是 HTML 知識包中的 **AI 協作規則管理區**。
 
-它不存放正式學習內容，也不存放原始資料；它負責管理 AI 在產生、整理、改寫、檢查與複習內容時應遵守的規則、流程、格式、範例與品質標準。
+它不存放正式學習內容，也不存放原始資料或章節狀態；它負責管理 AI 在產生、整理、改寫、檢查與複習內容時應遵守的規則、流程、格式、範例與品質標準。
 
 ```text
+meta/        = 專案管理、章節狀態、更新與重生成規則
 origin/      = 原始資料
+atomic/      = 原子化候選資料
 notes/       = 正式筆記
 appendix/    = 附錄與查表資料
 demos/       = 範例程式
 practice/    = 練習題與實作任務
 review/      = 複習材料
 supplements/ = 補充資料
-prompts/     = 控制 AI 如何產生與維護上述內容的規則
+prompts/     = 控制 AI 如何產生、檢查與維護知識內容的提示詞資源
 ```
 
 一句話理解：
 
 ```text
-prompts/ 不負責保存知識內容；
+prompts/ 不負責保存知識內容或章節狀態；
 prompts/ 負責讓 AI 穩定產生高品質知識內容。
 ```
 
@@ -54,7 +56,7 @@ prompts/
 | --- | --- | --- |
 | `_drafts/` | 草稿設計區 | 存放尚未穩定、尚未拆分的大型混合 Prompt 草稿。 |
 | `core/` | 核心規則區 | 存放長期穩定的教學原則、回答風格、品質要求與共通限制。 |
-| `workflows/` | 任務流程區 | 存放可重複執行的任務步驟，例如從 `origin/` 生成 `notes/`。 |
+| `workflows/` | 任務流程區 | 存放可重複執行的任務步驟，例如從 `origin/` 整理成 `atomic/`，再生成 `notes/`。 |
 | `formats/` | 輸出格式區 | 存放固定輸出結構，例如教學筆記格式、練習題格式、複習卡格式。 |
 | `examples/` | 範例模仿區 | 存放 Few-shot 範例，讓 AI 模仿固定語氣、結構與分析方式。 |
 | `criteria/` | 品質標準區 | 存放檢查清單、驗收標準、評分規則與常見錯誤檢查。 |
@@ -96,6 +98,15 @@ Prompt 常見的七個元素是：
 七個 prompts/ 子目錄 = 管理 Prompt 資源的資料夾架構
 ```
 
+`prompts/` 與 `meta/` 的邊界如下：
+
+```text
+prompts/ = AI 執行生成、整理、審查任務時使用的提示詞資源
+meta/    = repo 維護規格、章節處理狀態、更新與重生成判斷
+```
+
+如果某個 Prompt 需要處理更新影響範圍、重生成順序或章節狀態同步，應該引用 `meta/update-rules.md` 或 `meta/chapter-status.md` 的規則與狀態，不要把整份 `meta/` 規格複製到 `prompts/`。
+
 ---
 
 ## 4. 從草稿到正式 Prompt
@@ -128,12 +139,13 @@ requests/
 
 ### 4.1 使用範例：從草稿拆成正式 Prompt
 
-假設現在要設計一套「從 `origin/` 產生 `notes/`」的 Prompt。
+假設現在要設計一套「從 `origin/` 整理成 `atomic/`，再產生 `notes/`」的 Prompt。
 
 一開始可以先建立草稿：
 
 ```text
-_drafts/origin-to-notes-draft.md
+_drafts/origin-to-atomic-notes-draft.md
+_drafts/atomic-to-html-teaching-notes-draft.md
 ```
 
 草稿階段可以暫時把以下內容寫在同一份文件中：
@@ -153,7 +165,8 @@ _drafts/origin-to-notes-draft.md
 
 ```text
 core/teaching-principles.md
-workflows/origin-to-notes.md
+workflows/origin-to-atomic-notes.md
+workflows/atomic-to-html-teaching-notes.md
 formats/teaching-note-format.md
 examples/teaching-note-example.md
 criteria/note-quality-checklist.md
@@ -165,7 +178,8 @@ requests/generate-note.md
 | 檔案                                   | 負責內容                         |
 | ------------------------------------ | ---------------------------- |
 | `core/teaching-principles.md`        | 定義 AI 的教學原則、回答風格與通用限制。       |
-| `workflows/origin-to-notes.md`       | 定義從原始資料整理成正式筆記的處理步驟。         |
+| `workflows/origin-to-atomic-notes.md` | 定義從原始資料整理成原子化候選資料的處理步驟。     |
+| `workflows/atomic-to-html-teaching-notes.md` | 定義從原子化候選資料生成正式教學筆記的處理步驟。 |
 | `formats/teaching-note-format.md`    | 定義正式筆記的輸出結構。                 |
 | `examples/teaching-note-example.md`  | 提供 AI 可以模仿的高品質筆記範例。          |
 | `criteria/note-quality-checklist.md` | 定義正式筆記完成後的檢查標準。              |
@@ -174,8 +188,9 @@ requests/generate-note.md
 可以這樣理解：
 
 ```text
-_drafts/origin-to-notes-draft.md
-= 設計中的大型混合 Prompt
+_drafts/origin-to-atomic-notes-draft.md
+_drafts/atomic-to-html-teaching-notes-draft.md
+= 設計中的大型混合 Prompt 草稿
 
 requests/generate-note.md
 = 拆分完成後，實際拿來執行任務的正式 Prompt
@@ -225,6 +240,8 @@ requests/generate-note.md
 | `criteria/` | 品質檢查清單、驗收標準、評分規則、常見錯誤檢查 | 具體章節筆記、單次任務資料、完整輸出格式 |
 | `requests/` | 實際提問文字、任務背景、輸入欄位、可替換變數、使用範例 | 所有長期規則、所有輸出格式細節、大量正式筆記內容 |
 
+`meta/` 不屬於 Prompt 資源目錄。章節狀態、處理進度、更新影響範圍與重生成規則應放在 `meta/`；`prompts/` 中的文件只在需要時引用這些規格。
+
 ---
 
 ## 7. 命名規則
@@ -233,7 +250,7 @@ Prompt 檔案建議使用小寫英文與連字號。
 
 | 類型 | 命名模式 | 範例 |
 | --- | --- | --- |
-| 草稿 | `<task>-draft.md` | `origin-to-notes-draft.md` |
+| 草稿 | `<task>-draft.md` | `origin-to-atomic-notes-draft.md` |
 | 核心規則 | `<domain>-principles.md` | `teaching-principles.md` |
 | 任務流程 | `<source>-to-<target>.md` | `notes-to-practice.md` |
 | 輸出格式 | `<output>-format.md` | `teaching-note-format.md` |
@@ -244,9 +261,11 @@ Prompt 檔案建議使用小寫英文與連字號。
 建議使用：
 
 ```text
-origin-to-notes-draft.md
+origin-to-atomic-notes-draft.md
+atomic-to-html-teaching-notes-draft.md
 teaching-principles.md
-origin-to-notes.md
+origin-to-atomic-notes.md
+atomic-to-html-teaching-notes.md
 teaching-note-format.md
 practice-example.md
 note-quality-checklist.md
@@ -274,6 +293,7 @@ ai.md
 5. **範例只放少量高品質樣本**：`examples/` 是 Few-shot 範例區，不是正式筆記倉庫。
 6. **驗收標準要可檢查**：避免「內容要很好」這種空泛標準，改用明確檢查項目。
 7. **Prompt 不取代正式筆記**：正式知識內容應存放在 `notes/`，不要放在 `prompts/`。
+8. **Prompt 不取代 meta 規格**：章節狀態、更新規則與重生成判斷應存放在 `meta/`，不要複製到 `prompts/`。
 
 ---
 
@@ -291,6 +311,7 @@ ai.md
 - [ ] 如果是格式，是否有清楚輸出結構？
 - [ ] 如果是範例，是否值得讓 AI 模仿？
 - [ ] 如果是驗收標準，是否可以被檢查？
+- [ ] 如果會影響更新流程、重生成規則或章節狀態欄位，是否需要同步檢查 `meta/update-rules.md` 或 `meta/chapter-status.md`？
 - [ ] 檔名是否清楚、可搜尋、可長期維護？
 
 ---
@@ -309,4 +330,4 @@ criteria/  = 怎樣才算合格
 requests/  = 實際要怎麼問 AI
 ```
 
-當這七類資源能夠清楚分工，就可以穩定地把 `origin/`、`notes/` 與其他知識材料轉換成適合學習、練習、複習與維護的內容。
+當這七類資源能夠清楚分工，就可以穩定地把 `origin/`、`atomic/`、`notes/` 與其他知識材料轉換成適合學習、練習、複習與維護的內容。
