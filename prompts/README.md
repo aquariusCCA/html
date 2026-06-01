@@ -55,12 +55,14 @@ prompts/
 | 目錄 | 定位 | 主要用途 |
 | --- | --- | --- |
 | `_drafts/` | 草稿設計區 | 存放尚未穩定、尚未拆分的大型混合 Prompt 草稿。 |
-| `core/` | 核心規則區 | 存放長期穩定的教學原則、回答風格、品質要求與共通限制。 |
+| `core/` | 核心規則區 | 存放長期穩定的教學原則、回答風格、通用限制與品質方向。 |
 | `workflows/` | 任務流程區 | 存放可重複執行的任務步驟，例如從 `origin/` 整理成 `atomic/`，再生成 `notes/`。 |
 | `formats/` | 輸出格式區 | 存放固定輸出結構，例如教學筆記格式、練習題格式、複習卡格式。 |
 | `examples/` | 範例模仿區 | 存放 Few-shot 範例，讓 AI 模仿固定語氣、結構與分析方式。 |
-| `criteria/` | 品質標準區 | 存放檢查清單、驗收標準、評分規則與常見錯誤檢查。 |
-| `requests/` | 實際提問區 | 存放可以直接送給 AI 使用的完整任務提問模板。 |
+| `criteria/` | 品質標準區 | 存放可檢查的品質清單、驗收標準、評分規則與常見錯誤檢查。 |
+| `requests/` | 實際提問區 | 存放可以直接送給 AI 使用的入口提問模板，負責引用或組合其他 Prompt 資源。 |
+
+目前專案仍有部分大型 workflow 規則留在 `_drafts/`。在拆分完成前，`requests/` 可以暫時引用 `_drafts/` 作為規則來源；新增或已穩定的規則，應優先拆到正式目錄。
 
 ---
 
@@ -127,7 +129,7 @@ examples/
 criteria/
   ↓ 抽出品質檢查標準
 requests/
-  ↓ 組合成可直接使用的提問模板
+  ↓ 組合成可直接使用的入口提問模板
 ```
 
 推薦流程：
@@ -135,7 +137,9 @@ requests/
 1. 先在 `_drafts/` 撰寫大型混合 Prompt。
 2. 經過幾次實際使用後，確認哪些規則會長期重複使用。
 3. 將穩定內容拆到 `core/`、`workflows/`、`formats/`、`examples/`、`criteria/`。
-4. 最後在 `requests/` 建立可直接使用的完整提問模板。
+4. 最後在 `requests/` 建立可直接使用的入口提問模板。
+
+過渡期內，如果某個 workflow 尚未拆分完成，可以先讓 `requests/` 引用 `_drafts/` 中的完整規則；但穩定後不應繼續把長期規則堆在 `_drafts/` 或 `requests/` 中。
 
 ### 4.1 使用範例：從草稿拆成正式 Prompt
 
@@ -183,7 +187,7 @@ requests/generate-note.md
 | `formats/teaching-note-format.md`    | 定義正式筆記的輸出結構。                 |
 | `examples/teaching-note-example.md`  | 提供 AI 可以模仿的高品質筆記範例。          |
 | `criteria/note-quality-checklist.md` | 定義正式筆記完成後的檢查標準。              |
-| `requests/generate-note.md`          | 組合上述規則，形成可以直接拿去問 AI 的完整提問模板。 |
+| `requests/generate-note.md`          | 組合上述規則，形成可以直接拿去問 AI 的入口提問模板。 |
 
 可以這樣理解：
 
@@ -193,10 +197,10 @@ _drafts/atomic-to-html-teaching-notes-draft.md
 = 設計中的大型混合 Prompt 草稿
 
 requests/generate-note.md
-= 拆分完成後，實際拿來執行任務的正式 Prompt
+= 拆分完成後，實際拿來執行任務的入口 Prompt
 ```
 
-因此，`_drafts/` 不是永久存放區，而是 Prompt 成熟前的設計區；當內容穩定後，就應該依照責任拆分到正式目錄中。
+因此，`_drafts/` 不應成為長期規則沉澱區，而是 Prompt 成熟前的設計區；當內容穩定後，就應該依照責任拆分到正式目錄中。
 
 ---
 
@@ -232,13 +236,13 @@ requests/generate-note.md
 
 | 目錄 | 適合放 | 不適合放 |
 | --- | --- | --- |
-| `_drafts/` | 尚未穩定的大型混合 Prompt、正在試寫的任務設計 | 已確認穩定的正式規則、正式筆記、原始資料 |
-| `core/` | AI 角色定位、教學原則、回答風格、通用限制、品質要求 | 單次任務、某章節原始資料、完整輸出版型 |
+| `_drafts/` | 尚未穩定的大型混合 Prompt、正在試寫的任務設計、尚未拆分完成的過渡期 workflow | 已確認穩定且可拆分的正式規則、正式筆記、原始資料 |
+| `core/` | AI 角色定位、教學原則、回答風格、通用限制、品質方向 | 單次任務、某章節原始資料、完整輸出版型、具體驗收清單 |
 | `workflows/` | 任務目標、輸入要求、處理步驟、檢查步驟 | 長期角色設定、完整輸出版型、實際可直接送出的完整提問 |
 | `formats/` | 標題層級、區塊順序、表格欄位、程式碼呈現規則 | 任務處理流程、AI 角色設定、大量背景說明 |
 | `examples/` | 高品質輸出範例、Few-shot 範例、好的問答或程式碼講解範例 | 大量正式筆記、原始資料、完整任務流程 |
-| `criteria/` | 品質檢查清單、驗收標準、評分規則、常見錯誤檢查 | 具體章節筆記、單次任務資料、完整輸出格式 |
-| `requests/` | 實際提問文字、任務背景、輸入欄位、可替換變數、使用範例 | 所有長期規則、所有輸出格式細節、大量正式筆記內容 |
+| `criteria/` | 可檢查的品質清單、驗收標準、評分規則、常見錯誤檢查 | 具體章節筆記、單次任務資料、完整輸出格式、通用教學原則 |
+| `requests/` | 實際提問文字、任務背景、輸入欄位、可替換變數、使用範例、其他 Prompt 資源的引用方式 | 所有長期規則、所有輸出格式細節、大量正式筆記內容 |
 
 `meta/` 不屬於 Prompt 資源目錄。章節狀態、處理進度、更新影響範圍與重生成規則應放在 `meta/`；`prompts/` 中的文件只在需要時引用這些規格。
 
@@ -256,7 +260,7 @@ Prompt 檔案建議使用小寫英文與連字號。
 | 輸出格式 | `<output>-format.md` | `teaching-note-format.md` |
 | 輸出範例 | `<output>-example.md` | `practice-example.md` |
 | 驗收標準 | `<output>-quality-checklist.md` | `note-quality-checklist.md` |
-| 實際提問 | `generate-<target>.md` | `generate-note.md` |
+| 實際提問 | `<action>-<target>.md` | `generate-note.md`、`rewrite-origin-to-atomic-notes.md`、`review-atomic-content.md` |
 
 建議使用：
 
@@ -270,6 +274,8 @@ teaching-note-format.md
 practice-example.md
 note-quality-checklist.md
 generate-note.md
+rewrite-origin-to-atomic-notes.md
+review-atomic-content.md
 ```
 
 避免使用：
@@ -288,12 +294,13 @@ ai.md
 
 1. **先草稿，後拆分**：Prompt 尚未穩定時先放 `_drafts/`；穩定後再拆到正式目錄。
 2. **一份文件只負責一件事**：避免同一份文件同時負責規則、流程、格式、範例與驗收。
-3. **長期規則不要重複複製**：會反覆使用的規則應抽到 `core/`。
+3. **長期規則不要重複複製**：會反覆使用的規則應抽到 `core/`、`workflows/`、`formats/` 或 `criteria/`，`requests/` 只負責引用與組合。
 4. **流程與格式分開管理**：`workflows/` 描述「怎麼做」；`formats/` 描述「結果長什麼樣」。
 5. **範例只放少量高品質樣本**：`examples/` 是 Few-shot 範例區，不是正式筆記倉庫。
 6. **驗收標準要可檢查**：避免「內容要很好」這種空泛標準，改用明確檢查項目。
 7. **Prompt 不取代正式筆記**：正式知識內容應存放在 `notes/`，不要放在 `prompts/`。
 8. **Prompt 不取代 meta 規格**：章節狀態、更新規則與重生成判斷應存放在 `meta/`，不要複製到 `prompts/`。
+9. **過渡期引用要收斂**：`requests/` 可以暫時引用 `_drafts/`，但穩定後應逐步改引用正式目錄中的規則資源。
 
 ---
 
