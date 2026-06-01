@@ -17,4 +17,4 @@
 
 | 章節 | 優先級 | origin整理 | 資產命名 | alt與連結文字 | atomic切分提案 | atomic產生 | atomic內容審查 | notes生成 | notes完成檢查 | demos生成 | practice生成 | review生成 | appendix索引 | 最終驗收 | 完成率 | 整體狀態 | 下一步 | 備註 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 第01章_寫在前面 | 未設定 | 待確認 | 待確認 | 待確認 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 0% | 進行中 | 先依 `prompts/requests/rewrite-origin-asset-paths.md` 標準化 origin 圖片路徑，再依 `prompts/requests/rewrite-origin-alt-and-link-text.md` 整理 alt 與連結文字。 | `origin/第01章_寫在前面` 已新增 7 份 Markdown 與 10 張圖片資產；目前尚未產生 atomic/notes/appendix/demos/practice/review。初步檢查發現 origin Markdown 內的圖片引用未指向 `./assets/images/...` 且目前無法解析成功，需先完成資產路徑與 alt / 連結文字整理後再進入 atomic 初次產生。 |
+| 第01章_寫在前面 | 未設定 | 待確認 | 已完成 | 待確認 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 0% | 進行中 | 先依 `prompts/requests/rewrite-origin-alt-and-link-text.md` 整理 alt 與連結文字，完成後再進入 atomic 初次產生。 | `origin/第01章_寫在前面` 已新增 7 份 Markdown 與 10 張圖片資產；圖片資產命名與 Markdown 引用路徑已依 `prompts/_drafts/origin-asset-standardization-draft.md` 標準化，目前尚未產生 atomic/notes/appendix/demos/practice/review。 |
