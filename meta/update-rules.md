@@ -86,6 +86,10 @@ AI 執行任務時，應先回報影響範圍與預計處理流程。
 
 | 任務類型 | 你的處理重點 |
 | --- | --- |
+| 原始資料初始匯入 | 第一次將某章節來源放入 `origin/`，建立來源基礎並判斷後續流程，不預設產出下游 |
+| 原始資料增補 | 既有 `origin/` 章節追加來源資料，判斷 atomic / notes 是否需要補整理或標記待確認 |
+| 內容新增 | 在 atomic / notes / appendix / demos / practice / review 新增正式內容，先確認來源層與下游影響 |
+| 內容修改 | 修改既有正式內容，判斷最新正確來源與受影響下游 |
 | 小型文字修正 | 判斷是否影響標題、anchor、關鍵字與下游引用 |
 | 技術概念修正 | 找出最新正確來源，更新 notes，完成 notes content review，再檢查所有下游 |
 | 章節重構 | 重產 atomic、執行 atomic review，再重產 notes，完成 notes content review 後再產生下游 |
@@ -305,9 +309,29 @@ practice / review 中的圖片、附件或來源連結
 ```text
 1. 章節名稱
 2. 改動位置：origin / origin/<章節>/assets / atomic / notes / appendix / demos / practice / review / supplements
-3. 任務 / 改動類型：初次產物製作 / 小修 / 技術概念 / 結構 / 範例 / 資產 / 標題
+3. 任務 / 改動類型：原始資料初始匯入 / 原始資料增補 / 內容新增 / 內容修改 / 小修 / 技術概念 / 結構調整 / 範例 / 資產異動 / 標題
 4. 改動摘要
 5. 你希望 AI 判斷什麼
+```
+
+`origin/` 相關改動應優先區分：
+
+```text
+原始資料初始匯入：第一次建立某主題的 origin 原始資料。
+原始資料增補：既有 origin 主題後續追加來源資料。
+內容新增：在 atomic / notes / appendix / demos / practice / review 新增正式內容。
+內容修改：修改既有正式內容。
+資產異動：圖片、附件、路徑、alt、連結文字相關變更。
+結構調整：章節、索引、anchor、檔案配置調整。
+```
+
+若任務 / 改動類型是「原始資料初始匯入」，AI 預設只做來源登錄與後續影響判斷，不直接新增、覆蓋或改寫 `atomic/`、`notes/` 或下游材料。除非使用者明確要求同步產出，否則應回答：
+
+```text
+是否需要建立 atomic？
+是否需要建立 notes？
+是否需要更新 meta/chapter-status.md？
+是否需要後續資料整理或資產標準化？
 ```
 
 提問範本：
@@ -332,7 +356,7 @@ practice / review 中的圖片、附件或來源連結
 
 以下範例均依此格式撰寫，可直接模仿。
 
-### 6.2 範例一：`origin/` 小修文字
+### 6.2 範例一：`origin/` 原始資料初始匯入
 
 使用者輸入：
 
@@ -341,9 +365,9 @@ practice / review 中的圖片、附件或來源連結
 
 1. 章節名稱：forms
 2. 改動位置：origin/forms/input.md
-3. 任務 / 改動類型：小修
-4. 改動摘要：修正 origin/forms/input.md 裡的一個錯字。
-5. 我希望 AI 判斷或處理：判斷是否需要重生成。
+3. 任務 / 改動類型：原始資料初始匯入
+4. 改動摘要：將 origin/forms/input.md 作為 forms 主題的第一份原始來源資料納入追蹤。
+5. 我希望 AI 判斷或處理：判斷後續是否需要建立 atomic、notes，並提出 meta/chapter-status.md 建議標記。
 6. 限制條件：
    - 是否只判斷、不改檔：是
    - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
@@ -358,45 +382,59 @@ practice / review 中的圖片、附件或來源連結
 ## 1. 改動摘要
 
 改動位置：origin/forms/input.md
-改動摘要：修正 origin/forms/input.md 裡的一個錯字。
+改動摘要：將 origin/forms/input.md 作為 forms 主題的第一份原始來源資料納入追蹤。
 
 ## 2. 最新正確來源
 
-最新正確來源在 origin/forms/input.md。
+最新正確來源目前在 origin/forms/input.md。這是未整理的原始來源，不等同正式 notes。
 
 ## 3. 改動類型
 
-改動類型：小修文字
+改動類型：原始資料初始匯入
 
 ## 4. 影響範圍
 
-通常不需要全部重跑，但需要檢查 atomic / notes 是否也有相同錯字。
+這次改動代表 forms 主題開始建立 origin 來源基礎。
 
-若錯字出現在標題、anchor、關鍵字或下游引用文字，需擴大檢查 appendix 與相關連結。
+預設不直接產出 atomic / notes / appendix / demos / practice / review，但需要判斷後續是否要進入 origin -> atomic、atomic review、atomic -> notes 與 notes content review 流程。
 
 ## 5. 需要檢查的下游
 
-- atomic
-- notes
-- 若錯字出現在標題或 anchor，需檢查 appendix
+- atomic：是否已存在 forms 相關內容，若不存在，後續可能需要建立
+- notes：是否已存在 forms 相關正式筆記，若不存在，後續可能需要建立
+- `origin/forms/assets/`：若原始資料引用圖片或附件，需要檢查資產是否已放入並標準化
 
 ## 6. 需要重生成的下游
 
-無。除非 atomic / notes 已同步更新且影響下游內容，才需要重生成受影響下游。
+無。原始資料初始匯入本身不代表要直接重生成下游。
+
+若使用者後續明確要求產出，建議流程是：
+
+origin -> atomic
+atomic review
+atomic -> notes
+notes content review
+視需求產生 appendix / demos / practice / review
 
 ## 7. meta/chapter-status.md 建議標記
 
-若僅修正 origin 且下游尚未確認，可將 atomic / notes 相關欄位標記為「待確認」。
+若只判斷、不改檔，僅提出建議標記，不直接修改狀態表。
+
+建議將 forms 章節的 origin 相關狀態視為已建立或待整理；atomic / notes 及下游欄位若尚未產出，標記為「待確認」或依狀態表規則標記為未完成。
 
 ## 8. 過期內容風險
 
-低。主要風險是 atomic / notes 仍保留同一錯字，或標題 / anchor 文字變動造成 appendix 連結不同步。
+低到中。若 atomic / notes 尚不存在，主要風險不是過期，而是尚未完成後續整理。
+
+若 atomic / notes 已存在，則需要檢查它們是否缺少這份新的 origin 來源內容。
 
 ## 9. 建議下一步
 
-1. 搜尋 atomic / notes 是否有相同錯字。
-2. 若錯字不涉及標題、anchor 或關鍵字，通常不需要重生成下游。
-3. 若有同步修正 atomic / notes，再依影響範圍更新 meta/chapter-status.md 建議標記。
+1. 確認 `origin/forms/input.md` 是否是 forms 主題第一份原始資料。
+2. 檢查是否有 `origin/forms/assets/` 與資產引用需要標準化。
+3. 判斷是否要啟動 origin -> atomic。
+4. 若使用者明確要求建立正式內容，再依序產出 atomic、完成 atomic review、產出 notes 並完成 notes content review。
+5. 後續若實際建立或更新產物，再同步 meta/chapter-status.md。
 ```
 
 ### 6.3 範例二：`notes/` 新增 HTML 範例
