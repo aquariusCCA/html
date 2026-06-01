@@ -59,6 +59,8 @@ HTML 管結構，CSS 管表現，JavaScript 管行為。
 }
 ```
 
+下面的 JavaScript 範例假設程式碼會在按鈕元素建立後執行；實際放入頁面時，之後會學到用載入時機或 `defer` 處理。
+
 ```js
 document.querySelector(".primary-button").addEventListener("click", function () {
   console.log("送出表單");

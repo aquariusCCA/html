@@ -19,7 +19,7 @@
 2. HTML 標籤、屬性、語意、預設行為或範例程式碼是否正確。
 3. 教學順序是否適合初學者。
 4. 是否有足夠問題情境、語意說明、範例拆解與實務判斷。
-5. 是否遺漏 atomic notes 的重要核心內容。
+5. 是否已對照 atomic notes，檢查正式 notes 是否合理保留重要核心內容。
 6. 是否把補充內容過度塞進主線教學。
 7. 圖片、附件、標題層級、表格與程式碼區塊是否正確。
 
@@ -47,7 +47,7 @@ prompts/requests/rewrite-atomic-html-teaching-notes.md
 4. 人工確認要修正的問題 ID 後，再使用「第二階段確認用提問」。
 5. 執行後檢查 `notes/<章節>/`、審查報告、修正內容與 git diff。
 
-## 可直接複製的提問
+## 第一階段內容審查提問
 
 ```text
 請依照 prompts/_drafts/html-teaching-notes-content-review-draft.md 的完整規則，審查以下章節的正式 HTML 教學筆記：
@@ -56,7 +56,7 @@ prompts/requests/rewrite-atomic-html-teaching-notes.md
 
 請只處理上述指定章節，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
 
-請務必先閱讀 workflow 文件，並嚴格遵守其中的角色、任務範圍、與其他 Prompt 的分工、審查維度、問題類型、嚴重度分級、證據與判斷規則、兩階段流程、輸出格式、長章節處理策略與品質檢查清單。
+請務必列出 Atomic 覆蓋檢查；atomic 是必要對照來源，origin 只在需要判斷來源錯誤或資產脈絡時回查。
 
 請依照該 workflow 的第一階段完整規則，只輸出第一階段 HTML 教學筆記內容審查報告。第一階段不要建立、修改或刪除任何檔案。等我確認要修正的問題 ID 後，再更新 notes/<章節>/*.md。
 ```
@@ -81,4 +81,3 @@ prompts/requests/rewrite-atomic-html-teaching-notes.md
 | --- | --- | --- |
 | `<notes章節路徑>` | 要審查的 `notes/` 章節資料夾 | `notes/HTML簡介/` |
 | `<問題ID清單>` | 第一階段審查報告中確認要修正的問題 ID | `NCR-001, NCR-003, NCR-004` |
-
