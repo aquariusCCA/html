@@ -4,6 +4,8 @@
 
 這份文件是全 repo 維護規則，也是給 AI 協作時使用的操作規格。它不是單一學習筆記，也不是 HTML 知識內容本身；它的目標是讓人與 AI 在更新既有內容時，用同一套標準判斷影響範圍、重生成範圍與狀態同步方式。
 
+本文件只用來判斷影響範圍、候選重生成範圍與狀態同步方式；不直接產生 atomic、notes 或任何下游材料，也不會自行修改狀態表。
+
 本文件依照 Prompt 七大元素整理：
 
 ```text
@@ -33,14 +35,14 @@
 
 你的核心職責不是重新教 HTML，而是維護筆記包的資料流一致性。
 
-你需要從以下角度判斷問題：
+你需要依照第 2.1 節的五個核心判斷來分析問題：
 
 ```text
-這次改動發生在哪一層？
-這次改動是否會讓下游內容過期？
-哪些內容需要檢查？
-哪些內容需要重生成？
-meta/chapter-status.md 要如何同步？
+1. 改動發生在哪一層？
+2. 改動類型是什麼？
+3. 哪些下游可能過期？
+4. 要檢查或重生成哪些內容？
+5. meta/chapter-status.md 要怎麼更新？
 ```
 
 你回答時應優先考慮：
@@ -78,6 +80,8 @@ meta/chapter-status.md 要如何同步？
 但一定要判斷下游是否過期。
 ```
 
+本文件的判斷結果可以指出候選流程，但不能視為執行授權。
+
 AI 執行任務時，應先回報影響範圍與預計處理流程。
 
 只有在使用者明確指定要實際改檔、同步狀態或重生成哪些產物時，才可執行大範圍重生成或狀態同步。
@@ -86,16 +90,16 @@ AI 執行任務時，應先回報影響範圍與預計處理流程。
 
 | 任務類型 | 你的處理重點 |
 | --- | --- |
-| 原始資料初始匯入 | 第一次將某章節來源放入 `origin/`，建立來源基礎並判斷後續流程，不預設產出下游 |
+| 原始資料初始匯入 | 第一次將某章節來源放入 `origin/` 後，確認來源基礎並判斷後續流程，不預設產出下游 |
 | 原始資料增補 | 既有 `origin/` 章節追加來源資料，判斷 atomic / notes 是否需要補整理或標記待確認 |
 | 內容新增 | 在 atomic / notes / appendix / demos / practice / review 新增正式內容，先確認來源層與下游影響 |
 | 內容修改 | 修改既有正式內容，判斷最新正確來源與受影響下游 |
 | 小型文字修正 | 判斷是否影響標題、anchor、關鍵字與下游引用 |
-| 技術概念修正 | 找出最新正確來源，更新 notes，完成 notes content review，再檢查所有下游 |
-| 章節重構 | 重產 atomic、執行 atomic review，再重產 notes，完成 notes content review 後再產生下游 |
+| 技術概念修正 | 找出最新正確來源，判斷 notes 是否需更新、是否需完成 notes content review，並檢查所有下游 |
+| 章節重構 | 判斷 atomic / notes 是否為候選重生成範圍，並判斷下游是否需同步 |
 | 資產異動 | 檢查資產路徑、alt、連結文字與所有引用 |
 | 下游材料修正 | 先判斷錯誤來源是否來自 notes |
-| 狀態同步 | 只更新受影響章節的相關欄位 |
+| 狀態同步 | 判斷受影響章節哪些欄位需同步；只有執行型請求才實際更新 |
 
 ---
 
@@ -182,10 +186,12 @@ notes 改了 → 先看下游材料是否過期
 
 如果錯誤來自 `notes/`，不要只改 `demos/` 或 `practice/`。
 
+判斷時應將 `notes/` 列為最新修正候選來源，再把受影響下游列為候選重生成或同步範圍。
+
 ```text
 錯誤來源在 notes
-  → 先修 notes
-  → 再重生成受影響的下游
+  → 候選：先修 notes
+  → 候選：再重生成受影響的下游
 ```
 
 ### 4.3 下游不得自行新增核心知識
@@ -195,8 +201,8 @@ notes 改了 → 先看下游材料是否過期
 如果下游需要加入新觀念：
 
 ```text
-先補 notes
-  → 再更新下游
+候選：先補 notes
+  → 候選：再更新下游
 ```
 
 ### 4.4 不確定時標記為「待確認」
@@ -208,6 +214,8 @@ notes 改了 → 先看下游材料是否過期
   → meta/chapter-status.md 對應欄位標記為「待確認」
   → 在「下一步」或「備註」寫明需檢查或需更新的內容
 ```
+
+若使用者只要求判斷，以上只作為建議標記；只有在使用者明確要求同步狀態，且實際完成相關檢查或更新後，才修改 `meta/chapter-status.md`。
 
 ### 4.5 只重跑必要範圍
 
@@ -225,7 +233,7 @@ notes 改了 → 先看下游材料是否過期
 
 ### 4.6 資產不得只改檔名、不改引用
 
-實體資產改名、分類或引用路徑標準化，應以 `prompts/requests/rewrite-origin-asset-paths.md` 作為實際操作入口。
+若使用者明確要求實際改檔，實體資產改名、分類或引用路徑標準化，應以 `prompts/requests/rewrite-origin-asset-paths.md` 作為實際操作入口。
 
 資產異動時必查：
 
@@ -282,15 +290,17 @@ practice / review 中的圖片、附件或來源連結
 
 ### 5.2 影響範圍總表
 
+以下表格只列候選檢查與候選重生成範圍，不代表預設執行。
+
 | 改動位置 | 小修文字 | 技術概念改動 | 結構改動 | 範例改動 | 資產 / 標題改動 |
 | --- | --- | --- | --- | --- | --- |
-| `origin/` | 檢查 atomic / notes 是否也有同錯誤 | 更新 atomic → atomic review → notes → notes content review → 下游 | 更新 atomic → atomic review → notes → notes content review → 下游 | 視是否進入 notes | 檢查所有引用路徑 |
-| `atomic/` | 檢查 notes | 更新 notes → notes content review → 下游 | 更新 notes → notes content review → appendix，檢查 demos / practice / review | 視 notes 是否受影響 | 檢查 notes 路徑 |
-| `notes/` | 通常不重跑下游 | 執行 notes content review，更新 appendix / practice / review，檢查 demos | 執行 notes content review，更新 appendix，檢查 demos / practice / review | 執行 notes content review，更新 demos，檢查 practice / review | 標題改動必查 appendix |
-| `appendix/` | 可直接修 | 先查 notes 是否缺漏 | 先查 notes | 不直接新增教學內容 | 檢查 anchor |
-| `demos/` | 可直接修 | 先查 notes 是否已教 | 視情況 | 可直接修，但不得超出 notes | 檢查引用路徑 |
-| `practice/` | 可直接修 | 先查 notes 與答案來源 | 視情況 | 檢查題目與答案 | 檢查來源連結 |
-| `review/` | 可直接修 | 先查 notes | 視情況 | 檢查題庫與錯題回流 | 檢查來源連結 |
+| `origin/` | 檢查 atomic / notes 是否也有同錯誤 | 候選：atomic → atomic review → notes → notes content review → 下游 | 候選：atomic → atomic review → notes → notes content review → 下游 | 判斷是否進入 notes | 檢查所有引用路徑 |
+| `atomic/` | 檢查 notes | 候選：notes → notes content review → 下游 | 候選：notes → notes content review → appendix；檢查 demos / practice / review | 判斷 notes 是否受影響 | 檢查 notes 路徑 |
+| `notes/` | 通常不重跑下游 | 候選：notes content review、appendix / practice / review；檢查 demos | 候選：notes content review、appendix；檢查 demos / practice / review | 候選：notes content review、demos；檢查 practice / review | 標題改動必查 appendix |
+| `appendix/` | 可作為直接修正候選 | 先查 notes 是否缺漏 | 先查 notes | 不直接新增教學內容 | 檢查 anchor |
+| `demos/` | 可作為直接修正候選 | 先查 notes 是否已教 | 視情況判斷 | 可作為直接修正候選，但不得超出 notes | 檢查引用路徑 |
+| `practice/` | 可作為直接修正候選 | 先查 notes 與答案來源 | 視情況判斷 | 檢查題目與答案 | 檢查來源連結 |
+| `review/` | 可作為直接修正候選 | 先查 notes | 視情況判斷 | 檢查題庫與錯題回流 | 檢查來源連結 |
 
 ---
 
@@ -302,7 +312,7 @@ practice / review 中的圖片、附件或來源連結
 
 本節範例的「建議輸出」均應完整示範第 5.1 節格式，不應省略欄位。
 
-本節範例皆為「判斷型請求」。AI 應先判斷影響範圍，再說明需要檢查或重生成的內容；限制條件固定為只判斷、不改檔，且不同步 `meta/chapter-status.md`，僅提出建議標記。
+本節範例皆為「判斷型請求」。AI 應先判斷影響範圍，再說明需要檢查或重生成的內容；此類請求固定不改檔、不重生成、不同步 `meta/chapter-status.md`，僅提出建議標記。
 
 在本節範例中，AI 不實際新增、覆蓋或改寫任何檔案，不同步狀態表，也不重生成 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等產物。
 
@@ -313,20 +323,17 @@ practice / review 中的圖片、附件或來源連結
 ```text
 1. 章節名稱
 2. 改動位置：origin / origin/<章節>/assets / atomic / notes / appendix / demos / practice / review / supplements
-3. 任務 / 改動類型：原始資料初始匯入 / 原始資料增補 / 內容新增 / 內容修改 / 小修 / 技術概念 / 結構調整 / 範例 / 資產異動 / 標題
+3. 任務 / 改動類型：請優先使用第 2.3 節的常見任務類型；若需要更細，可補充子類型，例如：範例、標題、anchor、下游新增內容判斷
 4. 改動摘要
 5. 我希望 AI 判斷
 ```
 
-`origin/` 相關改動應優先區分：
+若改動位置涉及 `origin/` 或 `origin/<章節>/assets/`，應優先區分：
 
 ```text
 原始資料初始匯入：第一次建立某主題的 origin 原始資料。
 原始資料增補：既有 origin 主題後續追加來源資料。
-內容新增：在 atomic / notes / appendix / demos / practice / review 新增正式內容。
-內容修改：修改既有正式內容。
 資產異動：圖片、附件、路徑、alt、連結文字相關變更。
-結構調整：章節、索引、anchor、檔案配置調整。
 ```
 
 若任務 / 改動類型是「原始資料初始匯入」，在本節判斷型範例中，AI 預設只做來源登錄與後續影響判斷，並回答：
@@ -340,6 +347,8 @@ practice / review 中的圖片、附件或來源連結
 
 提問範本：
 
+使用此提問範本時，請求固定為判斷型請求：不改檔、不重生成、不同步 `meta/chapter-status.md`，只提出建議標記。
+
 ```text
 請依 meta/update-rules.md 協助處理這次 HTML 筆記包更新。
 
@@ -348,14 +357,11 @@ practice / review 中的圖片、附件或來源連結
 3. 任務 / 改動類型：
 4. 改動摘要：
 5. 我希望 AI 判斷：
-6. 限制條件：
-   - 是否只判斷、不改檔：是
-   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
 ```
 
-預設情況下，AI 只能判斷影響範圍、列出需要檢查或重生成的內容，並提出建議處理順序與 `meta/chapter-status.md` 建議標記。
+使用此提問範本時，AI 只能判斷影響範圍、列出需要檢查或重生成的內容，並提出建議處理順序與 `meta/chapter-status.md` 建議標記。
 
 以下範例均依此格式撰寫，可直接模仿。
 
@@ -371,9 +377,6 @@ practice / review 中的圖片、附件或來源連結
 3. 任務 / 改動類型：原始資料初始匯入
 4. 改動摘要：將 origin/forms/input.md 作為 forms 主題的第一份原始來源資料納入追蹤。
 5. 我希望 AI 判斷：判斷後續是否需要建立 atomic、notes，並提出 meta/chapter-status.md 建議標記。
-6. 限制條件：
-   - 是否只判斷、不改檔：是
-   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
 ```
@@ -420,7 +423,7 @@ notes content review
 
 ## 7. meta/chapter-status.md 建議標記
 
-若只判斷、不改檔，僅提出建議標記，不直接修改狀態表。
+本範本固定為判斷型請求，僅提出建議標記，不直接修改狀態表。
 
 建議將 forms 章節的 origin 相關狀態視為已建立或待整理；atomic / notes 及下游欄位若尚未產出，標記為「待確認」或依狀態表規則標記為未完成。
 
@@ -448,12 +451,9 @@ notes content review
 
 1. 章節名稱：forms
 2. 改動位置：notes/forms/input.md
-3. 任務 / 改動類型：範例
+3. 任務 / 改動類型：內容新增 / 範例
 4. 改動摘要：在 notes/forms/input.md 新增一個 input type="email" 的範例。
 5. 我希望 AI 判斷：判斷影響範圍與需要檢查或重生成的下游。
-6. 限制條件：
-   - 是否只判斷、不改檔：是
-   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
 ```
@@ -472,12 +472,12 @@ notes content review
 
 ## 3. 改動類型
 
-改動類型：範例改動
+改動類型：內容新增 / 範例
 
 ## 4. 影響範圍
 
 notes 完成內容審查後，才是 demos / practice / review / appendix 的正式來源。
-新增 HTML 範例後，應先執行 notes content review，再檢查 demos、practice、review 是否需要同步。
+新增 HTML 範例後，應先將 notes content review 列為候選檢查，再檢查 demos、practice、review 是否需要同步。
 
 ## 5. 需要檢查的下游
 
@@ -521,9 +521,6 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 3. 任務 / 改動類型：資產異動
 4. 改動摘要：將 origin/table/assets/old-table.png 改名為 origin/table/assets/table-layout-example.png。
 5. 我希望 AI 判斷：判斷資產改名後需要檢查哪些引用與狀態。
-6. 限制條件：
-   - 是否只判斷、不改檔：是
-   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
 ```
@@ -588,12 +585,9 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 
 1. 章節名稱：layout
 2. 改動位置：practice
-3. 任務 / 改動類型：技術概念 / 下游新增內容判斷
+3. 任務 / 改動類型：下游材料修正 / 下游新增內容判斷
 4. 改動摘要：想直接在 practice 新增一題 notes 沒教過的 CSS Grid 題目。
 5. 我希望 AI 判斷：判斷是否可以直接新增，或是否需要先回補 notes。
-6. 限制條件：
-   - 是否只判斷、不改檔：是
-   - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
 ```
@@ -612,7 +606,7 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 
 ## 3. 改動類型
 
-改動類型：技術概念 / 下游新增內容判斷
+改動類型：下游材料修正 / 下游新增內容判斷
 
 ## 4. 影響範圍
 
@@ -679,6 +673,8 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 
 ### 7.3 `meta/chapter-status.md` 同步標準
 
+以下同步標準只適用於已授權的執行型請求。
+
 每次實際完成更新或重生成後，都要同步 `meta/chapter-status.md`。
 
 若使用者指定只判斷、不改檔，則只提出建議標記，不直接修改狀態表。
@@ -730,9 +726,13 @@ meta/chapter-status.md 已同步更新
 
 ---
 
-## 8. 標準工作流程
+## 8. 授權後候選工作流程
+
+以下流程只在使用者明確要求實際改檔、重生成或同步狀態時使用；一般判斷任務只回報候選流程與影響範圍。
 
 ### 8.1 小型文字修正
+
+若已確認需要且使用者已授權，候選流程為：
 
 ```text
 修正來源文字
@@ -741,6 +741,8 @@ meta/chapter-status.md 已同步更新
 ```
 
 ### 8.2 技術概念修正
+
+若已確認需要且使用者已授權，候選流程為：
 
 ```text
 若改動來源是 origin / atomic
@@ -765,6 +767,8 @@ meta/chapter-status.md 已同步更新
 
 ### 8.3 章節重構
 
+若已確認需要且使用者已授權，候選流程為：
+
 ```text
 整理 origin
   → 重產 atomic
@@ -778,6 +782,8 @@ meta/chapter-status.md 已同步更新
 ```
 
 ### 8.4 資產異動
+
+若已確認需要且使用者已授權，候選流程為：
 
 ```text
 整理 origin/<章節>/assets/
@@ -796,12 +802,12 @@ meta/chapter-status.md 已同步更新
 改 origin，要想到 atomic。
 改 atomic，要想到 notes。
 改 notes，要想到所有下游。
-產 notes，要先審查，再生成下游。
+notes 產出，要先審查，再判斷下游生成。
 改標題，要想到 appendix。
 改範例，要想到 demos / practice / review。
 改資產，要想到所有引用路徑。
 下游新增新知識，要先回補 notes。
-不確定是否過期，要標記待確認，並寫明需檢查或需更新的內容。
+不確定是否過期，要建議標記待確認，並寫明需檢查或需更新的內容。
 ```
 
 ---
