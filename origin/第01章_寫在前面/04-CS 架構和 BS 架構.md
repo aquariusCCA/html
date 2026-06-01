@@ -9,7 +9,7 @@
 - 這裡需要補充的是，客戶端不僅僅是一些簡單的操作，它也是會處理一些運算，業務邏輯的處理等。**也就是說，客戶端也做著一些本該由服務器來做的一些事情**。
 - 示意圖
     
-    ![CS架構示意圖.png](./assets/images/cs-bs-architecture-img-001-0f94cf.png)
+    ![C/S 架構客戶機與服務器雙向請求示意圖](./assets/images/cs-bs-architecture-img-001-0f94cf.png)
     
 - 優點
     - C/S 架構的界面和操作可以很豐富。 （客戶端操作界面可以隨意排列，滿足客戶的需要）
@@ -31,7 +31,7 @@
     - Browser 指的是 Web 瀏覽器，極少數事務邏輯在前端實現，但主要事務邏輯在服務器端實現。
 - 與 C/S 架構只有兩層不同的是，B/S 架構有三層，分別為：
     
-    ![BS架構示意圖.png](./assets/images/cs-bs-architecture-img-002-fc4d53.png)
+    ![B/S 架構界面、邏輯與數據層示意圖](./assets/images/cs-bs-architecture-img-002-fc4d53.png)
     
     - 第一層表現層：主要完成用戶和後台的交互及最終查詢結果的輸出功能。
     - 第二層邏輯層：主要是利用服務器完成客戶端的應用邏輯功能。

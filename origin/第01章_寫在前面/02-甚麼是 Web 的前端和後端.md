@@ -2,7 +2,7 @@
 
 前端是用來展示數據的，後端是用來提供數據的。
 
-![前端和後端示意圖.png](./assets/images/web-frontend-backend-img-001-b8f042.png)
+![前端與後端請求響應示意圖](./assets/images/web-frontend-backend-img-001-b8f042.png)
 
 - 補充說明:
     - 數據庫 : 存儲數據的。

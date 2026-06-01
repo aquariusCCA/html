@@ -17,4 +17,4 @@
 
 | 章節 | 優先級 | origin整理 | 資產命名 | alt與連結文字 | atomic切分提案 | atomic產生 | atomic內容審查 | notes生成 | notes完成檢查 | demos生成 | practice生成 | review生成 | appendix索引 | 最終驗收 | 完成率 | 整體狀態 | 下一步 | 備註 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 第01章_寫在前面 | 未設定 | 待確認 | 已完成 | 待確認 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 0% | 進行中 | 先依 `prompts/requests/rewrite-origin-alt-and-link-text.md` 整理 alt 與連結文字，完成後再進入 atomic 初次產生。 | `origin/第01章_寫在前面` 已新增 7 份 Markdown 與 10 張圖片資產；圖片資產命名與 Markdown 引用路徑已依 `prompts/_drafts/origin-asset-standardization-draft.md` 標準化，目前尚未產生 atomic/notes/appendix/demos/practice/review。 |
+| 第01章_寫在前面 | 未設定 | 已完成 | 已完成 | 已完成 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 未開始 | 20% | 進行中 | 依 `prompts/_drafts/origin-to-atomic-notes-draft.md` 啟動 atomic 切分提案與 atomic 初次產生。 | `origin/第01章_寫在前面` 已新增 7 份 Markdown 與 10 張圖片資產；圖片資產命名、Markdown 引用路徑與 10 個圖片 alt 已檢查，未發現本地附件連結或 HTML 圖片/附件引用；目前尚未產生 atomic/notes/appendix/demos/practice/review。 |

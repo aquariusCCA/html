@@ -9,16 +9,16 @@
 
 - 不同瀏覽器的渲染引擎不同，對於相同代碼解析的效果會存在差異，如果用戶想看一個網頁，結果用不同瀏覽器打開效果不同，用戶體驗極差。
     
-    ![為甚麼需要了解Web標準示意圖1.png](./assets/images/web-standard-img-001-e119b2.png)
+    ![不同瀏覽器呈現不同網頁效果示意圖](./assets/images/web-standard-img-001-e119b2.png)
     
 - Web 標準: 讓不同的瀏覽器按照相同的標準顯示結果，**讓展示的效果統一** !
     
-    ![為甚麼需要了解Web標準示意圖2.png](./assets/images/web-standard-img-002-783e20.png)
+    ![Web 標準統一不同瀏覽器顯示效果示意圖](./assets/images/web-standard-img-002-783e20.png)
     
 
 # **Web 標準的構成**
 
-![Web標準的構成.png](./assets/images/web-standard-img-003-2d03d3.png)
+![Web 標準結構、表現與行為對照表](./assets/images/web-standard-img-003-2d03d3.png)
 
 - Web 標準要求頁面實現 → **結構、表現、行為三層分離**。
     - 簡單理解 : 結構寫到 HTML 文件中、表現寫到 CSS 文件中、行為寫到 JavaScript 文件中。

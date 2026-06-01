@@ -2,7 +2,7 @@
 
 ## 用途
 
-用來請 AI 依照 `prompts/_drafts/origin-asset-alt-and-link-text-draft.md` 的規則，整理指定 `origin/<章節>/` 內 Markdown 文件中的圖片替代文字與本地附件連結文字。
+用來請 AI 依照 `prompts/_drafts/origin-asset-alt-and-link-text-draft.md` 的規則，整理指定 `origin/<章節>/` 內 Markdown 文件中非程式碼範例內的圖片替代文字與本地附件連結文字。
 
 這份模板只處理文字描述，不處理資產路徑或實體檔案名稱。
 
@@ -17,7 +17,7 @@
 1. 將下方「可直接複製的提問」貼給具備檔案系統存取能力的 AI。
 2. 將 `<章節路徑>` 替換成實際章節目錄。
 3. 一次只處理一個章節，避免跨章節誤改。
-4. 執行後檢查 git diff，確認只改到圖片 alt 或本地附件連結文字。
+4. 執行後檢查 git diff，確認只改到 Markdown 圖片 alt、HTML `alt` 屬性或本地附件連結文字。
 
 ## 可直接複製的提問
 
@@ -25,8 +25,6 @@
 請依照 prompts/_drafts/origin-asset-alt-and-link-text-draft.md 的完整規則，處理以下章節：
 
 <章節路徑>
-
-請務必先閱讀 workflow 文件，並嚴格遵守其中的角色、任務、上下文、限制條件、圖片 Alt Text 規則、本地附件連結文字規則與輸出格式。
 
 請只處理上述指定章節，不要處理其他章節或其他資料夾。
 ```
