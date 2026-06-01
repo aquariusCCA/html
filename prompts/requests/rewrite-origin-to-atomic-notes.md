@@ -26,7 +26,7 @@
 3. 第一輪只要求輸出切分提案，人工確認後再要求產生檔案。
 4. 執行後檢查 `atomic/<章節>/`、內容保真、asset 引用路徑與 git diff。
 
-## 可直接複製的提問
+## 第一階段內容審查用提問
 
 ```text
 請依照 prompts/_drafts/origin-to-atomic-notes-draft.md 的完整規則，處理以下章節：

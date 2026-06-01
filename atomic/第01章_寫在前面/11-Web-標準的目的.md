@@ -6,6 +6,6 @@
 
 ![不同瀏覽器呈現不同網頁效果示意圖](../../origin/第01章_寫在前面/assets/images/web-standard-img-001-e119b2.png)
 
-Web 標準是為了讓不同的瀏覽器按照相同的標準顯示結果，讓展示的效果統一。
+Web 標準是為了讓不同的瀏覽器盡量依照共同規範解析與呈現內容，降低顯示與行為差異。
 
 ![Web 標準統一不同瀏覽器顯示效果示意圖](../../origin/第01章_寫在前面/assets/images/web-standard-img-002-783e20.png)
