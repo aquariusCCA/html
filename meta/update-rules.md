@@ -78,7 +78,9 @@ meta/chapter-status.md 要如何同步？
 但一定要判斷下游是否過期。
 ```
 
-AI 執行任務時，應先回報影響範圍與預計處理流程，再進行大範圍重生成或狀態同步。
+AI 執行任務時，應先回報影響範圍與預計處理流程。
+
+只有在使用者明確指定要實際改檔、同步狀態或重生成哪些產物時，才可執行大範圍重生成或狀態同步。
 
 ### 2.3 常見任務類型
 
@@ -229,6 +231,7 @@ atomic 引用
 notes 引用
 demos 引用
 appendix 連結
+practice / review 中的圖片、附件或來源連結
 ```
 
 ### 4.7 不要修改 `meta/chapter-status.md` 的欄位結構
@@ -322,10 +325,10 @@ appendix 連結
    - 是否需要同步 meta/chapter-status.md：
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
-除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
+除非我另外明確指定要實際改檔、同步狀態或重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
-預設情況下，AI 只能判斷影響範圍、列出需要檢查或重生成的內容，並提出建議處理順序。實際重生成下游產物必須由使用者明確指定目標與範圍後才可執行。
+預設情況下，AI 只能判斷影響範圍、列出需要檢查或重生成的內容，並提出建議處理順序。實際改檔、同步狀態或重生成下游產物，必須由使用者明確指定目標與範圍後才可執行。
 
 以下範例均依此格式撰寫，可直接模仿。
 
@@ -346,7 +349,7 @@ appendix 連結
    - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
-除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
+除非我另外明確指定要實際改檔、同步狀態或重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
@@ -413,7 +416,7 @@ appendix 連結
    - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
-除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
+除非我另外明確指定要實際改檔、同步狀態或重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
@@ -462,9 +465,9 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 
 ## 9. 建議下一步
 
-1. 依 html-teaching-notes-content-review-draft 完成 notes content review。
+1. 後續若要實際處理，先依 html-teaching-notes-content-review-draft 完成 notes content review。
 2. 檢查新增範例是否影響 appendix 索引與 demos / practice / review。
-3. 只重生成或修正受影響的下游材料，並同步 meta/chapter-status.md 建議標記。
+3. 後續若實際重生成或修正受影響的下游材料，再同步 meta/chapter-status.md；只判斷時僅提出建議標記。
 ```
 
 ### 6.4 範例三：資產改名或搬移
@@ -484,7 +487,7 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
    - 是否需要同步 meta/chapter-status.md：否，僅提出建議標記
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
-除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
+除非我另外明確指定要實際改檔、同步狀態或重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
@@ -516,10 +519,11 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 - notes 引用
 - demos 引用
 - appendix 連結
+- practice / review 中的圖片、附件或來源連結
 
 ## 6. 需要重生成的下游
 
-目前不一定需要重生成。若 atomic / notes / demos / appendix 已產生舊路徑，需更新或重生成受影響內容。
+目前不一定需要重生成。若 atomic / notes / demos / appendix 已產生舊路徑，或 practice / review 中的圖片、附件或來源連結仍指向舊路徑，需更新或重生成受影響內容。
 
 ## 7. meta/chapter-status.md 建議標記
 
@@ -527,14 +531,14 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 
 ## 8. 過期內容風險
 
-高。資產改名後若引用未同步，會造成圖片、附件或 appendix 連結失效。
+高。資產改名後若引用未同步，會造成圖片、附件、appendix 連結或 practice / review 來源連結失效。
 
 ## 9. 建議下一步
 
-1. 執行 prompts/requests/rewrite-origin-asset-paths.md。
-2. 執行 prompts/requests/rewrite-origin-alt-and-link-text.md。
-3. 搜尋 old-table.png，確認 origin / atomic / notes / demos / appendix 是否仍引用舊路徑。
-4. 只更新或重生成仍引用舊路徑的受影響內容。
+1. 後續若要實際處理，先執行 prompts/requests/rewrite-origin-asset-paths.md。
+2. 再執行 prompts/requests/rewrite-origin-alt-and-link-text.md。
+3. 搜尋 old-table.png，確認 origin / atomic / notes / demos / appendix，以及 practice / review 中的圖片、附件或來源連結是否仍引用舊路徑。
+4. 只更新或重生成仍引用舊路徑的受影響內容；只判斷時僅提出建議標記。
 ```
 
 ### 6.5 範例四：下游想新增新觀念
@@ -554,7 +558,7 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
    - 是否需要同步 meta/chapter-status.md：否
 
 請先判斷影響範圍，再說明需要檢查或重生成的內容。
-除非我另外明確指定要重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
+除非我另外明確指定要實際改檔、同步狀態或重生成哪些產物，否則不要實際新增、覆蓋或改寫 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 等下游產物。
 ```
 
 建議輸出：
@@ -638,7 +642,9 @@ notes 完成內容審查後，才是 demos / practice / review / appendix 的正
 
 ### 7.3 `meta/chapter-status.md` 同步標準
 
-每次完成更新或重生成後，都要同步 `meta/chapter-status.md`。
+每次實際完成更新或重生成後，都要同步 `meta/chapter-status.md`。
+
+若使用者指定只判斷、不改檔，則只提出建議標記，不直接修改狀態表。
 
 同步原則：
 
@@ -676,14 +682,14 @@ atomic 已產生
 atomic review 已完成
 notes 已產生
 notes content review 已完成
-appendix 已根據 notes 建立
-demos 已根據 notes 建立或確認不需要
-practice 已根據 notes 建立
-review 已根據 notes 建立
+appendix 已根據 notes 建立，或確認不需要並已備註
+demos 已根據 notes 建立，或確認不需要並已備註
+practice 已根據 notes 建立，或確認不需要並已備註
+review 已根據 notes 建立，或確認不需要並已備註
 meta/chapter-status.md 已同步更新
 ```
 
-如果某一層不需要產出，必須在 `meta/chapter-status.md` 備註原因。
+如果 appendix / demos / practice / review 任一層不需要產出，必須在 `meta/chapter-status.md` 備註原因。
 
 ---
 
@@ -700,8 +706,18 @@ meta/chapter-status.md 已同步更新
 ### 8.2 技術概念修正
 
 ```text
-修正 origin / atomic / notes
+若改動來源是 origin / atomic
+  → 更新 atomic
+  → 執行 atomic review（atomic 內容審查）
   → 更新 notes
+  → 執行 notes content review（正式 notes 內容審查）
+  → 更新 appendix
+  → 檢查 demos
+  → 更新 practice
+  → 更新 review
+  → 更新 meta/chapter-status.md
+
+若改動來源是 notes
   → 執行 notes content review（正式 notes 內容審查）
   → 更新 appendix
   → 檢查 demos
@@ -731,6 +747,7 @@ meta/chapter-status.md 已同步更新
   → 執行 prompts/requests/rewrite-origin-asset-paths.md
   → 執行 prompts/requests/rewrite-origin-alt-and-link-text.md
   → 檢查 atomic / notes / demos / appendix 引用
+  → 若 practice / review 含圖片、附件或來源連結，也一併檢查
   → 更新 meta/chapter-status.md
 ```
 
