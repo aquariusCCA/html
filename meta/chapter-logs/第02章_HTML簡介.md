@@ -5,9 +5,9 @@
 ## 目前狀態摘要
 
 - `origin/第02章_HTML簡介` 已初始匯入 4 份 Markdown 原始資料。
-- `origin/第02章_HTML簡介/assets/images/` 已有 8 個圖片資產。
+- `origin/第02章_HTML簡介/assets/images/` 已有 8 個已標準化命名的圖片資產。
 - 第 02 章尚未產生 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 對應內容。
-- 目前優先待辦是檢查 origin 資產路徑、圖片 alt 與連結文字，再啟動 origin -> atomic。
+- 目前優先待辦是檢查圖片 alt、連結文字與 origin 格式，再啟動 origin -> atomic。
 
 ## 流程紀錄
 
@@ -20,7 +20,9 @@
   - `origin/第02章_HTML簡介/03-HTML骨架.md`
   - `origin/第02章_HTML簡介/04-標籤組成和關係.md`
 - 本次 origin 初始匯入包含 8 個圖片資產，位於 `origin/第02章_HTML簡介/assets/images/`。
-- 已判斷目前圖片引用仍需要檢查與整理：Markdown 內的圖片路徑仍指向舊相對路徑，實際資產位於 `assets/images/`。
+- 2026-06-02：已完成可確認本地圖片資產的檔名標準化，並將 Markdown 圖片引用更新為 `./assets/images/...` 路徑。
+  - `origin/第02章_HTML簡介/03-HTML骨架.md` 的 2 個圖片引用已更新。
+  - `origin/第02章_HTML簡介/04-標籤組成和關係.md` 的 6 個圖片引用已更新。
 - 已判斷圖片 alt 目前多為檔名型文字，後續需要整理為可讀描述。
 - 已判斷 `04-標籤組成和關係.md` 含有 `<aside>` 形式的來源格式，後續 origin 整理時應確認是否轉為一般 Markdown。
 
@@ -42,6 +44,6 @@
 ## 待確認
 
 - 確認 origin 資料是否完整涵蓋第 02 章 HTML 簡介範圍。
-- 檢查並標準化 `origin/第02章_HTML簡介` 的圖片引用路徑。
 - 檢查圖片 alt 與連結文字。
 - 檢查原始內容中的錯字、用語與格式殘留，再進入 origin -> atomic。
+- 提交前確認 8 個標準化命名後的圖片資產已納入版本控制。
