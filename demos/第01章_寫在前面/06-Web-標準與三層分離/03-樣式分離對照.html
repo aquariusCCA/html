@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>樣式分離對照</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      margin-bottom: 16px;
+      padding: 16px;
+      max-width: 640px;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .wrong-label {
+      color: #b91c1c;
+    }
+
+    .right-label {
+      color: #166534;
+    }
+
+    .notice {
+      color: red;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>樣式分離對照</h1>
+
+  <!-- 觀察重點：大量樣式直接塞進 HTML 會讓結構難讀；使用 class 較容易維護。 -->
+
+  <section>
+    <h2 class="wrong-label">錯誤寫法</h2>
+    <p class="label">把樣式直接寫在 HTML 裡：</p>
+    <p style="color: red; font-size: 20px;">重要提醒</p>
+  </section>
+
+  <section>
+    <h2 class="right-label">正確寫法</h2>
+    <p class="label">HTML 保留內容與語意，CSS 負責外觀：</p>
+    <p class="notice">重要提醒</p>
+  </section>
+</body>
+</html>

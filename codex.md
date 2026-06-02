@@ -1,7 +1,11 @@
-請依照 `prompts/_drafts/notes-to-html-teaching-demos-draft.md` 的完整規則，為以下正式筆記產生 HTML 教學範例：
+請依 `meta/update-rules.md` 協助判斷這次 HTML 筆記包更新的影響範圍。
 
-<正式筆記路徑>
+1. 章節名稱：第01章_寫在前面
+2. 改動位置：`demos/第01章_寫在前面/06-Web-標準與三層分離/`
+3. 任務 / 改動類型：內容新增 / 範例 / 下游材料新增
+4. 改動摘要：已依照 `prompts/_drafts/notes-to-html-teaching-demos-draft.md` 的規則，根據 `notes/第01章_寫在前面/06-Web-標準與三層分離.md` 產生 HTML 教學範例，輸出到 `demos/第01章_寫在前面/06-Web-標準與三層分離/`。
+5. 我希望 AI 判斷：判斷這次新增 demos 後，是否需要檢查 notes content review、appendix、practice、review 或 `meta/chapter-status.md`，並提出需要檢查的內容、候選重生成或候選同步範圍，以及 `meta/chapter-status.md` 建議標記。
 
-Demo 主題與數量請依指定筆記已教過的內容、學習目標與核心概念決定，不要為了符合固定數量而省略、合併或硬塞觀念。
+請先判斷影響範圍，再說明需要檢查的內容、候選重生成或候選同步範圍，以及 `meta/chapter-status.md` 建議標記。
 
-請只根據上述指定筆記產生 demo，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
+本次請只做判斷型輸出：不改檔、不重生成、不同步 `meta/chapter-status.md`。

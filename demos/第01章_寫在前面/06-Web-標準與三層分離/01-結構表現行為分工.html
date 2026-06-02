@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>結構、表現與行為分工</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      padding: 16px;
+      max-width: 640px;
+    }
+
+    .primary-button {
+      color: white;
+      background-color: #2563eb;
+      border: 0;
+      padding: 8px 14px;
+      font-size: 16px;
+    }
+
+    .result {
+      color: #166534;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>結構、表現與行為分工</h1>
+
+  <!-- 觀察重點：HTML 寫內容，CSS 寫外觀，JavaScript 寫點擊後的行為。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p>HTML 負責說明這裡有一段文字與一個按鈕。</p>
+    <button class="primary-button" type="button">送出</button>
+    <p class="result">尚未點擊按鈕</p>
+  </section>
+
+  <script>
+    document.querySelector(".primary-button").addEventListener("click", function () {
+      document.querySelector(".result").textContent = "使用者點擊送出";
+    });
+  </script>
+</body>
+</html>
