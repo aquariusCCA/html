@@ -17,4 +17,4 @@
 
 | 章節 | 優先級 | origin整理 | 資產命名 | alt與連結文字 | atomic切分提案 | atomic產生 | atomic內容審查 | notes生成 | notes完成檢查 | demos生成 | practice生成 | review生成 | appendix索引 | 最終驗收 | 完成率 | 整體狀態 | 下一步 | 備註 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 第01章_寫在前面 | 未設定 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 待確認 | 待確認 | 待確認 | 待確認 | 未開始 | 62% | 進行中 | 檢查 `06-Web-標準與三層分離` demos；確認第 01 章其他 notes 是否需產生 demos 或標記不適用；評估是否產生 appendix/practice/review。 | origin/atomic/notes 與 notes content review 已完成；`06-Web-標準與三層分離` demos 已產生；詳細紀錄見 [章節 log](chapter-logs/第01章_寫在前面.md)。 |
+| 第01章_寫在前面 | 未設定 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 待確認 | 待確認 | 已完成 | 未開始 | 77% | 進行中 | 評估是否產生 practice/review。 | origin/atomic/notes、notes content review、demos 與 appendix 索引已完成；第 01 章其他 5 篇 notes 已判定不需 demos；詳細紀錄見 [章節 log](chapter-logs/第01章_寫在前面.md)。 |
