@@ -6,9 +6,9 @@
 
 - 每一個網頁都會有一個基本的結構標籤 (也稱為骨架標籤)，頁面內容也是在這些基本標籤上書寫。
     
-    ![骨架標籤1.jpg](./assets/images/html-skeleton-img-001-8bc9f3.jpg)
+    ![HTML 文件骨架程式碼示例](./assets/images/html-skeleton-img-001-8bc9f3.jpg)
     
-    ![骨架標籤2.jpg](./assets/images/html-skeleton-img-002-26bafc.jpg)
+    ![HTML 骨架標籤說明表格](./assets/images/html-skeleton-img-002-26bafc.jpg)
     
 
 - HTML 頁面也稱為 HTML 文檔。
