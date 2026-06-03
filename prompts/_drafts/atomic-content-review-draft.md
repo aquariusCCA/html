@@ -154,27 +154,18 @@ atomic/
 
 ### 3.2 與 origin-to-atomic 品質檢查的關係
 
-本 Prompt 不取代：
+本 Prompt 接在 `origin-to-atomic-notes-draft.md` 之後使用；兩者分工如下：
 
-```text
-prompts/_drafts/origin-to-atomic-notes-draft.md
-```
+| Prompt | 主要檢查重點 |
+| --- | --- |
+| `origin-to-atomic-notes-draft.md` | atomic notes 是否安全、合理、忠實地從 `origin/` 產生，例如切分、合併、來源資訊與 asset 路徑是否正確。 |
+| `atomic-content-review-draft.md` | atomic notes 的技術內容是否正確、邏輯是否可靠、是否適合進一步轉成正式 notes。 |
 
-兩者分工如下：
+判斷交界如下：
 
-```text
-origin-to-atomic-notes-draft.md 第 7 節：
-檢查 atomic notes 是否安全、合理、忠實地從 origin 產生。
-
-atomic-content-review-draft.md：
-檢查 atomic notes 的技術內容是否正確、邏輯是否可靠、是否適合進一步轉成正式 notes。
-```
-
-也就是說：
-
-1. 如果問題是切分不合理、來源資訊缺失、asset 路徑錯誤，通常屬於 origin-to-atomic 品質檢查的重點。
-2. 如果問題是 HTML/CSS/JavaScript 概念錯誤、範例程式碼錯誤、技術說法與實際標準不符，屬於本內容審查 Prompt 的重點。
-3. 如果 `origin/` 原始資料本身有錯，本 Prompt 應明確標出「原始資料錯誤」，而不是因為 atomic 忠實保留原文就視為合格。
+1. 若問題主要是切分不合理、來源資訊缺失或 asset 路徑錯誤，應標為 origin-to-atomic 品質檢查範圍，不在本 Prompt 中展開修正。
+2. 若問題是 HTML/CSS/JavaScript 概念錯誤、範例程式碼錯誤、技術說法與實際標準不符，屬於本內容審查範圍。
+3. 若 `origin/` 原始資料本身有錯，本 Prompt 仍應標出「原始資料錯誤」，並說明 atomic 是否只是忠實保留原文。
 
 ---
 

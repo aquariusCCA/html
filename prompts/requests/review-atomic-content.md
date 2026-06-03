@@ -40,13 +40,13 @@
 ## 第一階段內容審查用提問
 
 ```text
-請依照 prompts/_drafts/atomic-content-review-draft.md 的完整規則，審查以下章節的 atomic notes：
+請依照 `prompts/_drafts/atomic-content-review-draft.md` 的完整規則，審查以下章節的 atomic notes：
 
-<atomic章節路徑>
+`<atomic章節路徑>`
 
-請將 origin/<章節>/*.md 僅作為唯讀對照來源，不要把 origin/ 當成主要審查輸入，也不要修改 origin/ 或 assets/。
+請將 `origin/<章節>/*.md` 僅作為唯讀對照來源，不要把 `origin/` 當成主要審查輸入，也不要修改 `origin/` 或 `assets/`。
 
-請依照該 workflow 的第一階段完整規則，只輸出第一階段內容審查報告。等我確認要修正的問題 ID 後，再更新 atomic/<章節>/*.md。
+請依照該 workflow 的第一階段完整規則，只輸出第一階段內容審查報告。等我確認要修正的問題 ID 後，再更新 `atomic/<章節>/*.md`。
 ```
 
 ## 第二階段確認用提問
@@ -56,7 +56,7 @@
 
 <問題ID清單>
 
-請依照 prompts/_drafts/atomic-content-review-draft.md 的第二階段完整規則，只修正已確認的問題 ID。
+請依照 `prompts/_drafts/atomic-content-review-draft.md` 的第二階段完整規則，只修正已確認的問題 ID。
 
 若修正會大幅改變 atomic note 的段落結構、主題邊界或內容組織，請先提出修正方案，等待我再次確認後再修改。
 

@@ -6,8 +6,9 @@
 
 - `origin/第02章_HTML簡介` 已初始匯入 4 份 Markdown 原始資料，且 origin 格式與內容完整性已完成確認。
 - `origin/第02章_HTML簡介/assets/images/` 已有 8 個已標準化命名的圖片資產，且 Markdown 圖片 alt 已整理為可讀描述。
-- 第 02 章尚未產生 `atomic/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/` 對應內容。
-- 目前優先待辦是啟動 origin -> atomic。
+- `atomic/第02章_HTML簡介/` 已產生 8 份 atomic notes，且 atomic 內容審查已完成。
+- 第 02 章尚未產生 `notes/`、`appendix/`、`demos/`、`practice/`、`review/` 對應內容。
+- 目前優先待辦是依已完成內容審查的 atomic notes 生成 notes。
 
 ## 流程紀錄
 
@@ -39,13 +40,26 @@
 
 ### Atomic
 
-- 尚未產生 `atomic/第02章_HTML簡介`。
-- 下一步候選流程：依 `prompts/_drafts/origin-to-atomic-notes-draft.md` 產生 atomic notes。
+- 2026-06-03：已依 `prompts/_drafts/origin-to-atomic-notes-draft.md` 產生 `atomic/第02章_HTML簡介/` atomic notes。
+- 本次 atomic 產生包含下列 8 份 Markdown：
+  - `atomic/第02章_HTML簡介/01-網頁與網站基本概念.md`
+  - `atomic/第02章_HTML簡介/02-HTML與超文本標記語言.md`
+  - `atomic/第02章_HTML簡介/03-瀏覽器解析與網頁形成流程.md`
+  - `atomic/第02章_HTML簡介/04-HTML5版本特色與兼容性.md`
+  - `atomic/第02章_HTML簡介/05-HTML版本文件宣告比較.md`
+  - `atomic/第02章_HTML簡介/06-HTML文件骨架與基本結構標籤.md`
+  - `atomic/第02章_HTML簡介/07-HTML標籤結構與單雙標籤.md`
+  - `atomic/第02章_HTML簡介/08-HTML元素間的嵌套與並列關係.md`
+- 2026-06-03：已依 `prompts/_drafts/atomic-content-review-draft.md` 完成 `atomic/第02章_HTML簡介/*.md` 內容審查。
+  - `atomic/第02章_HTML簡介/` 可視為審查完成後的最新候選 atomic 來源。
+  - 未發現需阻擋 notes 生成的未解決待確認項目。
+  - atomic 內圖片引用保留指向 `origin/第02章_HTML簡介/assets/images/` 的相對路徑。
+- 下一步候選流程：依 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md` 產生正式 notes。
 
 ### Notes
 
 - 尚未產生 `notes/第02章_HTML簡介`。
-- 後續候選流程：完成 atomic 內容審查後，依 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md` 產生正式 notes。
+- 後續候選流程：依 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md`，以已完成內容審查的 atomic notes 產生正式 notes。
 
 ### Downstream
 
@@ -54,4 +68,6 @@
 
 ## 下一步
 
-- 依 `prompts/_drafts/origin-to-atomic-notes-draft.md` 啟動 origin -> atomic。
+- 依 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md`，以 `atomic/第02章_HTML簡介/` 生成 `notes/第02章_HTML簡介/`。
+- notes 生成後，依 `prompts/_drafts/html-teaching-notes-content-review-draft.md` 完成 notes content review。
+- notes content review 完成後，再判斷是否產生或同步 appendix、demos、practice、review。
