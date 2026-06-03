@@ -7,8 +7,11 @@
 - `origin/第02章_HTML簡介` 已初始匯入 4 份 Markdown 原始資料，且 origin 格式與內容完整性已完成確認。
 - `origin/第02章_HTML簡介/assets/images/` 已有 8 個已標準化命名的圖片資產，且 Markdown 圖片 alt 已整理為可讀描述。
 - `atomic/第02章_HTML簡介/` 已產生 8 份 atomic notes，且 atomic 內容審查已完成。
-- 第 02 章尚未產生 `notes/`、`appendix/`、`demos/`、`practice/`、`review/` 對應內容。
-- 目前優先待辦是依已完成內容審查的 atomic notes 生成 notes。
+- `notes/第02章_HTML簡介/` 已產生 5 份正式 notes，且 notes content review 已完成。
+- `appendix/第02章_HTML簡介/` 已為 5 份正式 notes 產生索引系統。
+- `demos/第02章_HTML簡介/` 已為第 04、05 篇正式 notes 產生 HTML 教學範例；第 01、02、03 篇已判定不需 demos。
+- 第 02 章尚未產生 `practice/`、`review/` 對應內容。
+- 目前優先待辦是評估是否產生 practice/review。
 
 ## 流程紀錄
 
@@ -58,16 +61,47 @@
 
 ### Notes
 
-- 尚未產生 `notes/第02章_HTML簡介`。
-- 後續候選流程：依 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md`，以已完成內容審查的 atomic notes 產生正式 notes。
+- 2026-06-03：已依 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md`，以已完成內容審查的 `atomic/第02章_HTML簡介/` 產生正式 notes。
+- 本次 notes 產生包含下列 5 份 Markdown：
+  - `notes/第02章_HTML簡介/01-網頁與HTML入門.md`
+  - `notes/第02章_HTML簡介/02-HTML5版本與兼容性.md`
+  - `notes/第02章_HTML簡介/03-HTML版本文件宣告補充.md`
+  - `notes/第02章_HTML簡介/04-HTML文件骨架與基本結構.md`
+  - `notes/第02章_HTML簡介/05-HTML標籤結構與元素關係.md`
+- 2026-06-03：已依 `prompts/_drafts/html-teaching-notes-content-review-draft.md` 完成 `notes/第02章_HTML簡介/*.md` 內容審查。
+  - `notes/第02章_HTML簡介/` 可視為第 02 章下游材料的正式來源。
+  - 未發現需阻擋下游材料產生的未解決待確認項目。
 
 ### Downstream
 
-- 尚未產生第 02 章 appendix、demos、practice、review。
-- 後續需在 notes content review 完成後，再判斷是否產生或同步下游材料。
+- 2026-06-03：已依 `prompts/_drafts/notes-to-html-teaching-demos-draft.md`，為下列 2 份正式 notes 產生 HTML 教學範例：
+  - `notes/第02章_HTML簡介/04-HTML文件骨架與基本結構.md`
+  - `notes/第02章_HTML簡介/05-HTML標籤結構與元素關係.md`
+- demo 輸出位置：
+  - `demos/第02章_HTML簡介/04-HTML文件骨架與基本結構/`
+  - `demos/第02章_HTML簡介/05-HTML標籤結構與元素關係/`
+- 目前 demos 只覆蓋第 04、05 篇 notes；第 01、02、03 篇 notes 已判定不需 demos。
+- 2026-06-03：已依 `prompts/_drafts/notes-to-index-system-draft.md`，為 `notes/第02章_HTML簡介/` 下的 5 份正式 notes 產生 appendix 索引系統。
+- appendix 輸出位置：
+  - `appendix/第02章_HTML簡介/01-網頁與HTML入門/`
+  - `appendix/第02章_HTML簡介/02-HTML5版本與兼容性/`
+  - `appendix/第02章_HTML簡介/03-HTML版本文件宣告補充/`
+  - `appendix/第02章_HTML簡介/04-HTML文件骨架與基本結構/`
+  - `appendix/第02章_HTML簡介/05-HTML標籤結構與元素關係/`
+- 每篇 notes 對應的 appendix 索引類型：
+  - `keyword-index.md`
+  - `element-attribute-index.md`
+  - `topic-index.md`
+  - `category-index.md`
+  - `scenario-index.md`
+  - `faq-index.md`
+  - `tag-index.md`
+- 2026-06-03：已完成 appendix 到 notes 的 anchor 候選檢查，未發現 broken anchor candidates。
+- 尚未產生第 02 章 practice、review。
+- 後續候選流程：依 `prompts/_drafts/notes-to-html-practice-draft.md` 與 `prompts/_drafts/notes-to-review-system-draft.md` 評估產生 practice/review。
 
 ## 下一步
 
-- 依 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md`，以 `atomic/第02章_HTML簡介/` 生成 `notes/第02章_HTML簡介/`。
-- notes 生成後，依 `prompts/_drafts/html-teaching-notes-content-review-draft.md` 完成 notes content review。
-- notes content review 完成後，再判斷是否產生或同步 appendix、demos、practice、review。
+- 依 `prompts/_drafts/notes-to-html-practice-draft.md` 評估產生 `practice/第02章_HTML簡介/`。
+- 依 `prompts/_drafts/notes-to-review-system-draft.md` 評估產生 `review/第02章_HTML簡介/`。
+- practice/review 決策完成後，再進行第 02 章最終驗收與狀態同步。
