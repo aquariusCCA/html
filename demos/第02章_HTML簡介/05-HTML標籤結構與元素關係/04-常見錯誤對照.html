@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>常見錯誤對照</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      margin-bottom: 16px;
+      max-width: 760px;
+      padding: 16px;
+    }
+
+    .wrong {
+      background-color: #fef2f2;
+      border-color: #fca5a5;
+    }
+
+    .right {
+      background-color: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .code-line {
+      background-color: white;
+      border: 1px solid #d1d5db;
+      font-family: Consolas, monospace;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>常見錯誤對照</h1>
+
+  <!-- 觀察重點：錯誤範例以文字呈現，避免瀏覽器自動修正後讓結構變得不清楚。 -->
+
+  <section class="wrong">
+    <h2>錯誤寫法：標籤交錯閉合</h2>
+    <p class="code-line">&lt;p&gt;&lt;strong&gt;重要文字&lt;/p&gt;&lt;/strong&gt;</p>
+    <p>外層段落還沒有關閉時，內層 strong 應該先結束。</p>
+  </section>
+
+  <section class="right">
+    <h2>正確寫法：先開後關</h2>
+    <p class="code-line">&lt;p&gt;&lt;strong&gt;重要文字&lt;/strong&gt;&lt;/p&gt;</p>
+    <p><strong>重要文字</strong></p>
+  </section>
+
+  <section class="wrong">
+    <h2>錯誤寫法：忘記結束標籤</h2>
+    <p class="code-line">&lt;p&gt;第一段<br>&lt;p&gt;第二段</p>
+    <p>瀏覽器可能會自動修正，但正式撰寫時結構不夠清楚。</p>
+  </section>
+
+  <section class="right">
+    <h2>正確寫法：段落各自完整結束</h2>
+    <p class="code-line">&lt;p&gt;第一段&lt;/p&gt;<br>&lt;p&gt;第二段&lt;/p&gt;</p>
+    <p>第一段</p>
+    <p>第二段</p>
+  </section>
+
+  <section class="wrong">
+    <h2>錯誤寫法：把 img 寫成雙標籤</h2>
+    <p class="code-line">&lt;img src="photo.jpg" alt="照片"&gt;&lt;/img&gt;</p>
+    <p><code>img</code> 是不寫結束標籤的元素。</p>
+  </section>
+
+  <section class="right">
+    <h2>正確寫法：img 不寫結束標籤</h2>
+    <p class="code-line">&lt;img src="photo.jpg" alt="照片"&gt;</p>
+  </section>
+</body>
+</html>

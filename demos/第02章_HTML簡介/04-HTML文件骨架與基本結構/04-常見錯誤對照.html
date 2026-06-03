@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>常見錯誤對照</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      margin-bottom: 16px;
+      max-width: 720px;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-color: #fca5a5;
+      background-color: #fef2f2;
+    }
+
+    .right {
+      border-color: #86efac;
+      background-color: #f0fdf4;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .code-line {
+      background-color: white;
+      border: 1px solid #d1d5db;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>常見錯誤對照</h1>
+
+  <!-- 觀察重點：title 不是頁面主標題，可見內容應放在 body；meta charset 應放在 head。 -->
+
+  <section class="wrong">
+    <h2>錯誤寫法：把 title 當成頁面主標題</h2>
+    <p class="label">title 的用途：</p>
+    <p class="code-line">&lt;title&gt;網站標題&lt;/title&gt;</p>
+    <p>它會影響瀏覽器分頁標題，不會在頁面主體中顯示成大標題。</p>
+  </section>
+
+  <section class="right">
+    <h2>正確寫法：頁面主標題放在 body</h2>
+    <p class="label">body 中的 h1：</p>
+    <h1>網站標題</h1>
+    <p>使用者要看到的主要標題，應該放在 body 裡。</p>
+  </section>
+
+  <section class="right">
+    <h2>正確寫法：在 head 設定 UTF-8</h2>
+    <p class="code-line">&lt;meta charset="UTF-8"&gt;</p>
+    <p>這個設定有助於避免中文或特殊字元顯示錯誤。</p>
+  </section>
+</body>
+</html>

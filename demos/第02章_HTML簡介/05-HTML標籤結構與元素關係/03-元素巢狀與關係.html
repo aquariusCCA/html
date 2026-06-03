@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>元素巢狀與關係</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      margin-bottom: 16px;
+      max-width: 760px;
+      padding: 16px;
+    }
+
+    .outer {
+      border: 2px solid #93c5fd;
+      padding: 12px;
+    }
+
+    .inner {
+      border: 2px solid #fbbf24;
+      margin-top: 12px;
+      padding: 12px;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    nav a {
+      border: 1px solid #d1d5db;
+      display: inline-block;
+      margin-right: 8px;
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>元素巢狀與關係</h1>
+
+  <!-- 觀察重點：元素包住其他元素時會形成父子、祖先後代與兄弟關係。 -->
+
+  <section>
+    <h2>父子與祖先後代</h2>
+    <main class="outer">
+      <p class="label">main：section、h2、p 的祖先元素</p>
+      <section class="inner">
+        <p class="label">section：h2 和 p 的父元素</p>
+        <h2>學習主題</h2>
+        <p>今天學習 HTML 標籤關係。</p>
+      </section>
+    </main>
+    <p>在這個結構中，<code>h2</code> 和 <code>p</code> 是 <code>section</code> 的子元素，也是 <code>main</code> 的後代元素。</p>
+  </section>
+
+  <section>
+    <h2>兄弟元素與並列關係</h2>
+    <nav>
+      <a href="/">首頁</a>
+      <a href="/about.html">關於我們</a>
+      <a href="/contact.html">聯絡我們</a>
+    </nav>
+    <p>三個 <code>a</code> 元素都直接放在同一個 <code>nav</code> 裡，因此彼此是兄弟元素。</p>
+  </section>
+</body>
+</html>

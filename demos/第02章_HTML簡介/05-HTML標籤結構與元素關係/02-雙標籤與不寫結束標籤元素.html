@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>雙標籤與不寫結束標籤元素</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      margin-bottom: 16px;
+      max-width: 720px;
+      padding: 16px;
+    }
+
+    .code-line {
+      background-color: #f9fafb;
+      border: 1px solid #d1d5db;
+      font-family: Consolas, monospace;
+      padding: 8px;
+    }
+
+    .example {
+      border-left: 4px solid #93c5fd;
+      padding-left: 12px;
+    }
+
+    input {
+      font: inherit;
+      padding: 4px 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>雙標籤與不寫結束標籤元素</h1>
+
+  <!-- 觀察重點：比較會包住內容的雙標籤，以及不寫結束標籤的 void elements。 -->
+
+  <section>
+    <h2>雙標籤：有開始也有結束</h2>
+    <p class="code-line">&lt;h1&gt;文章標題&lt;/h1&gt;</p>
+    <p class="code-line">&lt;p&gt;文章段落。&lt;/p&gt;</p>
+    <p class="code-line">&lt;a href="https://example.com"&gt;前往範例網站&lt;/a&gt;</p>
+
+    <div class="example">
+      <h2>文章標題</h2>
+      <p>文章段落。</p>
+      <a href="https://example.com">前往範例網站</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>不寫結束標籤：不包住文字內容</h2>
+    <p class="code-line">&lt;br&gt;</p>
+    <p class="code-line">&lt;img src="photo.jpg" alt="照片說明"&gt;</p>
+    <p class="code-line">&lt;input type="text" name="username"&gt;</p>
+
+    <div class="example">
+      <p>第一行<br>第二行</p>
+      <input type="text" name="username" value="學習者">
+      <p>這些元素本身不包住文字內容，因此不需要再寫一個結束標籤。</p>
+    </div>
+  </section>
+</body>
+</html>
