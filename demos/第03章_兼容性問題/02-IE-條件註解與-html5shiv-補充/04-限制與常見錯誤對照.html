@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>限制與常見錯誤對照</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      margin-bottom: 16px;
+      max-width: 800px;
+      padding: 16px;
+    }
+
+    .wrong {
+      background-color: #fef2f2;
+      border-color: #fca5a5;
+    }
+
+    .right {
+      background-color: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .code-line {
+      background-color: white;
+      border: 1px solid #d1d5db;
+      font-family: Consolas, monospace;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>限制與常見錯誤對照</h1>
+
+  <!-- 觀察重點：錯誤寫法以文字呈現，避免初學者把它當成可直接使用的設定。 -->
+
+  <section class="wrong">
+    <h2>錯誤寫法：把 html5shiv 當成完整 HTML5 支援工具</h2>
+    <p class="code-line">html5shiv = 完整支援所有 HTML5 功能</p>
+    <p>這會誤解 html5shiv 的範圍。</p>
+  </section>
+
+  <section class="right">
+    <h2>修正理解：只協助部分 HTML5 元素</h2>
+    <p>html5shiv 主要協助舊 IE 識別與樣式化部分 HTML5 新元素，不會讓舊 IE 完整支援所有 HTML5 API。</p>
+  </section>
+
+  <section class="wrong">
+    <h2>錯誤寫法：對所有瀏覽器都載入</h2>
+    <p class="code-line">&lt;script src="./js/html5shiv.min.js"&gt;&lt;/script&gt;</p>
+    <p>非舊 IE 瀏覽器不需要這個相容性腳本。</p>
+  </section>
+
+  <section class="right">
+    <h2>修正方向：限制在低於 IE9 的 IE</h2>
+    <p class="code-line">&lt;!--[if lt IE 9]&gt;<br>&lt;script src="./js/html5shiv.min.js"&gt;&lt;/script&gt;<br>&lt;![endif]--&gt;</p>
+  </section>
+
+  <section class="wrong">
+    <h2>錯誤寫法：用條件註解控制 IE10</h2>
+    <p class="code-line">&lt;!--[if IE 10]&gt;IE10 專用內容&lt;![endif]--&gt;</p>
+    <p>IE10 開始不再支援條件註解。</p>
+  </section>
+
+  <section class="right">
+    <h2>修正理解：IE10 當成一般瀏覽器處理</h2>
+    <p>這類條件註解主要是舊系統中照顧 IE6 到 IE8 的歷史兼容方案，不是現代新專案的常規寫法。</p>
+  </section>
+</body>
+</html>

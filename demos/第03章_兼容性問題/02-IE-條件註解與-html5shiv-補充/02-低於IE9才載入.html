@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>低於 IE9 才載入</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+    }
+
+    section {
+      border: 1px solid #d1d5db;
+      max-width: 760px;
+      padding: 16px;
+    }
+
+    pre {
+      background-color: #f9fafb;
+      border: 1px solid #d1d5db;
+      overflow-x: auto;
+      padding: 12px;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+    }
+
+    .note {
+      background-color: #eff6ff;
+      border-left: 4px solid #60a5fa;
+      padding: 8px 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>低於 IE9 才載入</h1>
+
+  <!-- 觀察重點：條件註解讓 html5shiv 只提供給低於 IE9 的 IE。 -->
+
+  <!--[if lt IE 9]>
+  <p>這段內容只會在低於 IE9 的 IE 中出現。</p>
+  <![endif]-->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <pre><code>&lt;!--[if lt IE 9]&gt;
+&lt;script src="./js/html5shiv.min.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;</code></pre>
+
+    <p><code>lt IE 9</code> 的意思是「低於 IE9 的 IE」。符合條件時，才會載入 <code>html5shiv.min.js</code>。</p>
+    <p class="note">對其他瀏覽器來說，條件註解會被視為一般 HTML 註解，不會執行其中的內容。</p>
+  </section>
+</body>
+</html>

@@ -19,3 +19,4 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 第01章_寫在前面 | 未設定 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 待確認 | 待確認 | 已完成 | 未開始 | 77% | 進行中 | 評估是否產生 practice/review。 | origin/atomic/notes、notes content review、demos 與 appendix 索引已完成；第 01 章其他 5 篇 notes 已判定不需 demos；詳細紀錄見 [章節 log](chapter-logs/第01章_寫在前面.md)。 |
 | 第02章_HTML簡介 | 未設定 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 未開始 | 未開始 | 已完成 | 未開始 | 77% | 進行中 | 評估是否產生 practice/review。 | origin/atomic/notes、notes content review、demos 與 appendix 索引已完成；demos 已產生第 04、05 篇，第 01-03 篇已判定不需 demos；詳細紀錄見 [章節 log](chapter-logs/第02章_HTML簡介.md)。 |
+| 第03章_兼容性問題 | 未設定 | 已完成 | 不適用 | 不適用 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 已完成 | 未開始 | 未開始 | 已完成 | 未開始 | 73% | 進行中 | 評估是否產生 practice/review，完成下游決策後進行最終驗收。 | origin/atomic/notes、notes content review、demos 與 appendix 索引已完成；本章無本地資產需處理；詳細紀錄見 [章節 log](chapter-logs/第03章_兼容性問題.md)。 |

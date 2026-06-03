@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>現代專案使用判斷</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+      color: #1f2937;
+    }
+
+    .layout {
+      max-width: 760px;
+    }
+
+    .steps {
+      margin: 0;
+      padding-left: 24px;
+    }
+
+    .steps li {
+      margin-bottom: 10px;
+    }
+
+    .decision {
+      border: 1px solid #d1d5db;
+      padding: 12px 16px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <h1>現代專案使用判斷</h1>
+
+    <!-- 觀察重點：是否加入歷史相容性 meta，應依目標瀏覽器與維護情境判斷。 -->
+
+    <section>
+      <h2>實務確認順序</h2>
+      <ol class="steps">
+        <li>使用標準 HTML 文件結構。</li>
+        <li>查目標瀏覽器支援情況。</li>
+        <li>在主要瀏覽器中測試。</li>
+        <li>必要時加入特定相容性設定。</li>
+        <li>必要時提供替代或降級方案。</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>情境判斷</h2>
+      <div class="decision">
+        <p><strong>新專案：</strong>如果不需要支援舊版 IE 或特定雙核瀏覽器，這些 meta 可能沒有實際意義。</p>
+        <p><strong>舊系統：</strong>看到 <code>X-UA-Compatible</code> 或 <code>renderer</code> 時，不要急著刪除，應先確認使用者環境。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>建議修改</h2>
+      <p>
+        將「新專案」或「舊系統」的文字改成你自己的專案情境，
+        練習用目標瀏覽器與維護需求判斷是否保留 meta。
+      </p>
+    </section>
+  </main>
+</body>
+</html>

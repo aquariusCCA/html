@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>IE 最高文檔模式</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+      color: #1f2937;
+    }
+
+    .layout {
+      max-width: 760px;
+    }
+
+    .code-sample {
+      background: #f3f4f6;
+      border-left: 4px solid #0f766e;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .target {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      padding: 12px 16px;
+    }
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <h1>IE 最高文檔模式</h1>
+
+    <!-- 觀察重點：X-UA-Compatible 是針對舊版 IE 文檔模式的相容性提示。 -->
+
+    <section>
+      <h2>觀察範例</h2>
+      <p>
+        這個檔案的 <code>&lt;head&gt;</code> 已加入
+        <code>X-UA-Compatible</code> meta。
+      </p>
+
+      <pre class="code-sample"><code>&lt;meta http-equiv="X-UA-Compatible" content="IE=Edge"&gt;</code></pre>
+
+      <div class="target">
+        <p><strong>主要對象：</strong>舊版 Internet Explorer。</p>
+        <p><strong>作用：</strong>要求 IE 使用目前版本可支援的最高文檔模式。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>建議修改</h2>
+      <p>
+        將 <code>content="IE=Edge"</code> 暫時改成其他文字，再檢查原始碼。
+        練習重點是看懂屬性位置與用途，不是讓現代瀏覽器產生畫面差異。
+      </p>
+    </section>
+  </main>
+</body>
+</html>

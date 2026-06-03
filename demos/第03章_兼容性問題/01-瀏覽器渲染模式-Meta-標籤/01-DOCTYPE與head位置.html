@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>DOCTYPE 與 head 位置</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+      color: #1f2937;
+    }
+
+    .layout {
+      max-width: 760px;
+    }
+
+    .code-sample {
+      background: #f3f4f6;
+      border-left: 4px solid #2563eb;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .note {
+      border: 1px solid #d1d5db;
+      padding: 12px 16px;
+    }
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <h1>DOCTYPE 與 head 位置</h1>
+
+    <!-- 觀察重點：標準文件宣告與 head 中 meta 的位置關係。 -->
+
+    <section>
+      <h2>觀察範例</h2>
+      <p>
+        這個檔案一開始使用 <code>&lt;!doctype html&gt;</code>，
+        讓瀏覽器以標準模式解析頁面。
+      </p>
+
+      <pre class="code-sample"><code>&lt;!doctype html&gt;
+&lt;html lang="zh-Hant"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;DOCTYPE 與 head 位置&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;頁面內容&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </section>
+
+    <section>
+      <h2>練習觀察</h2>
+      <div class="note">
+        <p>請檢視原始碼，確認 <code>&lt;!doctype html&gt;</code> 位於檔案最前面。</p>
+        <p>再確認 <code>&lt;meta charset="UTF-8"&gt;</code> 放在 <code>&lt;head&gt;</code> 裡，而且位置靠前。</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

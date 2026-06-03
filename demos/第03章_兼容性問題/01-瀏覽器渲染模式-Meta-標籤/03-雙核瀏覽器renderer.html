@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <title>雙核瀏覽器 renderer</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 32px;
+      color: #1f2937;
+    }
+
+    .layout {
+      max-width: 760px;
+    }
+
+    .code-sample {
+      background: #f3f4f6;
+      border-left: 4px solid #7c3aed;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .compare {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .compare th,
+    .compare td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare th {
+      background: #f3f4f6;
+    }
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <h1>雙核瀏覽器 renderer</h1>
+
+    <!-- 觀察重點：renderer 是部分雙核瀏覽器採用的非標準 meta 約定。 -->
+
+    <section>
+      <h2>觀察範例</h2>
+      <p>
+        這個檔案的 <code>&lt;head&gt;</code> 已加入
+        <code>renderer</code> meta。
+      </p>
+
+      <pre class="code-sample"><code>&lt;meta name="renderer" content="webkit"&gt;</code></pre>
+    </section>
+
+    <section>
+      <h2>重點對照</h2>
+      <table class="compare">
+        <tr>
+          <th>項目</th>
+          <th>實務理解</th>
+        </tr>
+        <tr>
+          <td>主要對象</td>
+          <td>支援這個約定的雙核瀏覽器。</td>
+        </tr>
+        <tr>
+          <td>期望效果</td>
+          <td>優先使用 WebKit 類核心渲染頁面。</td>
+        </tr>
+        <tr>
+          <td>限制</td>
+          <td>這不是 HTML 標準規定的通用能力，效果依瀏覽器而定。</td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>建議修改</h2>
+      <p>
+        將 <code>content="webkit"</code> 改成其他文字，觀察它只是一個提示值；
+        是否有效仍取決於瀏覽器是否支援這個約定。
+      </p>
+    </section>
+  </main>
+</body>
+</html>
