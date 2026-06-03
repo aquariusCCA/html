@@ -50,15 +50,15 @@ prompts/requests/rewrite-atomic-html-teaching-notes.md
 ## 第一階段內容審查提問
 
 ```text
-請依照 prompts/_drafts/html-teaching-notes-content-review-draft.md 的完整規則，審查以下章節的正式 HTML 教學筆記：
+請依照 `prompts/_drafts/html-teaching-notes-content-review-draft.md` 的完整規則，審查以下章節的正式 HTML 教學筆記：
 
-<notes章節路徑>
+`<notes章節路徑>`
 
 請只處理上述指定章節，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
 
 請務必列出 Atomic 覆蓋檢查；atomic 是必要對照來源，origin 只在需要判斷來源錯誤或資產脈絡時回查。
 
-請依照該 workflow 的第一階段完整規則，只輸出第一階段 HTML 教學筆記內容審查報告。第一階段不要建立、修改或刪除任何檔案。等我確認要修正的問題 ID 後，再更新 notes/<章節>/*.md。
+請依照該 workflow 的第一階段完整規則，只輸出第一階段 HTML 教學筆記內容審查報告。第一階段不要建立、修改或刪除任何檔案。等我確認要修正的問題 ID 後，再更新 `notes/<章節>/*.md`。
 ```
 
 ## 第二階段確認用提問
@@ -68,9 +68,9 @@ prompts/requests/rewrite-atomic-html-teaching-notes.md
 
 <問題ID清單>
 
-請依照 prompts/_drafts/html-teaching-notes-content-review-draft.md 的第二階段完整規則，只修正已確認的問題 ID。
+請依照 `prompts/_drafts/html-teaching-notes-content-review-draft.md` 的第二階段完整規則，只修正已確認的問題 ID。
 
-請只更新相關的 notes/<章節>/*.md，不要修改 atomic/<章節>/*.md、origin/<章節>/*.md、origin/<章節>/assets/ 或其他資料夾。
+請只更新相關的 `notes/<章節>/*.md`，不要修改 `atomic/<章節>/*.md`、`origin/<章節>/*.md`、`origin/<章節>/assets/` 或其他資料夾。
 
 完成後請依照該 workflow 的第二階段輸出格式回報修正摘要、修正清單與檢查結果。
 ```

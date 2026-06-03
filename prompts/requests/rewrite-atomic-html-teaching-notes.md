@@ -23,17 +23,17 @@
 ## 可直接複製的提問
 
 ```text
-請依照 prompts/_drafts/atomic-to-html-teaching-notes-draft.md 的完整規則，重構以下章節的 atomic notes：
+請依照 `prompts/_drafts/atomic-to-html-teaching-notes-draft.md` 的完整規則，重構以下章節的 atomic notes：
 
-<atomic章節路徑>
+`<atomic章節路徑>`
 
-若發現 origin 資產尚未依照 prompts/requests/rewrite-origin-asset-paths.md 完成標準化，請停止並提醒我先執行該流程。
+若發現 origin 資產尚未依照 `prompts/requests/rewrite-origin-asset-paths.md` 完成標準化，請停止並提醒我先執行該流程。
 
 請只處理上述指定章節，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
 
-請只輸出到對應的 notes/<章節>/；補充型 notes 也放在 notes/<章節>/，不要輸出到 appendix/ 或 supplements/。
+請只輸出到對應的 `notes/<章節>/`；補充型 notes 也放在 `notes/<章節>/`，不要輸出到 `appendix/` 或 `supplements/`。
 
-不要修改 origin/<章節>/、atomic/<章節>/、assets/ 或其他正式產出目錄。
+不要修改 `origin/<章節>/`、`atomic/<章節>/`、`assets/` 或其他正式產出目錄。
 ```
 
 ## 可替換欄位
