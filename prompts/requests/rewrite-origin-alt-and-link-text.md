@@ -22,9 +22,9 @@
 ## 可直接複製的提問
 
 ```text
-請依照 prompts/_drafts/origin-asset-alt-and-link-text-draft.md 的完整規則，處理以下章節：
+請依照 `prompts/_drafts/origin-asset-alt-and-link-text-draft.md` 的完整規則，處理以下章節：
 
-<章節路徑>
+`<章節路徑>`
 
 請只處理上述指定章節，不要處理其他章節或其他資料夾。
 ```

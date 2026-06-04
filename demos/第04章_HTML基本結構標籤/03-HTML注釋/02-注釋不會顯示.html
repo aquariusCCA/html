@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>注釋不會顯示</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+    }
+
+    .box {
+      border: 1px solid #888;
+      padding: 1rem;
+      margin-block: 1rem;
+    }
+
+    .wrong {
+      border-left: 4px solid #b00020;
+      padding-left: 1rem;
+    }
+
+    .correct {
+      border-left: 4px solid #1b7f3a;
+      padding-left: 1rem;
+    }
+
+    pre {
+      background: #f4f4f4;
+      border-left: 4px solid #555;
+      padding: 1rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>注釋不會顯示</h1>
+
+  <!-- 觀察重點：放在注釋裡的內容不會成為頁面內容。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <div class="box">
+      <p>這段文字會顯示給使用者看。</p>
+      <!-- 這段文字只給開發者看，不會顯示在畫面上。 -->
+    </div>
+
+    <p>如果內容是要給使用者看的，就不要放進注釋裡。</p>
+  </section>
+
+  <section>
+    <h2>錯誤寫法與正確寫法</h2>
+
+    <div class="wrong">
+      <h2>錯誤寫法</h2>
+      <pre><code>&lt;!-- 歡迎來到我的網站 --&gt;</code></pre>
+      <p>這段文字被放進注釋，所以不會顯示在頁面上。</p>
+    </div>
+
+    <div class="correct">
+      <h2>正確寫法</h2>
+      <pre><code>&lt;p&gt;歡迎來到我的網站&lt;/p&gt;</code></pre>
+      <p>要顯示給使用者看的內容，應該放在合適的 HTML 標籤裡。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>保留暫時不用的 HTML</h2>
+    <p>下面的導覽列目前被注釋起來，所以頁面上不會出現導覽連結。</p>
+
+    <!--
+    <nav>
+      <a href="/articles">全部文章</a>
+    </nav>
+    -->
+
+    <pre><code>&lt;!--
+&lt;nav&gt;
+  &lt;a href="/articles"&gt;全部文章&lt;/a&gt;
+&lt;/nav&gt;
+--&gt;</code></pre>
+  </section>
+</body>
+</html>

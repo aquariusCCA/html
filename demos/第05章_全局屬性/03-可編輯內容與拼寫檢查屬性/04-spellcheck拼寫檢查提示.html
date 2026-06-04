@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>spellcheck 拼寫檢查提示</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    form {
+      max-width: 720px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    input,
+    textarea,
+    .editable-message {
+      box-sizing: border-box;
+      display: block;
+      font: inherit;
+      margin-top: 6px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    .editable-message {
+      border: 1px solid #777777;
+      min-height: 72px;
+    }
+
+    .note {
+      color: #555555;
+    }
+  </style>
+</head>
+<body>
+  <h1>spellcheck 拼寫檢查提示</h1>
+
+  <!-- 觀察重點：spellcheck 可用在文字輸入、textarea 與可編輯元素上。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <form>
+      <label for="username">使用者名稱：停用拼寫檢查</label>
+      <input type="text" id="username" name="username" spellcheck="false" value="html_study_01">
+
+      <label for="message">留言：啟用拼寫檢查</label>
+      <textarea id="message" name="message" spellcheck="true">I havv a message.</textarea>
+
+      <label for="editable">可編輯內容：啟用拼寫檢查</label>
+      <div id="editable" class="editable-message" contenteditable="true" spellcheck="true">
+        Please recieve this note.
+      </div>
+
+      <p class="note">拼寫檢查是否出現底線，會受到瀏覽器、系統語言與使用者設定影響。</p>
+    </form>
+  </section>
+</body>
+</html>

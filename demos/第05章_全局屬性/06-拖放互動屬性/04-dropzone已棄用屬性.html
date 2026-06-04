@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>dropzone 已棄用屬性</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 860px;
+    }
+
+    .example {
+      border: 1px solid #cccccc;
+      margin: 16px 0;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-color: #c62828;
+      background: #fff5f5;
+    }
+
+    .correct {
+      border-color: #2e7d32;
+      background: #f4fbf4;
+    }
+
+    .card {
+      border: 1px solid #b45309;
+      background: #fff7ed;
+      margin-bottom: 12px;
+      padding: 12px;
+      width: 180px;
+      cursor: grab;
+    }
+
+    .drop-area {
+      border: 2px dashed #777777;
+      min-height: 110px;
+      padding: 14px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>dropzone 已棄用屬性</h1>
+
+  <!-- 觀察重點：dropzone 是舊式屬性，現代 HTML 不建議使用。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="example wrong">
+      <h3>錯誤寫法：不要在現代頁面使用 dropzone</h3>
+      <div class="drop-area" dropzone="move">
+        這裡故意保留 <code>dropzone="move"</code>，用來辨認已棄用屬性，不建議複製。
+      </div>
+    </div>
+
+    <div class="example correct">
+      <h3>正確方向：使用拖放事件處理</h3>
+      <div id="modern-card" class="card" draggable="true">
+        可拖曳卡片
+      </div>
+      <div id="modern-target" class="drop-area">
+        放到這裡，事件會把卡片移進來。
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>刪除錯誤寫法中的 <code>dropzone="move"</code>，保留下面使用拖放事件的做法。</p>
+  </section>
+
+  <script>
+    const modernCard = document.getElementById("modern-card");
+    const modernTarget = document.getElementById("modern-target");
+
+    modernTarget.ondragover = function (event) {
+      event.preventDefault();
+    };
+
+    modernTarget.ondrop = function (event) {
+      event.preventDefault();
+      this.appendChild(modernCard);
+    };
+  </script>
+</body>
+</html>

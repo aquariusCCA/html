@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>contenteditable 不是表單欄位</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 760px;
+    }
+
+    .case {
+      border: 1px solid #cccccc;
+      margin: 16px 0;
+      padding: 12px;
+    }
+
+    .wrong {
+      border-color: #b3261e;
+      background: #fff7f6;
+    }
+
+    .correct {
+      border-color: #2f8f46;
+      background: #f3fff6;
+    }
+
+    .editable-note,
+    textarea {
+      box-sizing: border-box;
+      display: block;
+      font: inherit;
+      margin-top: 8px;
+      min-height: 72px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    .editable-note {
+      border: 1px solid #777777;
+    }
+  </style>
+</head>
+<body>
+  <h1>contenteditable 不是表單欄位</h1>
+
+  <!-- 觀察重點：可編輯元素可以讓使用者改文字，但它不會像 textarea 一樣成為表單欄位。 -->
+
+  <section>
+    <h2>常見錯誤與修正</h2>
+
+    <div class="case wrong">
+      <h3>錯誤寫法：以為可編輯 div 會隨表單提交</h3>
+      <form>
+        <div class="editable-note" contenteditable="true">請輸入備註</div>
+        <button type="submit">提交</button>
+      </form>
+      <p>這個 div 可以被修改，但它不是表單控制項。</p>
+    </div>
+
+    <div class="case correct">
+      <h3>正確寫法：一般文字輸入優先使用 textarea</h3>
+      <form>
+        <label for="note">備註</label>
+        <textarea id="note" name="note">請輸入備註</textarea>
+        <button type="submit">提交</button>
+      </form>
+      <p>textarea 有表單語意，也會以 name 屬性作為欄位名稱。</p>
+    </div>
+  </section>
+</body>
+</html>

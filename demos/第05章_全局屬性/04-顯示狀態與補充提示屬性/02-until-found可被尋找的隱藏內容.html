@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>until-found 可被尋找的隱藏內容</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 760px;
+    }
+
+    .box {
+      border: 1px solid #cccccc;
+      margin: 12px 0;
+      padding: 12px;
+    }
+
+    .target {
+      border-left: 4px solid #8a5a00;
+      background: #fff8e5;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>until-found 可被尋找的隱藏內容</h1>
+
+  <!-- 觀察重點：hidden="until-found" 平時隱藏，但可由頁面搜尋或片段連結揭示。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <p class="box">
+      這段內容一開始會顯示。下面還有一段使用 <code>hidden="until-found"</code> 的補充內容。
+    </p>
+
+    <p>
+      可以在頁面中搜尋「海外配送」，或點擊
+      <a href="#shipping-note">這個片段連結</a>
+      觀察隱藏內容是否被揭示。
+    </p>
+
+    <p id="shipping-note" class="box target" hidden="until-found">
+      海外配送補充：部分地區需要額外 3 到 5 個工作天。
+    </p>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把隱藏段落中的關鍵字改成自己的文字，再使用頁面搜尋測試。</p>
+  </section>
+</body>
+</html>

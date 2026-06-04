@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>tabindex 常見值</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 800px;
+    }
+
+    .panel {
+      border: 1px solid #cccccc;
+      margin: 16px 0;
+      padding: 16px;
+    }
+
+    .focus-box {
+      border: 1px solid #777777;
+      margin: 10px 0;
+      padding: 12px;
+    }
+
+    input,
+    button {
+      font: inherit;
+      padding: 8px 12px;
+    }
+
+    input:focus,
+    button:focus,
+    .focus-box:focus {
+      outline: 3px solid #1a73e8;
+      outline-offset: 3px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>tabindex 常見值</h1>
+
+  <!-- 觀察重點：tabindex="0" 會加入自然 Tab 順序，tabindex="-1" 不會被 Tab 停到，但可用程式聚焦。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="panel">
+      <label for="keyword">一般輸入欄位：不寫 tabindex</label>
+      <input id="keyword" name="keyword" type="text">
+    </div>
+
+    <div class="panel">
+      <div class="focus-box" tabindex="0">
+        這是一個設定 <code>tabindex="0"</code> 的區塊，按 <code>Tab</code> 可以停到這裡。
+      </div>
+    </div>
+
+    <div class="panel">
+      <p id="notice" class="focus-box" tabindex="-1">
+        這段文字設定 <code>tabindex="-1"</code>，不會進入一般 Tab 順序。
+      </p>
+      <button type="button" id="focus-notice">用程式把焦點移到這段文字</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把中間區塊的 <code>tabindex="0"</code> 移除，再按 <code>Tab</code> 觀察它是否仍會取得焦點。</p>
+  </section>
+
+  <script>
+    const focusButton = document.querySelector("#focus-notice");
+    const notice = document.querySelector("#notice");
+
+    focusButton.addEventListener("click", function () {
+      notice.focus();
+    });
+  </script>
+</body>
+</html>

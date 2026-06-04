@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>拖曳事件順序與狀態變化</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 820px;
+    }
+
+    .stage {
+      border: 2px dashed #bbbbbb;
+      min-height: 180px;
+      padding: 16px;
+    }
+
+    .card {
+      border: 1px solid #b45309;
+      background: orange;
+      padding: 14px;
+      width: 180px;
+      cursor: grab;
+    }
+
+    .card.dragging {
+      background: yellow;
+    }
+
+    .status {
+      border-left: 4px solid #1a73e8;
+      margin-top: 16px;
+      padding-left: 12px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>拖曳事件順序與狀態變化</h1>
+
+  <!-- 觀察重點：dragstart、drag、dragend 分別對應拖曳開始、拖曳中與拖曳結束。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="stage">
+      <div id="Adiv" class="card" draggable="true">
+        A：拖曳這個元素
+      </div>
+    </div>
+
+    <div class="status">
+      <p id="event-name">最近事件：尚未拖曳</p>
+      <p>觸發 <code>drag</code> 次數：<span id="drag-count">0</span></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把 <code>ondragstart</code> 裡的背景色改成其他顏色，再觀察拖曳開始時的狀態變化。</p>
+  </section>
+
+  <script>
+    const Adiv = document.getElementById("Adiv");
+    const eventName = document.getElementById("event-name");
+    const dragCountText = document.getElementById("drag-count");
+    let dragCount = 0;
+
+    Adiv.ondragstart = function () {
+      this.classList.add("dragging");
+      eventName.textContent = "最近事件：dragstart，拖曳開始。";
+    };
+
+    Adiv.ondrag = function () {
+      dragCount += 1;
+      dragCountText.textContent = dragCount;
+    };
+
+    Adiv.ondragend = function () {
+      this.classList.remove("dragging");
+      eventName.textContent = "最近事件：dragend，拖曳結束。";
+    };
+  </script>
+</body>
+</html>

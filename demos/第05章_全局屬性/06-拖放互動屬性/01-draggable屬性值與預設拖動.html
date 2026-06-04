@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>draggable 屬性值與預設拖動</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 820px;
+    }
+
+    .group {
+      border: 1px solid #cccccc;
+      margin: 16px 0;
+      padding: 16px;
+    }
+
+    .item,
+    a,
+    img {
+      display: inline-block;
+      margin: 8px 8px 8px 0;
+    }
+
+    .item {
+      border: 1px solid #777777;
+      padding: 10px 12px;
+      background: #f8f8f8;
+    }
+
+    .hint {
+      color: #555555;
+    }
+
+    .demo-image {
+      width: 144px;
+      height: 88px;
+      border: 1px solid #6699cc;
+      background: #d9e7ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>draggable 屬性值與預設拖動</h1>
+
+  <!-- 觀察重點：draggable 的 true、false、auto 會影響元素是否能開始拖動。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="group">
+      <h3>明確設定 draggable</h3>
+      <div class="item" draggable="true">draggable="true"：可以拖動</div>
+      <div class="item" draggable="false">draggable="false"：不可拖動</div>
+      <div class="item" draggable="auto">draggable="auto"：普通 div 通常不可拖動</div>
+    </div>
+
+    <div class="group">
+      <h3>瀏覽器預設可拖動的元素</h3>
+      <a href="#link-demo">這是一個連結，預設可拖動</a>
+      <img
+        class="demo-image"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+        alt="示範圖片">
+      <p id="link-demo" class="hint">試著拖曳連結、圖片與上方三個區塊，只觀察能不能開始拖動。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把普通 div 的 <code>draggable="auto"</code> 改成 <code>draggable="true"</code>，再重新整理頁面觀察差異。</p>
+  </section>
+</body>
+</html>

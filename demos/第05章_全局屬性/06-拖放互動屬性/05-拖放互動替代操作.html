@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>拖放互動替代操作</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 760px;
+    }
+
+    ol {
+      padding-left: 28px;
+    }
+
+    li {
+      border: 1px solid #cccccc;
+      margin: 10px 0;
+      padding: 12px;
+      background: #f8f8f8;
+    }
+
+    .item-text {
+      display: inline-block;
+      min-width: 140px;
+    }
+
+    button {
+      font: inherit;
+      margin-left: 8px;
+      padding: 6px 10px;
+    }
+
+    .hint {
+      color: #555555;
+    }
+  </style>
+</head>
+<body>
+  <h1>拖放互動替代操作</h1>
+
+  <!-- 觀察重點：如果拖放會改變順序，應提供不用拖曳也能操作的方式。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p class="hint">每個項目保留 <code>draggable="true"</code>，但也提供上移、下移按鈕。</p>
+
+    <ol id="task-list">
+      <li draggable="true">
+        <span class="item-text">整理筆記</span>
+        <button type="button" data-action="up">上移</button>
+        <button type="button" data-action="down">下移</button>
+      </li>
+      <li draggable="true">
+        <span class="item-text">練習範例</span>
+        <button type="button" data-action="up">上移</button>
+        <button type="button" data-action="down">下移</button>
+      </li>
+      <li draggable="true">
+        <span class="item-text">完成檢查</span>
+        <button type="button" data-action="up">上移</button>
+        <button type="button" data-action="down">下移</button>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>新增第四個項目，並複製同樣的上移、下移按鈕，確認不用拖曳也能調整順序。</p>
+  </section>
+
+  <script>
+    const taskList = document.getElementById("task-list");
+
+    taskList.onclick = function (event) {
+      const button = event.target;
+
+      if (button.tagName !== "BUTTON") {
+        return;
+      }
+
+      const item = button.parentElement;
+
+      if (button.dataset.action === "up" && item.previousElementSibling) {
+        taskList.insertBefore(item, item.previousElementSibling);
+      }
+
+      if (button.dataset.action === "down" && item.nextElementSibling) {
+        taskList.insertBefore(item.nextElementSibling, item);
+      }
+    };
+  </script>
+</body>
+</html>

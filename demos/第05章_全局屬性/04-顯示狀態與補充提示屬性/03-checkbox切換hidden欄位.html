@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>checkbox 切換 hidden 欄位</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 720px;
+    }
+
+    .field {
+      border: 1px solid #cccccc;
+      margin: 12px 0;
+      padding: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"] {
+      font: inherit;
+      padding: 4px 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>checkbox 切換 hidden 欄位</h1>
+
+  <!-- 觀察重點：勾選狀態改變時，用 JavaScript 設定元素的 hidden 屬性。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <label>
+      <input type="checkbox" id="needInvoice">
+      需要統一編號
+    </label>
+
+    <p id="invoiceField" class="field" hidden>
+      <label for="taxId">統一編號</label>
+      <input type="text" id="taxId" name="taxId">
+    </p>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把欄位標籤改成「公司抬頭」，並觀察勾選與取消勾選時的顯示狀態。</p>
+  </section>
+
+  <script>
+    const checkbox = document.getElementById('needInvoice');
+    const invoiceField = document.getElementById('invoiceField');
+
+    checkbox.addEventListener('change', function () {
+      invoiceField.hidden = !checkbox.checked;
+    });
+  </script>
+</body>
+</html>

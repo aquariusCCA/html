@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>用 contextmenu 事件處理單一元素</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 860px;
+    }
+
+    .example {
+      border: 1px solid #cccccc;
+      margin: 16px 0;
+      padding: 16px;
+    }
+
+    .target {
+      border: 2px solid #1565c0;
+      background: #f3f8ff;
+      padding: 16px;
+    }
+
+    .normal {
+      border: 1px dashed #777777;
+      padding: 16px;
+    }
+
+    .message {
+      border-left: 4px solid #1565c0;
+      background: #f5f5f5;
+      padding: 10px 12px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>用 contextmenu 事件處理單一元素</h1>
+
+  <!-- 觀察重點：只對指定元素監聽 contextmenu 事件，並用 preventDefault() 攔截該元素的預設右鍵選單。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="example">
+      <p id="event-target" class="target">
+        在這個藍色區塊按右鍵，會觸發自訂處理。
+      </p>
+
+      <p class="normal">
+        在這個灰色區塊按右鍵，仍會使用瀏覽器原本的右鍵選單。
+      </p>
+
+      <p id="message" class="message">尚未觸發 <code>contextmenu</code> 事件。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把事件監聽目標從藍色區塊改成灰色區塊，觀察哪一個區塊會改用自訂處理。</p>
+  </section>
+
+  <script>
+    const target = document.getElementById("event-target");
+    const message = document.getElementById("message");
+    let count = 0;
+
+    target.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
+      count += 1;
+      message.textContent = "已攔截這個元素的 contextmenu 事件 " + count + " 次。";
+    });
+  </script>
+</body>
+</html>

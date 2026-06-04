@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>id 唯一識別與頁內錨點</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .links {
+      margin-bottom: 20px;
+    }
+
+    .links a {
+      margin-right: 12px;
+    }
+
+    section {
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding: 16px;
+      max-width: 640px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 12px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>id 唯一識別與頁內錨點</h1>
+
+  <!-- 觀察重點：id 是元素的唯一識別，href="#id值" 可以連到同一頁的目標元素。 -->
+
+  <div class="links">
+    <a href="#intro">前往網站介紹</a>
+    <a href="#pricing">前往方案價格</a>
+  </div>
+
+  <section id="intro">
+    <h2>網站介紹</h2>
+    <p>這個區塊使用 <code>id="intro"</code>，代表它在這份文件中的唯一識別。</p>
+  </section>
+
+  <section id="pricing">
+    <h2>方案價格</h2>
+    <p>點擊 <code>href="#pricing"</code> 的連結時，瀏覽器會移動到這個區塊。</p>
+  </section>
+
+  <section>
+    <h2>對照程式碼</h2>
+    <pre><code>&lt;h2 id="pricing"&gt;方案價格&lt;/h2&gt;
+&lt;a href="#pricing"&gt;查看方案價格&lt;/a&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把第二個區塊的 <code>id</code> 改成 <code>plans</code>，再把連結改成 <code>href="#plans"</code>，觀察頁內連結是否仍能對到目標。</p>
+  </section>
+</body>
+</html>

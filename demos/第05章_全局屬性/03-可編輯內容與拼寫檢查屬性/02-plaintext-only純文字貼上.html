@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>plaintext-only 純文字貼上</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 760px;
+    }
+
+    .edit-area {
+      border: 1px solid #777777;
+      min-height: 72px;
+      margin: 12px 0 20px;
+      padding: 12px;
+    }
+
+    .hint {
+      color: #555555;
+    }
+  </style>
+</head>
+<body>
+  <h1>plaintext-only 純文字貼上</h1>
+
+  <!-- 觀察重點：兩個區塊都可編輯，但 plaintext-only 會要求貼上內容保留純文字。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <p class="hint">請從其他地方複製一段有格式的文字，分別貼到下面兩個區塊。</p>
+
+    <h3>一般可編輯內容</h3>
+    <div class="edit-area" contenteditable="true">
+      這裡使用 contenteditable="true"。
+    </div>
+
+    <h3>只保留純文字的可編輯內容</h3>
+    <div class="edit-area" contenteditable="plaintext-only">
+      這裡使用 contenteditable="plaintext-only"。
+    </div>
+  </section>
+</body>
+</html>

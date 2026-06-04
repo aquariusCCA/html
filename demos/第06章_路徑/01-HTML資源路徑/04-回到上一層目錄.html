@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>回到上一層目錄</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .pair {
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-left: 4px solid #c03221;
+      padding-left: 12px;
+    }
+
+    .right {
+      border-left: 4px solid #238636;
+      padding-left: 12px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 12px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>回到上一層目錄</h1>
+
+  <!-- 觀察重點：../ 表示先回到上一層，再從那裡繼續找資源。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <pre><code>project/
+  images/
+    logo.png
+  pages/
+    about.html</code></pre>
+
+    <div class="pair">
+      <div class="wrong">
+        <h3>錯誤寫法：從 pages/ 裡面找 images/</h3>
+        <pre><code>&lt;img src="images/logo.png" alt="網站標誌"&gt;</code></pre>
+        <p>如果目前檔案是 <code>pages/about.html</code>，這會變成去找 <code>pages/images/logo.png</code>。</p>
+      </div>
+
+      <div class="right">
+        <h3>正確寫法：先回到上一層</h3>
+        <pre><code>&lt;img src="../images/logo.png" alt="網站標誌"&gt;</code></pre>
+        <p><code>../</code> 先從 <code>pages/</code> 回到 <code>project/</code>，再進入 <code>images/</code> 找圖片。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把正確寫法中的 <code>logo.png</code> 改成 <code>banner.png</code>，保留前面的 <code>../images/</code>。</p>
+  </section>
+</body>
+</html>

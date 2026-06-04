@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>accesskey 基本快捷鍵</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 760px;
+    }
+
+    .shortcut-list {
+      border: 1px solid #cccccc;
+      padding: 16px;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    a,
+    button {
+      font: inherit;
+      padding: 8px 12px;
+    }
+
+    a:focus,
+    button:focus {
+      outline: 3px solid #1a73e8;
+      outline-offset: 3px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>accesskey 基本快捷鍵</h1>
+
+  <!-- 觀察重點：accesskey 為元素提供快捷鍵，但啟用組合會依瀏覽器與作業系統而不同。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="shortcut-list">
+      <p>這個頁面明確列出可用快捷鍵，讓使用者知道哪些元素設定了 <code>accesskey</code>。</p>
+      <ul>
+        <li><code>h</code>：前往說明連結</li>
+        <li><code>s</code>：啟用儲存按鈕</li>
+      </ul>
+    </div>
+
+    <div class="action-row">
+      <a href="#help" accesskey="h">說明</a>
+      <button type="button" accesskey="s">儲存</button>
+    </div>
+
+    <p id="help">
+      不同瀏覽器可能需要使用 <code>Alt</code>、<code>Alt + Shift</code> 或其他組合鍵搭配上方字母。
+    </p>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把「儲存」按鈕的 <code>accesskey</code> 從 <code>s</code> 改成 <code>v</code>，並同步更新上方快捷鍵說明。</p>
+  </section>
+</body>
+</html>

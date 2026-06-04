@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>translate 局部禁止翻譯</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .example {
+      border: 1px solid #ddd;
+      padding: 16px 20px;
+      max-width: 760px;
+    }
+
+    [translate="no"] {
+      background: #fff4cc;
+      padding: 2px 4px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 12px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>translate 局部禁止翻譯</h1>
+
+  <!-- 觀察重點：translate="no" 適合放在不應被翻譯的品牌、作品名稱、專有名詞或程式碼片段上。 -->
+
+  <section class="example">
+    <h2>觀察範例</h2>
+    <p>
+      這一章會提到
+      <cite lang="en" translate="no">How Far Can You Go?</cite>
+      這本書。
+    </p>
+    <p>
+      表單送出按鈕旁的產品名稱
+      <span translate="no">CodePen</span>
+      不應被翻譯成普通名詞。
+    </p>
+    <p>
+      程式碼片段 <code translate="no">lang="zh-TW"</code> 應保留原樣。
+    </p>
+  </section>
+
+  <section>
+    <h2>對應程式碼</h2>
+    <pre><code>&lt;cite lang="en" translate="no"&gt;How Far Can You Go?&lt;/cite&gt;
+&lt;span translate="no"&gt;CodePen&lt;/span&gt;
+&lt;code translate="no"&gt;lang="zh-TW"&lt;/code&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>新增一個不應被翻譯的作品名稱，並只在那個名稱上加入 <code>translate="no"</code>。</p>
+  </section>
+</body>
+</html>

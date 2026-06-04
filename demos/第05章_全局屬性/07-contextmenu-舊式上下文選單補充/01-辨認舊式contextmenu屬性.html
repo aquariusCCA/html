@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>辨認舊式 contextmenu 屬性</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 860px;
+    }
+
+    .example {
+      border: 1px solid #cccccc;
+      margin: 16px 0;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-color: #c62828;
+      background: #fff5f5;
+    }
+
+    .correct {
+      border-color: #2e7d32;
+      background: #f4fbf4;
+    }
+
+    .target {
+      border: 1px dashed #777777;
+      padding: 12px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      overflow: auto;
+      padding: 12px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>辨認舊式 contextmenu 屬性</h1>
+
+  <!-- 觀察重點：contextmenu 屬性、menu type="context" 與 menuitem 都是舊式寫法。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="example wrong">
+      <h3>錯誤寫法：不要在現代頁面使用</h3>
+      <p class="target" contextmenu="old-menu">
+        這段故意保留 <code>contextmenu="old-menu"</code>，用來辨認舊式 HTML 寫法。
+      </p>
+
+      <menu id="old-menu" type="context">
+        <menuitem label="舊式選單項目"></menuitem>
+      </menu>
+
+      <pre><code>&lt;p contextmenu="old-menu"&gt;右鍵顯示選單&lt;/p&gt;
+
+&lt;menu id="old-menu" type="context"&gt;
+  &lt;menuitem label="舊式選單項目"&gt;&lt;/menuitem&gt;
+&lt;/menu&gt;</code></pre>
+    </div>
+
+    <div class="example correct">
+      <h3>正確方向：新頁面不要採用舊式屬性</h3>
+      <p>
+        如果只是閱讀舊教材或舊程式碼，知道它想把元素連到某個上下文選單即可。
+        新頁面需要自訂右鍵處理時，改用 JavaScript 的 <code>contextmenu</code> 事件。
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>刪除錯誤範例中的 <code>contextmenu</code>、<code>menu type="context"</code> 與 <code>menuitem</code>，保留一段普通段落。</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>draggable 需要拖放事件</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+    }
+
+    section {
+      max-width: 860px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .card {
+      border: 1px solid #b45309;
+      background: #fff7ed;
+      padding: 14px;
+      width: 180px;
+      cursor: grab;
+    }
+
+    .target {
+      border: 2px dashed #777777;
+      min-height: 120px;
+      padding: 14px;
+      width: 240px;
+    }
+
+    .target.ready {
+      border-color: #1a73e8;
+      background: #f0f6ff;
+    }
+
+    .message {
+      color: #555555;
+    }
+  </style>
+</head>
+<body>
+  <h1>draggable 需要拖放事件</h1>
+
+  <!-- 觀察重點：只加 draggable 只能讓元素被拖起來，放下後要做什麼仍需要 JavaScript 事件。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div id="task-card" class="card" draggable="true">
+      任務卡片：可以被拖起來
+    </div>
+
+    <div class="row">
+      <div class="target">
+        沒有處理 dragover 與 drop 的區域：拖到這裡不會自動移入
+      </div>
+
+      <div id="handled-target" class="target ready">
+        有處理 dragover 與 drop 的區域：拖到這裡放下
+      </div>
+    </div>
+
+    <p id="message" class="message">狀態：尚未放下卡片。</p>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>移除 <code>event.preventDefault()</code>，再觀察卡片是否還能被放進右側區域。</p>
+  </section>
+
+  <script>
+    const taskCard = document.getElementById("task-card");
+    const handledTarget = document.getElementById("handled-target");
+    const message = document.getElementById("message");
+
+    handledTarget.ondragover = function (event) {
+      event.preventDefault();
+      message.textContent = "狀態：dragover 已允許這個區域接收 drop。";
+    };
+
+    handledTarget.ondrop = function (event) {
+      event.preventDefault();
+      this.appendChild(taskCard);
+      message.textContent = "狀態：drop 已觸發，卡片被移進右側區域。";
+    };
+  </script>
+</body>
+</html>

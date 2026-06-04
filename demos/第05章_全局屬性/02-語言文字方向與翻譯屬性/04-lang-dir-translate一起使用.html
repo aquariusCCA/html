@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>lang dir translate 一起使用</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .article {
+      border: 1px solid #ddd;
+      padding: 16px 20px;
+      max-width: 760px;
+    }
+
+    .rtl-note {
+      border-left: 4px solid #855f00;
+      background: #fff9e8;
+      padding: 12px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 12px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>lang dir translate 一起使用</h1>
+
+  <!-- 觀察重點：同一段內容可能同時需要語言、方向與是否翻譯三種資訊。 -->
+
+  <section class="article">
+    <h2>觀察範例</h2>
+    <p>
+      這篇文章會提到
+      <cite lang="en" translate="no">How Far Can You Go?</cite>
+      這本書。
+    </p>
+
+    <p class="rtl-note" lang="ar" dir="rtl">هذا نص عربي.</p>
+  </section>
+
+  <section>
+    <h2>拆開來看</h2>
+    <ul>
+      <li><code>&lt;html lang="zh-Hant"&gt;</code>：整份文件主要是繁體中文。</li>
+      <li><code>lang="en"</code>：書名是英文。</li>
+      <li><code>translate="no"</code>：書名不希望被翻譯。</li>
+      <li><code>lang="ar" dir="rtl"</code>：這段是阿拉伯文，文字方向從右到左。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>對應程式碼</h2>
+    <pre><code>&lt;html lang="zh-Hant"&gt;
+...
+&lt;cite lang="en" translate="no"&gt;How Far Can You Go?&lt;/cite&gt;
+&lt;p lang="ar" dir="rtl"&gt;هذا نص عربي.&lt;/p&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把書名換成另一個英文作品名稱，保留 <code>lang="en"</code> 與 <code>translate="no"</code>。</p>
+  </section>
+</body>
+</html>

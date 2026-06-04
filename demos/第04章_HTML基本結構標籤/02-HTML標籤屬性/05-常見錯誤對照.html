@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>屬性常見錯誤對照</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .pair {
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-left: 4px solid #c03221;
+      padding-left: 12px;
+    }
+
+    .right {
+      border-left: 4px solid #238636;
+      padding-left: 12px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 12px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>屬性常見錯誤對照</h1>
+
+  <!-- 觀察重點：避免缺少空格、重複屬性、把屬性寫到結束標籤。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="pair">
+      <div class="wrong">
+        <h3>錯誤寫法：標籤名和屬性之間沒有空格</h3>
+        <pre><code>&lt;inputtype="text"&gt;</code></pre>
+      </div>
+      <div class="right">
+        <h3>正確寫法</h3>
+        <pre><code>&lt;input type="text"&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="wrong">
+        <h3>錯誤寫法：重複寫同名屬性</h3>
+        <pre><code>&lt;input type="text" type="password"&gt;</code></pre>
+      </div>
+      <div class="right">
+        <h3>正確寫法</h3>
+        <pre><code>&lt;input type="password"&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="pair">
+      <div class="wrong">
+        <h3>錯誤寫法：把屬性寫到結束標籤</h3>
+        <pre><code>&lt;a&gt;查看文件&lt;/a href="/docs"&gt;</code></pre>
+      </div>
+      <div class="right">
+        <h3>正確寫法</h3>
+        <pre><code>&lt;a href="/docs"&gt;查看文件&lt;/a&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>檢查每個正確寫法：標籤名稱與屬性之間、屬性與屬性之間，是否都有空格。</p>
+  </section>
+</body>
+</html>

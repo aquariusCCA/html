@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>絕對路徑與本機路徑</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .case {
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding: 16px;
+    }
+
+    .usable {
+      border-left: 4px solid #238636;
+    }
+
+    .warning {
+      border-left: 4px solid #c03221;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 12px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>絕對路徑與本機路徑</h1>
+
+  <!-- 觀察重點：完整網址是絕對路徑，但本機磁碟路徑不適合放進網頁專案。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+
+    <div class="case usable">
+      <h3>絕對路徑：完整網址</h3>
+      <pre><code>&lt;img src="https://www.example.com/images/logo.png" alt="網站標誌"&gt;</code></pre>
+      <p>這種寫法從完整網址開始找。只要網址有效，瀏覽器就能請求該圖片。</p>
+    </div>
+
+    <div class="case warning">
+      <h3>錯誤寫法：依賴自己電腦的本機路徑</h3>
+      <pre><code>&lt;img src="D:\day01\images\1.jpg" alt="本機圖片"&gt;</code></pre>
+      <p>這種路徑只對自己的電腦有意義，換到其他電腦或伺服器後很容易失效。</p>
+    </div>
+
+    <div class="case usable">
+      <h3>較好的做法：放在專案資料夾內</h3>
+      <pre><code>&lt;img src="images/1.jpg" alt="圖片"&gt;</code></pre>
+      <p>把圖片放進專案資料夾後，可以改用相對路徑引用。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把本機路徑範例改成 <code>images/photo.jpg</code>，練習改用專案內的相對路徑。</p>
+  </section>
+</body>
+</html>
