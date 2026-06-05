@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo 05：巢狀判斷不是只看塊級行內</title>
+  <style>
+    body {
+      max-width: 760px;
+      margin: 24px auto;
+      font-family: "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    .stage {
+      border: 2px solid #888;
+      padding: 16px;
+      margin: 16px 0 28px;
+      background: #fafafa;
+    }
+
+    .bad {
+      border-left: 6px solid #b63f3f;
+      background: #ffe8e8;
+      padding: 12px;
+      white-space: pre-wrap;
+    }
+
+    .good {
+      border-left: 6px solid #3f7f4c;
+      background: #e8f7eb;
+      padding: 12px;
+    }
+
+    .good div,
+    .good p {
+      margin: 8px 0;
+      padding: 8px;
+      background: #fff;
+      border: 1px solid #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>Demo 05：巢狀判斷不是只看塊級行內</h1>
+
+  <!-- 觀察重點：塊級 / 行內描述預設排版行為，不等於完整的 HTML 巢狀規則。 -->
+
+  <section>
+    <h2>錯誤寫法：只用外觀看巢狀</h2>
+    <pre class="stage bad">&lt;p&gt;
+  這是一段文字。
+  &lt;div&gt;錯誤寫法：不要把 div 放進 p 裡。&lt;/div&gt;
+&lt;/p&gt;</pre>
+  </section>
+
+  <section>
+    <h2>正確寫法：段落與區塊分開</h2>
+    <div class="stage good">
+      <p>這是一段完整段落。</p>
+      <div>需要區塊時，讓 div 成為段落外的獨立區塊。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>同一個判斷原則也適用於 void elements</h2>
+    <pre class="stage bad">&lt;input&gt;錯誤寫法：input 不能有子內容。&lt;/input&gt;</pre>
+    <div class="stage good">
+      <p>正確寫法：input 自己就是小型控制項。</p>
+      <input type="text" value="input">
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo 01：預設排列比較</title>
+  <style>
+    body {
+      max-width: 760px;
+      margin: 24px auto;
+      font-family: "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    .demo-area {
+      border: 2px solid #888;
+      padding: 16px;
+      margin: 16px 0 28px;
+      background: #fafafa;
+    }
+
+    .block-sample h1,
+    .block-sample p,
+    .block-sample div {
+      margin: 10px 0;
+      padding: 8px;
+      background: #d9ecff;
+      outline: 2px solid #4c83b8;
+    }
+
+    .inline-sample span,
+    .inline-sample em,
+    .inline-sample a,
+    .inline-sample input {
+      margin-right: 8px;
+      background: #ffe5b4;
+      outline: 2px solid #c47a1f;
+    }
+  </style>
+</head>
+<body>
+  <h1>Demo 01：預設排列比較</h1>
+
+  <!-- 觀察重點：塊級元素通常獨佔一行，行內元素通常跟文字一起排列。 -->
+
+  <section>
+    <h2>塊級元素：通常由上往下排列</h2>
+    <div class="demo-area block-sample">
+      <h1>尚硅谷</h1>
+      <p>這是一個 p 段落。</p>
+      <div>這是一個 div 區塊。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>行內元素：通常跟同一行文字流動</h2>
+    <p class="demo-area inline-sample">
+      前面的文字
+      <span>span 片段</span>
+      <em>em 強調</em>
+      <a href="#">a 連結</a>
+      <input type="text" value="input">
+      後面的文字
+    </p>
+  </section>
+</body>
+</html>

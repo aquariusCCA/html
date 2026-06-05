@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo 04：例外與 display 改變</title>
+  <style>
+    body {
+      max-width: 760px;
+      margin: 24px auto;
+      font-family: "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    .stage {
+      border: 2px solid #888;
+      padding: 16px;
+      margin: 16px 0 28px;
+      background: #fafafa;
+    }
+
+    .sized-input {
+      width: 220px;
+      height: 42px;
+      margin: 0 8px;
+      border: 2px solid #4c83b8;
+      background: #d9ecff;
+    }
+
+    .block-span {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      background: #ffe5b4;
+      border: 2px solid #c47a1f;
+    }
+
+    .inline-div {
+      display: inline;
+      background: #d9ecff;
+      border: 2px solid #4c83b8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Demo 04：例外與 display 改變</h1>
+
+  <!-- 觀察重點：input 這類元素可以有可見寬高；CSS display 可以改變排列行為。 -->
+
+  <section>
+    <h2>置換元素：input 可以有可見寬高</h2>
+    <p class="stage">
+      前面文字
+      <input class="sized-input" type="text" value="input 設定寬高">
+      後面文字
+    </p>
+  </section>
+
+  <section>
+    <h2>CSS display 只改變排版行為</h2>
+    <div class="stage">
+      前面文字
+      <span class="block-span">這個 span 設成 display: block，所以像區塊一樣換行。</span>
+      中間文字
+      <div class="inline-div">這個 div 設成 display: inline，所以跟文字排在同一行。</div>
+      後面文字
+    </div>
+  </section>
+</body>
+</html>
