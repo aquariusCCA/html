@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML 入門教學首頁</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .bad {
+      border-left: 4px solid #c43c35;
+      background: #fff4f3;
+      padding: 12px 16px;
+    }
+
+    .good {
+      border-left: 4px solid #1d7f45;
+      background: #f0fbf4;
+      padding: 12px 16px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>title 文字要清楚具體</h1>
+
+  <!-- 觀察重點：好的 title 要能反映頁面主題，不要只寫籠統文字。 -->
+
+  <section>
+    <h2>不建議</h2>
+    <p class="bad">只寫 <code>首頁</code> 太籠統，使用者很難從分頁或書籤分辨頁面內容。</p>
+
+    <pre><code>&lt;title&gt;首頁&lt;/title&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>較清楚</h2>
+    <p class="good">加入頁面主題後，分頁標題更容易辨識，也比較能說明這份文件的內容。</p>
+
+    <pre><code>&lt;title&gt;HTML 入門教學首頁&lt;/title&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把這份 demo 的 <code>&lt;title&gt;</code> 改成一個「個人作品集首頁」適用的清楚標題，不要只寫 <code>首頁</code> 或 <code>我的網站</code>。</p>
+  </section>
+</body>
+</html>

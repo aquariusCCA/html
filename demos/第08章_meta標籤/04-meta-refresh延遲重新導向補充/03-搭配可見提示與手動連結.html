@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="18;url=04-常見錯誤與實務檢查.html">
+  <title>搭配可見提示與手動連結</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .redirect-message {
+      border: 2px solid #4f7a4f;
+      background: #f3fbf3;
+      padding: 1rem;
+    }
+
+    .structure {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .area {
+      border: 1px solid #aaa;
+      padding: 1rem;
+    }
+
+    .head-area {
+      background: #f1f6fc;
+      border-left: 5px solid #3b6ea8;
+    }
+
+    .body-area {
+      background: #f3fbf3;
+      border-left: 5px solid #4f7a4f;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>搭配可見提示與手動連結</h1>
+
+  <!-- 觀察重點：自動跳轉時，head 放 meta 設定，body 要提供使用者看得到的提示與連結。 -->
+
+  <section class="redirect-message">
+    <h2>可見提示</h2>
+    <p>頁面即將前往下一個示範：<code>04-常見錯誤與實務檢查.html</code>。</p>
+    <p><a href="04-常見錯誤與實務檢查.html">如果沒有自動跳轉，請點這裡</a>。</p>
+  </section>
+
+  <section>
+    <h2>head 與 body 的分工</h2>
+    <div class="structure">
+      <div class="area head-area">
+        <h3>head</h3>
+        <pre><code>&lt;meta http-equiv="refresh" content="18;url=04-常見錯誤與實務檢查.html"&gt;</code></pre>
+        <p>放瀏覽器要執行的重新導向設定。</p>
+      </div>
+
+      <div class="area body-area">
+        <h3>body</h3>
+        <pre><code>&lt;p&gt;
+  頁面即將前往新位置。
+  &lt;a href="目標頁面.html"&gt;如果沒有自動跳轉，請點這裡&lt;/a&gt;
+&lt;/p&gt;</code></pre>
+        <p>放使用者看得到的說明與手動連結。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>建議修改任務</h2>
+    <p>把自動跳轉目標和手動連結目標改成同一個檔案，確認兩個目標保持一致。</p>
+  </section>
+</body>
+</html>

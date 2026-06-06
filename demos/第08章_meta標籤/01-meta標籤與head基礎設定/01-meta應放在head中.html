@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>meta 應放在 head 中</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .area {
+      border: 2px solid #999;
+      padding: 1rem;
+      margin-block: 1rem;
+    }
+
+    .head-area {
+      border-color: #3b6ea8;
+      background: #f1f6fc;
+    }
+
+    .body-area {
+      border-color: #4d8b57;
+      background: #f3faf4;
+    }
+
+    .wrong {
+      border-left: 6px solid #b33a3a;
+      padding-left: 1rem;
+    }
+
+    .correct {
+      border-left: 6px solid #2f7d46;
+      padding-left: 1rem;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>meta 應放在 head 中</h1>
+
+  <!-- 觀察重點：meta 是文件設定與描述資訊，不是要顯示在畫面上的內容。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <div class="area head-area">
+      <strong>head：</strong>
+      <p>放文件設定與描述資訊，例如 <code>meta</code> 與 <code>title</code>。</p>
+    </div>
+
+    <div class="area body-area">
+      <strong>body：</strong>
+      <p>放使用者會在頁面中看到的標題、段落與其他內容。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>建議寫法</h2>
+    <div class="correct">
+      <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;頁面標題&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;頁面內容&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>錯誤寫法</h2>
+    <div class="wrong">
+      <p>錯誤寫法：把 <code>meta</code> 放進 <code>body</code>。</p>
+      <pre><code>&lt;body&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;h1&gt;頁面標題&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+      <p>修正方式：把 <code>meta</code> 移回 <code>head</code>。</p>
+    </div>
+  </section>
+</body>
+</html>

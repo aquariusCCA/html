@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="比較 description 與頁面內容一致或不一致時的差異。">
+  <title>description 與頁面內容一致</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .example {
+      border-left: 6px solid #2f7d46;
+      padding: 0.5rem 1rem;
+      background: #f3faf4;
+      margin-block: 1rem;
+    }
+
+    .wrong {
+      border-left-color: #b33a3a;
+      background: #fff5f5;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>description 與頁面內容一致</h1>
+
+  <!-- 觀察重點：好的 description 應該準確摘要本頁內容，不是廣告標語。 -->
+
+  <section>
+    <h2>正確寫法</h2>
+    <div class="example">
+      <p>頁面內容：介紹 HTML meta 標籤的用途、description、keywords 與 robots。</p>
+      <pre><code>&lt;meta name="description" content="介紹 HTML meta 標籤的用途，包含 description、keywords 與 robots。"&gt;</code></pre>
+      <p>這段描述和頁面內容一致，使用者能快速判斷是否要點進來。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>錯誤寫法</h2>
+    <div class="example wrong">
+      <p>頁面內容：只介紹 HTML meta 標籤。</p>
+      <pre><code>&lt;meta name="description" content="最完整的前端課程，保證搜尋第一名。"&gt;</code></pre>
+      <p>錯誤寫法：摘要寫得很吸引人，但正文沒有提供對應內容。</p>
+      <p>修正方式：改成準確描述本頁內容的簡短文字。</p>
+    </div>
+  </section>
+</body>
+</html>

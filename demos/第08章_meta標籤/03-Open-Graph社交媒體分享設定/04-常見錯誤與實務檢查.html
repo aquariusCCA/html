@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta property="og:title" content="公開分享頁面">
+  <meta property="og:description" content="這個頁面示範 OG 圖片、正式 URL 與預覽更新檢查。">
+  <meta property="og:image" content="https://example.com/images/share.jpg">
+  <meta property="og:url" content="https://example.com/public-page">
+  <meta property="og:type" content="website">
+  <title>常見錯誤與實務檢查</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    .wrong {
+      border-left: 5px solid #b84a4a;
+      background: #fff4f4;
+      padding: 1rem;
+    }
+
+    .right {
+      border-left: 5px solid #4f7a4f;
+      background: #f3fbf3;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .checklist {
+      border: 2px solid #4f6f88;
+      background: #f4f8fb;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>常見錯誤與實務檢查</h1>
+
+  <!-- 觀察重點：分享圖片建議使用完整 https URL；修改 OG 後也要注意平台可能快取舊預覽。 -->
+
+  <section>
+    <h2>錯誤一：分享圖片使用相對路徑</h2>
+    <div class="wrong">
+      <h3>錯誤寫法</h3>
+      <pre><code>&lt;meta property="og:image" content="./images/share.jpg"&gt;</code></pre>
+      <p>社群平台抓取頁面時，不一定能正確解析本地或相對圖片路徑。</p>
+    </div>
+
+    <div class="right">
+      <h3>建議寫法</h3>
+      <pre><code>&lt;meta property="og:image" content="https://example.com/images/share.jpg"&gt;</code></pre>
+      <p>分享圖建議使用平台可公開存取的完整圖片 URL。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>實務檢查：正式 URL 與內容類型</h2>
+    <pre><code>&lt;meta property="og:url" content="https://example.com/public-page"&gt;
+&lt;meta property="og:type" content="website"&gt;</code></pre>
+    <p><code>og:url</code> 指向這個頁面的正式網址；<code>og:type</code> 說明內容類型。</p>
+  </section>
+
+  <section>
+    <h2>預覽更新提醒</h2>
+    <div class="checklist">
+      <ol>
+        <li>分享標題是否清楚。</li>
+        <li>分享描述是否準確。</li>
+        <li>分享圖片是否能公開讀取。</li>
+        <li>分享 URL 是否為正式網址。</li>
+        <li>修改 OG 後，平台上的舊預覽可能需要等待快取過期或重新抓取。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2>建議修改任務</h2>
+    <p>把錯誤寫法中的圖片路徑改成完整 <code>https://</code> URL，並確認 <code>og:url</code> 是否指向你要分享的正式頁面。</p>
+  </section>
+</body>
+</html>

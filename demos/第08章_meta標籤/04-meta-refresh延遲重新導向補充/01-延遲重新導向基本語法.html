@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="15;url=03-搭配可見提示與手動連結.html">
+  <title>延遲重新導向基本語法</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .notice {
+      border: 2px solid #4f6f88;
+      background: #f4f8fb;
+      padding: 1rem;
+    }
+
+    .parts {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .parts th,
+    .parts td {
+      border: 1px solid #bbb;
+      padding: 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>延遲重新導向基本語法</h1>
+
+  <!-- 觀察重點：meta refresh 寫在 head 中，content 的秒數與 url 共同決定延遲跳轉。 -->
+
+  <section class="notice">
+    <h2>實際效果</h2>
+    <p>這個頁面會在 15 秒後，自動前往 <code>03-搭配可見提示與手動連結.html</code>。</p>
+    <p><a href="03-搭配可見提示與手動連結.html">如果不想等待，可以直接點這裡前往目標頁面</a>。</p>
+  </section>
+
+  <section>
+    <h2>本頁使用的設定</h2>
+    <pre><code>&lt;meta http-equiv="refresh" content="15;url=03-搭配可見提示與手動連結.html"&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>語法拆解</h2>
+    <table class="parts">
+      <thead>
+        <tr>
+          <th>片段</th>
+          <th>意義</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>http-equiv="refresh"</code></td>
+          <td>宣告這是一個刷新或重新導向設定。</td>
+        </tr>
+        <tr>
+          <td><code>content="15;url=..."</code></td>
+          <td><code>15</code> 是等待秒數；<code>url</code> 是等待後要前往的目標。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>建議修改任務</h2>
+    <p>把 <code>content</code> 中的秒數從 <code>15</code> 改成 <code>5</code>，重新開啟頁面後觀察跳轉時間。</p>
+  </section>
+</body>
+</html>

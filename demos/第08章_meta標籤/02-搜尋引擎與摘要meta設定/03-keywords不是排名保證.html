@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="示範 keywords 可以記錄頁面相關詞，但不是現代搜尋排名保證。">
+  <meta name="keywords" content="HTML, meta, description, robots">
+  <title>keywords 不是排名保證</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .note {
+      border: 2px solid #8a8a8a;
+      padding: 1rem;
+      background: #fafafa;
+    }
+
+    .wrong {
+      border-left: 6px solid #b33a3a;
+      padding-left: 1rem;
+    }
+
+    .correct {
+      border-left: 6px solid #2f7d46;
+      padding-left: 1rem;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>keywords 不是排名保證</h1>
+
+  <!-- 觀察重點：keywords 可以記錄頁面相關詞，但不應被當成 SEO 捷徑。 -->
+
+  <section>
+    <h2>可接受的記錄方式</h2>
+    <div class="correct">
+      <pre><code>&lt;meta name="keywords" content="HTML, meta, description, robots"&gt;</code></pre>
+      <p>這只是記錄頁面相關詞，不代表搜尋排名會因此變好。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>錯誤寫法</h2>
+    <div class="wrong">
+      <pre><code>&lt;meta name="keywords" content="HTML, HTML教學, 免費課程, 熱門, 最好, 第一名, 前端, 網頁"&gt;</code></pre>
+      <p>錯誤寫法：堆砌熱門詞，期待搜尋結果表現自然變好。</p>
+      <p>修正方式：不要把 <code>keywords</code> 當成排名保證；頁面內容品質與使用者需求匹配更重要。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>觀察提醒</h2>
+    <div class="note">
+      <p>如果專案、CMS 或內部流程不需要記錄關鍵詞，公開頁面不必為了 SEO 強行加入 <code>keywords</code>。</p>
+    </div>
+  </section>
+</body>
+</html>

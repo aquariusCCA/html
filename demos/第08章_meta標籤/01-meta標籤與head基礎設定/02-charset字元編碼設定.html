@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>charset 字元編碼設定</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .sample-text {
+      border: 2px solid #8a6d3b;
+      background: #fff8e6;
+      padding: 1rem;
+      font-size: 1.15rem;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>charset 字元編碼設定</h1>
+
+  <!-- 觀察重點：UTF-8 可以表示中文、英文、符號與多種語言文字。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p>這份 HTML 在 <code>head</code> 中宣告使用 <code>UTF-8</code>：</p>
+    <pre><code>&lt;meta charset="UTF-8"&gt;</code></pre>
+
+    <div class="sample-text">
+      中文：歡迎學習 HTML<br>
+      English: Learn HTML<br>
+      符號：© 2026 / 50% / 你好！
+    </div>
+  </section>
+
+  <section>
+    <h2>建議修改任務</h2>
+    <p>把上方範例文字換成你的名字、中文句子或符號，觀察文字是否正常顯示。</p>
+  </section>
+</body>
+</html>

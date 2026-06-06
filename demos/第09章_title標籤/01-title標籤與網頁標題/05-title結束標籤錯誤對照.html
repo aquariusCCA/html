@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>title 結束標籤錯誤對照</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+    }
+
+    .correct {
+      border-left: 4px solid #1d7f45;
+      background: #f0fbf4;
+      padding: 12px 16px;
+    }
+
+    .wrong {
+      border-left: 4px solid #c43c35;
+      background: #fff4f3;
+      padding: 12px 16px;
+    }
+
+    pre {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .marker {
+      color: #a64200;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>title 結束標籤錯誤對照</h1>
+
+  <!-- 觀察重點：title 需要開始標籤與結束標籤，標題文字放在兩者中間。 -->
+
+  <section>
+    <h2>錯誤寫法</h2>
+    <p class="wrong">缺少 <code>&lt;/title&gt;</code> 時，<code>&lt;title&gt;</code> 沒有被正確關閉。這份 demo 只在程式碼區塊展示錯誤，文件本身使用正確寫法。</p>
+
+    <pre><code>&lt;title&gt;這是我們的專屬網站</code></pre>
+  </section>
+
+  <section>
+    <h2>建議寫法</h2>
+    <p class="correct"><code>&lt;title&gt;</code> 應該有開始標籤與結束標籤。</p>
+
+    <pre><code>&lt;title&gt;這是我們的專屬網站<span class="marker">&lt;/title&gt;</span></code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>替換標題文字時，保留 <code>&lt;title&gt;</code> 和 <code>&lt;/title&gt;</code>，只改中間的文字。</p>
+  </section>
+</body>
+</html>

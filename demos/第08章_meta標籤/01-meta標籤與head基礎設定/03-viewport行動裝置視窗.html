@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>viewport 行動裝置視窗</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .phone-width {
+      border: 2px solid #4c7f8f;
+      background: #eef8fa;
+      max-width: 360px;
+      padding: 1rem;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>viewport 行動裝置視窗</h1>
+
+  <!-- 觀察重點：viewport 讓手機用裝置寬度作為頁面寬度的基準。 -->
+
+  <section>
+    <h2>本頁使用的設定</h2>
+    <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>觀察範例</h2>
+    <div class="phone-width">
+      <p>這個區塊最多 360px 寬。用手機或瀏覽器窄視窗開啟時，頁面應該以裝置寬度作為顯示基準。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>建議修改任務</h2>
+    <p>暫時刪除 <code>viewport</code> 那一行，再用手機或瀏覽器行動裝置模式重新觀察。</p>
+  </section>
+</body>
+</html>

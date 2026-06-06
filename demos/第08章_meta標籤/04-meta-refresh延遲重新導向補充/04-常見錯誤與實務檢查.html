@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>常見錯誤與實務檢查</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      margin: 2rem;
+      color: #222;
+    }
+
+    section {
+      margin-block: 1.5rem;
+    }
+
+    .compare {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .box {
+      border: 1px solid #bbb;
+      padding: 1rem;
+    }
+
+    .wrong {
+      border-left: 5px solid #b84a4a;
+      background: #fff4f4;
+    }
+
+    .right {
+      border-left: 5px solid #4f7a4f;
+      background: #f3fbf3;
+    }
+
+    .checklist {
+      border: 2px solid #4f6f88;
+      background: #f4f8fb;
+      padding: 1rem;
+    }
+
+    pre {
+      background: #f6f6f6;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>常見錯誤與實務檢查</h1>
+
+  <!-- 觀察重點：meta refresh 適合簡單、低風險、臨時的導向；正式長期導頁通常不應優先使用它。 -->
+
+  <section>
+    <h2>錯誤一：跳太快</h2>
+    <div class="compare">
+      <div class="box wrong">
+        <h3>錯誤寫法</h3>
+        <pre><code>&lt;meta http-equiv="refresh" content="1;url=https://example.com/new-page"&gt;</code></pre>
+        <p>1 秒內跳走，使用者可能來不及閱讀提示。</p>
+      </div>
+
+      <div class="box right">
+        <h3>較清楚的寫法</h3>
+        <pre><code>&lt;meta http-equiv="refresh" content="5;url=https://example.com/new-page"&gt;</code></pre>
+        <p>保留閱讀時間，並搭配頁面中的文字提示。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>錯誤二：沒有手動連結</h2>
+    <div class="compare">
+      <div class="box wrong">
+        <h3>錯誤寫法</h3>
+        <pre><code>&lt;p&gt;即將跳轉...&lt;/p&gt;</code></pre>
+        <p>如果自動跳轉失敗，使用者沒有其他前往目標頁面的方式。</p>
+      </div>
+
+      <div class="box right">
+        <h3>建議寫法</h3>
+        <pre><code>&lt;p&gt;
+  頁面即將前往新位置。
+  &lt;a href="https://example.com/new-page"&gt;如果沒有自動跳轉，請點這裡&lt;/a&gt;
+&lt;/p&gt;</code></pre>
+        <p>提供清楚文字，也提供可點擊連結。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>使用前檢查</h2>
+    <div class="checklist">
+      <ol>
+        <li>使用者是否需要先閱讀或操作目前頁面？</li>
+        <li>這是否是正式網站的長期重新導向？</li>
+        <li>是否能用伺服器重新導向、正常連結或更清楚的流程處理？</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2>建議修改任務</h2>
+    <p>把錯誤範例改成至少 5 秒後再跳轉，並補上一個與 <code>url</code> 相同目標的手動連結。</p>
+  </section>
+</body>
+</html>
