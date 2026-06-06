@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>br 不取代文章分段</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .example {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-left: 6px solid #c53030;
+      background: #fff5f5;
+    }
+
+    .correct {
+      border-left: 6px solid #2f855a;
+      background: #f0fff4;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>br 不取代文章分段</h1>
+
+  <!-- 觀察重點：br 只表示換行；一般文章分段應該使用多個 p。 -->
+
+  <section>
+    <h2>錯誤與較好寫法</h2>
+
+    <div class="pair">
+      <div class="example wrong">
+        <h3>錯誤寫法</h3>
+        第一段文字說明文章背景。<br><br>
+        第二段文字補充更多細節。
+      </div>
+
+      <div class="example correct">
+        <h3>較好的寫法</h3>
+        <p>第一段文字說明文章背景。</p>
+        <p>第二段文字補充更多細節。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>對照程式碼</h2>
+    <pre><code>&lt;!-- 不建議：用 br 製造文章分段 --&gt;
+第一段文字。&lt;br&gt;&lt;br&gt;
+第二段文字。
+
+&lt;!-- 較好：用 p 表示段落 --&gt;
+&lt;p&gt;第一段文字。&lt;/p&gt;
+&lt;p&gt;第二段文字。&lt;/p&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把左側的 <code>&lt;br&gt;&lt;br&gt;</code> 寫法改成兩個 <code>&lt;p&gt;</code>，並比較 HTML 結構是否更清楚。</p>
+  </section>
+</body>
+</html>

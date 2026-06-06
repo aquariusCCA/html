@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>判斷 section 與 div</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .pair {
+      border: 1px solid #d8dee4;
+      margin-block: 16px;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-left: 4px solid #b42318;
+      background: #fff1f0;
+      padding: 12px;
+    }
+
+    .right {
+      border-left: 4px solid #1f7a4d;
+      background: #f0fff4;
+      padding: 12px;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>判斷 section 與 div</h1>
+
+  <!-- 觀察重點：section 表示有主題的內容區塊，不是萬用排版容器。 -->
+
+  <section>
+    <h2>判斷問題</h2>
+    <p>如果這個區塊有自己的主題與標題，可以考慮使用 <code>&lt;section&gt;</code>；如果只是為了包裝、對齊或套 CSS，使用 <code>&lt;div&gt;</code> 會更自然。</p>
+  </section>
+
+  <section>
+    <h2>錯誤與修正對照</h2>
+
+    <div class="pair">
+      <h3>只負責包裝卡片</h3>
+      <div class="wrong">
+        <strong>錯誤寫法：把 section 當成萬用 div</strong>
+        <pre><code>&lt;section class="card-wrapper"&gt;
+  &lt;div class="card"&gt;商品卡片&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      </div>
+      <div class="right">
+        <strong>正確寫法：沒有明確主題時使用 div</strong>
+        <pre><code>&lt;div class="card-wrapper"&gt;
+  &lt;div class="card"&gt;商品卡片&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="pair">
+      <h3>有主題的內容區塊</h3>
+      <div class="right">
+        <strong>合理寫法：section 搭配標題</strong>
+        <pre><code>&lt;section&gt;
+  &lt;h2&gt;熱門景點&lt;/h2&gt;
+  &lt;p&gt;這個區段整理城市中的熱門景點。&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把第一組錯誤寫法中的 <code>&lt;section&gt;</code> 改成 <code>&lt;div&gt;</code>，再試著新增一個真正有標題的 section。</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>div 包住一塊內容</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .note {
+      border-left: 4px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 12px 16px;
+    }
+
+    .sample {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    .profile-card {
+      border: 2px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 16px;
+      width: 320px;
+    }
+
+    .profile-card h2 {
+      margin-top: 0;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>div 包住一塊內容</h1>
+
+  <!-- 觀察重點：div 可以把一組相關內容包成同一個區塊。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p class="note"><code>&lt;div&gt;</code> 本身沒有語意，但可以當作容器，把標題與段落包成同一組內容。</p>
+
+    <div class="sample">
+      <div class="profile-card">
+        <h2>王小明</h2>
+        <p>前端學習者，正在練習 HTML 與 CSS。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>對照程式碼</h2>
+    <pre><code>&lt;div class="profile-card"&gt;
+  &lt;h2&gt;王小明&lt;/h2&gt;
+  &lt;p&gt;前端學習者，正在練習 HTML 與 CSS。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>在 <code>&lt;div class="profile-card"&gt;</code> 裡新增一個 <code>&lt;p&gt;</code>，觀察新內容仍然屬於同一個外框包住的區塊。</p>
+  </section>
+</body>
+</html>

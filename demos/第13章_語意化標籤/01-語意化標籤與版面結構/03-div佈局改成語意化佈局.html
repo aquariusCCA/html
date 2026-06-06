@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>div 佈局改成語意化佈局</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .panel {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    .header,
+    .nav,
+    header,
+    nav {
+      background: #ffe4ec;
+      border-radius: 8px;
+      margin-block: 12px;
+      padding: 16px;
+    }
+
+    .section,
+    section.demo-section {
+      background: #e6f6ff;
+      border-radius: 8px;
+      margin-block: 12px;
+      padding: 16px;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>div 佈局改成語意化佈局</h1>
+
+  <!-- 觀察重點：畫面可以相似，但語意化版本讓 HTML 標籤直接說明區塊用途。 -->
+
+  <section>
+    <h2>畫面對照</h2>
+    <div class="compare">
+      <div class="panel">
+        <h3>單純使用 div</h3>
+        <div class="header">頭部標籤</div>
+        <div class="nav">導航欄標籤</div>
+        <div class="section">某個區域</div>
+      </div>
+
+      <div class="panel">
+        <h3>改成語意化標籤</h3>
+        <header>頭部標籤</header>
+        <nav>導航欄標籤</nav>
+        <section class="demo-section">
+          <h2>某個區域</h2>
+          <p>section 表示有主題的內容區塊。</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>程式碼對照</h2>
+    <div class="compare">
+      <div class="panel">
+        <h3>改寫前</h3>
+        <pre><code>&lt;div class="header"&gt;頭部標籤&lt;/div&gt;
+&lt;div class="nav"&gt;導航欄標籤&lt;/div&gt;
+&lt;div class="section"&gt;某個區域&lt;/div&gt;</code></pre>
+      </div>
+
+      <div class="panel">
+        <h3>改寫後</h3>
+        <pre><code>&lt;header&gt;頭部標籤&lt;/header&gt;
+&lt;nav&gt;導航欄標籤&lt;/nav&gt;
+&lt;section&gt;
+  &lt;h2&gt;某個區域&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把左側的 <code>&lt;div class="nav"&gt;</code> 想像成主要導覽，改成右側的 <code>&lt;nav&gt;</code> 寫法。</p>
+  </section>
+</body>
+</html>

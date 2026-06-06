@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>語意標籤的瀏覽器支援</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .page-header,
+    .demo-layout,
+    .page-footer,
+    article,
+    aside,
+    section.demo-block {
+      display: block;
+      border: 1px solid #c9d8f2;
+      margin-block: 10px;
+      padding: 12px;
+    }
+
+    .page-header,
+    .page-footer {
+      background: #f3f7ff;
+    }
+
+    .demo-layout {
+      border-color: #2f6fed;
+    }
+
+    .page-header nav a {
+      display: inline-block;
+      margin-right: 12px;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .note {
+      border-left: 4px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 12px 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 觀察重點：現代瀏覽器支援語意化標籤；舊瀏覽器需求要依專案目標判斷。 -->
+
+  <header class="page-header">
+    <h1>語意標籤的瀏覽器支援</h1>
+    <nav>
+      <a href="/">首頁</a>
+      <a href="/html">HTML</a>
+    </nav>
+  </header>
+
+  <main class="demo-layout">
+    <p><strong>main：</strong>這裡是本頁主要內容。現代瀏覽器普遍支援 HTML5 語意化標籤。</p>
+
+    <article>
+      <h2>article：可獨立閱讀的內容</h2>
+      <p>這是一段示範文章內容。</p>
+    </article>
+
+    <aside>
+      <h2>aside：補充資訊</h2>
+      <p>這裡放與主要內容相關的補充說明。</p>
+    </aside>
+
+    <section class="demo-block">
+      <h2>需要支援舊瀏覽器時的補充設定</h2>
+      <pre><code>header,
+nav,
+main,
+article,
+section,
+aside,
+footer {
+  display: block;
+}</code></pre>
+    </section>
+
+    <section class="demo-block">
+      <h2>使用提醒</h2>
+      <p class="note">是否需要額外處理舊瀏覽器，應依專案的目標使用者與瀏覽器支援範圍決定。</p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>footer：頁尾資訊</p>
+  </footer>
+</body>
+</html>

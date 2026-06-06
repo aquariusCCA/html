@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>div 與 span 預設顯示</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .note {
+      border-left: 4px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 12px 16px;
+    }
+
+    .sample {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    .box {
+      border: 2px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 6px 10px;
+      margin: 6px 0;
+    }
+
+    .tag {
+      border: 2px solid #d97706;
+      background: #fff7ed;
+      padding: 4px 8px;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>div 與 span 預設顯示</h1>
+
+  <!-- 觀察重點：div 預設是區塊顯示，span 預設是行內顯示。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p class="note"><code>&lt;div&gt;</code> 通常會單獨占一行；<code>&lt;span&gt;</code> 可以和其他文字或 span 留在同一行。</p>
+
+    <div class="sample">
+      <h2>div 範例</h2>
+      <div class="box">我是一個 div，通常會單獨占一行。</div>
+      <div class="box">我也是一個 div，也通常會單獨占一行。</div>
+
+      <h2>span 範例</h2>
+      <p>
+        <span class="tag">百度</span>
+        <span class="tag">新浪</span>
+        <span class="tag">搜狐</span>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>對照程式碼</h2>
+    <pre><code>&lt;div&gt;我是一個 div。&lt;/div&gt;
+&lt;div&gt;我也是一個 div。&lt;/div&gt;
+
+&lt;span&gt;百度&lt;/span&gt;
+&lt;span&gt;新浪&lt;/span&gt;
+&lt;span&gt;搜狐&lt;/span&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>新增第三個 <code>&lt;div&gt;</code> 與第四個 <code>&lt;span&gt;</code>，觀察它們分別出現在新的一行或同一行。</p>
+  </section>
+</body>
+</html>

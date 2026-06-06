@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>多個 p 組成文章</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .note {
+      border-left: 4px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 12px 16px;
+    }
+
+    article {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>多個 p 組成文章</h1>
+
+  <!-- 觀察重點：不同段落應該使用不同的 p，而不是全部塞進同一個 p。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p class="note">文章有多個段落時，使用多組 <code>&lt;p&gt;</code>，讓 HTML 結構反映內容分段。</p>
+
+    <article>
+      <h2>前端學習筆記</h2>
+
+      <p>學習 HTML 時，第一步不是記住所有標籤，而是理解每個標籤用來描述什麼內容。</p>
+
+      <p>當一段文字形成完整意思時，可以使用 p 標籤把它標記成段落，讓文件結構更清楚。</p>
+
+      <p>後續若要調整字體、行高或段落間距，再交給 CSS 統一處理。</p>
+    </article>
+  </section>
+
+  <section>
+    <h2>對照程式碼</h2>
+    <pre><code>&lt;article&gt;
+  &lt;h1&gt;前端學習筆記&lt;/h1&gt;
+
+  &lt;p&gt;第一段文字說明背景與主題。&lt;/p&gt;
+
+  &lt;p&gt;第二段文字補充更細的內容。&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>新增第四個段落，讓它提出結論或下一步，並確認每段文字都各自包在不同的 <code>&lt;p&gt;</code> 中。</p>
+  </section>
+</body>
+</html>

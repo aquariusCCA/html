@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>常見版面標籤角色</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      color: #222;
+    }
+
+    header,
+    nav,
+    main,
+    article,
+    section,
+    aside,
+    footer {
+      display: block;
+    }
+
+    .site-header,
+    .site-footer {
+      background: #f3f7ff;
+      border-block: 1px solid #c9d8f2;
+      padding: 24px 32px;
+    }
+
+    nav {
+      margin-top: 12px;
+    }
+
+    nav a {
+      display: inline-block;
+      margin-right: 12px;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 20px;
+      padding: 24px 32px;
+    }
+
+    article,
+    aside,
+    section {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    section {
+      margin-block: 16px;
+    }
+
+    .tag-name {
+      color: #2f6fed;
+      font-weight: bold;
+      margin: 0 0 8px;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <p class="tag-name">&lt;header&gt;</p>
+    <h1>常見版面標籤角色</h1>
+    <p>頁首常放網站標題、Logo、前言或導覽容器。</p>
+
+    <nav>
+      <p class="tag-name">&lt;nav&gt;</p>
+      <a href="/">首頁</a>
+      <a href="/html">HTML</a>
+      <a href="/css">CSS</a>
+    </nav>
+  </header>
+
+  <!-- 觀察重點：每個語意化標籤都在描述內容區塊的角色。 -->
+
+  <main>
+    <article>
+      <p class="tag-name">&lt;article&gt;</p>
+      <h2>語意化標籤入門</h2>
+      <p>article 表示一篇可獨立閱讀的內容，例如文章、新聞或卡片。</p>
+
+      <section>
+        <p class="tag-name">&lt;section&gt;</p>
+        <h3>有主題的區段</h3>
+        <p>section 適合用來切分有標題、有主題的內容段落。</p>
+      </section>
+    </article>
+
+    <aside>
+      <p class="tag-name">&lt;aside&gt;</p>
+      <h2>補充資訊</h2>
+      <p>aside 放與主要內容相關，但不是主線內容的旁支資訊。</p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p class="tag-name">&lt;footer&gt;</p>
+    <p>頁尾常放版權資訊、作者資訊或相關連結。</p>
+  </footer>
+</body>
+</html>
