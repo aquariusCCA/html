@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>標題概括，正文承載細節</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .pair {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .example {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    .wrong {
+      border-left: 6px solid #c53030;
+      background: #fff5f5;
+    }
+
+    .correct {
+      border-left: 6px solid #2f855a;
+      background: #f0fff4;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>標題概括，正文承載細節</h1>
+
+  <!-- 觀察重點：標題應該概括區塊主題，細節內容應該放在 p 裡。 -->
+
+  <section>
+    <h2>錯誤與較好寫法</h2>
+
+    <div class="pair">
+      <div class="example wrong">
+        <h3>錯誤寫法</h3>
+        <h2>本週限時優惠，全館滿千免運，活動只到週日晚上。</h2>
+        <p>這段文字其實是活動說明，不是一個清楚的區塊標題。</p>
+      </div>
+
+      <div class="example correct">
+        <h3>較好的寫法</h3>
+        <h2>本週優惠</h2>
+        <p>全館滿千免運，活動只到週日晚上。</p>
+        <p>標題負責概括，正文負責補充細節。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>對照程式碼</h2>
+    <pre><code>&lt;h2&gt;本週優惠&lt;/h2&gt;
+&lt;p&gt;全館滿千免運，活動只到週日晚上。&lt;/p&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把一段很長的活動文字拆成一個短標題與一段正文，確認標題能概括內容，而不是取代正文。</p>
+  </section>
+</body>
+</html>

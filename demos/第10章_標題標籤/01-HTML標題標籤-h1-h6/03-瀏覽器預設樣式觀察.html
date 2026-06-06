@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>瀏覽器預設樣式觀察</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .note {
+      border-left: 4px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 12px 16px;
+    }
+
+    .sample {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>瀏覽器預設樣式觀察</h1>
+
+  <!-- 觀察重點：瀏覽器會給標題預設外觀，但外觀不是選擇標題層級的理由。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p class="note">這個範例沒有替標題另外設定字體大小。請觀察瀏覽器預設讓標題加粗、獨佔一行，並讓 <code>h1</code> 到 <code>h6</code> 看起來逐漸變小。</p>
+
+    <div class="sample">
+      <h1>h1 預設通常最大</h1>
+      <p>這是 h1 底下的正文。</p>
+
+      <h2>h2 預設比 h1 小</h2>
+      <p>這是 h2 底下的正文。</p>
+
+      <h3>h3 預設再小一層</h3>
+      <p>這是 h3 底下的正文。</p>
+
+      <h4>h4 預設更小</h4>
+      <p>這是 h4 底下的正文。</p>
+
+      <h5>h5 預設更深層</h5>
+      <p>這是 h5 底下的正文。</p>
+
+      <h6>h6 預設最深層</h6>
+      <p>這是 h6 底下的正文。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把每個標題後面的正文改成自己的句子。修改時只改內容，不改標籤層級，觀察預設外觀是否仍然存在。</p>
+  </section>
+</body>
+</html>
