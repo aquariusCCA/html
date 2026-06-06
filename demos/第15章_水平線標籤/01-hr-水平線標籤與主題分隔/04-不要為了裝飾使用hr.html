@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>不要為了裝飾使用 hr</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .bad {
+      border-left: 4px solid #c62828;
+      background: #fff5f5;
+      padding: 12px 16px;
+      margin-block: 16px;
+    }
+
+    .good {
+      border-left: 4px solid #2e7d32;
+      background: #f1f8f3;
+      padding: 12px 16px;
+      margin-block: 16px;
+    }
+
+    .site-title {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 12px;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>不要為了裝飾使用 hr</h1>
+
+  <!-- 觀察重點：如果只是想讓標題底下有線條，應該用 CSS，而不是 hr。 -->
+
+  <section>
+    <h2>錯誤寫法</h2>
+    <div class="bad">
+      <p><strong>錯誤寫法：這條線只是裝飾，沒有表示主題切換。</strong></p>
+      <h2>網站標題</h2>
+      <hr>
+      <p>歡迎來到我的網站。</p>
+
+      <pre><code>&lt;h2&gt;網站標題&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;歡迎來到我的網站。&lt;/p&gt;</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>較好的寫法</h2>
+    <div class="good">
+      <p><strong>較好的寫法：HTML 保留內容結構，線條交給 CSS。</strong></p>
+      <h2 class="site-title">網站標題</h2>
+      <p>歡迎來到我的網站。</p>
+
+      <pre><code>.site-title {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 12px;
+}</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>刪除錯誤範例中的 <code>&lt;hr&gt;</code>，改用 <code>border-bottom</code> 控制標題底線。</p>
+  </section>
+</body>
+</html>

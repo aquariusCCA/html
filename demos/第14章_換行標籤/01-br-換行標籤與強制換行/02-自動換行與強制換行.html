@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>自動換行與強制換行</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .box {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      max-width: 320px;
+    }
+
+    .forced {
+      border-left: 6px solid #2f855a;
+    }
+
+    .auto {
+      border-left: 6px solid #805ad5;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>自動換行與強制換行</h1>
+
+  <!-- 觀察重點：自動換行會受容器寬度影響；br 指定的位置會固定換行。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <div class="row">
+      <div class="box auto">
+        <h3>自動換行</h3>
+        <p>這是一段比較長的文字，當畫面寬度不夠時，瀏覽器會自動把文字排到下一行。</p>
+      </div>
+
+      <div class="box forced">
+        <h3>強制換行</h3>
+        <p>
+          台北市中正區<br>
+          重慶南路一段 122 號
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>對照程式碼</h2>
+    <pre><code>&lt;!-- 自動換行：不需要手動加入 br --&gt;
+&lt;p&gt;
+  這是一段比較長的文字，當畫面寬度不夠時，
+  瀏覽器會自動把文字排到下一行。
+&lt;/p&gt;
+
+&lt;!-- 強制換行：地址行本身需要固定分隔 --&gt;
+&lt;p&gt;
+  台北市中正區&lt;br&gt;
+  重慶南路一段 122 號
+&lt;/p&gt;</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把兩個 <code>.box</code> 的 <code>max-width</code> 改成 <code>520px</code>，比較自動換行和 <code>&lt;br&gt;</code> 固定換行的差異。</p>
+  </section>
+</body>
+</html>

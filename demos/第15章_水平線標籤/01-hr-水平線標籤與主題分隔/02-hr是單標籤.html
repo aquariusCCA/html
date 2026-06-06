@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>hr 是單標籤</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .note {
+      border-left: 4px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 12px 16px;
+    }
+
+    .sample {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+    }
+
+    .bad {
+      border-left: 4px solid #c62828;
+      background: #fff5f5;
+      padding: 12px 16px;
+    }
+
+    .good {
+      border-left: 4px solid #2e7d32;
+      background: #f1f8f3;
+      padding: 12px 16px;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>hr 是單標籤</h1>
+
+  <!-- 觀察重點：hr 沒有內容，不需要結尾標籤，也不包住文字。 -->
+
+  <section>
+    <h2>觀察範例</h2>
+    <p class="note"><code>&lt;hr&gt;</code> 是單標籤，只要寫一個標籤就能表示主題分隔。</p>
+
+    <div class="sample">
+      <p>這一段是文章正文。</p>
+      <hr>
+      <p>這一段是補充說明，主題已經切換。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>語法對照</h2>
+    <div class="good">
+      <p><strong>較好的寫法</strong></p>
+      <pre><code>&lt;hr&gt;</code></pre>
+    </div>
+
+    <div class="good">
+      <p><strong>也可能看到的寫法</strong></p>
+      <pre><code>&lt;hr /&gt;</code></pre>
+      <p>這種寫法常見於 XHTML 風格或部分格式化工具產生的 HTML。</p>
+    </div>
+
+    <div class="bad">
+      <p><strong>錯誤寫法</strong></p>
+      <pre><code>&lt;hr&gt;&lt;/hr&gt;</code></pre>
+      <p><code>&lt;hr&gt;</code> 不需要結尾標籤，也不應該拿來包住其他內容。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把觀察範例中的 <code>&lt;hr&gt;</code> 暫時刪掉，再放回兩個不同主題中間，觀察文件分段是否更清楚。</p>
+  </section>
+</body>
+</html>

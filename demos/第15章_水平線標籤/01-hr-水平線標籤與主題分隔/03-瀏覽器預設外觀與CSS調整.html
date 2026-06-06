@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>瀏覽器預設外觀與 CSS 調整</title>
+  <style>
+    body {
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+      margin: 32px;
+      color: #222;
+    }
+
+    section {
+      margin-block: 24px;
+    }
+
+    .note {
+      border-left: 4px solid #2f6fed;
+      background: #f3f7ff;
+      padding: 12px 16px;
+    }
+
+    .sample {
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      margin-block: 16px;
+    }
+
+    .styled-hr {
+      border: 0;
+      border-top: 1px solid #888;
+      margin: 24px 0;
+      width: 80%;
+    }
+
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #d8dee4;
+      padding: 16px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>瀏覽器預設外觀與 CSS 調整</h1>
+
+  <!-- 觀察重點：CSS 可以改變 hr 的外觀，但不改變主題分隔語意。 -->
+
+  <section>
+    <h2>預設外觀</h2>
+    <p class="note">瀏覽器通常會把 <code>&lt;hr&gt;</code> 顯示成一條水平線，並在前後留出一些間距。</p>
+
+    <div class="sample">
+      <p>文章正文。</p>
+      <hr>
+      <p>延伸補充。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>用 CSS 調整外觀</h2>
+    <div class="sample">
+      <p>文章正文。</p>
+      <hr class="styled-hr">
+      <p>延伸補充。</p>
+    </div>
+
+    <pre><code>hr {
+  border: 0;
+  border-top: 1px solid #888;
+  margin: 24px 0;
+  width: 80%;
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>修改練習</h2>
+    <p>把 <code>width: 80%;</code> 改成 <code>width: 100%;</code>，再調整 <code>margin</code> 數值，觀察外觀改變但語意仍然是主題分隔。</p>
+  </section>
+</body>
+</html>
