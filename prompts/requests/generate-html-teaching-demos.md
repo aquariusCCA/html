@@ -1,33 +1,35 @@
-# HTML 教學範例生成提問模板
+# HTML 教學 Demo 生成提問模板
 
 ## 用途
 
-用來請 AI 依照 `prompts/_drafts/notes-to-html-teaching-demos-draft.md` 的規則，將指定的單一 `notes/<章節>/<檔名>.md` 正式教學筆記，轉換成可直接開啟的 HTML 教學範例。
+用來請 AI 依照 `prompts/_drafts/notes-to-html-teaching-demos-draft.md` 的完整規則，將指定的單一 `notes/<章節>/<檔名>.md` 正式教學筆記，轉換成可直接用瀏覽器開啟、可觀察、可修改、可練習的 HTML 教學 demo。
 
 ## 適用場景
 
-當單一 `notes/<章節>/<檔名>.md` 已經整理成正式教學筆記，並準備為該篇筆記補上可觀察、可修改、可練習的 HTML 範例時使用。
+當單一 `notes/<章節>/<檔名>.md` 已經整理成正式教學筆記，並準備為該篇筆記補上短小、清楚、可操作的 HTML demo 時使用。
 
-建議在執行本模板之前，先確認指定筆記已完成內容重構，且圖片、附件與程式碼範例都已檢查過。
+這份模板適合用來處理單篇筆記，不適合一次處理整個章節。如果要為整個章節產生練習題或複習系統，應改用對應的 `generate-html-*` request template。
+
+建議在執行本模板之前，先確認指定筆記已完成內容重構，且標題、程式碼範例、圖片、附件與內文脈絡都已檢查過。
 
 ## 使用方式
 
 1. 將下方「可直接複製的提問」貼給具備檔案系統存取能力的 AI。
 2. 將 `<正式筆記路徑>` 替換成實際 Markdown 檔案路徑。
 3. 一次只處理一份筆記，避免跨章節或跨檔案誤改。
-4. 執行後檢查 `demos/<章節>/<筆記名>/` 與 git diff，確認 HTML demo 與 README 正確。
+4. 執行後檢查 `demos/<章節>/<筆記名>/` 與 git diff，確認只產生或覆蓋目標目錄中的 HTML demo 與 `README.md`。
 5. 用瀏覽器開啟每個 HTML 檔案，確認範例可正常顯示、文字清楚、觀察重點明確。
 
 ## 可直接複製的提問
 
 ```text
-請依照 `prompts/_drafts/notes-to-html-teaching-demos-draft.md` 的完整規則，為以下正式筆記產生 HTML 教學範例：
+請依照 `prompts/_drafts/notes-to-html-teaching-demos-draft.md` 的完整規則，為以下正式筆記產生 HTML 教學 demo：
 
 `<正式筆記路徑>`
 
-Demo 主題與數量請依指定筆記已教過的內容、學習目標與核心概念決定，不要為了符合固定數量而省略、合併或硬塞觀念。
+請根據指定筆記的學習目標、核心概念、重要範例、常見錯誤與自我檢查重點，規劃並產生可觀察、可修改、可練習的 HTML demo。
 
-請只根據上述指定筆記產生 demo，不要處理其他章節、其他 Markdown 檔案或其他資料夾。
+請只處理上述單一 `notes/` Markdown 筆記，並只在由該路徑推導出的 `demos/<章節>/<筆記名>/` 目標目錄中建立或覆蓋 demo 檔案與 `README.md`。不要處理其他章節、其他 Markdown 檔案或其他資料夾。
 ```
 
 ## 可替換欄位
