@@ -40,4 +40,4 @@ html/
 * `atomic/` 是整理原始資料的中介層，不等於正式筆記
 * `notes/` 是根據 `atomic/` 生成的主幹知識
 * `appendix/`、`demos/`、`practice/`、`review/`、`supplements/` 是根據 `notes/` 生成的不同用途內容
-* `prompts/` 是 AI 協作規則與生成流程的管理區，用來規範筆記生成、格式輸出、練習設計與實際提問方式
+* `prompts/` 是 AI 協作流程的管理區，用來集中管理可複用的提示詞與生成規則
