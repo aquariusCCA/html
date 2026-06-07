@@ -78,7 +78,7 @@
 
 - 瀏覽器解析後的效果
     
-    ![h1 與 h2 巢狀的瀏覽器解析結果](./assets/images/html-block-inline-elements-img-001-85796c.png "選填的滑鼠懸停提示文字")
+    ![h1 與 h2 巢狀的瀏覽器解析結果](./assets/images/html-block-inline-elements-img-001-85796c.png)
     
 
 # **6. 特殊規則 → p標籤中不能寫塊元素**
@@ -92,7 +92,7 @@
 
 - 瀏覽器解析後的效果
     
-    ![p 內放置 div 的瀏覽器解析結果](./assets/images/html-block-inline-elements-img-002-fda844.png "選填的滑鼠懸停提示文字")
+    ![p 內放置 div 的瀏覽器解析結果](./assets/images/html-block-inline-elements-img-002-fda844.png)
     
     
 
