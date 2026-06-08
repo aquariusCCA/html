@@ -6,8 +6,10 @@
 
 這份模板會要求 AI 採用兩階段流程：
 
-- 第一階段先輸出切分提案，不建立、修改或刪除任何檔案。
-- 第二階段必須在使用者明確確認第一階段提案後，才依照確認後的提案建立或更新 `atomic/<章節>/*.md`。
+- 第一階段只輸出規劃結果：一般章節輸出切分提案；長章節先輸出原始檔 inventory。
+- 第二階段必須在使用者明確回覆「確認，請產生 atomic notes」後，才依照確認後的提案建立或更新 `atomic/<章節>/*.md`。
+
+第二階段確認語句同時代表使用者已確認切分提案，並允許寫入 `atomic/<章節>/`；但如果目標檔案已存在，仍必須先列出既有檔案並再次要求確認，不得直接覆蓋。
 
 ## 適用場景
 
@@ -17,7 +19,7 @@
 
 1. 單篇原始筆記過長，包含多個可獨立學習的主題。
 2. 單篇原始筆記過短，需要與其他高度相關內容合併。
-3. 原始標題與內容歸屬混雜，需要重新切分、合併、移動或刪重。
+3. 原始標題與內容歸屬混雜，需要在同章節內重新切分、合併、移動或刪重。
 4. 分散在多個原始檔案中的同一概念，需要整理成可追溯的 atomic note。
 5. 需要將 `origin/<章節>/*.md` 安全轉成 `atomic/<章節>/*.md`，供後續正式 notes、review、practice 或 demos 流程使用。
 
@@ -41,21 +43,26 @@ prompts/requests/rewrite-origin-alt-and-link-text.md
 prompts/requests/review-atomic-content.md
 ```
 
-不適合用來直接產生正式教學筆記。若 atomic notes 已完成內容審查，並準備轉成正式筆記，應改用 atomic-to-notes 類型的 Prompt。
+不適合用來直接產生正式教學筆記。若 atomic notes 已完成內容審查，並準備轉成正式筆記，應改用：
+
+```text
+prompts/requests/rewrite-atomic-html-teaching-notes.md
+```
 
 ## 使用方式
 
-1. 將下方「第一階段切分提案用提問」貼給具備檔案系統存取能力的 AI。
+1. 將下方「第一階段切分提案或 inventory 用提問」貼給具備檔案系統存取能力的 AI。
 2. 將 `<origin章節路徑>` 與 `<章節>` 替換成實際章節資料夾與章節名稱。
-3. 第一輪只要求輸出切分提案，不修改檔案。
-4. 檢查切分提案中的目標檔案、Atomic 主題、來源、操作、理由、Assets、需要人工確認項目與不納入 atomic 的內容。
-5. 確認提案無誤後，再使用「第二階段確認產生用提問」。
-6. 執行後檢查 `atomic/<章節>/`、處理摘要、asset 路徑與 git diff，確認沒有改到 `origin/` 原始檔或 `assets/` 實體資產。
+3. 第一輪只要求輸出規劃結果，不建立、修改或刪除任何檔案。
+4. 若輸出為切分提案，檢查目標檔案、Atomic 主題、來源、操作、理由、Assets、需要人工確認項目與不納入 atomic 的內容。
+5. 若輸出為長章節 inventory，先檢查 inventory 是否完整，再請 AI 根據 inventory 產生全章切分提案。
+6. 確認提案無誤後，再使用「第二階段確認產生用提問」。
+7. 執行後檢查 `atomic/<章節>/`、處理摘要、asset 路徑與 git diff，確認沒有改到 `origin/` 原始檔或 `assets/` 實體資產。
 
-## 第一階段切分提案用提問
+## 第一階段切分提案或 inventory 用提問
 
 ```text
-請依照 `prompts/_drafts/origin-to-atomic-notes-draft.md` 的完整規則，為以下章節建立 Origin 原始筆記原子化切分提案：
+請依照 `prompts/_drafts/origin-to-atomic-notes-draft.md` 的完整規則，為以下章節建立 Origin 原始筆記原子化切分提案；如果章節太長，請先輸出長章節 inventory：
 
 `<origin章節路徑>`
 
@@ -66,20 +73,60 @@ prompts/requests/review-atomic-content.md
 * 目標章節路徑：`<origin章節路徑>`
 * 掃描範圍：`<origin章節路徑>/*.md`
 * 目標輸出位置：`atomic/<章節>/*.md`
-* 執行階段：第一階段「切分提案」
+* 執行階段：第一階段「切分提案或長章節 inventory」
 * 是否允許寫入檔案：否
+
+如果目標章節名稱或目標章節路徑未填、仍是 placeholder，或不是明確的 `origin/<章節>/` 路徑，請停止並要求我補充，不要自行掃描整個 `origin/`。
 
 請注意：
 
-1. 本輪只允許輸出切分提案，不要建立、修改、刪除、移動或重新命名任何檔案。
+1. 本輪只允許輸出規劃結果，不要建立、修改、刪除、移動或重新命名任何檔案。
 2. 只能把 `<origin章節路徑>/*.md` 當作原始資料來源。
 3. 不要把既有 `atomic/<章節>/*.md`、`notes/<章節>/*.md`、`appendix/`、`demos/`、`practice/`、`review/`、`supplements/`、`prompts/` 或 `meta/` 當成原始資料。
 4. 不要修改 `origin/<章節>/*.md` 原始檔，也不要修改、刪除或搬移 `origin/<章節>/assets/` 內的任何資產。
 5. 請判斷每個原始檔或段落應該拆分、合併、移動、保留、刪重或不納入 atomic。
-6. 請為預計產生的 `atomic/<章節>/*.md` 規劃清楚檔名、Atomic 主題、來源、操作、理由與 Assets。
-7. 若指定章節內容太長，超過單次上下文可安全處理的範圍，請先輸出原始檔 inventory，再根據 inventory 產生全章切分提案，不要直接產生 atomic notes。
-8. 若有歸屬不明、內容重疊、可能刪除或語意不確定的段落，請列入「需要人工確認」。
-9. 若有不納入 atomic 的內容，請列出來源與原因。
+6. 移動內容只限同章節內的位置調整；疑似屬於其他章節的內容請列入「需要人工確認」，不得自行跨章節處理。
+7. 請為預計產生的 `atomic/<章節>/*.md` 規劃清楚檔名、Atomic 主題、來源、操作、理由與 Assets。
+8. 若指定章節內容太長，超過單次上下文可安全處理的範圍，請先輸出原始檔 inventory，不要直接產生完整切分提案或 atomic notes。
+9. 若有歸屬不明、內容重疊、可能刪除、疑似跨章節或語意不確定的段落，請列入「需要人工確認」。
+10. 若有不納入 atomic 的內容，請列出來源與原因。
+
+## 回報要求
+
+一般章節請依照規則檔中的第一階段輸出格式回報「切分提案」、「需要人工確認」、「不納入 atomic 的內容」與「第二階段執行說明」。
+
+長章節請依照規則檔中的長章節 inventory 格式先回報「原始檔 Inventory」。
+
+如果沒有某一類資料，請填寫「無」。
+```
+
+## 長章節 inventory 後續提問
+
+```text
+請依照 `prompts/_drafts/origin-to-atomic-notes-draft.md` 的完整規則，根據剛才已完成的原始檔 Inventory，為以下章節產生全章切分提案：
+
+`<origin章節路徑>`
+
+## 本次處理範圍
+
+* 專案根目錄：`html/`
+* 目標章節名稱：`<章節>`
+* 目標章節路徑：`<origin章節路徑>`
+* 掃描範圍：`<origin章節路徑>/*.md`
+* 目標輸出位置：`atomic/<章節>/*.md`
+* 執行階段：第一階段「根據 inventory 產生切分提案」
+* 是否允許寫入檔案：否
+
+## 已確認或補充的 inventory 資訊
+
+<inventory補充>
+
+請注意：
+
+1. 本輪仍屬於第一階段，只允許輸出切分提案，不要建立、修改或刪除任何檔案。
+2. 只能把 `<origin章節路徑>/*.md` 與已完成的 inventory 當作規劃依據。
+3. 不要把既有 `atomic/<章節>/*.md`、`notes/<章節>/*.md` 或其他目錄內容當成原始資料。
+4. 疑似屬於其他章節、歸屬不明或可能改變技術含義的內容，請列入「需要人工確認」。
 
 ## 回報要求
 
@@ -91,7 +138,7 @@ prompts/requests/review-atomic-content.md
 ## 第二階段確認產生用提問
 
 ```text
-確認，請產生 atomic notes。
+確認，請產生 atomic notes
 
 請依照 `prompts/_drafts/origin-to-atomic-notes-draft.md` 的完整規則，根據我已確認的第一階段切分提案，產生以下章節的 atomic notes：
 
@@ -107,6 +154,8 @@ prompts/requests/review-atomic-content.md
 * 執行階段：第二階段「產生 atomic notes」
 * 是否允許寫入檔案：是，只限確認後提案中的 `atomic/<章節>/*.md`
 
+這句「確認，請產生 atomic notes」同時代表我已確認切分提案，並允許寫入 `atomic/<章節>/`；但如果任何目標檔案已存在，請先列出既有檔案清單並再次要求我確認要覆蓋、更新或保留，不要直接覆蓋。
+
 ## 已確認的提案補充
 
 <確認後的提案補充>
@@ -120,12 +169,15 @@ prompts/requests/review-atomic-content.md
 5. 不要修改、刪除或搬移 `origin/<章節>/assets/` 內的任何資產。
 6. 不要建立 `origin/<章節>/notes/`。
 7. 不要修改 `meta/`、`notes/`、`appendix/`、`demos/`、`practice/`、`review/`、`supplements/` 或 `prompts/` 中的內容。
-8. 每篇 atomic note 必須保留可追溯來源資訊。
-9. 每篇 atomic note 只保留一個主要主題，避免使用「補充」「其他」「雜項」這類模糊標題。
-10. 請保留原始筆記中的重要定義、說明、注意事項、程式碼區塊、表格、圖片、附件與 callout。
-11. Atomic note 中引用同章節本地 assets 時，請將 `./assets/...` 改為 `../../origin/<章節>/assets/...`。
-12. 不要改寫 fenced code block 內的示例路徑、外部網址、錨點連結、特殊協議連結或空連結。
-13. 不要自行補充原文沒有的新技術知識，也不要把原始筆記深度重寫成正式教材。
+8. 不要把既有 `atomic/<章節>/*.md`、`notes/<章節>/*.md` 或其他目錄內容當成原始資料重新整理。
+9. 每篇 atomic note 必須保留可追溯來源資訊。
+10. 每篇 atomic note 只保留一個主要主題，避免使用「補充」「其他」「雜項」這類模糊標題。
+11. Atomic note 標題請使用實際主題名稱，例如 `# <主題名稱>`；不要把「Atomic」當成標題前綴，除非原始主題本身需要。
+12. 請保留原始筆記中的重要定義、說明、注意事項、程式碼區塊、表格、圖片、附件與 callout。
+13. Atomic note 中引用同章節本地 assets 時，請將 `./assets/...` 改為 `../../origin/<章節>/assets/...`。
+14. 不要改寫 fenced code block 內的示例路徑、外部網址、錨點連結、特殊協議連結或空連結。
+15. 不要自行補充原文沒有的新技術知識，也不要把原始筆記深度重寫成正式教材。
+16. 如果確認後提案中仍有疑似跨章節、歸屬不明或語意不確定的內容，請不要強行寫入 atomic note，先回報需要人工確認。
 
 ## 回報要求
 
@@ -142,4 +194,5 @@ prompts/requests/review-atomic-content.md
 | --- | --- | --- |
 | `<origin章節路徑>` | 要處理的 `origin/` 章節目錄 | `origin/第01章_HTML簡介/` |
 | `<章節>` | 章節目錄名稱，需與 `origin/<章節>/` 和 `atomic/<章節>/` 對應 | `第01章_HTML簡介` |
+| `<inventory補充>` | 長章節 inventory 後續提問可貼上已確認的 inventory、修正後 inventory 或補充要求 | `依 inventory 全部納入；疑似跨章節項目先列入人工確認。` |
 | `<確認後的提案補充>` | 第二階段可貼上第一階段已確認的切分提案、修正後提案或補充要求 | `依第一階段提案全部產生；人工確認項目 A 併入 03-表單輸入屬性.md。` |
