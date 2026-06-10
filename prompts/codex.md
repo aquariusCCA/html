@@ -1,28 +1,39 @@
 請依照 `meta/update-rules.md` 的完整規則，幫我判斷以下更新是否需要同步其他層級。
 
 章節：
-第07章_HTML塊級元素與行內元素 至 第32章_mark標籤（共 26 章）
+第11章_段落標籤 至 第15章_水平線標籤
 
 改動檔案或資料夾：
-`origin/第07章_HTML塊級元素與行內元素/` 至 `origin/第32章_mark標籤/`
-`atomic/第07章_HTML塊級元素與行內元素/` 至 `atomic/第32章_mark標籤/`
+- `atomic/第11章_段落標籤/01-段落標籤.md`
+- `atomic/第12章_盒子標籤/01-div-span-盒子標籤.md`
+- `atomic/第13章_語意化標籤/01-語意化標籤基本概念.md`
+- `atomic/第13章_語意化標籤/02-語意化標籤的優點與注意事項.md`
+- `atomic/第13章_語意化標籤/03-div-佈局與語意化標籤佈局比較.md`
+- `atomic/第14章_換行標籤/01-br-換行標籤.md`
+- `atomic/第15章_水平線標籤/` 已完成審查，但沒有找到可直接修正的內容問題，本次沒有 atomic 檔案改動。
 
 改動摘要：
-已針對第07~32章的 `origin/<章節>/` 原始資料，使用 `prompts/_drafts/origin-to-atomic-notes-draft.md` 進行 Origin 原始筆記原子化切分，產出或更新對應 `atomic/<章節>/` atomic notes。
+已使用 `prompts/_drafts/atomic-content-review-draft.md` 審查第 11 - 15 章的 `atomic/<章節>/` atomic notes。
 
-尚未使用 `prompts/_drafts/atomic-content-review-draft.md` 審查上述 `atomic/<章節>/` 內的 atomic notes。
+第 11 - 14 章依審查結果對 atomic notes 做了最小必要內容修正：
+- 第11章：修正 `<p>` 段落間距與自動換行描述，避免把預設 margin 與視窗寬度說成絕對行為。
+- 第12章：修正 `<div>` / `<span>` 的盒子說明，補充無語意容器、預設 `display` 與可由 CSS 改變排列方式。
+- 第13章：修正 `<article>` / `<section>` 定義、語意化對 SEO 與螢幕閱讀器的說法、移動端支援描述，並補充語意化不是只把 class 名稱換成同名標籤。
+- 第14章：修正 `<br>` 強制換行與 `<p>` 段落間距描述，避免把換行規則只綁定到瀏覽器視窗右端。
+
+第15章已審查，沒有找到可直接修正的內容問題，因此沒有調整 `atomic/第15章_水平線標籤/01-水平線標籤.md`。
 
 已知最新正確來源：
-`origin/第07章_HTML塊級元素與行內元素/` 至 `origin/第32章_mark標籤/` 的原始資料；`atomic/<章節>/` 為依 origin 新切分後、尚待審查的候選成果。
+第 11 - 14 章以本次已修正的 `atomic/<章節>/` 檔案作為最新正確 atomic 來源；第15章以既有 `atomic/第15章_水平線標籤/` 檔案與審查結論作為判斷依據。`origin/<章節>/` 只作為必要時回查的原始來源，不是本次直接改動位置。
 
 希望處理方式：只判斷
 
 補充限制：
-請先判斷是否應先審查 `atomic/<章節>/`，以及是否可能影響 `notes/`、`appendix/`、`demos/`、`practice/`、`review/`、資產引用與 `meta/chapter-status.md`。
+請判斷第 11 - 14 章 atomic 內容修正是否需要同步或重新檢查 `notes/`、`appendix/`、`demos/`、`practice/`、`review/`、資產引用與 `meta/chapter-status.md`。
 
-本輪不要建立、修改、刪除或重生成任何檔案，不要執行下游同步，不要修改 `meta/chapter-status.md` 的欄位結構或狀態內容。
+請同時判斷第15章「已審查但無需修正」是否只需要狀態標記建議，而不需要下游同步或重生成。
 
 請先查證使用者指定的檔案、同章節上下游檔案、`meta/chapter-status.md` 與必要的章節 log。
 
 請只輸出 `meta/update-rules.md` 中的「判斷結論格式」。
-本輪不要建立、修改、刪除或重生成任何檔案。
+本輪不要建立、修改、刪除或重生成任何檔案，不要實際同步下游內容，也不要修改 `meta/chapter-status.md` 的欄位結構或狀態內容。
