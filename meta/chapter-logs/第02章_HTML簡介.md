@@ -5,9 +5,9 @@
 - origin整理：已完成
 - 資產命名：已完成
 - alt與連結文字：已完成
-- 目前最新正確來源：`origin/第02章_HTML簡介/`
+- 目前最新正確來源：`atomic/第02章_HTML簡介/`
 - 候選概念來源：`atomic/第02章_HTML簡介/`
-- 後續流程：atomic 內容審查尚未開始
+- 後續流程：atomic 內容審查已完成，下一步生成 `notes/第02章_HTML簡介/`
 
 ## 已執行流程
 
@@ -19,8 +19,10 @@
 - 2026-06-08：已完成 `atomic/第02章_HTML簡介/` 切分與產生，共 9 個候選原子筆記。
 - 2026-06-08：使用者確認本章 atomic 已完整覆蓋 origin，且沒有遺漏、錯分或重複概念；atomic 中引用的圖片與來源路徑全部有效。
 - 2026-06-08：本章僅完成 atomic 切分與產生，atomic 內容審查尚未開始。
+- 2026-06-12：已依 `prompts/_drafts/atomic-content-review-draft.md` 完成 `atomic/第02章_HTML簡介/` 內容審查，並完成必要 atomic 內容修正。
+- 2026-06-12：依 `meta/update-rules.md` 判斷，最新正確來源為 `atomic/第02章_HTML簡介/`；後續應先生成 `notes/第02章_HTML簡介/` 並完成 notes 內容檢查，再判斷 `appendix/`、`demos/`、`practice/`、`review/` 是否需要生成或同步。
 
 ## 待確認與下一步
 
-- 進行 `atomic/第02章_HTML簡介/` 內容審查。
-- atomic 內容審查完成前，不進入正式 `notes/` 與下游流程。
+- 生成 `notes/第02章_HTML簡介/`。
+- 完成 `notes/第02章_HTML簡介/` 內容檢查後，再判斷 `appendix/`、`demos/`、`practice/`、`review/` 的生成或同步範圍。

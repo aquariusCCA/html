@@ -2,7 +2,7 @@
 
 > 來源：origin/第03章_兼容性問題/01-兼容性問題.md / # 2. 使用 html5shiv 讓低版本瀏覽器認識 H5 的語意化標籤
 
-html5shiv 是一段讓 IE6、IE7、IE8 支援 HTML5 標籤的 JavaScript；但 html5shiv 對 IE6、IE7、IE8 外瀏覽器並無意義，故建議用 IE 的條件註解載入 html5shiv。
+html5shiv 是一段讓 IE6、IE7、IE8 能辨識並套用樣式到部分 HTML5 新元素的 JavaScript；它不代表完整支援 HTML5。html5shiv 對 IE6、IE7、IE8 以外的瀏覽器通常沒有必要，故建議用 IE 的條件註解載入 html5shiv。
 
 ## IE Conditional Comment 條件註解
 
@@ -24,8 +24,8 @@ html5shiv 是一段讓 IE6、IE7、IE8 支援 HTML5 標籤的 JavaScript；但 h
 
 ```html
 <!--[if IE 8]>僅支持IE8可見<![endif]-->
-<!--[if gt IE 8]>僅 IE8 以上可見<![endif]-->
-<!--[if lt IE 8]>僅 IE8 以下可見<![endif]-->
+<!--[if gt IE 8]>高於 IE8 的 IE 可見<![endif]-->
+<!--[if lt IE 8]>低於 IE8 的 IE 可見<![endif]-->
 <!--[if gte IE 8]>IE8 以上可見<![endif]-->
 <!--[if lte IE 8]>IE8 及以下可見<![endif]-->
 <!--[if !IE 8]>非 IE8 的 IE 可見<![endif]-->

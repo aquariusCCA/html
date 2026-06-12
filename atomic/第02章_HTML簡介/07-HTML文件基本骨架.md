@@ -10,8 +10,11 @@
 
 ![HTML 文件骨架程式碼示例](../../origin/第02章_HTML簡介/assets/images/html-skeleton-img-001-8bc9f3.jpg)
 
+> 若示範完整 HTML5 文件，開頭應包含 `<!DOCTYPE html>`；此圖主要示意 `html`、`head`、`title`、`body` 等骨架標籤。
+
 ![HTML 骨架標籤說明表格](../../origin/第02章_HTML簡介/assets/images/html-skeleton-img-002-26bafc.jpg)
 
 - HTML 頁面也稱為 HTML 文檔。
-    - HTML 文檔的後綴名必須是 `.html` 或 `.htm`。
+    - 常見 HTML 文件副檔名是 `.html` 或 `.htm`。
+    - 在伺服器環境中，瀏覽器主要依回應類型（如 `text/html`）來判斷如何處理文件。
     - 瀏覽器的作用是讀取 HTML 文檔，並以網頁的形式顯示出它們。

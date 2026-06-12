@@ -16,6 +16,8 @@ draggable 屬性規定元素是否可拖動。和 JS 結合使用可以展示更
 
 ![draggable 屬性值與拖動狀態對照表](../../origin/第05章_全局屬性/assets/images/draggable-attribute-img-001-1637f4.png)
 
+`draggable` 明確設定時應使用 `true` 或 `false`。`auto` 是未設定或無效值時的預設行為，代表由瀏覽器決定是否可拖動。
+
 ```html
 <!DOCTYPE html>
 <html lang="en">

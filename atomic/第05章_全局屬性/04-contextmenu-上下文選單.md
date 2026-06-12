@@ -2,25 +2,26 @@
 
 > 來源：origin/第05章_全局屬性/04-contextmenu 属性.md / 全文
 
-> contextmenu 屬性規定了元素的上下文菜單。當用戶右擊元素時將顯示上下文菜單。contextmenu 屬性的值是需要打開的 `<menu>` 元素的 id。
+> contextmenu 屬性曾用於指定元素的上下文菜單，但此屬性已過時，現代 HTML 不應再依賴它建立自訂右鍵選單。若需要自訂上下文選單，應使用 JavaScript 監聽 `contextmenu` 事件處理。
 
 ```html
 <body>
-  <!-- 定义一个上下文菜单 -->
-  <menu type="context" id="myContextMenu">
-    <menuitem label="Item 1" onclick="alert('Clicked Item 1')"></menuitem>
-    <menuitem label="Item 2" onclick="alert('Clicked Item 2')"></menuitem>
-    <menuitem label="Item 3" onclick="alert('Clicked Item 3')"></menuitem>
-  </menu>
+  <p id="target">右键单击此文本。</p>
 
-  <!-- 使用 contextmenu 属性关联上下文菜单 -->
-  <p contextmenu="myContextMenu">右键单击此文本显示上下文菜单。</p>
+  <script>
+    const target = document.getElementById('target');
+
+    target.addEventListener('contextmenu', function (event) {
+      event.preventDefault();
+      alert('顯示自訂上下文選單');
+    });
+  </script>
 </body>
 ```
 
 <aside>
 ⚠️
 
-**目前的主流瀏覽器都不支持該屬性，只有火狐瀏覽器支持。**
+**`contextmenu` 屬性與 `<menuitem>` 元素屬於過時用法，主流瀏覽器不應依賴。**
 
 </aside>

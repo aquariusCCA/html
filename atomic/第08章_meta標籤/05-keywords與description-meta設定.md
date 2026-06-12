@@ -2,7 +2,7 @@
 
 > 來源：origin/第08章_meta標籤/01-meta標籤.md / Notes：關鍵字和描述訊息
 
-`keywords` 與 `description` 可用來設定網頁的關鍵字和描述訊息。
+`keywords` 可用來提供網頁關鍵字 metadata，`description` 可用來提供頁面摘要；現代搜尋引擎不一定採用 `keywords` 作為排名依據，也不保證一定顯示 `description`。
 
 ```html
 <!-- 可以解讀為 "你要描述（meta）的內容名稱（name），內容（content）是什麼"。 -->
@@ -12,7 +12,7 @@
 
 ![keywords 與 description meta 範例](../../origin/第08章_meta標籤/assets/images/meta-tags-img-002-d16533.png)
 
-**页面描述也就是搜索引擎显示的简介词语，**如下：
+**頁面描述可能作為搜尋結果摘要的來源之一，**如下：
 
 ![搜尋結果中的網頁描述預覽](../../origin/第08章_meta標籤/assets/images/meta-tags-img-003-7e6d0e.png)
 

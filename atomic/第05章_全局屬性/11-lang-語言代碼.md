@@ -12,6 +12,6 @@
 
 ```html
 <body>
-  <p lang="en">这是一个段落。</p>
+  <p lang="zh-CN">这是一个段落。</p>
 </body>
 ```

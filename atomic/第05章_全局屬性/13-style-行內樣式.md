@@ -2,7 +2,7 @@
 
 > 來源：origin/第05章_全局屬性/13-style 属性.md / 全文
 
-> style 屬性規定元素的行內樣式（inline style）。style 屬性將覆蓋任何全局的樣式設定，例如在 `<style>` 標籤或在外部樣式表中規定的樣式。
+> style 屬性規定元素的行內樣式（inline style）。行內樣式通常比外部樣式表或 `<style>` 標籤中的一般規則有更高優先權，但仍會受 CSS cascade 與 `!important` 影響。
 
 ```html
 <body>
