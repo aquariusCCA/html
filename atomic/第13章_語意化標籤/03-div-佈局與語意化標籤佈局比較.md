@@ -28,7 +28,10 @@
 <body>
   <div class="header">頭部標籤</div>
   <div class="nav">導航欄標籤</div>
-  <div class="section">某個區域</div>
+  <div class="section">
+    <h2>最新消息</h2>
+    <p>這是一段與最新消息相關的內容。</p>
+  </div>
 </body>
 ```
 
@@ -54,6 +57,9 @@ section {
 <body>
   <header>頭部標籤</header>
   <nav>導航欄標籤</nav>
-  <section>某個區域</section>
+  <section>
+    <h2>最新消息</h2>
+    <p>這是一段與最新消息相關的內容。</p>
+  </section>
 </body>
 ```
