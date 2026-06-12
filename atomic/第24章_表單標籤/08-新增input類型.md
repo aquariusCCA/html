@@ -6,8 +6,10 @@
 
 ![新增 input 類型對照表](../../origin/第24章_表單標籤/assets/images/form-controls-img-003-b918e4.png)
 
+注意：上圖中的 `type="data"` 應為 `type="date"`。
+
 ```html
-<!-- 驗證的時候必須添加 form 表單域。 -->
+<!-- 若要示範瀏覽器在提交時的原生驗證，通常會放在 form 表單域中。 -->
 <form action="">
   <ul>
     <li>郵箱: <input type="email"></li>
@@ -18,7 +20,7 @@
     <li>手機號碼: <input type="tel"></li>
     <li>搜索: <input type="search"></li>
     <li>顏色: <input type="color"></li>
-    <!-- 當我們點擊提交按鈕就可以驗證表單了 -->
+    <!-- 點擊提交按鈕時，瀏覽器會依各 input type 與屬性觸發對應的原生驗證 -->
     <li><input type="submit" value="提交"></li>
   </ul>
 </form>

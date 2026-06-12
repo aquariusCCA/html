@@ -30,9 +30,11 @@
 <a href="javascript:alert('Hello, World!');">點擊我</a>
 ```
 
+此寫法僅作為了解 `javascript:` URL 的示例；正式頁面中通常避免使用，建議改用 `button` 搭配事件監聽。
+
 ## 喚起指定應用
 
-> 通過 a 標籤可以喚起設備應用程序。
+> 在裝置、瀏覽器與對應應用支援時，a 標籤可透過 `tel:`、`mailto:` 或特定 app scheme 嘗試喚起應用。
 
 ```html
 <!-- 喚起設備撥號 --><a href="tel:10010">電話聯繫</a>

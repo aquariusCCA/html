@@ -20,8 +20,8 @@
 ## article 和 section
 
 - `article` 裡面可以有多個 `section`。
-- 一塊內容相對獨立、完整，應該使用 `article`；如果想將一塊內容分成幾段，應該使用 `section`。
-  - `section` 強調的是分段或分塊。
+- 一塊內容相對獨立、完整，應該使用 `article`；如果是在同一主題下劃分有明確主題的小節，適合使用 `section`，通常應包含標題。
+  - `section` 強調的是有主題的分段或分塊；如果只是為了樣式或排版包裹，應使用 `div`。
 - `article` 比 `section` 更強調獨立性，一塊內容如果比較獨立、比較完整，應該使用 `article` 元素。
 
 ```html
@@ -53,21 +53,23 @@
     </nav>
   </aside>
   <!-- 文章內容 -->
-  <article>
-    <h2>如何一夜暴富</h2>
-    <section>
-      <h3>第一種方式: 通過作夢</h3>
-      <p>你要這麼作夢: xxxxxxxxxxxxxx</p>
-    </section>
-    <section>
-      <h3>第二種方式: 通過買彩票</h3>
-      <p>你要這麼買彩票: xxxxxxxxxxxx</p>
-    </section>
-    <section>
-      <h3>第三種方式: 通過學習前端</h3>
-      <p>你要來到尚硅谷前端: xxxxxxxxxxxxx</p>
-    </section>
-  </article>
+  <main>
+    <article>
+      <h2>如何一夜暴富</h2>
+      <section>
+        <h3>第一種方式: 通過作夢</h3>
+        <p>你要這麼作夢: xxxxxxxxxxxxxx</p>
+      </section>
+      <section>
+        <h3>第二種方式: 通過買彩票</h3>
+        <p>你要這麼買彩票: xxxxxxxxxxxx</p>
+      </section>
+      <section>
+        <h3>第三種方式: 通過學習前端</h3>
+        <p>你要來到尚硅谷前端: xxxxxxxxxxxxx</p>
+      </section>
+    </article>
+  </main>
 </div>
 <hr>
 

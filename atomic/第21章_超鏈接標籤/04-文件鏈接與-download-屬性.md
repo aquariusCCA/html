@@ -14,7 +14,7 @@
 <a href="./assets/files/hyperlink-tags-file-004-28aaa1.zip">內部資源</a>
 <hr>
 
-<!-- 強制觸發下載 -->
+<!-- 提示瀏覽器下載 -->
 <a href="./assets/pdfs/hyperlink-tags-pdf-001-78621d.pdf" download="一份PDF檔.pdf">下載 PDF 檔案</a>
 ```
 
@@ -24,5 +24,5 @@
 **注意點 :**
 
 - 若瀏覽器無法打開文件，則會引導用戶下載。
-- 若想強制觸發下載，請使用 download 屬性，屬性值即為下載文件的名稱。
+- 若想提示瀏覽器下載檔案，可使用 download 屬性，屬性值可作為建議下載檔名；實際行為仍可能受同源限制、HTTP 標頭與瀏覽器策略影響。
 </aside>

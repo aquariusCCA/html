@@ -12,23 +12,23 @@
 - `name`：框架的名字，可以與 `target` 屬性配合使用。
 - `width`：框架的寬度。
 - `height`：框架的高度。
-- `frameborder`：是否顯示邊框。
-  - 值只有 `0` 或 `1`。
+- `frameborder`（舊式/已廢棄）：曾用來控制是否顯示邊框，常見值為 `0` 或 `1`。
+  - 新內容應改用 CSS 的 `border` 控制 `<iframe>` 邊框。
 
 ## 使用範例
 
 ```html
 <!-- 利用 iframe 嵌入一個普通的網頁 -->
-<iframe src="https://www.bilibili.com/" width="900" height="300" frameborder="0"></iframe>
+<iframe src="https://www.bilibili.com/" width="900" height="300" style="border: 0;"></iframe>
 <hr>
 
-<!-- 利用 iframe 嵌入其他內容 -->
-<iframe src="./media/test.pdf" frameborder="1"></iframe>
+<!-- 利用 iframe 嵌入其他內容：src 為示意路徑，請替換成實際存在的 PDF 檔案路徑 -->
+<iframe src="./media/test.pdf" style="border: 1px solid currentColor;"></iframe>
 <hr>
 
 <!-- 與超鏈接的 target 屬性配合使用 -->
 <a href="https://www.bilibili.com/" target="container">點我去 B站</a>
-<iframe name="container" frameborder="0" width="900" height="300"></iframe>
+<iframe name="container" width="900" height="300" style="border: 0;"></iframe>
 <hr>
 
 <!-- 與表單的 target 屬性配合使用
@@ -39,5 +39,5 @@
     <input type="text" name="keyword">
     <input type="submit" value="搜索">
 </form>
-<iframe name="container2" frameborder="0" width="900" height="300"></iframe>
+<iframe name="container2" width="900" height="300" style="border: 0;"></iframe>
 ```
