@@ -9,7 +9,8 @@
 
 - 場景 : 在網頁中顯示圖片。
 - 單詞 image 的縮寫，意為圖像。
-- `src 是 <img> 標籤的必要屬性`，它用於指定圖像文件的路徑和文件名。
+- 在基本用法中，`src` 是 `<img>` 最常用的圖片來源屬性，用於指定圖像文件的路徑和文件名；若使用響應式圖片，也可能透過 `srcset` 提供圖片來源。
+- `alt` 用於提供圖片的替代內容；有意義的圖片應寫可替代圖片資訊的文字，裝飾圖片可寫 `alt=""`。
 - 特點 :
     - 單標籤。
     - **img** 標籤要展示對應的效果，需要藉助標籤的屬性進行設置。
@@ -42,7 +43,7 @@
 ```html
 <body>
   <h4>圖像標籤的使用:</h4>
-  <img src="./assets/images/img-tag-img-002-354aea.jpg" /><br>
+  <img src="./assets/images/img-tag-img-002-354aea.jpg" alt="示例圖片" /><br>
   <hr>
 
   <h4> alt 替換文本 圖像顯示不出來的時候用文字替換:</h4>
@@ -50,11 +51,11 @@
   <hr>
 
   <h4> title 提示文本 鼠標放到圖像上,提示的文字:</h4>
-  <img src="./assets/images/img-tag-img-002-354aea.jpg" title="我是pink老師思密達" /><br>
+  <img src="./assets/images/img-tag-img-002-354aea.jpg" alt="示例圖片" title="我是pink老師思密達" /><br>
   <hr>
 
   <h4> width、height</h4>
-  <img src="./assets/images/img-tag-img-002-354aea.jpg" width="200" height="200" /><br>
+  <img src="./assets/images/img-tag-img-002-354aea.jpg" alt="示例圖片" width="200" height="200" /><br>
   <hr>
 </body>
 ```
