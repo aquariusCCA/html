@@ -13,6 +13,8 @@ html/
   practice/
   review/
   supplements/
+  skills-src/
+  scripts/
 ```
 
 ## 目錄說明
@@ -28,6 +30,8 @@ html/
 | `practice/`    | 練習題區      | 根據 `notes/` 生成練習題、實作任務、改錯題、重構題。                                                                                                                                                                                                                                                                                                         |
 | `review/`      | 複習材料區     | 根據 `notes/` 生成重點摘要、問答題、填空題、複習卡片。                                                                                                                                                                                                                                                                                                        |
 | `supplements/` | 補充資料區     | 根據 `notes/` 延伸補充底層原理、進階觀念、相關比較與實務案例；當 notes 中某概念因教學節奏未深入說明、但值得進一步理解時，視內容需要選用生成，非每章節必經。                                                                                                                                                                                                                                                  |
+| `skills-src/`  | Skill 原始碼區 | 存放各 skill 的原始碼（每個子目錄對應一個 skill），由 `scripts/build-skills.mjs` 建置至各 AI 工具（Claude Code、Codex 等）的 skill 目錄，供工作流各階段呼叫。                                                                                                                                                                                                                                      |
+| `scripts/`     | 維護腳本區     | 存放專案維護用的 Node.js 腳本，目前包含 `build-skills.mjs`（將 `skills-src/` 中的 skill 原始碼建置至各 AI 工具的 skill 目錄）。                                                                                                                                                                                                                                                              |
 
 ## 資料流
 
@@ -128,6 +132,21 @@ demos/
 
 * `notes/<章節>/<筆記名>.md` 對應一個 `demos/<章節>/<筆記名>/` 資料夾
 * 資料夾內存放可獨立開啟執行的 HTML 教學 demo，可包含對應的 CSS、JS 或其他資源
+
+### 工具目錄
+
+```text
+skills-src/
+  <skill-name>/
+    ...
+
+scripts/
+  build-skills.mjs
+  ...
+```
+
+* `skills-src/` 每個子目錄對應一個 skill，由 `scripts/build-skills.mjs` 建置至各 AI 工具（Claude Code、Codex 等）的 skill 目錄；新增或修改 skill 原始碼後，執行 `node scripts/build-skills.mjs` 重新建置
+* `scripts/` 存放專案維護腳本，不屬於 HTML 知識內容，不參與 `origin → supplements` 的資料流
 
 ## 章節命名規則
 
