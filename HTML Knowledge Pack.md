@@ -22,7 +22,7 @@ html/
 | 目錄             | 作用        | 用途                                                                                                                                                                                                                                                                                                                                      |
 | -------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `meta/`        | 專案管理資料區   | 存放章節處理狀態與 repo 維護流程紀錄。                                                                                                                                                                                                                                                                                                                  |
-| `origin/`      | 原始資料區     | 存放章節原始資料文件（`*.md`）與 `assets/` 內的原始輔助資源（PDF、Excel、圖片、文件、影音等）。`*.md` 內容不直接修改、覆蓋或刪除，作為可追溯的來源；唯一例外是「資產命名」（見 [`.claude/skills/asset-standardization/SKILL.md`](.claude/skills/asset-standardization/SKILL.md)）與「alt 與連結文字整理」（見 [`.claude/skills/asset-alt-and-link-text/SKILL.md`](.claude/skills/asset-alt-and-link-text/SKILL.md)）階段的就地更新。 |
+| `origin/`      | 原始資料區     | 存放章節原始資料文件（`*.md`）與 `assets/` 內的原始輔助資源（PDF、Excel、圖片、文件、影音等）。`*.md` 內容不直接修改、覆蓋或刪除，作為可追溯的來源；唯一例外是「資產命名」（見 [`skills-src/asset-standardization/instructions.md`](skills-src/asset-standardization/instructions.md)）與「alt 與連結文字整理」（見 [`skills-src/asset-alt-and-link-text/instructions.md`](skills-src/asset-alt-and-link-text/instructions.md)）階段的就地更新。 |
 | `atomic/`      | 原子化資料區    | 根據 `origin/` 中的原始資料，透過人工或 AI 重新切分、合併、修正章節後產生的候選原子資料。此區資料尚不等於正式筆記，主要用來解決原始筆記過長、過短、章節切分不合理、內容混雜等問題。                                                                                                                                                                                                                                       |
 | `notes/`       | 正式筆記區     | 根據 `atomic/` 生成正式教學筆記，是整個筆記包的主幹知識。                                                                                                                                                                                                                                                                                                     |
 | `appendix/`    | 附錄資料區     | 根據 `notes/` 生成查表型資料，例如名詞表、API 表、指令表、設定檔範例。                                                                                                                                                                                                                                                                                              |
@@ -58,10 +58,10 @@ appendix/  demos/  practice/  review/
 
 說明：
 
-* 「資產命名」「alt 與連結文字整理」是 `origin/` 唯讀規則的例外，須在 atomic 切分提案前完成（或標記為不適用）：「資產命名」（見 [`.claude/skills/asset-standardization/SKILL.md`](.claude/skills/asset-standardization/SKILL.md)）就地重新命名 `origin/<章節>/assets/` 實體資產檔案並同步更新 `origin/<章節>/*.md` 的本地資產引用路徑；「alt 與連結文字整理」（見 [`.claude/skills/asset-alt-and-link-text/SKILL.md`](.claude/skills/asset-alt-and-link-text/SKILL.md)）就地更新 `origin/<章節>/*.md` 中的 alt 文字與連結顯示文字，不涉及資產改名
-* 「atomic 切分提案與產生」對應 `meta/chapter-status.md` 的「atomic 切分提案」「atomic 產生」欄位（見 [`.claude/skills/atomic-note-splitting/SKILL.md`](.claude/skills/atomic-note-splitting/SKILL.md)），是 `origin → atomic` 的生成過程，產出直接寫入 `atomic/`，不會再修改 `origin/`
-* `atomic review` 對應 `meta/chapter-status.md` 的「atomic 內容審查」欄位（見 [`.claude/skills/atomic-content-review/SKILL.md`](.claude/skills/atomic-content-review/SKILL.md)），審查 `atomic/<章節>/*.md` 的技術正確性、邏輯可靠性、主題歸屬與教學可用性，分為審查報告與確認後修正兩階段，且只更新 `atomic/`、不修改 `origin/`
-* `notes/` 生成對應 `meta/chapter-status.md` 的「notes 生成」欄位（見 [`.claude/skills/notes-generation/SKILL.md`](.claude/skills/notes-generation/SKILL.md)），是 `atomic → notes` 的生成過程，須在 `atomic review` 通過後進行，分為映射與結構提案、確認後產生正式教學筆記兩階段，且只更新 `notes/`、不修改 `origin/` 或 `atomic/`
+* 「資產命名」「alt 與連結文字整理」是 `origin/` 唯讀規則的例外，須在 atomic 切分提案前完成（或標記為不適用）：「資產命名」（見 [`skills-src/asset-standardization/instructions.md`](skills-src/asset-standardization/instructions.md)）就地重新命名 `origin/<章節>/assets/` 實體資產檔案並同步更新 `origin/<章節>/*.md` 的本地資產引用路徑；「alt 與連結文字整理」（見 [`skills-src/asset-alt-and-link-text/instructions.md`](skills-src/asset-alt-and-link-text/instructions.md)）就地更新 `origin/<章節>/*.md` 中的 alt 文字與連結顯示文字，不涉及資產改名
+* 「atomic 切分提案與產生」對應 `meta/chapter-status.md` 的「atomic 切分提案」「atomic 產生」欄位（見 [`skills-src/atomic-note-splitting/instructions.md`](skills-src/atomic-note-splitting/instructions.md)），是 `origin → atomic` 的生成過程，產出直接寫入 `atomic/`，不會再修改 `origin/`
+* `atomic review` 對應 `meta/chapter-status.md` 的「atomic 內容審查」欄位（見 [`skills-src/atomic-content-review/instructions.md`](skills-src/atomic-content-review/instructions.md)），審查 `atomic/<章節>/*.md` 的技術正確性、邏輯可靠性、主題歸屬與教學可用性，分為審查報告與確認後修正兩階段，且只更新 `atomic/`、不修改 `origin/`
+* `notes/` 生成對應 `meta/chapter-status.md` 的「notes 生成」欄位（見 [`skills-src/notes-generation/instructions.md`](skills-src/notes-generation/instructions.md)），是 `atomic → notes` 的生成過程，須在 `atomic review` 通過後進行，分為映射與結構提案、確認後產生正式教學筆記兩階段，且只更新 `notes/`、不修改 `origin/` 或 `atomic/`
 * `notes content review` 對應 `meta/chapter-status.md` 的「notes 完成檢查」欄位，審查 `notes/<章節>/*.md` 是否符合正式教學筆記要求，審查通過後才能進入 `appendix/demos/practice/review/supplements` 生成
 * `atomic review`、`notes content review` 為審查關卡，審查通過後才能進入下一層生成
 * `appendix/`、`demos/`、`practice/`、`review/` 皆以 `notes/` 為唯一來源生成，為每章節標準輸出
@@ -84,7 +84,7 @@ origin/
     *.md
 ```
 
-* `origin/` 為唯讀原始資料，不可直接修改、覆蓋或刪除；唯一例外是「資產命名」（見 [`.claude/skills/asset-standardization/SKILL.md`](.claude/skills/asset-standardization/SKILL.md)）可就地更新 `assets/` 實體檔名與 `*.md` 的本地資產引用路徑，以及「alt 與連結文字整理」（見 [`.claude/skills/asset-alt-and-link-text/SKILL.md`](.claude/skills/asset-alt-and-link-text/SKILL.md)）可就地更新 `*.md` 中的 alt 文字與連結顯示文字
+* `origin/` 為唯讀原始資料，不可直接修改、覆蓋或刪除；唯一例外是「資產命名」（見 [`skills-src/asset-standardization/instructions.md`](skills-src/asset-standardization/instructions.md)）可就地更新 `assets/` 實體檔名與 `*.md` 的本地資產引用路徑，以及「alt 與連結文字整理」（見 [`skills-src/asset-alt-and-link-text/instructions.md`](skills-src/asset-alt-and-link-text/instructions.md)）可就地更新 `*.md` 中的 alt 文字與連結顯示文字
 * `assets/` 依資源類型分類存放
 
 ### atomic/
@@ -175,7 +175,7 @@ scripts/
 
 * `origin/` 是不可直接修改、覆蓋或刪除的原始資料來源；唯一例外是「資產命名」「alt 與連結文字整理」階段的就地更新（見資料流說明）
 * `meta/` 是專案管理資料的集中位置，不作為 HTML 知識來源
-* 更新判斷規則集中於 `.claude/skills/update-judgment/SKILL.md`，不屬於 `meta/`
+* 更新判斷規則集中於 `skills-src/update-judgment/instructions.md`，不屬於 `meta/`
 * `atomic/` 是整理原始資料的中介層，不等於正式筆記
 * `notes/` 是根據 `atomic/` 生成的主幹知識
 * `appendix/`、`demos/`、`practice/`、`review/` 是根據 `notes/` 生成的不同用途內容，為每章節標準輸出
