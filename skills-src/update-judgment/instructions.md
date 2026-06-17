@@ -123,7 +123,7 @@ appendix/  demos/  practice/  review/
 | `demos/` | 可執行教學範例 | 否，應延伸 notes |
 | `practice/` | 練習題、實作任務與答案來源 | 否，應延伸 notes |
 | `review/` | 重點摘要、問答題、填空題與複習卡片 | 否，應延伸 notes |
-| `supplements/` | 補充資料 | 視內容而定；若成為正式知識，應回補 notes |
+| `supplements/` | 補充資料 | 否，應延伸 notes；若發現正式知識缺口，應回到正式筆記流程檢查 |
 | `meta/chapter-status.md` | 章節狀態總覽 | 否 |
 | `meta/chapter-logs/<章節名稱>.md` | 章節詳細流程歷史 | 否 |
 
@@ -213,7 +213,7 @@ notes 改了 → 檢查 appendix / demos / practice / review 是否過期
 | `demos/` | 是否超出 notes 已教範圍，或是否需要回補 notes |
 | `practice/` | 題目、答案、提示與來源是否仍對應 notes |
 | `review/` | 重點摘要、問答題、填空題、複習卡片與解析是否仍對應 notes |
-| `supplements/` | 是否已變成正式知識；若是，應回補 `notes/`（非每章節必經，視內容而定） |
+| `supplements/` | 是否超出 notes 已教範圍；若是，應回到 `origin/`、`atomic/`、`notes/` 的正式流程判斷，不直接由 supplements 回補 |
 | `meta/chapter-status.md` | 是否只更新既有欄位與狀態值，不改變欄位結構 |
 
 ## 資產異動判斷
