@@ -5,8 +5,9 @@
 - origin 整理：已完成
 - 資產命名：已完成
 - alt 與連結文字：已完成
-- 目前最新正確來源：`atomic/080-meta標籤/`
-- 後續流程：atomic 內容審查已完成，下一步生成 `notes/080-meta標籤/`
+- notes 生成：已完成
+- 目前最新正確來源：`notes/080-meta標籤/`（待 notes 完成檢查）
+- 後續流程：notes 已生成，下一步完成 notes 內容檢查；通過後再生成或同步下游。
 
 ## 已執行流程
 
@@ -19,7 +20,9 @@
 - 2026-06-12：已依 `.claude/skills/atomic-content-review/SKILL.md` 完成 `atomic/080-meta標籤/` 內容審查，並完成必要 atomic 內容修正。
 - 2026-06-12：依 `.claude/skills/update-judgment/SKILL.md` 判斷，最新正確來源為 `atomic/080-meta標籤/`；後續應先生成 `notes/080-meta標籤/` 並完成 notes 內容檢查，再依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
 
-## 待確認與下一步
+- 2026-06-17：已依 `.codex/skills/notes-generation/SKILL.md` 由已審查的 `atomic/080-meta標籤/` 生成正式教學筆記 `notes/080-meta標籤/`；尚未執行 notes 完成檢查。
 
-- 生成 `notes/080-meta標籤/`。
-- 完成 `notes/080-meta標籤/` 內容檢查後，依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
+## 待確認與下一步
+- 完成 `notes/080-meta標籤/` 內容檢查。
+- notes 完成檢查通過後，再依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
+
