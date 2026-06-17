@@ -1,9 +1,5 @@
-章節：**notes\010-寫在前面** ~ **notes\320-mark標籤**
+現在有了 `skills-src\notes-generation\instructions.md` 用於製作 **正式教學筆記**。
 
-改動檔案或資料夾：**notes\010-寫在前面** ~ **notes\320-mark標籤**
+現在我需要製作一個 **notes content review** 用於審查 **正式教學筆記**。
 
-改動摘要：使用 `.codex\skills\notes-generation\SKILL.md` 生成 **正式教學筆記**
-
-希望處理方式：只判斷
-
-補充限制：不要實際改檔。
+你建議怎麼設計這個 SKILL ?
