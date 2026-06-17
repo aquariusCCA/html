@@ -1,4 +1,11 @@
-章節名稱：<章節>
-專案根目錄：預設為目前工作目錄
-執行階段：預設為第一階段「notes 審查報告」
-是否允許寫入檔案：預設不允許；只有在使用者明確確認問題 ID 後，才允許在第二階段更新 notes/<章節>/*.md
+請使用 `.codex/skills/update-judgment/SKILL.md` 更新判斷 HTML 筆記包
+ 
+章節：`notes/010-寫在前面`、`notes/020-HTML簡介/*.md`
+
+改動檔案或資料夾：`notes/010-寫在前面`、`notes/020-HTML簡介/*.md`
+
+改動摘要：使用 `.codex/skills/notes-content-review/SKILL.md` 對 **正式教學筆記內容進行審查**
+
+希望處理方式：只判斷
+
+補充限制：不要實際改檔。
