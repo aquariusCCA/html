@@ -69,28 +69,19 @@ source_atomic:
 
 ```html
 <audio controls>
-  <source src="../../origin/190-音頻標籤/assets/files/html-audio-tag-file-001-1fa553.mp3" type="audio/mpeg">
-  您的瀏覽器不支持 audio 標籤。
-</audio>
-```
-
-這段程式碼可以拆成三個部分：
-
-- `<audio controls>`：建立音訊播放器，並顯示控制介面。
-- `<source>`：提供一個可播放來源。
-- `src`：指定音訊檔案位置。
-- `type="audio/mpeg"`：告訴瀏覽器這個來源的 MIME type，方便瀏覽器判斷是否支援。
-- `您的瀏覽器不支持 audio 標籤。`：當瀏覽器完全不支援 `<audio>` 時，才會顯示這段 fallback 文字。
-
-如果有多種格式，可以這樣排列：
-
-```html
-<audio controls>
   <source src="audio.mp3" type="audio/mpeg">
   <source src="audio.ogg" type="audio/ogg">
   您的瀏覽器不支持 audio 標籤。
 </audio>
 ```
+
+這段程式碼可以拆成幾個部分：
+
+- `<audio controls>`：建立音訊播放器，並顯示控制介面。
+- `<source>`：提供一個可播放來源；瀏覽器會依序檢查。
+- `src`：指定音訊檔案位置。
+- `type`：告訴瀏覽器這個來源的 MIME type，方便瀏覽器判斷是否支援。
+- `您的瀏覽器不支持 audio 標籤。`：當瀏覽器完全不支援 `<audio>` 時，才會顯示這段 fallback 文字。
 
 瀏覽器會從上往下選擇可播放的來源。通常會把最希望使用、支援度較好的格式放在前面。
 

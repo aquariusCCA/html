@@ -55,6 +55,24 @@ source_atomic:
 
 它們都使用 `<input>`，但因為 `type` 不同，呈現的控件與行為也不同。
 
+## 文件上傳欄位
+
+如果表單需要讓使用者選擇本機檔案，例如上傳頭像、附件或照片，可以使用 `type="file"`。
+
+```html
+<label for="avatar">上傳頭像</label>
+<input id="avatar" type="file" name="avatar">
+```
+
+如果允許一次選擇多個檔案，可以加上 `multiple`：
+
+```html
+<label for="photos">上傳多張生活照</label>
+<input id="photos" type="file" name="photos" multiple>
+```
+
+文件上傳欄位只負責讓使用者選擇檔案。實際檔案如何接收、儲存與驗證，仍需要後端配合處理。
+
 ## 常用屬性
 
 ![input 標籤常用屬性表](../../origin/240-表單標籤/assets/images/form-controls-img-002-417f2d.png)

@@ -9,7 +9,7 @@
 - notes 完成檢查：已完成
 - 目前最新正確來源：`notes/020-HTML簡介/`（已通過 notes 完成檢查）
 - 候選概念來源：`atomic/020-HTML簡介/`
-- 後續流程：notes 已通過內容檢查，下一步生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
+- 後續流程：notes 已通過內容檢查，下一步完成 notes 索引 metadata 標記；完成後再生成或同步下游。
 
 ## 已執行流程
 
@@ -28,4 +28,5 @@
 - 2026-06-17：已依 `.codex/skills/notes-content-review/SKILL.md` 完成 `notes/020-HTML簡介/` 內容檢查，未發現需修改項目；可進入下游生成流程。
 
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
+- 完成 notes 索引 metadata 標記。
+- notes 索引 metadata 完成後，再依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。

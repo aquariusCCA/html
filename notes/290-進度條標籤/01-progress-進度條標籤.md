@@ -39,6 +39,8 @@ source_atomic:
 
 這段程式碼會建立一個進度條，表示目前進度是 `50`，目標值是 `100`，也就是完成了一半。
 
+正式介面中，進度條應該有清楚的文字說明。可以使用附近文字、`<label>` 或 ARIA 標籤，讓使用者知道這個進度條代表哪一項任務。
+
 ## 範例拆解
 
 ```html
@@ -59,6 +61,8 @@ source_atomic:
 
 `max` 用來指定進度完成時的目標值。
 
+`max` 必須是大於 `0` 的數值；如果沒有指定 `max`，瀏覽器會把最大值視為 `1`。
+
 ```html
 <progress value="3" max="10"></progress>
 ```
@@ -68,6 +72,8 @@ source_atomic:
 ### value
 
 `value` 用來指定目前進度。
+
+`value` 必須是有效數值，並且不能小於 `0`。如果有設定 `max`，`value` 不應大於 `max`；如果沒有設定 `max`，`value` 應介於 `0` 到 `1` 之間。
 
 ```html
 <progress value="75" max="100"></progress>
