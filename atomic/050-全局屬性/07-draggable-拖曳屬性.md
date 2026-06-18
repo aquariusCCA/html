@@ -54,10 +54,14 @@ draggable 屬性規定元素是否可拖動。和 JS 結合使用可以展示更
 <script>
   Bdiv.ondragenter = function (e) {
     e.preventDefault();
-    this.appendChild(Adiv);
   }
   Bdiv.ondragover = function (e) {
     e.preventDefault();
+  }
+
+  Bdiv.ondrop = function (e) {
+    e.preventDefault();
+    this.appendChild(Adiv);
   }
 
   Adiv.ondragstart = function (e) {

@@ -110,7 +110,7 @@ source_atomic:
 `<source>` 上常見的兩個屬性是：
 
 - `src`：影片檔案的位置。
-- `type`：影片的 MIME 類型，例如 `video/mp4`、`video/webm`，可幫助瀏覽器判斷是否支援。
+- `type`：影片的 MIME 類型，例如 `video/mp4`、`video/webm`、`video/ogg`，可幫助瀏覽器判斷是否支援。
 
 ## src 與 source 的選擇
 

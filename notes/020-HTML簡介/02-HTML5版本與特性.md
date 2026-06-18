@@ -23,13 +23,13 @@ source_atomic:
 
 ## 一句話理解
 
-**HTML5 是目前主流的 HTML 標準，相較於舊版本新增了大量語意化標籤、表單功能與多媒體支援，讓網頁開發更貼近現代裝置與使用情境。**
+**HTML5 是現代 HTML 的重要版本與常用教學稱呼；現行 HTML 規格持續以 HTML Living Standard 演進，而本課程會以 HTML5 作為現代 HTML 寫法的入門基礎。**
 
 ## 概念拆解
 
 ### HTML5 的定位
 
-HTML5 是新一代的 HTML 標準，於 2014 年 10 月由萬維網聯盟（W3C）完成標準制定。它的出現，主要是為了補足之前 HTML 版本的不足，新增了：
+HTML5 是現代 HTML 發展中的重要版本，於 2014 年 10 月由萬維網聯盟（W3C）完成 Recommendation。後續 HTML 規格仍持續演進，現在實務上通常以 HTML Living Standard 作為現行規格來源；這裡沿用「HTML5」作為學習現代 HTML 寫法的入門稱呼。HTML5 的出現，主要是為了補足之前 HTML 版本的不足，新增了：
 
 - 新的標籤
 - 新的表單類型
@@ -97,7 +97,7 @@ HTML5 新增的特性可以大致分成幾個方向：
 
 ## 重點整理
 
-- HTML5 是 2014 年由 W3C 完成標準制定的新一代 HTML 標準，新增了大量標籤、表單與屬性。
+- HTML5 是現代 HTML 的重要版本，2014 年由 W3C 完成 Recommendation；現行 HTML 規格仍以 HTML Living Standard 持續演進。
 - 新增特性方向包含：語義、本地存儲、設備兼容、連接、多媒體、3D/圖形特效、性能與集成、CSS3。
 - 狹義 HTML5 指標準本身；廣義 HTML5 指 HTML5 + CSS3 + JavaScript（前端整體）。
 - 兼容性要依「功能 × 瀏覽器版本」判斷，舊瀏覽器需求要逐項查詢並準備 fallback。

@@ -72,6 +72,14 @@ D:\day01\images\1.jpg
 https://www.itcast.cn/2018czgw/images/logo.gif
 ```
 
+實務上也常見以 `/` 開頭的網站根目錄路徑，例如：
+
+```text
+/images/logo.png
+```
+
+這種寫法不是從目前 HTML 檔案所在資料夾出發，而是從網站根目錄出發。它通常需要在網站伺服器環境中使用；如果只是直接用檔案總管打開本機 HTML，可能不符合預期。
+
 如果把它放進圖片標籤中，可能會像這樣：
 
 ```html

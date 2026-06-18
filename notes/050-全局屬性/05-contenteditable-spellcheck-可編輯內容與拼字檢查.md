@@ -42,6 +42,9 @@ source_atomic:
 
 - `contenteditable="true"`：使用者可以直接編輯段落內容。
 - `contenteditable="false"`：使用者不能直接編輯段落內容。
+- `contenteditable="plaintext-only"`：使用者只能編輯純文字內容，不啟用富文字格式。
+
+如果沒有設定 `contenteditable`，或使用無效值，元素會依父層的可編輯狀態繼承。
 
 `contenteditable` 不只可用在 `<p>`，也可用在其他元素上。
 
@@ -76,10 +79,10 @@ source_atomic:
 ```html
 <form>
   <label for="username">使用者名稱：</label>
-  <input type="text" id="username" name="username" spellcheck="true">
+  <input type="text" id="username" name="username" spellcheck="false">
 
   <label for="message">留言：</label>
-  <textarea id="message" name="message" spellcheck="false"></textarea>
+  <textarea id="message" name="message" spellcheck="true"></textarea>
 
   <div contenteditable="true" spellcheck="true">
     這是一個支援拼字檢查的可編輯內容。
@@ -91,8 +94,8 @@ source_atomic:
 
 這段範例中：
 
-- 使用者名稱欄位啟用拼字檢查。
-- 留言欄位關閉拼字檢查。
+- 使用者名稱欄位關閉拼字檢查，避免帳號或代碼被當成自然語言檢查。
+- 留言欄位啟用拼字檢查，協助自然語言輸入。
 - 可編輯區塊同時使用 `contenteditable` 和 `spellcheck`。
 
 是否要啟用拼字檢查取決於內容類型。自然語言留言可以啟用；代碼、帳號、產品編號等內容通常不適合。

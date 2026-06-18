@@ -84,7 +84,7 @@ source_atomic:
 
 ```html
 <span>手機電量 : </span>
-<meter value="50" min="0" max="100" low="20" high="80"></meter><br>
+<meter value="50" min="0" max="100" low="20" high="80">50%</meter><br>
 ```
 
 這個範例表示手機電量目前是 `50`，整體範圍是 `0` 到 `100`。
@@ -107,7 +107,7 @@ source_atomic:
 
 ```html
 <span>手機電量 : </span>
-<meter value="70" min="0" max="100" low="20" high="80" optimum="90"></meter><br>
+<meter value="70" min="0" max="100" low="20" high="80" optimum="90">70%</meter><br>
 ```
 
 這個範例多了 `optimum="90"`，表示在這個情境中，接近 90 是比較理想的狀態。
@@ -157,14 +157,16 @@ source_atomic:
 ### 錯誤二：只給 value，卻沒有清楚範圍
 
 ```html
-<!-- 不完整 -->
+<!-- 錯誤 -->
 <meter value="50"></meter>
 ```
 
-這樣雖然可以寫，但讀者不一定知道 50 是滿分 100、滿分 5，還是其他範圍。實務上建議把 `min` 和 `max` 一起寫清楚，讓語意更完整。
+這樣不適合用來表示「50 / 100」。因為 `<meter>` 沒有指定 `min` 和 `max` 時，預設範圍是 `0` 到 `1`，`value="50"` 已經超出這個範圍，瀏覽器會把它當成最大值來處理。
+
+如果你要表示 0 到 100 之間的 50，應該把 `min` 和 `max` 一起寫清楚：
 
 ```html
-<meter value="50" min="0" max="100"></meter>
+<meter value="50" min="0" max="100">50%</meter>
 ```
 
 ### 錯誤三：沒有文字說明量表代表什麼

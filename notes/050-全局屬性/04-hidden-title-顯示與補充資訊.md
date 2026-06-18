@@ -40,6 +40,8 @@ source_atomic:
 
 `hidden` 常用在「目前不該讓使用者看到，但之後可能會顯示」的內容。
 
+除了一般的 `hidden` 或空值，HTML 也定義了 `hidden="until-found"`。這種狀態下元素一開始仍是隱藏的，但內容可以被頁內搜尋或 fragment navigation 找到；當瀏覽器要跳到該內容時，會先揭露它。這個值的瀏覽器支援仍需注意，不應作為唯一的顯示機制。
+
 例如，使用者勾選某個選項後，再用 JavaScript 移除 `hidden`：
 
 ```html
