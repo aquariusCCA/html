@@ -25,7 +25,7 @@ html/
 | `origin/`      | 原始資料區     | 存放章節原始資料文件（`*.md`）與 `assets/` 內的原始輔助資源（PDF、Excel、圖片、文件、影音等）。`*.md` 內容不直接修改、覆蓋或刪除，作為可追溯的來源；唯一例外是「資產命名」（見 [`skills-src/asset-standardization/instructions.md`](skills-src/asset-standardization/instructions.md)）與「alt 與連結文字整理」（見 [`skills-src/asset-alt-and-link-text/instructions.md`](skills-src/asset-alt-and-link-text/instructions.md)）階段的就地更新。 |
 | `atomic/`      | 原子化資料區    | 根據 `origin/` 中的原始資料，透過人工或 AI 重新切分、合併、修正章節後產生的候選原子資料。此區資料尚不等於正式筆記，主要用來解決原始筆記過長、過短、章節切分不合理、內容混雜等問題。                                                                                                                                                                                                                                       |
 | `notes/`       | 正式筆記區     | 根據 `atomic/` 生成正式教學筆記，是整個筆記包的主幹知識。                                                                                                                                                                                                                                                                                                     |
-| `appendix/`    | 附錄資料區     | 根據 `notes/` 生成查表型資料，例如名詞表、API 表、指令表、設定檔範例。                                                                                                                                                                                                                                                                                              |
+| `appendix/`    | 附錄資料區     | 根據 `notes/` 生成查表型資料，例如名詞表、API 表、指令表、設定檔範例；視內容需要選用生成，僅在該章節有足夠可表格化的查表內容時才建立，非每章節必經。                                                                                                                                                                                                                                                       |
 | `demos/`       | 示範程式區     | 根據 `notes/` 生成可執行或可參考的範例程式。                                                                                                                                                                                                                                                                                                             |
 | `practice/`    | 練習題區      | 根據 `notes/` 生成練習題、實作任務、改錯題、重構題。                                                                                                                                                                                                                                                                                                         |
 | `review/`      | 複習材料區     | 根據 `notes/` 生成重點摘要、問答題、填空題、複習卡片。                                                                                                                                                                                                                                                                                                        |
@@ -64,7 +64,8 @@ appendix/  demos/  practice/  review/
 * `notes/` 生成對應 `meta/chapter-status.md` 的「notes 生成」欄位（見 [`skills-src/notes-generation/instructions.md`](skills-src/notes-generation/instructions.md)），是 `atomic → notes` 的生成過程，須在 `atomic review` 通過後進行，分為映射與結構提案、確認後產生正式教學筆記兩階段，且只更新 `notes/`、不修改 `origin/` 或 `atomic/`
 * `notes content review` 對應 `meta/chapter-status.md` 的「notes 完成檢查」欄位，審查 `notes/<章節>/*.md` 是否符合正式教學筆記要求，審查通過後才能進入 `appendix/demos/practice/review/supplements` 生成
 * `atomic review`、`notes content review` 為審查關卡，審查通過後才能進入下一層生成
-* `appendix/`、`demos/`、`practice/`、`review/` 皆以 `notes/` 為唯一來源生成，為每章節標準輸出
+* `demos/`、`practice/`、`review/` 皆以 `notes/` 為唯一來源生成，為每章節標準輸出
+* `appendix/` 為選用，當該章節有足夠可表格化的查表內容（名詞表、API 表、指令表、設定檔範例）時，以 `notes/` 為唯一來源生成，非每章節必經
 * `supplements/` 為選用補充，當 `notes/` 中某概念因教學節奏未深入說明、但值得進一步理解時，以 `notes/` 為唯一來源生成底層原理、進階觀念、相關比較或實務案例，非每章節必經
 
 ## 各層目錄規則
@@ -118,6 +119,7 @@ notes/
 ```
 
 * 根據 `notes/<章節>/*.md` 生成，章節資料夾與 `origin/`、`atomic/`、`notes/` 對齊
+* `appendix/` 為選用，僅在該章節有足夠可表格化的查表內容時才建立
 * `supplements/` 為選用，僅在該章節有對應補充內容時才建立
 
 ### demos/
@@ -178,7 +180,8 @@ scripts/
 * 更新判斷規則集中於 `skills-src/update-judgment/instructions.md`，不屬於 `meta/`
 * `atomic/` 是整理原始資料的中介層，不等於正式筆記
 * `notes/` 是根據 `atomic/` 生成的主幹知識
-* `appendix/`、`demos/`、`practice/`、`review/` 是根據 `notes/` 生成的不同用途內容，為每章節標準輸出
+* `demos/`、`practice/`、`review/` 是根據 `notes/` 生成的不同用途內容，為每章節標準輸出
+* `appendix/` 為選用，當該章節有足夠可表格化的查表內容時，以 `notes/` 為來源生成，非每章節必經
 * `supplements/` 為選用補充，當 `notes/` 中某概念值得進一步理解但教學節奏未深入說明時，以 `notes/` 為來源生成，非每章節必經
 * 各層 `<章節>` 資料夾名稱（編號+標題）需在 `origin/` ~ `supplements/` 之間保持一致
 * `atomic/`、`notes/` 不另存資產，統一引用 `origin/<章節>/assets/`
