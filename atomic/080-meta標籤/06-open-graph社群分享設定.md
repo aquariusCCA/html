@@ -1,8 +1,10 @@
-# Open Graph 社群分享設定
+---
+source:
+  - 'origin/080-meta標籤/01-meta標籤.md / Questions：Open Graph 是什麼？'
+  - 'origin/080-meta標籤/01-meta標籤.md / Notes：社交媒體分享配置（Open Graph）'
+---
 
-> 來源：
-> - origin/080-meta標籤/01-meta標籤.md / Questions：Open Graph 是什麼？
-> - origin/080-meta標籤/01-meta標籤.md / Notes：社交媒體分享配置（Open Graph）
+# Open Graph 社群分享設定
 
 Open Graph（OG）協議是一種標準，用來讓網頁上的內容在社交媒體平台（如 Facebook、Twitter、LinkedIn 等）分享時，顯示出更具吸引力的預覽，像是標題、描述、圖片等。
 

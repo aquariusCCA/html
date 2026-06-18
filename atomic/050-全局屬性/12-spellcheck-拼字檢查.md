@@ -1,6 +1,9 @@
-# spellcheck 拼字檢查
+---
+source:
+  - 'origin/050-全局屬性/12-spellcheck 属性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/12-spellcheck 属性.md / 全文
+# spellcheck 拼字檢查
 
 > 檢查方式由瀏覽器決定。
 

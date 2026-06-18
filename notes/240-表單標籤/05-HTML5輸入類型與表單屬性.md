@@ -1,8 +1,8 @@
-<!--
+---
 source_atomic:
   - atomic/240-表單標籤/08-新增input類型.md
   - atomic/240-表單標籤/13-新增表單屬性與placeholder樣式.md
--->
+---
 
 # HTML5 輸入類型與表單屬性
 

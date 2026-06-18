@@ -1,6 +1,9 @@
-# translate 翻譯控制
+---
+source:
+  - 'origin/050-全局屬性/16-translate 属性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/16-translate 属性.md / 全文
+# translate 翻譯控制
 
 > translate 屬性規定元素內容是否要翻譯。
 

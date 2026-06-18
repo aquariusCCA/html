@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/290-進度條標籤/01-progress-進度條標籤.md
--->
+---
 
 # progress 標籤：顯示任務完成進度
 

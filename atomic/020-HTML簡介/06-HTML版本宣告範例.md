@@ -1,9 +1,11 @@
-# HTML5、HTML4 與 XHTML 宣告範例
+---
+source:
+  - 'origin/020-HTML簡介/02-HTML版本的區別.md / # **HTML5版本** > ### **使用**'
+  - 'origin/020-HTML簡介/02-HTML版本的區別.md / # **HTML4版本**'
+  - 'origin/020-HTML簡介/02-HTML版本的區別.md / # **XHTML 版本**'
+---
 
-> 來源：
-> - origin/020-HTML簡介/02-HTML版本的區別.md / # **HTML5版本** > ### **使用**
-> - origin/020-HTML簡介/02-HTML版本的區別.md / # **HTML4版本**
-> - origin/020-HTML簡介/02-HTML版本的區別.md / # **XHTML 版本**
+# HTML5、HTML4 與 XHTML 宣告範例
 
 ## HTML5 版本
 

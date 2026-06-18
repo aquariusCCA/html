@@ -1,6 +1,9 @@
-# HTML 標籤結構
+---
+source:
+  - 'origin/020-HTML簡介/04-標籤組成和關係.md / # **HTML標籤的結構**'
+---
 
-> 來源：origin/020-HTML簡介/04-標籤組成和關係.md / # **HTML標籤的結構**
+# HTML 標籤結構
 
 ![HTML 雙標籤結構示意圖](../../origin/020-HTML簡介/assets/images/html-tag-composition-relations-img-001-979b79.png)
 

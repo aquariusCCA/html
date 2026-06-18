@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/320-mark標籤/01-mark-標籤基本用法.md
--->
+---
 
 # mark 標籤：標示目前上下文中的重點文字
 

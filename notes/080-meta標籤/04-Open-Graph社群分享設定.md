@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/080-meta標籤/06-open-graph社群分享設定.md
--->
+---
 
 # Open Graph：控制社群分享預覽
 

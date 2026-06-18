@@ -1,6 +1,9 @@
-# html5shiv 與 IE 條件註解
+---
+source:
+  - 'origin/030-兼容性問題/01-兼容性問題.md / # 2. 使用 html5shiv 讓低版本瀏覽器認識 H5 的語意化標籤'
+---
 
-> 來源：origin/030-兼容性問題/01-兼容性問題.md / # 2. 使用 html5shiv 讓低版本瀏覽器認識 H5 的語意化標籤
+# html5shiv 與 IE 條件註解
 
 html5shiv 是一段讓 IE6、IE7、IE8 能辨識並套用樣式到部分 HTML5 新元素的 JavaScript；它不代表完整支援 HTML5。html5shiv 對 IE6、IE7、IE8 以外的瀏覽器通常沒有必要，故建議用 IE 的條件註解載入 html5shiv。
 

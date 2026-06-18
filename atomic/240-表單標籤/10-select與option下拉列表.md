@@ -1,6 +1,9 @@
-# select 與 option 下拉列表
+---
+source:
+  - 'origin/240-表單標籤/05-select下拉表單元素.md / 全文'
+---
 
-> 來源：origin/240-表單標籤/05-select下拉表單元素.md / 全文
+# select 與 option 下拉列表
 
 在頁面中，如果有多個選項讓用戶選擇，並且想要節約頁面空間時，就可以使用 `<select>` 標籤定義下拉列表。
 

@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/030-兼容性問題/02-html5shiv-與-ie-條件註解.md
--->
+---
 
 # html5shiv 與 IE 條件註解
 

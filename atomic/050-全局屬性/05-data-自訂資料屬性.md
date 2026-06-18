@@ -1,6 +1,9 @@
-# data-* 自訂資料屬性
+---
+source:
+  - 'origin/050-全局屬性/05-HTML-data屬性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/05-HTML-data屬性.md / 全文
+# data-* 自訂資料屬性
 
 > 使用 data-* 屬性來嵌入自定義數據。
 

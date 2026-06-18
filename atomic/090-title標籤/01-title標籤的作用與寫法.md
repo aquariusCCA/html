@@ -1,6 +1,9 @@
-# title 標籤的作用與寫法
+---
+source:
+  - 'origin/090-title標籤/01-title標籤.md / # 1. title標籤的作用、# 2. title標籤的書寫方式'
+---
 
-> 來源：origin/090-title標籤/01-title標籤.md / # 1. title標籤的作用、# 2. title標籤的書寫方式
+# title 標籤的作用與寫法
 
 ## title 標籤的作用
 

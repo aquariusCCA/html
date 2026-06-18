@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/080-meta標籤/03-meta自動刷新設定.md
--->
+---
 
 # meta refresh：自動刷新與延遲導向
 

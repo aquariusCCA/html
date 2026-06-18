@@ -1,6 +1,9 @@
-# 新增表單屬性與 placeholder 樣式
+---
+source:
+  - 'origin/240-表單標籤/09-新增表單屬性.md / 全文'
+---
 
-> 來源：origin/240-表單標籤/09-新增表單屬性.md / 全文
+# 新增表單屬性與 placeholder 樣式
 
 ![新增表單屬性對照表](../../origin/240-表單標籤/assets/images/new-form-attributes-img-001-e0f09b.png)
 

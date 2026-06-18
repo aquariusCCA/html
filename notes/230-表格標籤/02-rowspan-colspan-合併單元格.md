@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/230-表格標籤/04-rowspan-colspan-合併單元格.md
--->
+---
 
 # rowspan 與 colspan：合併表格單元格
 

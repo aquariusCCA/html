@@ -1,6 +1,9 @@
-# disabled 禁用表單控件
+---
+source:
+  - 'origin/240-表單標籤/08-禁用表單控件.md / 全文'
+---
 
-> 來源：origin/240-表單標籤/08-禁用表單控件.md / 全文
+# disabled 禁用表單控件
 
 - 給表單控件的標籤設置 `disabled` 即可禁用表單控件。
 - `input`、`textarea`、`button`、`select`、`option` 都可以設置 `disabled` 屬性。

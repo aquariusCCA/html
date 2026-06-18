@@ -78,7 +78,7 @@ notes/<章節>/*.md
 4. 只整理資料、條列定義與清單，沒有教學脈絡（問題情境、概念橋接、範例拆解、自我檢查）。
 5. 只講語法，不講語意；只貼程式碼，不拆解。
 6. 逐字照抄 atomic notes 正文。
-7. 保留 atomic 原文中的 `> 來源：origin/...` 區塊到正式 notes。
+7. 保留 atomic 開頭的 `source` YAML front matter 到正式 notes。
 
 ---
 
@@ -124,7 +124,7 @@ notes/<章節>/*.md
 
 1. 讀取 `atomic/<章節>/*.md`，依檔名前綴與學習順序理解內容。
 2. 找出每篇 atomic 的主題、核心概念、範例、圖片、附件與連結。
-3. 如果 atomic 開頭有 `> 來源：origin/...`，只當作內部追溯資訊，後續轉成 `source_atomic` 註解，不保留到正式 notes 正文。
+3. 如果 atomic 開頭有 `source` YAML front matter，只當作內部追溯資訊，後續轉成 `source_atomic` 註解，不保留到正式 notes 正文。
 
 ### Step 3：atomic -> notes 映射判斷
 
@@ -255,14 +255,14 @@ notes/<章節>/*.md
 
 ### Step 6：來源追溯與資產路徑
 
-每篇正式 notes 開頭必須加入 `source_atomic` 隱藏註解：
+每篇正式 notes 開頭必須以 `source_atomic` YAML front matter 開頭：
 
 ```md
-<!--
+---
 source_atomic:
   - atomic/<章節>/<檔名A>.md
   - atomic/<章節>/<檔名B>.md
--->
+---
 
 # <正式筆記標題>
 ```
@@ -274,7 +274,7 @@ source_atomic:
 3. 補充型 notes 也要記錄對應 atomic 檔案。
 4. 不要在單篇 notes 內放完整章節映射。
 5. 不要加入 `type`、`title`、`chapter`、`order` 等欄位。
-6. 移除 atomic 原文中的 `> 來源：origin/...` 區塊。
+6. 移除 atomic 原文開頭的 `source` YAML front matter。
 
 資產路徑規則：
 
@@ -395,10 +395,10 @@ source_atomic:
 ### FILE: notes/<章節>/01-主題.md
 
 ```md
-<!--
+---
 source_atomic:
   - atomic/<章節>/xx.md
--->
+---
 
 # <正式筆記標題>
 
@@ -421,10 +421,10 @@ source_atomic:
 ### 範例二：正式 notes 開頭格式（標籤型）
 
 ````md
-<!--
+---
 source_atomic:
   - atomic/210-超鏈接標籤/01-a-標籤基本語法.md
--->
+---
 
 # a 標籤：建立超連結
 
@@ -466,10 +466,10 @@ source_atomic:
 ### 範例三：正式 notes 開頭格式（概念型）
 
 ````md
-<!--
+---
 source_atomic:
   - atomic/130-語意化標籤/01-語意化標籤基本概念.md
--->
+---
 
 # 語意化：讓標籤說出內容的意義
 
@@ -535,10 +535,10 @@ source_atomic:
 ### 範例四：正式 notes 開頭格式（比較型）
 
 ````md
-<!--
+---
 source_atomic:
   - atomic/130-語意化標籤/03-div-佈局與語意化標籤佈局比較.md
--->
+---
 
 # div 與 section：什麼時候該用哪一個
 
@@ -676,7 +676,7 @@ atomic notes 中若已是：
 1. 是否保留 atomic notes 的核心內容。
 2. 是否避免逐字照抄。
 3. 是否避免過度擴寫成百科。
-4. 是否移除 atomic 來源區塊（`> 來源：origin/...`）。
+4. 是否移除 atomic 開頭的 `source` YAML front matter。
 5. 是否每篇 notes 的 `source_atomic` 只列出該篇對應的 atomic，且未加入多餘欄位。
 
 ### 路徑與輸出安全

@@ -1,8 +1,8 @@
-<!--
+---
 source_atomic:
   - atomic/050-全局屬性/04-contextmenu-上下文選單.md
   - atomic/050-全局屬性/08-dropzone-拖放處理方式.md
--->
+---
 
 # 過時屬性補充：contextmenu 與 dropzone
 

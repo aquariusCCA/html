@@ -1,6 +1,9 @@
-# caption、thead、tbody、tfoot 表格結構
+---
+source:
+  - 'origin/230-表格標籤/01-表格標籤.md / # **2. caption、thead、tbod、tfoot 介紹**'
+---
 
-> 來源：origin/230-表格標籤/01-表格標籤.md / # **2. caption、thead、tbod、tfoot 介紹**
+# caption、thead、tbody、tfoot 表格結構
 
 > 一個結構較完整、語意較清楚的表格，通常可以包含表格標題、表格頭部、表格主體與表格腳注。
 

@@ -1,6 +1,9 @@
-# tabindex 鍵盤導覽順序
+---
+source:
+  - 'origin/050-全局屬性/14-tabindex 属性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/14-tabindex 属性.md / 全文
+# tabindex 鍵盤導覽順序
 
 > tabindex 屬性規定當使用 "tab" 鍵進行導航時元素的順序。
 

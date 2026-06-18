@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/020-HTML簡介/06-HTML版本宣告範例.md
--->
+---
 
 # 補充：HTML5、HTML4 與 XHTML 的文件宣告比較
 

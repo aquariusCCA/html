@@ -1,6 +1,9 @@
-# draggable 拖曳屬性
+---
+source:
+  - 'origin/050-全局屬性/07-draggable 属性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/07-draggable 属性.md / 全文
+# draggable 拖曳屬性
 
 ## 參考文章
 

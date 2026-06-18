@@ -1,6 +1,9 @@
-# keywords 與 description meta 設定
+---
+source:
+  - 'origin/080-meta標籤/01-meta標籤.md / Notes：關鍵字和描述訊息'
+---
 
-> 來源：origin/080-meta標籤/01-meta標籤.md / Notes：關鍵字和描述訊息
+# keywords 與 description meta 設定
 
 `keywords` 可用來提供網頁關鍵字 metadata，`description` 可用來提供頁面摘要；現代搜尋引擎不一定採用 `keywords` 作為排名依據，也不保證一定顯示 `description`。
 

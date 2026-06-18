@@ -1,6 +1,9 @@
-# details 與 summary 標籤
+---
+source:
+  - 'origin/310-detail標籤/01-detail標籤.md / 全文'
+---
 
-> 來源：origin/310-detail標籤/01-detail標籤.md / 全文
+# details 與 summary 標籤
 
 - 在 HTML 中，`details` 標籤是 HTML5 中新增的標籤，用來定義可讓使用者開啟和關閉的互動式控制項。
 - 在 `details` 標籤中，通常會把 `summary` 作為第一個子元素來定義標題，而 `details` 標籤中的其他部分則是標題的詳細資訊。

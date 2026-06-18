@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/100-標題標籤/01-html標題標籤.md
--->
+---
 
 # HTML 標題標籤：用 h1 到 h6 建立內容層級
 

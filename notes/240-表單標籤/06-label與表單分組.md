@@ -1,8 +1,8 @@
-<!--
+---
 source_atomic:
   - atomic/240-表單標籤/09-label標籤與控件關聯.md
   - atomic/240-表單標籤/14-fieldset與legend表單分組.md
--->
+---
 
 # label 與表單分組
 

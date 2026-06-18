@@ -1,6 +1,9 @@
-# dropzone 拖放處理方式
+---
+source:
+  - 'origin/050-全局屬性/08-dropzone 属性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/08-dropzone 属性.md / 全文
+# dropzone 拖放處理方式
 
 > dropzone 屬性曾用於規定被拖動的數據拖放到元素上時，是否被複製、移動或鏈接；但此屬性已過時，現代 HTML 不應再使用。
 

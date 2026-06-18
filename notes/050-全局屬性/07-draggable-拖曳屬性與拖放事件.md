@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/050-全局屬性/07-draggable-拖曳屬性.md
--->
+---
 
 # draggable：讓元素可以被拖曳
 

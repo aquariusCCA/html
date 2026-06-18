@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/050-全局屬性/05-data-自訂資料屬性.md
--->
+---
 
 # data-*：在 HTML 元素上存放自訂資料
 

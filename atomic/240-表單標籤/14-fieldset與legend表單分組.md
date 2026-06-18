@@ -1,6 +1,9 @@
-# fieldset 與 legend 表單分組
+---
+source:
+  - 'origin/240-表單標籤/10-fieldest與legend標籤.md / 全文'
+---
 
-> 來源：origin/240-表單標籤/10-fieldest與legend標籤.md / 全文
+# fieldset 與 legend 表單分組
 
 - `fieldset` 可以為表單控件分組。
 - `legend` 標籤是分組的標題。

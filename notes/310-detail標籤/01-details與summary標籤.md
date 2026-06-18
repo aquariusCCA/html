@@ -1,7 +1,7 @@
-<!--
+---
 source_atomic:
   - atomic/310-detail標籤/01-details與summary標籤.md
--->
+---
 
 # details 與 summary：建立可展開的內容區塊
 

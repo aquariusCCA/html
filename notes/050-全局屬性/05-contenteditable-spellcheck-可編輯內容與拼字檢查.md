@@ -1,8 +1,8 @@
-<!--
+---
 source_atomic:
   - atomic/050-全局屬性/03-contenteditable-可編輯內容.md
   - atomic/050-全局屬性/12-spellcheck-拼字檢查.md
--->
+---
 
 # contenteditable 與 spellcheck：可編輯內容與拼字檢查
 

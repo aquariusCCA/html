@@ -1,6 +1,9 @@
-# class 類別屬性
+---
+source:
+  - 'origin/050-全局屬性/02-class 属性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/02-class 属性.md / 全文
+# class 類別屬性
 
 > class 屬性定義了元素的類名。class 屬性通常用於指向樣式表的類，但是，它也可以用於 JavaScript 通過 HTML DOM 來修改 HTML 元素的類名。
 

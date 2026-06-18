@@ -1,6 +1,9 @@
-# 新增 input 類型
+---
+source:
+  - 'origin/240-表單標籤/03-表單控件.md / `### 新增input類型`'
+---
 
-> 來源：origin/240-表單標籤/03-表單控件.md / `### 新增input類型`
+# 新增 input 類型
 
 新增的 input 類型如下：
 

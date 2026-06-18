@@ -1,8 +1,8 @@
-<!--
+---
 source_atomic:
   - atomic/050-全局屬性/09-hidden-隱藏元素.md
   - atomic/050-全局屬性/15-title-提示文字.md
--->
+---
 
 # hidden 與 title：隱藏內容與提供補充資訊
 

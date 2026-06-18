@@ -1,6 +1,9 @@
-# contenteditable 可編輯內容
+---
+source:
+  - 'origin/050-全局屬性/03-contenteditable 属性.md / 全文'
+---
 
-> 來源：origin/050-全局屬性/03-contenteditable 属性.md / 全文
+# contenteditable 可編輯內容
 
 > HTML5 新增。目的是讓用戶能夠修改頁面上的元素。
 

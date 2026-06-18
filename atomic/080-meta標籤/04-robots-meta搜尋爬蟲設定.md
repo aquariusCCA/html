@@ -1,6 +1,9 @@
-# robots meta 搜尋爬蟲設定
+---
+source:
+  - 'origin/080-meta標籤/01-meta標籤.md / Notes：針對搜索引擎爬蟲配置'
+---
 
-> 來源：origin/080-meta標籤/01-meta標籤.md / Notes：針對搜索引擎爬蟲配置
+# robots meta 搜尋爬蟲設定
 
 `robots` meta 標籤用來針對搜索引擎爬蟲配置。`content` 應填入有效的 robots 指令，可用逗號組合多個指令。
 

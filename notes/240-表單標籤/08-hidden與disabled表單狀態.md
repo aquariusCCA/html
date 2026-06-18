@@ -1,8 +1,8 @@
-<!--
+---
 source_atomic:
   - atomic/240-表單標籤/06-hidden隱藏域.md
   - atomic/240-表單標籤/12-disabled禁用表單控件.md
--->
+---
 
 # hidden 與 disabled 表單狀態
 

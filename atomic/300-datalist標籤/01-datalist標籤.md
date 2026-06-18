@@ -1,6 +1,9 @@
-# datalist 標籤
+---
+source:
+  - 'origin/300-datalist標籤/01-datalist標籤.md / 全文'
+---
 
-> 來源：origin/300-datalist標籤/01-datalist標籤.md / 全文
+# datalist 標籤
 
 ## 作用
 

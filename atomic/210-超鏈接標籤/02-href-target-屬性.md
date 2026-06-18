@@ -1,6 +1,9 @@
-# href 與 target 屬性
+---
+source:
+  - 'origin/210-超鏈接標籤/01-超鏈接標籤.md / # 2. 屬性介紹'
+---
 
-> 來源：origin/210-超鏈接標籤/01-超鏈接標籤.md / # 2. 屬性介紹
+# href 與 target 屬性
 
 ![超鏈接標籤 href 與 target 屬性說明表](../../origin/210-超鏈接標籤/assets/images/hyperlink-tags-img-001-910f05.png)
 

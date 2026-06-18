@@ -1,9 +1,9 @@
-<!--
+---
 source_atomic:
   - atomic/040-HTML基本結構標籤/01-文檔類型聲明標籤.md
   - atomic/040-HTML基本結構標籤/02-lang語言種類.md
   - atomic/040-HTML基本結構標籤/03-字符集.md
--->
+---
 
 # HTML 文件起手式：DOCTYPE、lang 與 charset
 

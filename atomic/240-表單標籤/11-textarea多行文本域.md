@@ -1,6 +1,9 @@
-# textarea 多行文本域
+---
+source:
+  - 'origin/240-表單標籤/06-textarea文本域表單元素.md / 全文'
+---
 
-> 來源：origin/240-表單標籤/06-textarea文本域表單元素.md / 全文
+# textarea 多行文本域
 
 在表單元素中，`<textarea>` 標籤是用於定義多行文本輸入的控件。
 

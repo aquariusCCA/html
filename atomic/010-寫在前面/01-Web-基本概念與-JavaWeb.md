@@ -1,6 +1,9 @@
-# Web 基本概念與 JavaWeb
+---
+source:
+  - 'origin/010-寫在前面/01-甚麼是 Web.md / 全文'
+---
 
-> 來源：origin/010-寫在前面/01-甚麼是 Web.md / 全文
+# Web 基本概念與 JavaWeb
 
 Web 是指「World Wide Web」（全球資訊網）的簡稱，是一個由互聯網上的超文本鏈接所構成的全球性資訊系統；它通常透過 HTTP/HTTPS 傳輸資源，並使用 HTML 描述網頁的結構與內容。
 
