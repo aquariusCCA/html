@@ -1,11 +1,11 @@
-請使用 `.codex\skills\update-judgment\SKILL.md` 進行 **HTML 筆記包更新判斷**。
+現在已經有了 `skills-src\notes-generation\instructions.md`、`skills-src\notes-content-review\instructions.md`。
 
-章節：`notes\010-寫在前面` ~ `notes\320-mark標籤`
+已經能夠確保 **正式教學筆記** 的品質。
 
-改動檔案或資料夾：`notes\010-寫在前面` ~ `notes\320-mark標籤`
+現在我想要請你設計一個 SKILL 用於針對 **notes/<章節>/<筆記名>.md** 生成 DEMO 範例。
 
-改動摘要：使用 `.codex/skills/notes-index-metadata/SKILL.md` 進行 **教學內容索引整理**；也使用 `scripts\build-index.mjs` 創建 `meta\index.md`。
+目前我的想法如下:
 
-希望處理方式：只判斷
+- `notes/<章節>/<筆記名>.md` 對應一個 `demos/<章節>/<筆記名>/` 資料夾
 
-補充限制：不要實際改檔。
+- 資料夾內存放可獨立開啟執行的 HTML 教學 demo，可包含對應的 CSS、JS 或其他資源
