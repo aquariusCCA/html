@@ -8,8 +8,9 @@
 - atomic 內容審查：已完成
 - notes 生成：已完成
 - notes 完成檢查：已完成
+- notes 索引 metadata：已完成
 - 目前最新正確來源：`notes/300-datalist標籤/`（已通過 notes 完成檢查）
-- 後續流程：notes 已通過內容檢查，下一步完成 notes 索引 metadata 標記；完成後再生成或同步下游。
+- 後續流程：notes 索引 metadata 已完成；下一步依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
 
 ## 已執行流程
 
@@ -23,6 +24,7 @@
 
 - 2026-06-19：已依 `.codex/skills/notes-content-review/SKILL.md` 完成 `notes/300-datalist標籤/` 內容檢查；正式教學筆記可作為後續 notes 索引 metadata 與下游生成來源。
 
+- 2026-06-19：已依 `.codex/skills/notes-index-metadata/SKILL.md` 完成 `notes/300-datalist標籤/` 的 topics / summary 標記；並確認 `scripts/build-index.mjs --check` 通過，`meta/index.md` 與 notes front matter 一致。
+
 ## 待確認與下一步
-- 完成 notes 索引 metadata 標記。
-- notes 索引 metadata 完成後，再依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
+- 依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。

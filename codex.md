@@ -1,9 +1,11 @@
-請使用 `.codex/skills/notes-index-metadata/SKILL.md` 進行 **教學內容索引整理**。
+請使用 `.codex\skills\update-judgment\SKILL.md` 進行 **HTML 筆記包更新判斷**。
 
-章節名稱：`notes/320-mark標籤`
+章節：`notes\010-寫在前面` ~ `notes\320-mark標籤`
 
-專案根目錄：預設為目前工作目錄
+改動檔案或資料夾：`notes\010-寫在前面` ~ `notes\320-mark標籤`
 
-執行階段：階段一「草擬提案」
+改動摘要：使用 `.codex/skills/notes-index-metadata/SKILL.md` 進行 **教學內容索引整理**；也使用 `scripts\build-index.mjs` 創建 `meta\index.md`。
 
-是否允許寫入檔案：預設不允許；階段二確認語句可視為允許寫入 `notes/320-mark標籤/*.md` 的 front matter
+希望處理方式：只判斷
+
+補充限制：不要實際改檔。
