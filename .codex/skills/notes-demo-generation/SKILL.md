@@ -30,7 +30,7 @@ notes/<章節>/*.md
 meta/chapter-status.md
 ```
 
-必要時唯讀對照：
+必要時唯讀讀取（可複製資產進 demo，不修改原檔）：
 
 ```text
 origin/<章節>/assets/...
@@ -212,11 +212,12 @@ demos/<章節>/<demo-slug>/
 
 `<demo-slug>` 規則：
 
-1. 優先從對應 notes 檔名移除 `.md` 後產生，例如 `01-img標籤與圖片替代文字`。
-2. 若一篇 notes 拆成多組 demo，在檔名基礎後加具體主題，例如 `01-img標籤與圖片替代文字-alt`。
-3. 若多篇 notes 合併，使用能代表共同主題的短名稱，例如 `form-controls-overview` 或 `semantic-layout-comparison`。
+1. 一對一 / 一對多：以對應 notes 檔名（移除 `.md`）為基礎，沿用既有中文命名，例如 `01-img標籤與圖片替代文字`。
+2. 一對多在檔名基礎後加具體主題，例如 `01-img標籤與圖片替代文字-alt`。
+3. 多對一：因無單一對應 notes，改用能代表共同主題的英文短 slug，例如 `form-controls-overview` 或 `semantic-layout-comparison`。
 4. 同一章節內不得產生重複 demo slug。
 5. 不使用空白、路徑分隔符、冒號、問號等不適合檔名的字元。
+6. slug 僅沿用 notes 既有檔名用字，或標籤／屬性等技術關鍵字（如 `img`、`alt`），不要為命名額外自創描述語；同一章節同類型（一對一／一對多用中文檔名、多對一用英文短 slug）的命名方式須保持一致。
 
 ### Demo 檔案
 
@@ -237,8 +238,8 @@ assets/
 選擇規則：
 
 1. 小型 demo 可以把 CSS/JS 內嵌在 `index.html`，但若樣式或互動超過短小片段，應拆成 `style.css` 或 `script.js`。
-2. 需要多個本地資產時，可建立 demo 內的 `assets/`，但不得搬動或改名 `origin/` 原始資產。
-3. 若直接引用 `origin/<章節>/assets/...`，必須使用從 demo 目錄出發可解析的相對路徑。
+2. demo 需要本地資產時，預設將所需資產「複製」到 demo 內的 `assets/`，讓每組 demo 自包含、可單獨打包搬移。複製不違反「不搬動或改名 `origin/` 原始資產」。
+3. 僅在資產過大或不宜複製時，才相對引用 `origin/<章節>/assets/...`，且必須使用從 demo 目錄出發可解析的相對路徑，並在來源標示中註明「本 demo 依賴 origin 資產，非自包含」。
 4. 外部 CDN、遠端圖片、第三方框架預設不使用；除非 notes 主題本身需要，且使用者已同意。
 
 ### 來源標示
@@ -333,13 +334,16 @@ assets/
 
 1. `demos/<章節>/<demo-slug>/index.html` 存在。
 2. `index.html` 不是空檔。
-3. 本地 `src`、`href` 指向的 CSS、JS、圖片、音訊、影片或附件檔案存在。
-4. `style.css`、`script.js` 若被引用，檔案存在且路徑正確。
-5. 沒有使用指向不存在檔案的本地路徑。
-6. 沒有錯把 notes 中的 Markdown 相對資產路徑直接搬進 demo 而導致路徑失效。
-7. 沒有修改 `notes/`、`origin/`、`atomic/`。
+3. `index.html` 具備最小骨架：`<!doctype html>`、`<html lang="...">`、`<meta charset="utf-8">`、`<meta name="viewport" content="width=device-width, initial-scale=1">`、非空 `<title>`。
+4. 本地 `src`、`href` 指向的 CSS、JS、圖片、音訊、影片或附件檔案存在。
+5. `style.css`、`script.js` 若被引用，檔案存在且路徑正確。
+6. 沒有使用指向不存在檔案的本地路徑。
+7. 沒有錯把 notes 中的 Markdown 相對資產路徑直接搬進 demo 而導致路徑失效。
+8. 沒有修改 `notes/`、`origin/`、`atomic/`。
 
 ### 瀏覽器驗證（可行時必須）
+
+注意：本執行環境多數情況無法自動開啟瀏覽器。此時以「靜態檢查」為主路徑，必須明確標示瀏覽器驗證未執行，**不得**因為跑過靜態檢查就宣稱已實機驗證或逕將 demo 標為已完成。
 
 若執行環境可開啟本地 HTML 或啟動本地 server，應使用瀏覽器檢查：
 
@@ -495,10 +499,10 @@ notes/050-全局屬性/01-HTML全局屬性入門.md
 建議：
 
 ```text
-Demo A：demos/050-全局屬性/global-attributes-id-class/
+Demo A：demos/050-全局屬性/01-HTML全局屬性入門-id-class/
 展示 id 與 class 的用途差異。
 
-Demo B：demos/050-全局屬性/global-attributes-title-hidden/
+Demo B：demos/050-全局屬性/01-HTML全局屬性入門-title-hidden/
 展示 title 與 hidden 的可觀察效果。
 ```
 
@@ -537,14 +541,14 @@ notes/020-HTML簡介/02-HTML5版本與特性.md
 
 階段二完成後，必須逐項檢查：
 
-1. 是否只讀取 `notes/<章節>/*.md`，並只在必要時唯讀對照 `origin/<章節>/assets/...`。
+1. 是否只以 `notes/<章節>/*.md` 為內容來源，`origin/<章節>/assets/...` 僅供唯讀讀取或複製資產（不修改 origin 原檔）。
 2. 是否先建立 demo 規劃，而非機械式逐篇生成。
 3. 是否正確判斷一對一、一對多、多對一與不生成。
 4. 是否每組 demo 都有清楚教學目標。
 5. 是否每組 demo 都有可觀察範例、對照或互動。
 6. 是否避免把 notes 全文搬進 HTML 頁面。
 7. 是否每組 demo 都有 `index.html` 且可獨立開啟。
-8. 是否相對路徑正確，所有本地 `src`/`href` 都能解析。
+8. 是否相對路徑正確，所有本地 `src`/`href` 都能解析；資產以自包含（複製進 demo `assets/`）為優先，若引用 origin 資產已於來源標示註明。
 9. 是否未修改 `origin/`、`atomic/`、`notes/`、原始資產檔案或其他下游目錄。
 10. 是否已完成靜態檢查。
 11. 若環境可行，是否已完成瀏覽器驗證與至少一次核心互動檢查。
@@ -555,6 +559,6 @@ notes/020-HTML簡介/02-HTML5版本與特性.md
 
 1. 規劃中應生成的 demo 都已建立或更新。
 2. 不生成 demo 的 notes 都有合理原因。
-3. 沒有未解決的 S1/S2 等級教學或可用性風險。
+3. 沒有未解決的、會讓 demo 無法開啟、無法展示核心效果，或會誤導初學者的問題。
 4. 靜態檢查通過。
 5. 瀏覽器驗證已通過；若環境不可行，需明確列出未執行原因與剩餘風險。
