@@ -11,14 +11,16 @@ description: |
 
 ## 定位與適用範圍
 
-本 skill 對應 `meta/chapter-status.md` 章節狀態表中「demos 生成」欄位，是 notes 完成檢查後的下游教材生成階段：
+本 skill 對應 `meta/chapter-status.md` 章節狀態表中「demos 生成」欄位，是 notes 完成檢查後的下游教材生成階段。demos 與 practice、review、appendix 都各自平行延伸 notes，彼此沒有先後依賴；本 skill 只負責 demos：
 
 ```text
 notes 生成 → notes 完成檢查（須先完成）
   ↓
+（皆平行延伸 notes，彼此無先後）
 demos 生成（本 skill）
-  ↓
-practice/review/appendix 等其他下游教材
+practice 生成
+review 生成
+appendix 索引
 ```
 
 開始處理前，應先查閱 `meta/chapter-status.md` 對應章節的「notes 完成檢查」欄位，確認狀態為「已完成」才適合開始本 skill；若尚未完成，應提示使用者先完成 `notes-content-review`，不要預設繼續生成 demo。
@@ -65,11 +67,10 @@ notes/
 practice/
 review/
 appendix/
-meta/chapter-status.md
 任何原始資產實體檔案
 ```
 
-若使用者只要求生成 demo，預設只提出 `meta/chapter-status.md` 建議標記，不直接修改狀態表。
+本 skill 不修改 `meta/chapter-status.md`，僅在輸出中提出「demos 生成」欄位的建議標記，由使用者自行決定是否更新狀態表。
 
 ---
 
@@ -293,14 +294,7 @@ assets/
 
 #### 階段一：Demo 生成規劃（預設）
 
-階段一只輸出規劃結果，不建立、修改或刪除任何檔案：
-
-1. 掃描 `notes/<章節>/*.md`，建立 Notes Inventory。
-2. 判斷 demo 粒度與生成方式。
-3. 提出每組 demo 的教學目標、互動/展示設計、輸出目錄與主要檔案。
-4. 列出不生成 demo 的 notes 與原因。
-5. 標記需要人工確認的內容。
-6. 輸出規劃，等待使用者確認。
+階段一即為前述 Step 1～Step 3 的執行：依序完成前置檢查、讀取與理解、Demo 規劃。階段一只輸出規劃結果，不建立、修改或刪除任何檔案，最後依「輸出格式」的階段一範本輸出規劃，等待使用者確認。
 
 #### 階段二：產生 demos
 
