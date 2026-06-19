@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/050-全局屬性/01-accesskey-鍵盤快捷鍵.md
   - atomic/050-全局屬性/14-tabindex-鍵盤導覽順序.md
+topics: [tabindex, accesskey, 鍵盤導覽, 焦點管理, 可及性]
+summary: "說明 `tabindex` 與 `accesskey` 如何影響鍵盤操作，以及避免破壞自然焦點順序。"
 ---
 
 # tabindex 與 accesskey：鍵盤操作與導覽

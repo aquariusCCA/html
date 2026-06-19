@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/240-表單標籤/06-hidden隱藏域.md
   - atomic/240-表單標籤/12-disabled禁用表單控件.md
+topics: [hidden, disabled, 表單提交, 前端安全]
+summary: "比較 hidden 與 disabled 在可見性、可操作性與提交行為上的差異，並提醒不能當安全邊界。"
 ---
 
 # hidden 與 disabled 表單狀態

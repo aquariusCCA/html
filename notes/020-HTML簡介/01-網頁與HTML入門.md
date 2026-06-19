@@ -3,6 +3,8 @@ source_atomic:
   - atomic/020-HTML簡介/01-網頁與網站的關係.md
   - atomic/020-HTML簡介/02-HTML與標記語言.md
   - atomic/020-HTML簡介/03-網頁形成與瀏覽器解析渲染.md
+topics: [網頁與網站, 超文本, 標記語言, 瀏覽器解析渲染]
+summary: "說明網站、網頁與 HTML 的關係，建立瀏覽器如何呈現頁面的基本認知。"
 ---
 
 # 網頁與 HTML 入門：從打開瀏覽器開始

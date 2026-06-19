@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/130-語意化標籤/03-div-佈局與語意化標籤佈局比較.md
+topics: [div, 語意化佈局, 標籤選擇, section使用判斷]
+summary: "透過 div 佈局與語意化佈局對照，建立依內容角色選擇標籤的判斷準則。"
 ---
 
 # div 與語意化佈局比較

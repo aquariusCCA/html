@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/050-全局屬性/05-data-自訂資料屬性.md
+topics: [data-*, 自訂資料屬性, dataset, JavaScript 資料讀取]
+summary: "說明如何用 `data-*` 在元素上存放少量自訂資料，並透過 JavaScript 的 `dataset` 讀取。"
 ---
 
 # data-*：在 HTML 元素上存放自訂資料

@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/050-全局屬性/04-contextmenu-上下文選單.md
   - atomic/050-全局屬性/08-dropzone-拖放處理方式.md
+topics: [過時屬性, contextmenu, dropzone, 右鍵選單, Drag and Drop API]
+summary: "說明 `contextmenu` 與 `dropzone` 作為舊屬性不應再依賴，現代實作應改用事件處理。"
 ---
 
 # 過時屬性補充：contextmenu 與 dropzone

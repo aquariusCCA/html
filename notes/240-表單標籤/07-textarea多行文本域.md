@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/240-表單標籤/11-textarea多行文本域.md
+topics: [textarea, 多行文字輸入, rows cols]
+summary: "說明 textarea 適合多行文字輸入，並釐清初始內容、type 與尺寸設定的常見誤解。"
 ---
 
 # textarea 多行文本域

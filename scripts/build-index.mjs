@@ -63,7 +63,7 @@ async function listMarkdownFiles(dir) {
 }
 
 function splitFrontmatter(markdown) {
-  const match = markdown.match(/^---\n([\s\S]*?)\n---\n?/);
+  const match = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
   if (!match) return { frontmatter: "", body: markdown };
   return { frontmatter: match[1], body: markdown.slice(match[0].length) };
 }

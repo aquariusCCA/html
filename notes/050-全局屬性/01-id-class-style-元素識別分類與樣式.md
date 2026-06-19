@@ -3,6 +3,8 @@ source_atomic:
   - atomic/050-全局屬性/02-class-類別屬性.md
   - atomic/050-全局屬性/10-id-唯一識別碼.md
   - atomic/050-全局屬性/13-style-行內樣式.md
+topics: [id, class, style, 元素識別, 行內樣式]
+summary: "說明 `id`、`class`、`style` 分別如何用於唯一定位、分類元素與直接設定樣式。"
 ---
 
 # id、class、style：識別元素、分類元素與設定樣式

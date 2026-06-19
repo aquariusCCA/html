@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/240-表單標籤/03-input基礎與常用屬性.md
   - atomic/240-表單標籤/04-文字與密碼輸入控件.md
+topics: [input 控件, 文字輸入, 密碼輸入, 欄位屬性, 檔案上傳]
+summary: "介紹 input 的基本語法、常用屬性，以及文字、密碼與檔案欄位的使用邊界。"
 ---
 
 # input 基礎與文字、密碼輸入

@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/080-meta標籤/03-meta自動刷新設定.md
+topics: [meta refresh, 自動刷新, 延遲導向, 轉址]
+summary: "說明 meta refresh 的刷新與延遲導向語法，並辨析它不適合作為主要轉址方案。"
 ---
 
 # meta refresh：自動刷新與延遲導向

@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/310-detail標籤/01-details與summary標籤.md
+topics: [details標籤, summary標籤, 原生展開收合, open屬性, 互動語意]
+summary: "說明如何用 details/summary 建立原生展開區塊，並判斷 open 與適用限制。"
 ---
 
 # details 與 summary：建立可展開的內容區塊

@@ -3,6 +3,8 @@ source_atomic:
   - atomic/040-HTML基本結構標籤/01-文檔類型聲明標籤.md
   - atomic/040-HTML基本結構標籤/02-lang語言種類.md
   - atomic/040-HTML基本結構標籤/03-字符集.md
+topics: [HTML文件骨架, DOCTYPE, lang, charset]
+summary: "說明 HTML 文件開頭如何透過 DOCTYPE、lang 與 charset 讓瀏覽器正確解析語言與編碼。"
 ---
 
 # HTML 文件起手式：DOCTYPE、lang 與 charset

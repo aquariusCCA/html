@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/020-HTML簡介/08-HTML標籤結構.md
   - atomic/020-HTML簡介/09-HTML元素關係.md
+topics: [HTML標籤結構, 單標籤與雙標籤, 元素關係, DOM基礎]
+summary: "說明標籤組成與父子、祖先後代、兄弟等元素關係。"
 ---
 
 # HTML 標籤的結構與元素之間的關係

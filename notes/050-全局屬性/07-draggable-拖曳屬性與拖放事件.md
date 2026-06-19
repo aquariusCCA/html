@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/050-全局屬性/07-draggable-拖曳屬性.md
+topics: [draggable, Drag and Drop API, 拖放事件, preventDefault]
+summary: "說明 `draggable` 只提供可拖曳能力，完整拖放行為仍需 JavaScript 事件處理。"
 ---
 
 # draggable：讓元素可以被拖曳

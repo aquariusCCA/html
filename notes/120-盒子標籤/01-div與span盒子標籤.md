@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/120-盒子標籤/01-div-span-盒子標籤.md
+topics: [盒子標籤, div, span, 無語意容器, 區塊與行內]
+summary: "說明 div 與 span 作為無語意容器的差異、使用情境與常見誤用。"
 ---
 
 # div 與 span：沒有語意的盒子標籤

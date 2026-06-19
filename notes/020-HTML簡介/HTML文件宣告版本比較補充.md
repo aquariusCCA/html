@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/020-HTML簡介/06-HTML版本宣告範例.md
+topics: [文件類型宣告, HTML版本差異, HTML4與XHTML, 舊專案維護]
+summary: "對照 HTML5、HTML4 與 XHTML 宣告差異，協助閱讀舊專案程式碼。"
 ---
 
 # 補充：HTML5、HTML4 與 XHTML 的文件宣告比較

@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/020-HTML簡介/07-HTML文件基本骨架.md
+topics: [HTML文件骨架, 文件類型宣告, head與body, 相容模式]
+summary: "拆解 HTML5 文件基本結構，說明各骨架標籤的角色與錯誤影響。"
 ---
 
 # HTML 文件的基本骨架

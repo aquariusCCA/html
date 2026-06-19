@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/270-布局標籤/01-html5-語義化布局標籤.md
+topics: [語意化布局標籤, 頁面結構, article與section, div使用判斷]
+summary: "說明 HTML5 布局標籤的語意角色，並建立 article、section 與 div 的選用判斷。"
 ---
 
 # HTML5 語意化布局標籤

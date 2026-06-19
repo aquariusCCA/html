@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/030-兼容性問題/01-瀏覽器渲染模式-meta-標籤.md
+topics: [舊版 IE, X-UA-Compatible, 雙核瀏覽器, renderer meta, 相容性模式]
+summary: "說明 IE 與雙核瀏覽器的渲染模式提示標籤，幫助判斷舊專案 head 設定的用途與限制。"
 ---
 
 # IE 與雙核瀏覽器的相容性 Meta 標籤

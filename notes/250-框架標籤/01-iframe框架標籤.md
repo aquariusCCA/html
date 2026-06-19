@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/250-框架標籤/01-iframe框架標籤.md
+topics: [iframe, 內嵌內容, target 導向, iframe 屬性, iframe 安全與效能]
+summary: "說明如何用 iframe 嵌入頁面或文件，並搭配 target、CSS 與進階屬性處理呈現與限制。"
 ---
 
 # iframe 框架標籤：在頁面中嵌入另一個內容

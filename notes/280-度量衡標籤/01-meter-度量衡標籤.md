@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/280-度量衡標籤/01-meter-度量衡標籤.md
+topics: [meter 標籤, 度量衡標籤, 測量值語意, meter 屬性, progress 差異]
+summary: "說明 `<meter>` 表示已知範圍測量值，並區分與 `<progress>` 的任務進度語意。"
 ---
 
 # meter 度量衡標籤：表示已知範圍內的測量值

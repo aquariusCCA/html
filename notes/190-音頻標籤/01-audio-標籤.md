@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/190-音頻標籤/01-audio-標籤基本用法.md
   - atomic/190-音頻標籤/02-audio-source-多格式兼容寫法.md
+topics: [audio 標籤, 音訊播放器, source 多格式來源, autoplay 限制, fallback 文字]
+summary: "說明如何用 `<audio>` 嵌入音訊播放器，並處理 controls、多格式來源、自動播放限制與 fallback 提示。"
 ---
 
 # audio 標籤：在網頁中嵌入音訊

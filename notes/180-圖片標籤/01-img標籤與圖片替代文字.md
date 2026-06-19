@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/180-圖片標籤/01-img-標籤與常用屬性.md
+topics: [img標籤, 圖片來源, 圖片替代文字, 圖片尺寸]
+summary: "說明 img 的 src、alt、title 與尺寸屬性，並判斷何時需要替代文字。"
 ---
 
 # img 標籤：在網頁中放入圖片

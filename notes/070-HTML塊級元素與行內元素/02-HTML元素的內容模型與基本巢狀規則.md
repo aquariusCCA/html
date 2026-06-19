@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/070-HTML塊級元素與行內元素/03-塊級元素與行內元素的基本巢狀規則.md
+topics: [內容模型, HTML巢狀規則, flow content, phrasing content, div與span]
+summary: "說明合法巢狀應依內容模型判斷，而非只看 block/inline 排版分類。"
 ---
 
 # HTML 元素的內容模型與基本巢狀規則

@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/240-表單標籤/08-新增input類型.md
   - atomic/240-表單標籤/13-新增表單屬性與placeholder樣式.md
+topics: [HTML5 input 類型, 原生驗證, 表單屬性, placeholder]
+summary: "說明 HTML5 input 類型與 required、autocomplete 等屬性如何改善輸入語意與體驗。"
 ---
 
 # HTML5 輸入類型與表單屬性

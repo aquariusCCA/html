@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/080-meta標籤/01-meta字元編碼與顯示環境設定.md
   - atomic/080-meta標籤/02-meta文件資訊與版權設定.md
+topics: [meta, head, 字元編碼, viewport, 文件資訊]
+summary: "說明 meta 標籤在 head 中提供編碼、行動顯示與文件資訊的基本用途。"
 ---
 
 # meta 標籤與網頁基本設定

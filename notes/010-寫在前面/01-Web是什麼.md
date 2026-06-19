@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/010-寫在前面/01-Web-基本概念與-JavaWeb.md
+topics: [web, http/https, html, javaweb]
+summary: "解釋 Web、網站、瀏覽器與 JavaWeb 的關係，建立 HTML 在 Web 流程中的位置。"
 ---
 
 # Web 是什麼：在學 HTML 之前，先搞懂大局

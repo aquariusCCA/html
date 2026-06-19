@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/050-全局屬性/09-hidden-隱藏元素.md
   - atomic/050-全局屬性/15-title-提示文字.md
+topics: [hidden, title, 條件式顯示, 補充提示, 可及性]
+summary: "說明 `hidden` 與 `title` 在隱藏內容、補充提示與重要資訊呈現上的使用邊界。"
 ---
 
 # hidden 與 title：隱藏內容與提供補充資訊

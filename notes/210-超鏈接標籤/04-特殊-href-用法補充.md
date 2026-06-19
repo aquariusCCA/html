@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/210-超鏈接標籤/05-特殊-href-用法.md
+topics: [特殊 href, 空連結, javascript URL, 通訊連結, app scheme]
+summary: "整理 `#`、空字串、`javascript:`、`tel:`、`mailto:` 與 app scheme 的適用情境與限制。"
 ---
 
 # 特殊 href 用法補充

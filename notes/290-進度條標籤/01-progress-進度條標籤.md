@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/290-進度條標籤/01-progress-進度條標籤.md
+topics: [progress 標籤, 任務進度, value 與 max, 不確定進度, 進度條可存取性]
+summary: "說明 `<progress>` 如何用 `value`/`max` 表示任務進度，並區分已知與未知進度情境。"
 ---
 
 # progress 標籤：顯示任務完成進度

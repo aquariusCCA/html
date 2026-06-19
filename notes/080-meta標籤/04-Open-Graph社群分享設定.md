@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/080-meta標籤/06-open-graph社群分享設定.md
+topics: [Open Graph, 社群分享, 分享預覽, og:image, og:url]
+summary: "說明 Open Graph 如何控制社群分享卡片，並整理常見 OG 欄位與設定錯誤。"
 ---
 
 # Open Graph：控制社群分享預覽

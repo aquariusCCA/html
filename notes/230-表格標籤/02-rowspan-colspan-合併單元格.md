@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/230-表格標籤/04-rowspan-colspan-合併單元格.md
+topics: [合併單元格, rowspan, colspan, 表格結構檢查]
+summary: "說明跨列與跨欄合併的方向、寫法與刪除多餘儲存格的規則。"
 ---
 
 # rowspan 與 colspan：合併表格單元格

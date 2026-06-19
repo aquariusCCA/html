@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/320-mark標籤/01-mark-標籤基本用法.md
+topics: [mark標籤, HTML語意標籤, 搜尋結果高亮, CSS樣式調整, 無障礙]
+summary: "說明 `<mark>` 如何標示目前上下文中的重點文字，並區分語意標記、視覺樣式與 `<strong>` 的差異。"
 ---
 
 # mark 標籤：標示目前上下文中的重點文字

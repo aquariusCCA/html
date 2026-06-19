@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/040-HTML基本結構標籤/05-注釋.md
+topics: [HTML注釋, 注釋語法, 程式碼維護, 敏感資訊]
+summary: "說明 HTML 注釋的語法、用途與維護邊界，並提醒不要把敏感資訊放進原始碼。"
 ---
 
 # HTML 注釋：寫給開發者看的說明

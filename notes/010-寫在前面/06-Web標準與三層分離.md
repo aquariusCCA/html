@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/010-寫在前面/08-Web-標準與三層分離.md
+topics: [web標準, 三層分離, html, css, javascript]
+summary: "說明 Web 標準如何把網頁拆成結構、表現與行為三層，並界定 HTML 的職責。"
 ---
 
 # Web 標準與三層分離：HTML、CSS、JavaScript 各管各的

@@ -1,9 +1,9 @@
-請使用 `.codex\skills\update-judgment\SKILL.md` **HTML 筆記包更新判斷**。
+請使用 `.codex/skills/notes-index-metadata/SKILL.md` 進行 **教學內容索引整理**。
 
-章節：`notes\010-寫在前面` ~ `notes\320-mark標籤`
+章節名稱：`notes/320-mark標籤`
 
-改動摘要：已使用 `.codex\skills\notes-content-review\SKILL.md` 對 `notes\010-寫在前面` ~ `notes\320-mark標籤` 進行 **正式教學筆記內容審查**；有些檔案沒有更改是因為之前已經改過已提交或是無須進入第二階段的修改。
+專案根目錄：預設為目前工作目錄
 
-希望處理方式：只判斷
+執行階段：階段一「草擬提案」
 
-補充限制：不要實際改檔。
+是否允許寫入檔案：預設不允許；階段二確認語句可視為允許寫入 `notes/320-mark標籤/*.md` 的 front matter

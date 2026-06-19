@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/300-datalist標籤/01-datalist標籤.md
+topics: [datalist, 表單輸入, 輸入建議, datalist與select差異]
+summary: "說明 `<datalist>` 如何與 `<input>` 綁定提供建議選項，並辨別它與 `<select>` 的使用邊界。"
 ---
 
 # datalist 標籤：替輸入框提供建議選項

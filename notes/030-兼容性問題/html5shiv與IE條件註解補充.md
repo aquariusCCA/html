@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/030-兼容性問題/02-html5shiv-與-ie-條件註解.md
+topics: [舊版 IE, html5shiv, IE 條件註解, HTML5 語意標籤, 相容性補丁]
+summary: "說明 html5shiv 如何讓 IE6 至 IE8 套用 HTML5 語意標籤樣式，以及條件註解的適用範圍。"
 ---
 
 # html5shiv 與 IE 條件註解

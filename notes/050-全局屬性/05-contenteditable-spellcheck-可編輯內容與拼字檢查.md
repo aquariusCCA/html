@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/050-全局屬性/03-contenteditable-可編輯內容.md
   - atomic/050-全局屬性/12-spellcheck-拼字檢查.md
+topics: [contenteditable, spellcheck, 可編輯內容, 拼字檢查]
+summary: "說明如何讓元素內容可被編輯、控制拼字檢查，並釐清可編輯不等於自動儲存。"
 ---
 
 # contenteditable 與 spellcheck：可編輯內容與拼字檢查

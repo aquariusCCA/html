@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/240-表單標籤/09-label標籤與控件關聯.md
   - atomic/240-表單標籤/14-fieldset與legend表單分組.md
+topics: [label, fieldset, legend, 表單無障礙]
+summary: "說明 label 如何關聯控件，以及 fieldset/legend 如何建立表單分組語意。"
 ---
 
 # label 與表單分組

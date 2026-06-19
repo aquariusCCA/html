@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/080-meta標籤/04-robots-meta搜尋爬蟲設定.md
   - atomic/080-meta標籤/05-keywords與description-meta設定.md
+topics: [SEO, robots, description, keywords, 搜尋引擎]
+summary: "說明搜尋相關 meta 如何提供爬蟲控制與摘要資訊，以及 keywords 的現代限制。"
 ---
 
 # 搜尋引擎相關 meta 設定

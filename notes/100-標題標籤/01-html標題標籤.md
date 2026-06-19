@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/100-標題標籤/01-html標題標籤.md
+topics: [html, 標題標籤, 標題層級, 文件結構]
+summary: "說明 h1 到 h6 如何表示內容層級，並避免把標題標籤誤用為字體大小工具。"
 ---
 
 # HTML 標題標籤：用 h1 到 h6 建立內容層級

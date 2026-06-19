@@ -2,6 +2,8 @@
 source_atomic:
   - atomic/200-視頻標籤/01-video-標籤基本概念與常見屬性.md
   - atomic/200-視頻標籤/02-video-source-多格式與低版本瀏覽器支援.md
+topics: [video 標籤, 影片嵌入, source 多格式來源, 影片播放控制, 瀏覽器相容性]
+summary: "說明如何用 video 嵌入影片，並用 source 與常用屬性處理播放控制和格式相容性。"
 ---
 
 # video 標籤：在網頁中嵌入影片

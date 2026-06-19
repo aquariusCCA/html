@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/090-title標籤/01-title標籤的作用與寫法.md
+topics: [title標籤, head, 文件標題, h1標籤, title屬性]
+summary: "說明 `<title>` 如何設定文件標題，並區分它與 `<h1>`、`title` 屬性的用途。"
 ---
 
 # title 標籤：設定網頁的文件標題

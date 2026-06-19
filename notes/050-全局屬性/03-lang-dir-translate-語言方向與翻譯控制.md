@@ -3,6 +3,8 @@ source_atomic:
   - atomic/050-全局屬性/06-dir-文字方向.md
   - atomic/050-全局屬性/11-lang-語言代碼.md
   - atomic/050-全局屬性/16-translate-翻譯控制.md
+topics: [lang, dir, translate, 多語內容, 內容語意]
+summary: "說明語言、文字方向與翻譯控制屬性如何協助瀏覽器、搜尋引擎與輔助工具理解內容。"
 ---
 
 # lang、dir、translate：描述語言、文字方向與翻譯行為

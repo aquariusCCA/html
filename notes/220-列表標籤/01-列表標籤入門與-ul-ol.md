@@ -3,6 +3,8 @@ source_atomic:
   - atomic/220-列表標籤/01-列表標籤基本概念.md
   - atomic/220-列表標籤/02-無序列表-ul-li.md
   - atomic/220-列表標籤/03-有序列表-ol-li.md
+topics: [列表語意, ul-ol, li項目, 內容模型]
+summary: "說明何時使用無序與有序列表，並建立以 `<li>` 承載列表項目的正確結構觀念。"
 ---
 
 # 列表標籤入門與 ul、ol

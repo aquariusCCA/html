@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/160-預格式化文本標籤/01-pre-元素與預格式化文本.md
+topics: [pre 元素, 預格式化文本, 空白保留, HTML 字元轉義]
+summary: "說明 `<pre>` 如何保留空白與換行，並提醒展示 HTML 原始碼時需轉義特殊字元。"
 ---
 
 # pre 元素：保留文字原本的排版

@@ -1,6 +1,8 @@
 ---
 source_atomic:
   - atomic/010-寫在前面/05-CS-與-BS-架構比較.md
+topics: [cs架構, bs架構, 三層模型, 表現層]
+summary: "比較 C/S 與 B/S 架構，說明 HTML 在 B/S 三層模型中的表現層定位。"
 ---
 
 # C/S 與 B/S 架構：為什麼網頁不用安裝就能用
