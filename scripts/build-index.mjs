@@ -108,6 +108,10 @@ function toPosixPath(value) {
   return value.split(path.sep).join("/");
 }
 
+function renderMarkdownLink(label, href) {
+  return `[${label}](<${href.replaceAll(">", "%3E")}>)`;
+}
+
 async function collectEntries() {
   const chapters = await listDirectories(notesRoot);
   const entries = [];
@@ -147,10 +151,12 @@ function renderByChapter(entries) {
   for (const chapter of chapters) {
     lines.push(`### ${chapter}`, "");
     for (const entry of entries.filter((item) => item.chapter === chapter)) {
-      lines.push(`- [${entry.title}](${entry.notesRelPath})`);
+      lines.push(`- ${renderMarkdownLink(entry.title, entry.notesRelPath)}`);
       if (entry.topics.length) lines.push(`  - topics: ${entry.topics.join(", ")}`);
       if (entry.summary) lines.push(`  - summary: ${entry.summary}`);
-      if (entry.demoRelPath) lines.push(`  - demo: [${entry.title} demo](${entry.demoRelPath})`);
+      if (entry.demoRelPath) {
+        lines.push(`  - demo: ${renderMarkdownLink(`${entry.title} demo`, entry.demoRelPath)}`);
+      }
     }
     lines.push("");
   }
@@ -178,7 +184,7 @@ function renderByTopic(entries) {
   for (const topic of topics) {
     lines.push(`### ${topic}`, "");
     for (const entry of topicMap.get(topic)) {
-      lines.push(`- [${entry.title}](${entry.notesRelPath})（${entry.chapter}）`);
+      lines.push(`- ${renderMarkdownLink(entry.title, entry.notesRelPath)}（${entry.chapter}）`);
     }
     lines.push("");
   }
