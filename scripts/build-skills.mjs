@@ -268,12 +268,20 @@ async function readSkillSource(skillName) {
   };
 }
 
+// Skill installers reject descriptions containing angle-bracket "XML tags".
+// Authors may write natural placeholders like `<章節>` in skill.yaml; convert
+// the half-width brackets to full-width so the generated frontmatter is safe.
+function sanitizeDescription(description) {
+  return description.replace(/</g, "〈").replace(/>/g, "〉");
+}
+
 function renderSkillMarkdown(source, platform) {
   const platformYaml = source.yaml[platform] && typeof source.yaml[platform] === "object" ? source.yaml[platform] : {};
+  const description = sanitizeDescription(source.yaml.description);
   const frontmatter =
     platform === "claude"
-      ? { name: source.yaml.name, description: source.yaml.description, ...platformYaml }
-      : { name: source.yaml.name, description: source.yaml.description };
+      ? { name: source.yaml.name, description, ...platformYaml }
+      : { name: source.yaml.name, description };
   const overlay = platform === "claude" ? source.claudeOverlay : source.codexOverlay;
   const bodyParts = [generatedNotice, source.instructions.trimEnd()];
   if (overlay.trim()) {
