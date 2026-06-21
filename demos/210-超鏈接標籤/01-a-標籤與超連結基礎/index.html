@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>a 標籤與超連結基礎 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/210-超鏈接標籤/01-a-標籤與超連結基礎.md -->
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">HTML Demo</p>
+      <h1>a 標籤與超連結基礎</h1>
+    </div>
+    <output id="status" class="status" aria-live="polite">點擊下方範例觀察連結語意。</output>
+  </header>
+
+  <main>
+    <section class="band intro">
+      <div class="copy">
+        <h2>同一個標籤，重點是導航目標</h2>
+        <p>&lt;a&gt; 的核心任務是把使用者帶到另一個位置。`href` 決定目標，`target` 決定開啟方式。</p>
+      </div>
+      <div class="preview" id="internal-section" tabindex="-1">
+        <span class="preview-label">本頁目標區</span>
+        <strong>內部連結會定位到這裡</strong>
+      </div>
+    </section>
+
+    <section class="demo-grid" aria-label="連結行為對照">
+      <article class="panel">
+        <h2>有 href：可導航</h2>
+        <pre><code>&lt;a href="#internal-section"&gt;前往本頁目標&lt;/a&gt;</code></pre>
+        <a class="action-link" href="#internal-section" data-message="這是有效超連結：href 指向本頁的 #internal-section。">前往本頁目標</a>
+      </article>
+
+      <article class="panel warning">
+        <h2>沒有 href：不是一般超連結</h2>
+        <pre><code>&lt;a&gt;前往首頁&lt;/a&gt;</code></pre>
+        <a class="plain-anchor" role="link" tabindex="0" data-message="這個 a 沒有 href，不會形成可導航的超連結。">前往首頁</a>
+      </article>
+
+      <article class="panel">
+        <h2>target 對照</h2>
+        <pre><code>&lt;a href="https://example.com" target="_blank" rel="noopener"&gt;外部網站&lt;/a&gt;</code></pre>
+        <div class="link-row">
+          <a href="#self-target" data-message="_self 是預設值，會在目前頁面導航。">_self 範例</a>
+          <a href="https://example.com" target="_blank" rel="noopener" data-message="_blank 會要求新頁籤開啟；外部連結建議搭配 rel=noopener。">_blank 範例</a>
+        </div>
+      </article>
+
+      <article class="panel compare">
+        <h2>前往位置用 a，觸發動作用 button</h2>
+        <div class="split">
+          <div>
+            <pre><code>&lt;a href="product.html"&gt;查看商品&lt;/a&gt;</code></pre>
+            <a class="button-like" href="#product" data-message="查看商品是前往頁面或位置，適合使用 a。">查看商品</a>
+          </div>
+          <div>
+            <pre><code>&lt;button type="button"&gt;儲存&lt;/button&gt;</code></pre>
+            <button type="button" id="saveBtn">儲存</button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="band note" id="product">
+      <h2>判斷準則</h2>
+      <ul>
+        <li>前往網站、頁面、檔案或錨點：使用 <code>&lt;a href="..."&gt;</code>。</li>
+        <li>送出、儲存、切換狀態、打開彈窗：通常使用 <code>&lt;button&gt;</code>。</li>
+        <li>需要新頁籤時才使用 <code>target="_blank"</code>，不要無條件套用。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

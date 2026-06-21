@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>div 與 span 盒子標籤 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/120-盒子標籤/01-div與span盒子標籤.md -->
+  <main class="demo-shell">
+    <header class="demo-header">
+      <p class="eyebrow">HTML 教學 Demo</p>
+      <h1><code>&lt;div&gt;</code> 與 <code>&lt;span&gt;</code>：大盒子和小盒子</h1>
+      <p class="intro">觀察無語意容器的預設排列差異，並比較「能用」和「結構清楚」的 HTML 寫法。</p>
+    </header>
+
+    <section class="controls" aria-label="Demo 控制項">
+      <div class="mode-control" role="radiogroup" aria-label="選擇觀察重點">
+        <label>
+          <input type="radio" name="mode" value="div" checked>
+          <span>div 區塊容器</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="span">
+          <span>span 行內容器</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="semantic">
+          <span>語意標籤對照</span>
+        </label>
+      </div>
+
+      <div class="range-group">
+        <label for="stageWidth">展示區寬度</label>
+        <input id="stageWidth" type="range" min="260" max="720" value="560" step="20">
+        <output id="stageWidthValue" for="stageWidth">560px</output>
+      </div>
+    </section>
+
+    <section class="comparison" aria-label="HTML 寫法與呈現結果對照">
+      <article class="panel code-panel">
+        <div class="panel-header">
+          <h2>HTML 寫法</h2>
+          <p id="codeSummary">兩個 div 預設各自建立一個區塊。</p>
+        </div>
+        <pre><code id="codeBlock"></code></pre>
+      </article>
+
+      <article class="panel result-panel">
+        <div class="panel-header">
+          <h2>瀏覽器呈現</h2>
+          <p id="resultSummary">區塊容器會上下排列，適合包住一整塊內容。</p>
+        </div>
+        <div class="viewport-frame">
+          <div id="resultBox" class="result-box" aria-live="polite"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="takeaway" aria-label="判斷準則">
+      <h2>判斷準則</h2>
+      <ul>
+        <li><code>&lt;div&gt;</code> 適合包住一整塊沒有特定語意的內容，例如卡片或排版區域。</li>
+        <li><code>&lt;span&gt;</code> 適合包住一句話中的一小段文字，不會主動建立新區塊。</li>
+        <li>如果內容本身是標題、段落或導覽，應優先使用對應的語意標籤。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

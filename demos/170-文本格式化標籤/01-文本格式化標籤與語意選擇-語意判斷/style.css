@@ -1,0 +1,273 @@
+:root {
+  color-scheme: light;
+  --ink: #202124;
+  --muted: #5f6368;
+  --line: #d8dee6;
+  --surface: #ffffff;
+  --subtle: #f6f8fa;
+  --accent: #0f766e;
+  --accent-soft: #dff3ef;
+  --danger: #b42318;
+  --danger-soft: #fde8e6;
+  --success: #177245;
+  --success-soft: #e2f3e9;
+  --code: #172033;
+  --code-bg: #edf2f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #eef2f6;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  line-height: 1.6;
+}
+
+.page-shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.demo-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 0;
+  font-size: 3rem;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.scenario-picker {
+  display: grid;
+  min-width: 280px;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--ink);
+  background: var(--surface);
+  font: inherit;
+}
+
+.decision-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.context-panel,
+.result-panel,
+.rule-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.context-panel,
+.result-panel {
+  min-width: 0;
+  padding: 20px;
+}
+
+.context-panel {
+  background: var(--accent-soft);
+  border-color: #9ccbc5;
+}
+
+.panel-label {
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.context-panel h2,
+.result-panel h2 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.context-panel p:last-child,
+.reason {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.status-dot.wrong {
+  background: var(--danger);
+}
+
+.status-dot.good {
+  background: var(--success);
+}
+
+.result-panel {
+  border-color: #efb3ad;
+  background: var(--danger-soft);
+}
+
+.result-panel-good {
+  border-color: #9ccfab;
+  background: var(--success-soft);
+}
+
+.code-block,
+.render-box {
+  margin: 0 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.code-block {
+  overflow: auto;
+  padding: 12px;
+  color: var(--code);
+  background: var(--code-bg);
+  font: 0.94rem/1.55 Consolas, "Courier New", monospace;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.render-box {
+  min-height: 76px;
+  padding: 16px;
+  font-size: 1.08rem;
+}
+
+.highlight {
+  font-weight: 700;
+}
+
+.underlined {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.price-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.rule-panel {
+  margin-top: 18px;
+  padding: 20px;
+}
+
+.rule-panel h2 {
+  margin-bottom: 14px;
+  font-size: 1.2rem;
+}
+
+.rule-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.rule-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.rule-step span {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 6px;
+  color: #ffffff;
+  background: var(--accent);
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+.rule-step p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 980px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  .demo-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .scenario-picker {
+    min-width: 0;
+  }
+
+  .decision-layout,
+  .rule-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-shell {
+    width: min(100% - 24px, 1180px);
+    padding: 22px 0;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}

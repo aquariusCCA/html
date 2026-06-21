@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pre 元素與預格式化文本</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/160-預格式化文本標籤/01-pre-元素與預格式化文本.md -->
+  <main class="page-shell">
+    <header class="demo-header">
+      <div>
+        <p class="eyebrow">HTML Demo</p>
+        <h1>pre 元素與預格式化文本</h1>
+      </div>
+      <button class="toggle-button" id="toggleMarkers" type="button" aria-pressed="false">
+        顯示空白標記
+      </button>
+    </header>
+
+    <section class="comparison-grid" aria-label="p 與 pre 呈現差異">
+      <article class="panel">
+        <div class="panel-heading">
+          <span class="tag">p</span>
+          <h2>一般段落</h2>
+        </div>
+        <p class="description">段落文字會折疊連續空白與換行，原本的縮排不會完整保留。</p>
+        <div class="example-layout">
+          <section class="code-side" aria-label="p 原始碼">
+            <h3>HTML</h3>
+            <pre class="code-block"><code>&lt;p&gt;
+body {
+  background: #fff;
+  font: 12px/24px Arial, sans-serif;
+}
+&lt;/p&gt;</code></pre>
+          </section>
+          <section class="render-side" aria-label="p 實際呈現">
+            <h3>Result</h3>
+            <div class="render-box">
+              <p class="paragraph-sample">
+body {
+  background: #fff;
+  font: 12px/24px Arial, sans-serif;
+}
+              </p>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="panel panel-strong">
+        <div class="panel-heading">
+          <span class="tag">pre</span>
+          <h2>預格式化文本</h2>
+        </div>
+        <p class="description">`pre` 會保留內容中的空格、Tab 與換行，適合展示程式碼或排版好的文字。</p>
+        <div class="example-layout">
+          <section class="code-side" aria-label="pre 原始碼">
+            <h3>HTML</h3>
+            <pre class="code-block"><code>&lt;pre&gt;
+body {
+  background: #fff;
+  font: 12px/24px Arial, sans-serif;
+}
+&lt;/pre&gt;</code></pre>
+          </section>
+          <section class="render-side" aria-label="pre 實際呈現">
+            <h3>Result</h3>
+            <div class="render-box">
+              <pre class="pre-sample">body {
+  background: #fff;
+  font: 12px/24px Arial, sans-serif;
+}</pre>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="observation" aria-label="觀察重點">
+      <h2>觀察重點</h2>
+      <ul>
+        <li>`p` 適合一般段落，不負責保留程式碼排版。</li>
+        <li>`pre` 表示內容已經預先排版，瀏覽器會照原本空白與換行呈現。</li>
+        <li>當空白、縮排、換行本身就是資訊時，使用 `pre` 更符合語意。</li>
+      </ul>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

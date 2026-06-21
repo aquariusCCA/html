@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">範例圖片</title>
+  <desc id="desc">用於 HTML 路徑失效 demo 的簡化圖片。</desc>
+  <rect width="160" height="160" rx="24" fill="#315f72"/>
+  <path d="M26 116 58 78l23 25 18-18 35 31z" fill="#f8f3e7"/>
+  <circle cx="111" cy="49" r="15" fill="#f1c45d"/>
+  <rect x="26" y="26" width="108" height="108" rx="12" fill="none" stroke="#ffffff" stroke-width="8"/>
+</svg>

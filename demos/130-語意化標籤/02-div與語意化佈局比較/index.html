@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>div 與語意化佈局比較 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/130-語意化標籤/02-div與語意化佈局比較.md -->
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">HTML Demo</p>
+      <h1>div 與語意化佈局比較</h1>
+    </div>
+    <p class="source">來源：02-div與語意化佈局比較.md</p>
+  </header>
+
+  <main class="demo-shell">
+    <section class="controls" aria-labelledby="controls-title">
+      <h2 id="controls-title">比較設定</h2>
+      <label>
+        <input type="checkbox" id="show-code" checked>
+        顯示 HTML
+      </label>
+      <label>
+        <input type="checkbox" id="same-look" checked>
+        保持相同外觀
+      </label>
+      <label>
+        <input type="checkbox" id="show-summary" checked>
+        顯示結構摘要
+      </label>
+    </section>
+
+    <section class="comparison" aria-labelledby="comparison-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">同畫面，不同結構</p>
+          <h2 id="comparison-title">畫面相同，不代表 HTML 語意相同</h2>
+        </div>
+        <p>觀察兩邊的標籤名稱；語意化版本不需要靠 class 才能先讀出內容角色。</p>
+      </div>
+
+      <div class="layout-grid">
+        <article class="example-panel">
+          <h3>全用 div</h3>
+          <div class="preview div-preview" aria-label="全用 div 的版面">
+            <div class="site-header">頭部標籤</div>
+            <div class="site-nav">導航欄標籤</div>
+            <div class="site-section">
+              <h4>最新消息</h4>
+              <p>這是一段與最新消息相關的內容。</p>
+            </div>
+          </div>
+          <pre class="code-block"><code>&lt;div class="header"&gt;頭部標籤&lt;/div&gt;
+&lt;div class="nav"&gt;導航欄標籤&lt;/div&gt;
+&lt;div class="section"&gt;
+  &lt;h2&gt;最新消息&lt;/h2&gt;
+  &lt;p&gt;這是一段與最新消息相關的內容。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          <p class="summary">結構摘要：標籤本身都是 <code>&lt;div&gt;</code>，角色主要藏在 class 名稱裡。</p>
+        </article>
+
+        <article class="example-panel">
+          <h3>語意化標籤</h3>
+          <div class="preview semantic-preview" aria-label="語意化標籤的版面">
+            <header class="site-header">頭部標籤</header>
+            <nav class="site-nav">導航欄標籤</nav>
+            <section class="site-section">
+              <h4>最新消息</h4>
+              <p>這是一段與最新消息相關的內容。</p>
+            </section>
+          </div>
+          <pre class="code-block"><code>&lt;header&gt;頭部標籤&lt;/header&gt;
+&lt;nav&gt;導航欄標籤&lt;/nav&gt;
+&lt;section&gt;
+  &lt;h2&gt;最新消息&lt;/h2&gt;
+  &lt;p&gt;這是一段與最新消息相關的內容。&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+          <p class="summary">結構摘要：標籤直接表達頁首、導覽與主題區塊。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="correction" aria-labelledby="correction-title">
+      <div>
+        <p class="eyebrow">錯誤修正</p>
+        <h2 id="correction-title">不是所有容器都要換成 section</h2>
+      </div>
+
+      <div class="correction-grid">
+        <article class="mistake">
+          <h3>誤用</h3>
+          <pre><code>&lt;section class="button-group"&gt;
+  &lt;button&gt;儲存&lt;/button&gt;
+  &lt;button&gt;取消&lt;/button&gt;
+&lt;/section&gt;</code></pre>
+          <p>這只是按鈕群組，沒有形成一個有標題的主題區段。</p>
+        </article>
+        <article class="fix">
+          <h3>修正</h3>
+          <pre><code>&lt;div class="button-group"&gt;
+  &lt;button&gt;儲存&lt;/button&gt;
+  &lt;button&gt;取消&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          <p>當目的只是分組與排版，<code>&lt;div&gt;</code> 是合理的通用容器。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

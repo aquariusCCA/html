@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Graph 分享卡片預覽器</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/080-meta標籤/04-Open-Graph社群分享設定.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">社群預覽模型</p>
+      <h1>Open Graph 分享卡片預覽器</h1>
+      <p>調整 og:title、og:description、og:image 與 og:url，觀察社群平台可能讀到的分享卡片資料。</p>
+    </header>
+
+    <section class="workspace">
+      <form class="panel controls" aria-label="Open Graph 設定">
+        <label for="titleValue">og:title</label>
+        <input id="titleValue" type="text" value="我的精彩網頁">
+
+        <label for="descriptionValue">og:description</label>
+        <textarea id="descriptionValue" rows="3">這是一個介紹 HTML meta 標籤與 Open Graph 的教學頁面。</textarea>
+
+        <label for="imageValue">og:image</label>
+        <input id="imageValue" type="text" value="https://example.com/images/og-cover.jpg">
+
+        <label for="urlValue">og:url</label>
+        <input id="urlValue" type="text" value="https://example.com/my-page">
+
+        <label for="typeValue">og:type</label>
+        <select id="typeValue">
+          <option value="website">website</option>
+          <option value="article">article</option>
+        </select>
+      </form>
+
+      <section class="panel">
+        <h2>head 片段</h2>
+        <pre><code id="codeSample"></code></pre>
+      </section>
+    </section>
+
+    <section class="layout">
+      <article class="panel share-preview">
+        <h2>分享卡片預覽</h2>
+        <div class="share-card">
+          <div class="image-slot" id="imageSlot">OG IMAGE</div>
+          <div class="share-body">
+            <p class="domain" id="domainText"></p>
+            <h3 id="cardTitle"></h3>
+            <p id="cardDescription"></p>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>設定檢查</h2>
+        <dl class="facts">
+          <div>
+            <dt>圖片網址</dt>
+            <dd id="imageState"></dd>
+          </div>
+          <div>
+            <dt>正式 URL</dt>
+            <dd id="urlState"></dd>
+          </div>
+          <div>
+            <dt>用途差異</dt>
+            <dd>`og:title` 控制分享預覽標題，和瀏覽器分頁的 `<title>` 不是同一個欄位。</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web 請求與伺服器流程 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/010-寫在前面/01-Web是什麼.md; notes/010-寫在前面/03-Web服務器與本地遠程伺服器.md -->
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">簡化示意</p>
+        <h1>從輸入網址到看見網頁</h1>
+      </div>
+      <p class="summary">切換不同情境，觀察 HTML 檔案如何從「只有自己能看」變成「透過伺服器被瀏覽器取得」。</p>
+    </header>
+
+    <section class="toolbar" aria-label="選擇情境">
+      <button class="mode active" type="button" data-mode="file">本機檔案</button>
+      <button class="mode" type="button" data-mode="local">本地伺服器</button>
+      <button class="mode" type="button" data-mode="remote">遠端伺服器</button>
+    </section>
+
+    <section class="stage" aria-live="polite">
+      <div class="flow">
+        <article class="node client">
+          <span class="label">瀏覽器</span>
+          <strong id="client-title">開啟本機檔案</strong>
+          <p id="client-text">使用者直接用瀏覽器打開自己電腦裡的 index.html。</p>
+        </article>
+        <div class="connector">
+          <span id="connector-text">file:///index.html</span>
+        </div>
+        <article class="node server">
+          <span class="label" id="server-label">沒有對外服務</span>
+          <strong id="server-title">檔案只在自己的電腦</strong>
+          <p id="server-text">沒有 Web 伺服器回應其他人的 HTTP 請求。</p>
+        </article>
+      </div>
+
+      <aside class="resource-panel">
+        <h2>瀏覽器取得的內容</h2>
+        <ol id="resource-list">
+          <li class="active">讀取本機 HTML 檔案</li>
+          <li>依 HTML 內容顯示頁面</li>
+          <li>其他人無法直接透過網址取得這份檔案</li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="details">
+      <div>
+        <h2 id="result-title">可訪問範圍：只有自己</h2>
+        <p id="result-text">直接打開本機檔案適合練習，但它不是「網站已上線」。朋友的瀏覽器不會自動知道你電腦裡的檔案位置。</p>
+      </div>
+      <figure>
+        <img src="assets/web-server-img-001-7d7f51.png" alt="多位使用者連線至伺服器的示意圖">
+        <figcaption>來源圖示複製自 origin，本 demo 可獨立開啟。</figcaption>
+      </figure>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

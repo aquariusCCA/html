@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>網頁與 HTML 入門 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/020-HTML簡介/01-網頁與HTML入門.md -->
+  <main class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">簡化示意</p>
+        <h1>從網站到瀏覽器畫面</h1>
+      </div>
+      <p>網站由多個網頁組成；每一頁通常是一份 HTML 文件，瀏覽器讀取標記後才產生畫面。</p>
+    </header>
+
+    <section class="map" aria-label="網站、網頁與 HTML 的關係">
+      <div class="site-box">
+        <span>Website</span>
+        <strong>我的學習網站</strong>
+      </div>
+      <div class="pages">
+        <div class="page-chip active">首頁</div>
+        <div class="page-chip">課程頁</div>
+        <div class="page-chip">聯絡頁</div>
+      </div>
+      <div class="file-box">
+        <span>Web Page</span>
+        <strong>index.html</strong>
+      </div>
+    </section>
+
+    <section class="lab">
+      <div class="controls" aria-label="切換標記狀態">
+        <button class="mode active" type="button" data-mode="plain">純文字</button>
+        <button class="mode" type="button" data-mode="marked">加上 HTML 標記</button>
+      </div>
+
+      <div class="workspace">
+        <article class="panel">
+          <h2>HTML 文件內容</h2>
+          <pre><code id="source-code">歡迎來到我的網站</code></pre>
+        </article>
+
+        <article class="panel browser">
+          <div class="browser-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>瀏覽器畫面</p>
+          </div>
+          <div class="preview" id="preview">
+            <p>歡迎來到我的網站</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="pipeline" aria-label="網頁形成流程">
+      <div class="step">
+        <span>1</span>
+        <strong>撰寫 HTML</strong>
+        <p>用標籤描述內容角色。</p>
+      </div>
+      <div class="step">
+        <span>2</span>
+        <strong>瀏覽器解析</strong>
+        <p>讀取標記與文字內容。</p>
+      </div>
+      <div class="step">
+        <span>3</span>
+        <strong>渲染結果</strong>
+        <p>把結構轉成可見畫面。</p>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

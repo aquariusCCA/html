@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>audio 標籤基本播放器屬性 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/190-音頻標籤/01-audio-標籤.md -->
+  <main class="page">
+    <header class="intro">
+      <p class="eyebrow">HTML audio</p>
+      <h1>audio 標籤基本播放器屬性</h1>
+      <p>切換屬性，觀察瀏覽器內建音訊播放器如何因 `controls`、`loop`、`autoplay` 改變。</p>
+    </header>
+
+    <section class="workspace" aria-label="audio 屬性互動範例">
+      <form class="controls-panel" aria-label="屬性切換">
+        <fieldset>
+          <legend>屬性</legend>
+          <label>
+            <input id="toggle-controls" type="checkbox" checked>
+            controls
+          </label>
+          <label>
+            <input id="toggle-loop" type="checkbox">
+            loop
+          </label>
+          <label>
+            <input id="toggle-autoplay" type="checkbox">
+            autoplay
+          </label>
+        </fieldset>
+        <button id="reload-example" type="button">重新載入範例</button>
+      </form>
+
+      <section class="player-panel" aria-label="播放器預覽">
+        <div class="panel-heading">
+          <h2>實際呈現</h2>
+          <span id="status-badge" class="status-badge">可操作</span>
+        </div>
+        <div class="player-stage">
+          <audio id="demo-audio" src="assets/html-audio-tag-file-001-1fa553.mp3" controls></audio>
+          <p id="no-controls-note" class="no-controls-note" hidden>目前沒有 `controls`，音訊元素仍在頁面中，但瀏覽器不會顯示可操作的控制列。</p>
+        </div>
+        <p id="behavior-note" class="behavior-note">內容型音訊通常要加上 `controls`，讓使用者自行播放、暫停與調整音量。</p>
+      </section>
+
+      <section class="code-panel" aria-label="目前 HTML">
+        <h2>目前 HTML</h2>
+        <pre><code id="code-output">&lt;audio src=&quot;audio.mp3&quot; controls&gt;&lt;/audio&gt;</code></pre>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

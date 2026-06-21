@@ -1,0 +1,211 @@
+:root {
+  --ink: #182126;
+  --muted: #667179;
+  --line: #c9d4d6;
+  --paper: #f4f6f4;
+  --panel: #ffffff;
+  --accent: #376f58;
+  --accent-soft: #e0f0e8;
+  --blue: #315f8f;
+  --blue-soft: #dfeaf7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif;
+}
+
+.page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
+  gap: 24px;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+h1, h2, p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 34px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.tag-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0 20px;
+}
+
+.tag-compare article, .source-panel, .tree-panel, .relations article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 20px;
+}
+
+.tag-compare span {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+code {
+  display: block;
+  overflow-wrap: anywhere;
+  border-radius: 8px;
+  background: #162026;
+  color: #edf4f2;
+  padding: 12px;
+  line-height: 1.55;
+}
+
+.tag-compare p {
+  margin: 12px 0 0;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  gap: 20px;
+}
+
+pre {
+  margin: 0;
+}
+
+pre code {
+  min-height: 310px;
+  white-space: pre-wrap;
+  font-size: 16px;
+}
+
+.tree {
+  min-height: 310px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #f9fbfa;
+  padding: 22px;
+}
+
+.branch {
+  margin-left: 36px;
+  padding-left: 18px;
+  border-left: 2px solid var(--line);
+}
+
+.node {
+  display: block;
+  width: min(100%, 260px);
+  margin: 0 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  padding: 12px 14px;
+  text-align: left;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.node.active {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.node.related {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.relations {
+  margin-top: 20px;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+dl div {
+  border-radius: 8px;
+  background: var(--blue-soft);
+  padding: 14px;
+}
+
+dt {
+  margin-bottom: 8px;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+dd {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+@media (max-width: 880px) {
+  .header, .workspace, dl {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .tag-compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    width: min(100% - 20px, 1120px);
+    padding: 20px 0;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .branch {
+    margin-left: 16px;
+  }
+}

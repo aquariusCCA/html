@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>錨點鏈接與頁內定位 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/210-超鏈接標籤/03-錨點鏈接與頁內定位.md -->
+  <header id="top" class="top">
+    <div>
+      <p class="eyebrow">HTML Demo</p>
+      <h1>錨點鏈接與頁內定位</h1>
+    </div>
+    <output id="status" class="status" aria-live="polite">點擊目錄項目，觀察 href 與 id 是否對得上。</output>
+  </header>
+
+  <nav class="toc" aria-label="頁內目錄">
+    <a href="#season-one" data-message="href=#season-one 找到 id=season-one，所以能定位到第一季。">第一季</a>
+    <a href="#season-two" data-message="href=#season-two 找到 id=season-two，所以能定位到第二季。">第二季</a>
+    <a href="#faq" data-message="href=#faq 找到 id=faq，所以能定位到 FAQ。">FAQ</a>
+    <a href="assets/files/hyperlink-tags-file-001-b99c80.html#test1" data-external-anchor="true" data-message="這是他頁錨點：先前往 HTML 檔案，再嘗試定位 #test1。">他頁 #test1</a>
+  </nav>
+
+  <main>
+    <section class="explain">
+      <h2>錨點由兩端組成</h2>
+      <div class="pair">
+        <pre><code>&lt;a href="#season-two"&gt;第二季&lt;/a&gt;</code></pre>
+        <pre><code>&lt;h2 id="season-two"&gt;第二季介紹&lt;/h2&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="season-one" class="section-block" tabindex="-1">
+      <span class="label">id="season-one"</span>
+      <h2>第一季介紹</h2>
+      <p>點擊目錄的「第一季」後，瀏覽器會尋找這個 id 並捲動到這裡。</p>
+    </section>
+
+    <section id="season-two" class="section-block accent" tabindex="-1">
+      <span class="label">id="season-two"</span>
+      <h2>第二季介紹</h2>
+      <p><code>#</code> 只寫在 <code>href</code> 裡；目標元素的 <code>id</code> 值本身不包含 <code>#</code>。</p>
+    </section>
+
+    <section id="faq" class="section-block" tabindex="-1">
+      <span class="label">id="faq"</span>
+      <h2>FAQ</h2>
+      <p>同一頁的 id 應保持唯一，否則定位、JavaScript 與輔助工具都可能變得不可靠。</p>
+    </section>
+
+    <section class="mistakes">
+      <h2>常見錯誤對照</h2>
+      <div class="mistake-grid">
+        <article>
+          <h3>名稱不一致</h3>
+          <pre><code>&lt;a href="#two"&gt;第二季&lt;/a&gt;
+&lt;h3 id="second"&gt;第二季介紹&lt;/h3&gt;</code></pre>
+          <button type="button" data-error="href 指向 #two，但頁面沒有 id=two 的目標，所以不會定位到預期位置。">檢查結果</button>
+        </article>
+        <article>
+          <h3>id 多寫 #</h3>
+          <pre><code>&lt;a href="#two"&gt;第二季&lt;/a&gt;
+&lt;h3 id="#two"&gt;第二季介紹&lt;/h3&gt;</code></pre>
+          <button type="button" data-error="# 是 href 的片段識別符語法，id 值應寫 two，不應寫 #two。">檢查結果</button>
+        </article>
+        <article>
+          <h3>重複 id</h3>
+          <pre><code>&lt;h2 id="intro"&gt;第一段&lt;/h2&gt;
+&lt;h2 id="intro"&gt;第二段&lt;/h2&gt;</code></pre>
+          <button type="button" data-error="id 在同一頁應唯一；重複 id 會讓定位結果不可靠。">檢查結果</button>
+        </article>
+        <article>
+          <h3>明確回頂部</h3>
+          <pre><code>&lt;a href="#top"&gt;回到頂部&lt;/a&gt;
+&lt;header id="top"&gt;...&lt;/header&gt;</code></pre>
+          <a href="#top" data-message="使用明確的 #top 比長期保留占位 # 更容易維護。">回到頂部</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

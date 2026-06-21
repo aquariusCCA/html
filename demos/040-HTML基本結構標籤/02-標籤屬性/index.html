@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>標籤屬性 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/040-HTML基本結構標籤/02-標籤屬性.md -->
+  <main class="demo-shell">
+    <header class="demo-header">
+      <p class="source-label">notes/040-HTML基本結構標籤/02-標籤屬性.md</p>
+      <h1>標籤屬性</h1>
+      <p>屬性寫在開始標籤或單標籤中，用來替標籤補充資訊。這個 demo 展示屬性拆解、布林屬性與常見錯誤。</p>
+    </header>
+
+    <section class="image-strip" aria-label="屬性示意圖">
+      <figure>
+        <img src="assets/html-basic-structure-tags-img-001-4f91bb.png" alt="img 標籤屬性名與屬性值示意圖">
+        <figcaption>屬性名與屬性值</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/html-basic-structure-tags-img-002-b3d0e7.png" alt="標籤屬性位於開始標籤或單標籤內示意圖">
+        <figcaption>屬性位於標籤內部</figcaption>
+      </figure>
+    </section>
+
+    <section class="attribute-lab">
+      <div class="code-panel">
+        <div class="panel-title">拆解範例</div>
+        <pre><code>&lt;p id="notice" class="highlight"&gt;
+  尚硅谷，讓天下沒有難學的技術!!!
+&lt;/p&gt;</code></pre>
+      </div>
+
+      <div class="parts-panel" aria-label="屬性拆解">
+        <div class="part tag-name">&lt;p&gt;<span>標籤名稱</span></div>
+        <div class="part attr-name">id<span>屬性名</span></div>
+        <div class="part attr-value">"notice"<span>屬性值</span></div>
+        <div class="part attr-name">class<span>屬性名</span></div>
+        <div class="part attr-value">"highlight"<span>屬性值</span></div>
+      </div>
+    </section>
+
+    <section class="boolean-demo">
+      <div>
+        <h2>布林屬性：disabled</h2>
+        <p>布林屬性只要存在，就代表狀態啟用。切換下方開關，觀察輸入框能不能輸入。</p>
+        <label class="toggle-row">
+          <input id="disabled-toggle" type="checkbox" checked>
+          <span>加入 disabled 屬性</span>
+        </label>
+      </div>
+      <div class="input-preview">
+        <label for="sample-input">使用者名稱</label>
+        <input id="sample-input" type="text" name="username" value="student">
+        <code id="input-code"></code>
+      </div>
+    </section>
+
+    <section class="mistake-area">
+      <h2>常見錯誤對照</h2>
+      <div class="mistake-grid">
+        <article>
+          <h3>少了標籤與屬性之間的空格</h3>
+          <pre><code>&lt;pclass="intro"&gt;這是一段文字。&lt;/p&gt;</code></pre>
+          <p>瀏覽器不會把它理解成 p 標籤加 class 屬性。</p>
+          <pre class="fixed"><code>&lt;p class="intro"&gt;這是一段文字。&lt;/p&gt;</code></pre>
+        </article>
+        <article>
+          <h3>同名屬性重複</h3>
+          <pre><code>&lt;input type="text" type="password"&gt;</code></pre>
+          <p>同一個標籤不要出現互相衝突的同名屬性。</p>
+          <pre class="fixed"><code>&lt;input type="password"&gt;</code></pre>
+        </article>
+        <article>
+          <h3>亂省略屬性值引號</h3>
+          <pre><code>&lt;div class=card primary&gt;&lt;/div&gt;</code></pre>
+          <p>包含空格的屬性值會被拆開，和 class="card primary" 不同。</p>
+          <pre class="fixed"><code>&lt;div class="card primary"&gt;&lt;/div&gt;</code></pre>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>搜尋 meta 預覽器</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/080-meta標籤/03-搜尋引擎相關meta設定.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">簡化示意</p>
+      <h1>搜尋 meta 預覽器</h1>
+      <p>調整 robots、description 與 keywords，觀察它們提供的是爬蟲訊號、摘要候選，還是歷史 metadata。</p>
+    </header>
+
+    <section class="workspace">
+      <form class="panel controls" aria-label="搜尋 meta 設定">
+        <label for="robotsValue">robots</label>
+        <select id="robotsValue">
+          <option value="index,follow">index,follow</option>
+          <option value="noindex,follow">noindex,follow</option>
+          <option value="index,nofollow">index,nofollow</option>
+          <option value="noindex,nofollow">noindex,nofollow</option>
+        </select>
+
+        <label for="descriptionValue">description</label>
+        <textarea id="descriptionValue" rows="4">學習 HTML meta 標籤的基本用途，包含 robots、description 與 keywords。</textarea>
+
+        <label for="keywordsValue">keywords</label>
+        <input id="keywordsValue" type="text" value="HTML, meta, robots, description">
+      </form>
+
+      <section class="panel">
+        <h2>head 片段</h2>
+        <pre><code id="codeSample"></code></pre>
+      </section>
+    </section>
+
+    <section class="layout">
+      <article class="panel search-preview">
+        <h2>搜尋結果摘要候選</h2>
+        <div class="result-card" id="resultCard">
+          <p class="url">https://example.com/html-meta</p>
+          <h3>HTML meta 標籤教學</h3>
+          <p id="snippetText"></p>
+        </div>
+        <p class="hint" id="snippetHint"></p>
+      </article>
+
+      <article class="panel">
+        <h2>爬蟲訊號判讀</h2>
+        <dl class="facts">
+          <div>
+            <dt>索引</dt>
+            <dd id="indexState"></dd>
+          </div>
+          <div>
+            <dt>連結追蹤</dt>
+            <dd id="followState"></dd>
+          </div>
+          <div>
+            <dt>keywords</dt>
+            <dd id="keywordsState"></dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

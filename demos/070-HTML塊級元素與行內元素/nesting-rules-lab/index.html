@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML 巢狀規則觀察 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes:
+       notes/070-HTML塊級元素與行內元素/02-HTML元素的內容模型與基本巢狀規則.md
+       notes/070-HTML塊級元素與行內元素/03-常見錯誤巢狀：標題p與a標籤.md -->
+  <header class="page-header">
+    <p class="eyebrow">HTML Demo</p>
+    <h1>內容模型與錯誤巢狀觀察</h1>
+    <p>切換案例，比較原始 HTML、建議修正版，以及瀏覽器解析後的 DOM 摘要。</p>
+  </header>
+
+  <main class="workspace">
+    <aside class="case-list" aria-labelledby="case-title">
+      <h2 id="case-title">案例</h2>
+      <button class="case-button active" type="button" data-case="div-flow">div 作為 flow 容器</button>
+      <button class="case-button" type="button" data-case="span-phrasing">span 包 phrasing content</button>
+      <button class="case-button" type="button" data-case="span-div">span 包 div</button>
+      <button class="case-button" type="button" data-case="heading-nesting">h1 包 h2</button>
+      <button class="case-button" type="button" data-case="p-div">p 包 div</button>
+      <button class="case-button" type="button" data-case="anchor-nesting">a 包 a</button>
+    </aside>
+
+    <section class="case-stage" aria-live="polite">
+      <div class="case-summary">
+        <span id="case-status" class="status"></span>
+        <h2 id="case-name"></h2>
+        <p id="case-note"></p>
+      </div>
+
+      <div class="grid">
+        <article class="panel">
+          <h3>原始 HTML</h3>
+          <pre><code id="raw-code"></code></pre>
+        </article>
+        <article class="panel">
+          <h3>建議修正版</h3>
+          <pre><code id="fixed-code"></code></pre>
+        </article>
+      </div>
+
+      <div class="grid">
+        <article class="panel">
+          <h3>原始碼的實際預覽</h3>
+          <iframe id="raw-preview" title="原始 HTML 預覽"></iframe>
+        </article>
+        <article class="panel">
+          <h3>瀏覽器解析後的 DOM 摘要</h3>
+          <pre class="dom-tree"><code id="dom-tree"></code></pre>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

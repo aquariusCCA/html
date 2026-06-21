@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文本格式化標籤對照</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/170-文本格式化標籤/01-文本格式化標籤與語意選擇.md -->
+  <main class="page-shell">
+    <header class="demo-header">
+      <p class="eyebrow">HTML Demo</p>
+      <h1>文本格式化標籤對照</h1>
+      <p class="lead">相似的預設外觀不代表相同語意。先判斷文字意義，再選 HTML 標籤；只有外觀需求時交給 CSS。</p>
+    </header>
+
+    <section class="comparison-grid" aria-label="常見文本格式化標籤對照">
+      <article class="comparison-panel">
+        <div class="panel-heading">
+          <span class="effect-label">粗體</span>
+          <h2><code>&lt;strong&gt;</code> 與 <code>&lt;b&gt;</code></h2>
+        </div>
+        <div class="example-grid">
+          <section class="example-block">
+            <h3>重要語意</h3>
+            <pre class="code-block"><code>&lt;strong&gt;警告：請先存檔&lt;/strong&gt;</code></pre>
+            <div class="render-box">
+              <strong>警告：請先存檔</strong>
+            </div>
+            <p class="note">內容需要優先注意，使用 <code>strong</code> 表示重要性。</p>
+          </section>
+          <section class="example-block">
+            <h3>吸引注意</h3>
+            <pre class="code-block"><code>&lt;b&gt;新品上市&lt;/b&gt;</code></pre>
+            <div class="render-box">
+              <b>新品上市</b>
+            </div>
+            <p class="note">只是讓文字醒目，不表示比其他內容更嚴重。</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="comparison-panel">
+        <div class="panel-heading">
+          <span class="effect-label">斜體</span>
+          <h2><code>&lt;em&gt;</code> 與 <code>&lt;i&gt;</code></h2>
+        </div>
+        <div class="example-grid">
+          <section class="example-block">
+            <h3>語氣強調</h3>
+            <pre class="code-block"><code>這次&lt;em&gt;真的&lt;/em&gt;要備份。</code></pre>
+            <div class="render-box">
+              這次<em>真的</em>要備份。
+            </div>
+            <p class="note">強調會改變句子的語氣重點，使用 <code>em</code>。</p>
+          </section>
+          <section class="example-block">
+            <h3>術語或不同語境</h3>
+            <pre class="code-block"><code>&lt;i&gt;responsive design&lt;/i&gt;</code></pre>
+            <div class="render-box">
+              <i>responsive design</i>
+            </div>
+            <p class="note">標示術語、外文詞或不同聲音時，可使用 <code>i</code>。</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="comparison-panel">
+        <div class="panel-heading">
+          <span class="effect-label">底線</span>
+          <h2><code>&lt;ins&gt;</code> 與 <code>&lt;u&gt;</code></h2>
+        </div>
+        <div class="example-grid">
+          <section class="example-block">
+            <h3>新增內容</h3>
+            <pre class="code-block"><code>&lt;ins&gt;新增付款方式&lt;/ins&gt;</code></pre>
+            <div class="render-box">
+              <ins>新增付款方式</ins>
+            </div>
+            <p class="note"><code>ins</code> 表示文件修訂中加入的內容。</p>
+          </section>
+          <section class="example-block">
+            <h3>非連結特殊標示</h3>
+            <pre class="code-block"><code>&lt;u&gt;拼字錯誤&lt;/u&gt;</code></pre>
+            <div class="render-box">
+              <u>拼字錯誤</u>
+            </div>
+            <p class="note"><code>u</code> 可表示非連結的特殊標示，不等於新增內容。</p>
+          </section>
+        </div>
+      </article>
+
+      <article class="comparison-panel">
+        <div class="panel-heading">
+          <span class="effect-label">刪除線</span>
+          <h2><code>&lt;del&gt;</code> 與 <code>&lt;s&gt;</code></h2>
+        </div>
+        <div class="example-grid">
+          <section class="example-block">
+            <h3>文件修訂刪除</h3>
+            <pre class="code-block"><code>&lt;del&gt;舊版條款&lt;/del&gt;</code></pre>
+            <div class="render-box">
+              <del>舊版條款</del>
+            </div>
+            <p class="note"><code>del</code> 表示內容在文件版本中被移除。</p>
+          </section>
+          <section class="example-block">
+            <h3>已不適用資訊</h3>
+            <pre class="code-block"><code>&lt;s&gt;原價 100 元&lt;/s&gt;</code></pre>
+            <div class="render-box price-row">
+              <s>原價 100 元</s>
+              <strong>特價 80 元</strong>
+            </div>
+            <p class="note">商品原價不再適用時，通常 <code>s</code> 比 <code>del</code> 更貼近語意。</p>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="decision-strip" aria-label="選用原則">
+      <h2>選用原則</h2>
+      <ol>
+        <li>先問文字本身是否有重要、強調、新增、刪除等語意。</li>
+        <li>有語意時選對應 HTML 標籤。</li>
+        <li>只是粗體、斜體、底線或刪除線外觀時，使用 <code>span</code> 搭配 CSS。</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

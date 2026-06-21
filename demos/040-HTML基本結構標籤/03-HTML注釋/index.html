@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML 注釋 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/040-HTML基本結構標籤/03-HTML注釋.md -->
+  <main class="demo-shell">
+    <header class="demo-header">
+      <p class="source-label">notes/040-HTML基本結構標籤/03-HTML注釋.md</p>
+      <h1>HTML 注釋</h1>
+      <p>注釋寫在原始碼中，瀏覽器不會把它顯示成頁面內容。切換情境，觀察原始碼與實際畫面的差異。</p>
+    </header>
+
+    <section class="scenario-switcher" aria-label="注釋情境">
+      <button class="scenario-button is-active" type="button" data-scenario="normal">正常注釋</button>
+      <button class="scenario-button" type="button" data-scenario="commentedHeading">注釋掉 h1</button>
+      <button class="scenario-button" type="button" data-scenario="missingEnd">忘記結束注釋</button>
+      <button class="scenario-button" type="button" data-scenario="sensitive">敏感資訊警示</button>
+    </section>
+
+    <section class="workbench" aria-live="polite">
+      <div class="code-panel">
+        <div class="panel-title">HTML 原始碼</div>
+        <pre><code id="html-code"></code></pre>
+      </div>
+
+      <div class="render-panel">
+        <div class="panel-title">頁面呈現（簡化示意）</div>
+        <div class="page-preview" id="preview"></div>
+        <div class="observation">
+          <h2>觀察結果</h2>
+          <p id="observation-text"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tabindex accesskey 鍵盤操作與導覽 Demo</title>
+  <style>
+    :root {
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d8dee6;
+      --panel: #fff;
+      --soft: #f6f8fb;
+      --accent: #0b7285;
+      --accent-soft: #e7f7fa;
+      --warn-soft: #fff7ed;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #edf4f5; line-height: 1.6; }
+    header, main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 28px 0 16px; }
+    h1 { margin: 0 0 8px; font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: 0; }
+    p { margin: 0; }
+    .lead { color: var(--muted); max-width: 820px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 1.1rem; }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .group {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .group.warn { background: var(--warn-soft); }
+    .group h3 { margin: 0 0 8px; font-size: 1rem; }
+
+    button, a, .focusable {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      padding: 10px 12px;
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      text-decoration: none;
+    }
+
+    button { cursor: pointer; }
+
+    :focus {
+      outline: 4px solid rgba(11, 114, 133, .28);
+      outline-offset: 2px;
+    }
+
+    .log {
+      min-height: 280px;
+      max-height: 360px;
+      overflow: auto;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: #101820;
+      color: #edf6ff;
+      padding: 12px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: .92rem;
+      white-space: pre-wrap;
+    }
+
+    .hint {
+      margin-top: 12px;
+      padding: 12px;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .focus-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Source notes: notes/050-全局屬性/06-tabindex-accesskey-鍵盤操作與導覽.md -->
+  <header>
+    <h1>tabindex 與鍵盤焦點順序</h1>
+    <p class="lead">用 Tab 鍵在頁面上移動，右側會記錄焦點順序。正數 `tabindex` 會讓順序脫離文件排列，通常應避免。</p>
+  </header>
+
+  <main class="grid">
+    <section aria-labelledby="focus-title">
+      <h2 id="focus-title">可聚焦元素</h2>
+      <div class="focus-grid">
+        <div class="group">
+          <h3>自然順序</h3>
+          <button type="button">第一個按鈕</button>
+          <a href="#log">第二個連結</a>
+          <button type="button">第三個按鈕</button>
+        </div>
+        <div class="group">
+          <h3>tabindex="0" / "-1"</h3>
+          <div class="focusable" tabindex="0">加入自然 Tab 順序的 div</div>
+          <div id="programTarget" class="focusable" tabindex="-1">只由程式聚焦的區塊</div>
+          <button id="programFocus" type="button">程式聚焦 tabindex="-1"</button>
+        </div>
+        <div class="group warn">
+          <h3>正數 tabindex</h3>
+          <button type="button" tabindex="3">tabindex="3"</button>
+          <button type="button" tabindex="1">tabindex="1"</button>
+          <button type="button" tabindex="2">tabindex="2"</button>
+        </div>
+      </div>
+      <p class="hint">`accesskey="c"` 的觸發方式依作業系統與瀏覽器不同。本 demo 只標示限制，不假設固定按法。</p>
+      <a href="#focus-title" accesskey="c">accesskey="c"：回到焦點練習區</a>
+    </section>
+
+    <section aria-labelledby="log-title">
+      <h2 id="log-title">焦點紀錄</h2>
+      <div id="log" class="log" aria-live="polite">按 Tab 或點擊元素後，焦點紀錄會出現在這裡。</div>
+    </section>
+  </main>
+
+  <script>
+    const log = document.getElementById('log');
+    const programTarget = document.getElementById('programTarget');
+    const programFocus = document.getElementById('programFocus');
+    let count = 0;
+
+    function labelFor(element) {
+      const text = element.textContent.trim().replace(/\s+/g, ' ');
+      const tabindex = element.getAttribute('tabindex');
+      return text + (tabindex === null ? '' : ' [tabindex=' + tabindex + ']');
+    }
+
+    document.addEventListener('focusin', function (event) {
+      count += 1;
+      const line = String(count).padStart(2, '0') + '. ' + labelFor(event.target);
+      log.textContent = log.textContent.startsWith('按 Tab') ? line : log.textContent + '\n' + line;
+      log.scrollTop = log.scrollHeight;
+    });
+
+    programFocus.addEventListener('click', function () {
+      programTarget.focus();
+    });
+  </script>
+</body>
+</html>

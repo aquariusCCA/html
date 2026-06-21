@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>img 標籤與圖片替代文字互動示範</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/180-圖片標籤/01-img標籤與圖片替代文字.md -->
+  <main class="page-shell">
+    <header class="demo-header">
+      <div>
+        <p class="eyebrow">HTML Demo</p>
+        <h1>img 屬性與替代文字判斷</h1>
+      </div>
+      <label class="control-field">
+        <span>示範情境</span>
+        <select id="scenarioSelect">
+          <option value="complete">完整寫法</option>
+          <option value="missing-alt">缺少 alt</option>
+          <option value="vague-alt">alt 太籠統</option>
+          <option value="decorative">裝飾圖片</option>
+          <option value="title-only">只寫 title</option>
+          <option value="distorted-size">寬高比例錯誤</option>
+        </select>
+      </label>
+    </header>
+
+    <section class="workbench" aria-live="polite">
+      <article class="preview-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-label">Rendered image</p>
+            <h2 id="scenarioTitle">完整寫法</h2>
+          </div>
+          <span id="statusBadge" class="status-badge good">建議</span>
+        </div>
+
+        <figure class="image-stage" id="imageStage">
+          <img id="demoImage" src="assets/portrait.jpg" alt="穿黑色西裝的男子在典禮背景前揮手" title="活動現場照片" width="320">
+          <figcaption id="figureCaption">圖片正常載入時，alt 不會顯示在畫面上，但仍提供給輔助科技與圖片失敗時使用。</figcaption>
+        </figure>
+
+        <div class="size-control">
+          <label for="widthRange">width</label>
+          <input id="widthRange" type="range" min="180" max="520" value="320">
+          <output id="widthValue" for="widthRange">320px</output>
+        </div>
+      </article>
+
+      <article class="inspect-panel">
+        <p class="panel-label">HTML</p>
+        <pre class="code-block"><code id="codeBlock">&lt;img src="assets/portrait.jpg" alt="穿黑色西裝的男子在典禮背景前揮手" title="活動現場照片" width="320"&gt;</code></pre>
+
+        <div class="insight-grid">
+          <section class="insight">
+            <h2>替代文字輸出</h2>
+            <p id="altOutput">穿黑色西裝的男子在典禮背景前揮手</p>
+          </section>
+          <section class="insight">
+            <h2>判斷</h2>
+            <p id="judgement">內容圖片應該用具體 alt 說明圖片傳達的資訊；title 只能補充提示，不能取代 alt。</p>
+          </section>
+        </div>
+      </article>
+    </section>
+
+    <section class="reference-panel">
+      <div>
+        <p class="panel-label">Reference</p>
+        <h2>屬性的分工</h2>
+        <p><code>src</code> 指向圖片檔案，<code>alt</code> 提供替代文字，<code>title</code> 是滑鼠停留時的補充提示，<code>width</code> 與 <code>height</code> 控制顯示尺寸。</p>
+      </div>
+      <img src="assets/img-attributes.png" alt="img 標籤的 src、alt、title 屬性對照表">
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

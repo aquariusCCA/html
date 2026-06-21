@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>contenteditable spellcheck 可編輯內容與拼字檢查 Demo</title>
+  <style>
+    :root {
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d8dee6;
+      --panel: #fff;
+      --soft: #f6f8fb;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #eef3fb; line-height: 1.6; }
+    header, main { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 28px 0 16px; }
+    h1 { margin: 0 0 8px; font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: 0; }
+    p { margin: 0; }
+    .lead { color: var(--muted); max-width: 820px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 1.1rem; }
+
+    .editor {
+      min-height: 150px;
+      border: 2px solid #bdd1f9;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      padding: 14px;
+      outline: none;
+    }
+
+    .editor:focus {
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, .16);
+    }
+
+    button {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      padding: 10px 12px;
+      font: inherit;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    output, .hint {
+      display: block;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      white-space: pre-wrap;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    input, textarea {
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    textarea { min-height: 92px; resize: vertical; }
+
+    code { font-family: Consolas, Monaco, "Courier New", monospace; font-size: .92rem; }
+
+    @media (max-width: 820px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Source notes: notes/050-全局屬性/05-contenteditable-spellcheck-可編輯內容與拼字檢查.md -->
+  <header>
+    <h1>contenteditable 不等於自動儲存</h1>
+    <p class="lead">直接編輯下面的便條，再按讀取。畫面內容可以被改動，但要保存資料仍需要 JavaScript 或後端流程。</p>
+  </header>
+
+  <main class="grid">
+    <section aria-labelledby="edit-title">
+      <h2 id="edit-title">可編輯內容</h2>
+      <div id="note" class="editor" contenteditable="true" spellcheck="true">
+        I am a short editable note. Try changing this text.
+      </div>
+      <button id="read" type="button">讀取目前內容</button>
+      <output id="result">尚未讀取內容。</output>
+      <p class="hint">重新整理頁面後，修改不會自動保留。`contenteditable` 只處理能不能在畫面上編輯。</p>
+    </section>
+
+    <section aria-labelledby="spell-title">
+      <h2 id="spell-title">spellcheck 適用情境</h2>
+      <label>
+        產品代碼：<code>spellcheck="false"</code>
+        <input type="text" value="KB-2026-XZ" spellcheck="false">
+      </label>
+      <label>
+        留言內容：<code>spellcheck="true"</code>
+        <textarea spellcheck="true">This is a mesage with a possible typo.</textarea>
+      </label>
+      <p class="hint">拼字檢查的可見效果取決於瀏覽器、字典與輸入語言；這裡重點是選擇適合的欄位。</p>
+    </section>
+  </main>
+
+  <script>
+    const note = document.getElementById('note');
+    const read = document.getElementById('read');
+    const result = document.getElementById('result');
+
+    read.addEventListener('click', function () {
+      result.textContent = note.textContent.trim() || '目前內容是空的。';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>相對路徑解析觀察</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/060-路徑/01-路徑：讓 HTML 找到圖片與資源.md -->
+  <main class="app">
+    <header class="page-header">
+      <p class="eyebrow">HTML 路徑 Demo</p>
+      <h1>相對路徑會從目前 HTML 檔案出發</h1>
+      <p>切換 HTML 所在位置與路徑寫法，觀察瀏覽器實際會往哪裡找圖片。</p>
+    </header>
+
+    <section class="workspace" aria-label="相對路徑互動觀察">
+      <section class="panel file-tree" aria-label="專案結構">
+        <div class="panel-header">
+          <span class="label">project/</span>
+          <span class="status" id="treeStatus">目前：index.html</span>
+        </div>
+        <ul class="tree">
+          <li><button class="file-button active" type="button" data-file="index.html">index.html</button></li>
+          <li>
+            <span class="folder">images/</span>
+            <ul>
+              <li><span class="asset">logo.png</span></li>
+            </ul>
+          </li>
+          <li>
+            <span class="folder">pages/</span>
+            <ul>
+              <li><button class="file-button" type="button" data-file="pages/about.html">about.html</button></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel controls" aria-label="路徑選擇">
+        <div class="field-group">
+          <label for="pathChoice">圖片路徑</label>
+          <select id="pathChoice">
+            <option value="logo.png">logo.png</option>
+            <option value="./logo.png">./logo.png</option>
+            <option value="images/logo.png" selected>images/logo.png</option>
+            <option value="../images/logo.png">../images/logo.png</option>
+          </select>
+        </div>
+
+        <div class="code-card">
+          <span class="code-label">HTML</span>
+          <code id="htmlSnippet">&lt;img src="images/logo.png" alt="網站標誌"&gt;</code>
+        </div>
+
+        <div class="hint">
+          <strong>觀察重點</strong>
+          <p>同一段相對路徑放在不同 HTML 檔案中，參考點會跟著改變。</p>
+        </div>
+      </section>
+
+      <section class="panel result" aria-label="解析結果">
+        <div class="result-card" id="resultCard">
+          <div class="badge" id="resultBadge">找到圖片</div>
+          <img id="previewImage" src="assets/logo.svg" alt="網站標誌預覽">
+          <p class="resolved-path" id="resolvedPath">project/images/logo.png</p>
+        </div>
+
+        <ol class="steps" id="steps"></ol>
+
+        <div class="fix-card">
+          <span>此情境建議寫法</span>
+          <code id="recommendedPath">images/logo.png</code>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

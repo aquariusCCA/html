@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML 標籤與元素關係 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/020-HTML簡介/04-HTML標籤與元素關係.md -->
+  <main class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">HTML 結構關係</p>
+        <h1>從巢狀標籤看元素關係</h1>
+      </div>
+      <p>標籤互相包含或並列時，就形成父子、祖先後代與兄弟關係。這些關係會影響之後的 CSS 與 DOM 操作。</p>
+    </header>
+
+    <section class="tag-compare" aria-label="單標籤與雙標籤比較">
+      <article>
+        <span>雙標籤</span>
+        <code>&lt;p&gt;一段文字&lt;/p&gt;</code>
+        <p>有起始標籤、內容與結束標籤。</p>
+      </article>
+      <article>
+        <span>單標籤</span>
+        <code>&lt;img src=&quot;photo.jpg&quot; alt=&quot;照片&quot;&gt;</code>
+        <p>沒有對應的結束標籤。</p>
+      </article>
+    </section>
+
+    <section class="workspace">
+      <article class="source-panel">
+        <h2>範例 HTML</h2>
+        <pre><code>&lt;div&gt;
+  &lt;p&gt;這是一段文字，
+    &lt;strong&gt;這裡有強調文字&lt;/strong&gt;。
+  &lt;/p&gt;
+  &lt;p&gt;這是另一段文字。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </article>
+
+      <article class="tree-panel">
+        <h2>DOM 關係</h2>
+        <div class="tree" aria-label="可選取的 DOM 樹">
+          <button class="node div active" type="button" data-node="div">&lt;div&gt;</button>
+          <div class="branch">
+            <button class="node p1" type="button" data-node="p1">&lt;p&gt; 第一段</button>
+            <div class="branch">
+              <button class="node strong" type="button" data-node="strong">&lt;strong&gt;</button>
+            </div>
+            <button class="node p2" type="button" data-node="p2">&lt;p&gt; 第二段</button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="relations" aria-live="polite">
+      <article>
+        <h2 id="selected-title">目前選取：&lt;div&gt;</h2>
+        <dl>
+          <div>
+            <dt>父元素</dt>
+            <dd id="parent-value">無</dd>
+          </div>
+          <div>
+            <dt>子元素</dt>
+            <dd id="children-value">&lt;p&gt; 第一段、&lt;p&gt; 第二段</dd>
+          </div>
+          <div>
+            <dt>祖先元素</dt>
+            <dd id="ancestors-value">無</dd>
+          </div>
+          <div>
+            <dt>兄弟元素</dt>
+            <dd id="siblings-value">無</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>自定義列表 dl、dt、dd Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/220-列表標籤/02-自定義列表-dl-dt-dd.md -->
+  <main class="demo-shell">
+    <header class="page-header">
+      <p class="eyebrow">HTML 描述列表</p>
+      <h1>dl、dt、dd 表達名稱與描述</h1>
+      <p>選擇一組資料，再切換標記方式，觀察哪一種結構能保留名稱與描述的關係。</p>
+    </header>
+
+    <section class="toolbar" aria-label="Demo 控制">
+      <div>
+        <h2>資料情境</h2>
+        <div class="segmented" role="group" aria-label="選擇資料情境">
+          <button type="button" class="is-active" data-dataset="terms">術語定義</button>
+          <button type="button" data-dataset="specs">商品規格</button>
+          <button type="button" data-dataset="links">頁尾分類</button>
+        </div>
+      </div>
+      <div>
+        <h2>標記方式</h2>
+        <div class="segmented" role="group" aria-label="選擇標記方式">
+          <button type="button" class="is-active" data-mode="dl">&lt;dl&gt;</button>
+          <button type="button" data-mode="ul">&lt;ul&gt;</button>
+          <button type="button" data-mode="p">&lt;p&gt;</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison-grid">
+      <article class="panel">
+        <div class="panel-heading">
+          <h2>HTML 結構</h2>
+          <span id="structure-badge" class="badge">語意清楚</span>
+        </div>
+        <pre><code id="code-output"></code></pre>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <h2>呈現結果</h2>
+          <span id="relation-badge" class="badge">名稱 + 描述</span>
+        </div>
+        <div id="render-output" class="render-box" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="explain-panel" aria-labelledby="explain-title">
+      <h2 id="explain-title">觀察重點</h2>
+      <p id="explain-output"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

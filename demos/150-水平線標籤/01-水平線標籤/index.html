@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hr 水平線標籤 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/150-水平線標籤/01-水平線標籤.md -->
+  <main class="demo-shell">
+    <header class="demo-header">
+      <p class="eyebrow">HTML 教學 Demo</p>
+      <h1><code>&lt;hr&gt;</code> 水平線標籤：主題分隔，不只是畫線</h1>
+      <p class="intro">切換不同情境，觀察什麼時候應該使用 <code>&lt;hr&gt;</code> 表示主題轉換，什麼時候應該把視覺線條交給 CSS。</p>
+    </header>
+
+    <section class="controls" aria-label="Demo 控制項">
+      <div class="mode-control" role="radiogroup" aria-label="選擇展示情境">
+        <label>
+          <input type="radio" name="mode" value="topic" checked>
+          <span>主題切換</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="decoration">
+          <span>裝飾線條</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="syntax">
+          <span>單標籤寫法</span>
+        </label>
+      </div>
+
+      <label class="toggle-control">
+        <input id="showGuides" type="checkbox" checked>
+        <span>顯示判斷提示</span>
+      </label>
+    </section>
+
+    <section class="comparison" aria-label="HTML 寫法與呈現結果對照">
+      <article class="panel code-panel">
+        <div class="panel-header">
+          <h2>HTML / CSS 寫法</h2>
+          <p id="codeSummary">前後內容進入不同主題時，使用 &lt;hr&gt; 表示主題分隔。</p>
+        </div>
+        <pre><code id="codeBlock"></code></pre>
+      </article>
+
+      <article class="panel result-panel">
+        <div class="panel-header">
+          <h2>瀏覽器呈現</h2>
+          <p id="resultSummary">水平線出現在兩個內容主題之間，協助讀者辨識段落轉換。</p>
+        </div>
+        <div class="viewport-frame">
+          <div id="resultBox" class="result-box show-guides" aria-live="polite"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="decision-grid" aria-label="hr 與 CSS 的選擇比較">
+      <article>
+        <strong>適合用 <code>&lt;hr&gt;</code></strong>
+        <p>文章從正文切到補充說明，或教學筆記從概念切到延伸閱讀。</p>
+      </article>
+      <article>
+        <strong>適合用 CSS</strong>
+        <p>只是想在標題、卡片或區塊邊緣加一條視覺線。</p>
+      </article>
+      <article>
+        <strong>避免寫成成對標籤</strong>
+        <p><code>&lt;hr&gt;</code> 是單標籤，不需要包住內容，也不需要 <code>&lt;/hr&gt;</code>。</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

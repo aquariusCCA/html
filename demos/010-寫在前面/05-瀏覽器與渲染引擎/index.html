@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>瀏覽器與渲染引擎 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/010-寫在前面/05-瀏覽器與渲染引擎.md -->
+  <main class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">簡化示意</p>
+        <h1>HTML 怎麼被畫成頁面</h1>
+      </div>
+      <p>瀏覽器取得 HTML、CSS、圖片等資源後，會交給渲染引擎解析、計算與顯示。不同引擎、版本或平台可能帶來差異。</p>
+    </header>
+
+    <section class="browser-picker" aria-label="選擇瀏覽器">
+      <button class="browser active" type="button" data-browser="chrome">Chrome</button>
+      <button class="browser" type="button" data-browser="edge">Edge</button>
+      <button class="browser" type="button" data-browser="firefox">Firefox</button>
+      <button class="browser" type="button" data-browser="safari">Safari</button>
+      <button class="browser" type="button" data-browser="opera">Opera</button>
+    </section>
+
+    <section class="engine-panel">
+      <div class="engine-card">
+        <span>目前選擇</span>
+        <h2 id="browser-name">Chrome</h2>
+        <p id="engine-name">常見渲染引擎：Blink</p>
+        <p id="engine-note">Blink 是 Chromium 使用的渲染引擎。版本、平台與功能支援仍會影響實際呈現。</p>
+      </div>
+
+      <div class="pipeline" aria-label="渲染流程">
+        <div class="step active">1. 取得資源</div>
+        <div class="step active">2. 解析 HTML / CSS</div>
+        <div class="step active">3. 計算顯示方式</div>
+        <div class="step active">4. 畫出頁面</div>
+      </div>
+    </section>
+
+    <section class="visual">
+      <figure>
+        <img src="assets/browser-img-003-ccff67.png" alt="瀏覽器內核處理網頁資源的示意圖">
+      </figure>
+      <article>
+        <h2>觀察重點</h2>
+        <p>「瀏覽器名稱」不是唯一判斷依據。實務測試時，還要留意渲染引擎、瀏覽器版本、作業系統與行動平台限制。</p>
+        <p>因此，同一份 HTML 在不同環境下可能有細微差異，跨瀏覽器測試是前端工作的一部分。</p>
+      </article>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>語意化標籤入門 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/130-語意化標籤/01-語意化標籤入門.md -->
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">HTML Demo</p>
+      <h1>語意化標籤入門</h1>
+    </div>
+    <p class="source">來源：01-語意化標籤入門.md</p>
+  </header>
+
+  <main class="demo-shell">
+    <section class="control-panel" aria-labelledby="controls-title">
+      <h2 id="controls-title">觀察模式</h2>
+      <label>
+        <input type="checkbox" id="show-tags" checked>
+        顯示標籤名稱
+      </label>
+      <label>
+        <input type="checkbox" id="show-roles" checked>
+        顯示內容角色
+      </label>
+      <label>
+        <input type="checkbox" id="plain-flow">
+        模擬 CSS 失效
+      </label>
+    </section>
+
+    <section class="workspace" aria-labelledby="workspace-title">
+      <div class="workspace-heading">
+        <div>
+          <p class="eyebrow">簡化示意</p>
+          <h2 id="workspace-title">同一個頁面，每塊內容都有角色</h2>
+        </div>
+        <p class="hint">切換觀察模式，注意畫面樣式與 HTML 結構角色的差異。</p>
+      </div>
+
+      <article class="semantic-page" aria-label="語意化頁面版面示意">
+        <header class="semantic-block block-header" data-tag="header" data-role="頁首：Logo、標題、簡介">
+          <span class="tag-label">&lt;header&gt;</span>
+          <strong>HTML 教學站</strong>
+          <p>整理 HTML 入門筆記與範例。</p>
+        </header>
+
+        <nav class="semantic-block block-nav" data-tag="nav" data-role="導覽：主要連結">
+          <span class="tag-label">&lt;nav&gt;</span>
+          <a href="#article">文章</a>
+          <a href="#aside">補充</a>
+          <a href="#footer">頁尾</a>
+        </nav>
+
+        <main class="semantic-main semantic-block" data-tag="main" data-role="主要內容：頁面核心主題">
+          <span class="tag-label">&lt;main&gt;</span>
+
+          <article id="article" class="semantic-block block-article" data-tag="article" data-role="文章：可獨立閱讀的完整內容">
+            <span class="tag-label">&lt;article&gt;</span>
+            <header class="mini-header">
+              <h3>語意化不是裝飾</h3>
+              <p>標籤先描述內容角色，樣式再交給 CSS。</p>
+            </header>
+            <section class="semantic-block block-section" data-tag="section" data-role="主題區段：有共同主題的一段內容">
+              <span class="tag-label">&lt;section&gt;</span>
+              <h4>常見語意元素</h4>
+              <p>頁首、導覽、主要內容、文章、補充資訊與頁尾都可以用合適標籤表達。</p>
+            </section>
+          </article>
+
+          <aside id="aside" class="semantic-block block-aside" data-tag="aside" data-role="補充資訊：可與主內容分離閱讀">
+            <span class="tag-label">&lt;aside&gt;</span>
+            <h3>判斷提示</h3>
+            <p>如果只是為了排版或套樣式，使用 <code>&lt;div&gt;</code> 仍然合理。</p>
+          </aside>
+        </main>
+
+        <footer id="footer" class="semantic-block block-footer" data-tag="footer" data-role="頁尾：版權、聯絡或結尾資訊">
+          <span class="tag-label">&lt;footer&gt;</span>
+          <p>Copyright 與聯絡資訊</p>
+        </footer>
+      </article>
+
+      <aside class="reference">
+        <div>
+          <h2>原始版面圖</h2>
+          <p>這張圖來自本章 origin 資產，已複製到 demo 內。</p>
+        </div>
+        <img src="assets/semantic-tags-img-001-fe28a0.png" alt="HTML5 語意化版面區塊示意圖">
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

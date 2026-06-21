@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IE 相容性 Meta 標籤觀察器</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/030-兼容性問題/IE相容性Meta標籤補充.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">簡化示意</p>
+      <h1>相容性 Meta 標籤觀察器</h1>
+      <p>切換瀏覽器情境與 head 設定，觀察 `X-UA-Compatible` 與 `renderer` 分別在什麼情境有意義。</p>
+    </header>
+
+    <section class="panel controls" aria-label="Demo controls">
+      <label for="scenario">瀏覽器情境</label>
+      <select id="scenario">
+        <option value="ie8-compat">IE8：可能進入相容性檢視</option>
+        <option value="ie11-compat">IE11：可能進入相容性檢視</option>
+        <option value="chrome">Chrome / Firefox / Safari</option>
+        <option value="dual-trident">雙核瀏覽器：預設 Trident 核心</option>
+      </select>
+      <div class="checks">
+        <label><input id="xua" type="checkbox" checked> 加入 X-UA-Compatible: IE=Edge</label>
+        <label><input id="renderer" type="checkbox" checked> 加入 renderer=webkit</label>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel">
+        <h2>head 片段</h2>
+        <pre><code id="codeSample"></code></pre>
+      </article>
+
+      <article class="panel">
+        <h2>結果判讀</h2>
+        <dl class="facts">
+          <div>
+            <dt>文檔模式</dt>
+            <dd id="documentMode"></dd>
+          </div>
+          <div>
+            <dt>渲染核心</dt>
+            <dd id="engine"></dd>
+          </div>
+          <div>
+            <dt>標籤有效性</dt>
+            <dd id="effect"></dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="panel simulator" aria-label="渲染結果示意">
+      <div>
+        <h2>頁面能力示意</h2>
+        <p id="capabilityText"></p>
+      </div>
+      <div class="meter" aria-hidden="true">
+        <span id="compatBar"></span>
+      </div>
+      <p class="hint">此 demo 不偵測真實瀏覽器，只把 notes 中的規則整理成可操作的判斷模型。</p>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

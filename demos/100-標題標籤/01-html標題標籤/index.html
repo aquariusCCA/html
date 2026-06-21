@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML 標題標籤與文件層級</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/100-標題標籤/01-html標題標籤.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">HTML 文件結構</p>
+      <h1>h1 到 h6：標題是層級，不是字體大小</h1>
+      <p>切換不同寫法，觀察畫面標題和簡化文件大綱如何改變。</p>
+    </header>
+
+    <section class="workspace" aria-label="標題層級互動觀察">
+      <form class="panel controls" id="scenarioForm">
+        <fieldset class="scenario-group">
+          <legend>選擇標題寫法</legend>
+          <label class="scenario-option">
+            <input type="radio" name="scenario" value="structured" checked>
+            <span>
+              <strong>結構清楚</strong>
+              <small>h1、h2、h3 依內容層級排列</small>
+            </span>
+          </label>
+
+          <label class="scenario-option">
+            <input type="radio" name="scenario" value="sizeOnly">
+            <span>
+              <strong>只為放大文字</strong>
+              <small>把普通提示文字誤寫成 h1</small>
+            </span>
+          </label>
+
+          <label class="scenario-option">
+            <input type="radio" name="scenario" value="skipped">
+            <span>
+              <strong>跳過層級</strong>
+              <small>從 h1 直接跳到 h4</small>
+            </span>
+          </label>
+        </fieldset>
+
+        <div class="rule-box">
+          <h2>判斷準則</h2>
+          <ol>
+            <li>這段文字是不是某個內容區塊的標題？</li>
+            <li>它在整份文件中屬於哪一層？</li>
+            <li>它和前後標題的父子關係是否清楚？</li>
+          </ol>
+        </div>
+      </form>
+
+      <section class="panel preview-panel" aria-label="文章預覽與文件大綱">
+        <div class="article-preview" id="articlePreview"></div>
+
+        <aside class="outline-box" aria-label="簡化文件大綱">
+          <h2>簡化文件大綱</h2>
+          <ol id="outlinePreview"></ol>
+        </aside>
+      </section>
+    </section>
+
+    <section class="layout">
+      <article class="panel">
+        <h2>目前 HTML</h2>
+        <pre><code id="codeSample"></code></pre>
+      </article>
+
+      <article class="panel">
+        <h2>觀察結果</h2>
+        <p class="observation" id="observation"></p>
+        <div class="level-scale" aria-label="h1 到 h6 層級示意">
+          <div><span>h1</span><strong>頁面或主要內容的最高層級標題</strong></div>
+          <div><span>h2</span><strong>h1 底下的主要段落標題</strong></div>
+          <div><span>h3</span><strong>h2 底下的次層段落標題</strong></div>
+          <div><span>h4-h6</span><strong>更細的內容層級</strong></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

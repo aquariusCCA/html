@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>meta 基本設定觀察器</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/080-meta標籤/01-meta標籤與網頁基本設定.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">簡化示意</p>
+      <h1>meta 基本設定觀察器</h1>
+      <p>切換 head 內的 meta 設定，觀察它們影響的是文字解析、行動顯示，還是只提供文件資訊。</p>
+    </header>
+
+    <section class="panel controls" aria-label="meta 設定控制">
+      <label><input id="charsetToggle" type="checkbox" checked> charset=UTF-8</label>
+      <label><input id="viewportToggle" type="checkbox" checked> viewport</label>
+      <label><input id="infoToggle" type="checkbox" checked> author / generator / copyright</label>
+    </section>
+
+    <section class="layout">
+      <article class="panel">
+        <h2>head 片段</h2>
+        <pre><code id="codeSample"></code></pre>
+      </article>
+
+      <article class="panel">
+        <h2>判讀結果</h2>
+        <dl class="facts">
+          <div>
+            <dt>文字解析</dt>
+            <dd id="encodingResult"></dd>
+          </div>
+          <div>
+            <dt>行動顯示</dt>
+            <dd id="viewportResult"></dd>
+          </div>
+          <div>
+            <dt>文件資訊</dt>
+            <dd id="infoResult"></dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="panel preview-panel" aria-label="手機畫面簡化示意">
+      <div class="phone" id="phonePreview">
+        <div class="phone-toolbar">mobile viewport</div>
+        <article class="page-card">
+          <h2>個人作品集</h2>
+          <p id="sampleText">中文、English、符號都應該正常顯示。</p>
+          <div class="content-row"></div>
+          <div class="content-row short"></div>
+        </article>
+      </div>
+      <p class="hint">文件資訊型 meta 會出現在 head 程式碼中，但不會直接改變這個可見畫面。</p>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

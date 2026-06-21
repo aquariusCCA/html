@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web 標準與三層分離 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/010-寫在前面/06-Web標準與三層分離.md -->
+  <main class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">結構 / 表現 / 行為</p>
+        <h1>HTML、CSS、JavaScript 各管各的</h1>
+      </div>
+      <p>切換三個層次，觀察同一個「送出」按鈕中，哪些內容屬於 HTML，哪些屬於 CSS，哪些屬於 JavaScript。</p>
+    </header>
+
+    <section class="tabs" aria-label="選擇層次">
+      <button class="tab active" type="button" data-layer="html">HTML 結構</button>
+      <button class="tab" type="button" data-layer="css">CSS 表現</button>
+      <button class="tab" type="button" data-layer="js">JavaScript 行為</button>
+    </section>
+
+    <section class="demo-area">
+      <article class="preview">
+        <h2>畫面預覽</h2>
+        <form id="sample-form">
+          <label for="name">姓名</label>
+          <input id="name" name="name" type="text" value="小明">
+          <button class="submit-button" type="submit">送出</button>
+        </form>
+        <p class="message" id="message">尚未送出表單。</p>
+      </article>
+
+      <article class="code-panel">
+        <h2 id="layer-title">HTML：描述內容與結構</h2>
+        <pre><code id="layer-code">&lt;form&gt;
+  &lt;label for="name"&gt;姓名&lt;/label&gt;
+  &lt;input id="name" name="name" type="text"&gt;
+  &lt;button type="submit"&gt;送出&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </article>
+    </section>
+
+    <section class="roles">
+      <article data-role="html" class="active">
+        <h2>結構</h2>
+        <p>HTML 說明頁面有哪些內容，以及它們之間的關係。</p>
+      </article>
+      <article data-role="css">
+        <h2>表現</h2>
+        <p>CSS 決定顏色、大小、間距與版面等視覺呈現。</p>
+      </article>
+      <article data-role="js">
+        <h2>行為</h2>
+        <p>JavaScript 負責使用者操作後要發生什麼事。</p>
+      </article>
+    </section>
+
+    <figure class="diagram">
+      <img src="assets/web-standard-img-003-2d03d3.png" alt="Web 標準中結構、表現與行為三層對照表">
+    </figure>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

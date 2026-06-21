@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文本格式化語意判斷</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/170-文本格式化標籤/01-文本格式化標籤與語意選擇.md -->
+  <main class="page-shell">
+    <header class="demo-header">
+      <div>
+        <p class="eyebrow">HTML Demo</p>
+        <h1>先判斷語意，再決定標籤</h1>
+      </div>
+      <label class="scenario-picker">
+        <span>情境</span>
+        <select id="scenarioSelect">
+          <option value="warning">警告文字需要優先注意</option>
+          <option value="product">商品名稱只是要醒目</option>
+          <option value="inserted">文件修訂新增內容</option>
+          <option value="underline">只是想畫底線</option>
+          <option value="price">促銷原價已不適用</option>
+        </select>
+      </label>
+    </header>
+
+    <section class="decision-layout" aria-live="polite">
+      <article class="context-panel">
+        <p class="panel-label">目前情境</p>
+        <h2 id="scenarioTitle">警告文字需要優先注意</h2>
+        <p id="scenarioDescription">這段文字是使用者必須先讀到的警告，不只是要看起來粗體。</p>
+      </article>
+
+      <article class="result-panel">
+        <div class="panel-heading">
+          <span class="status-dot wrong" aria-hidden="true"></span>
+          <h2>不建議寫法</h2>
+        </div>
+        <pre class="code-block"><code id="badCode">&lt;b&gt;警告：請先存檔&lt;/b&gt;</code></pre>
+        <div class="render-box" id="badRender">
+          <b>警告：請先存檔</b>
+        </div>
+        <p class="reason" id="badReason"><code>b</code> 只表示吸引注意，無法表達這是需要優先處理的重要訊息。</p>
+      </article>
+
+      <article class="result-panel result-panel-good">
+        <div class="panel-heading">
+          <span class="status-dot good" aria-hidden="true"></span>
+          <h2>建議寫法</h2>
+        </div>
+        <pre class="code-block"><code id="goodCode">&lt;strong&gt;警告：請先存檔&lt;/strong&gt;</code></pre>
+        <div class="render-box" id="goodRender">
+          <strong>警告：請先存檔</strong>
+        </div>
+        <p class="reason" id="goodReason"><code>strong</code> 表示重要、嚴重或需要優先注意，符合這段文字的語意。</p>
+      </article>
+    </section>
+
+    <section class="rule-panel" aria-label="判斷流程">
+      <h2>判斷流程</h2>
+      <div class="rule-steps">
+        <div class="rule-step">
+          <span>1</span>
+          <p>這段文字本身有特殊語意嗎？</p>
+        </div>
+        <div class="rule-step">
+          <span>2</span>
+          <p>有語意就選對應 HTML 標籤。</p>
+        </div>
+        <div class="rule-step">
+          <span>3</span>
+          <p>只有外觀需求就用 <code>span</code> 與 CSS。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

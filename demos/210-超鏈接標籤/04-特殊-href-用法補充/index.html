@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>特殊 href 用法補充 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/210-超鏈接標籤/04-特殊-href-用法補充.md -->
+  <header id="top" class="hero">
+    <div>
+      <p class="eyebrow">HTML Demo</p>
+      <h1>特殊 href 用法補充</h1>
+      <p>這些寫法都能出現在 <code>href</code>，但它們不一定適合當作正式互動功能。</p>
+    </div>
+    <output id="status" class="status" aria-live="polite">點擊下方範例，觀察每種 href 的用途與限制。</output>
+  </header>
+
+  <main>
+    <section class="href-grid" aria-label="特殊 href 對照">
+      <article>
+        <span class="tag">#</span>
+        <h2>回到頂部或空片段</h2>
+        <pre><code>&lt;a href="#"&gt;回到頂部&lt;/a&gt;</code></pre>
+        <a href="#" data-behavior="href=# 常見效果是回到頁面頂部，但正式功能建議使用明確目標，例如 #top。">測試 href="#"</a>
+      </article>
+
+      <article>
+        <span class="tag">#top</span>
+        <h2>明確錨點</h2>
+        <pre><code>&lt;a href="#top"&gt;回到頂部&lt;/a&gt;
+&lt;header id="top"&gt;...&lt;/header&gt;</code></pre>
+        <a href="#top" data-behavior="href=#top 指向明確存在的 id=top，比占位 # 更容易維護。">回到頂部</a>
+      </article>
+
+      <article>
+        <span class="tag">""</span>
+        <h2>空 href</h2>
+        <pre><code>&lt;a href=""&gt;刷新本頁面&lt;/a&gt;</code></pre>
+        <a href="" data-prevent="true" data-behavior="空 href 通常指向目前頁面，可能造成重新載入；意圖不清楚時不適合長期保留。">測試空 href</a>
+      </article>
+
+      <article class="danger">
+        <span class="tag">javascript:</span>
+        <h2>不建議作為主要互動</h2>
+        <pre><code>&lt;a href="javascript:alert('Hello')"&gt;點擊我&lt;/a&gt;</code></pre>
+        <a href="javascript:alert('Hello')" data-prevent="true" data-behavior="javascript: 會把結構與行為混在 href 裡；正式互動通常改用 button 與事件監聽。">測試 javascript:</a>
+      </article>
+
+      <article>
+        <span class="tag">tel:</span>
+        <h2>電話連結</h2>
+        <pre><code>&lt;a href="tel:10010"&gt;電話聯繫&lt;/a&gt;</code></pre>
+        <a href="tel:10010" data-prevent="true" data-behavior="tel: 會嘗試喚起撥號功能；桌面瀏覽器或未設定應用時可能無法完成。">測試 tel:</a>
+      </article>
+
+      <article>
+        <span class="tag">mailto:</span>
+        <h2>郵件連結</h2>
+        <pre><code>&lt;a href="mailto:10010@qq.com"&gt;郵件聯繫&lt;/a&gt;</code></pre>
+        <a href="mailto:10010@qq.com" data-prevent="true" data-behavior="mailto: 會嘗試開啟郵件應用；使用者需有可用郵件客戶端。">測試 mailto:</a>
+      </article>
+    </section>
+
+    <section class="comparison">
+      <h2>觸發操作時，用 button 分工更清楚</h2>
+      <div class="columns">
+        <article class="bad">
+          <h3>不建議</h3>
+          <pre><code>&lt;a href="javascript:submitForm()"&gt;送出&lt;/a&gt;</code></pre>
+          <button type="button" data-note="這是送出操作，不是前往位置；不應用 a 假裝按鈕。">檢查語意</button>
+        </article>
+        <article class="good">
+          <h3>較合適</h3>
+          <pre><code>&lt;button type="submit"&gt;送出&lt;/button&gt;</code></pre>
+          <button type="button" id="submitDemo">送出</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="app-scheme">
+      <h2>app scheme 應提供備用方案</h2>
+      <pre><code>&lt;a href="line://msg/text/Hello%20World"&gt;使用 LINE 發送消息&lt;/a&gt;</code></pre>
+      <button type="button" data-note="app scheme 依平台、瀏覽器與是否安裝 app 而定；重要流程應提供一般網址或提示文字。">檢查 app scheme</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

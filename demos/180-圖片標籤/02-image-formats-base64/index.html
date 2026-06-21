@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>常見圖片格式與 Base64 互動示範</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/180-圖片標籤/02-常見圖片格式與Base64編碼.md -->
+  <main class="page-shell">
+    <header class="demo-header">
+      <div>
+        <p class="eyebrow">HTML Demo</p>
+        <h1>圖片格式與 Base64 選擇器</h1>
+      </div>
+      <label class="control-field">
+        <span>查看格式</span>
+        <select id="formatSelect">
+          <option value="jpg">JPG / JPEG</option>
+          <option value="png">PNG</option>
+          <option value="bmp">BMP</option>
+          <option value="gif">GIF</option>
+          <option value="webp">WebP</option>
+          <option value="base64">Base64</option>
+        </select>
+      </label>
+    </header>
+
+    <section class="format-layout">
+      <article class="format-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-label">Format</p>
+            <h2 id="formatName">JPG / JPEG</h2>
+          </div>
+          <span id="formatBadge" class="format-badge">照片</span>
+        </div>
+        <p id="formatSummary">適合照片與色彩連續的圖片，檔案通常較小，但不支援透明。</p>
+        <dl class="fact-list">
+          <div>
+            <dt>壓縮</dt>
+            <dd id="compressionValue">有損壓縮</dd>
+          </div>
+          <div>
+            <dt>透明</dt>
+            <dd id="transparencyValue">不支援</dd>
+          </div>
+          <div>
+            <dt>動畫</dt>
+            <dd id="animationValue">不支援</dd>
+          </div>
+        </dl>
+        <pre class="code-block"><code id="codeBlock">&lt;img src="product-photo.jpg" alt="商品照片"&gt;</code></pre>
+      </article>
+
+      <article class="preview-panel">
+        <p class="panel-label">Preview</p>
+        <figure class="preview-frame">
+          <picture id="picturePreview">
+            <source srcset="assets/portrait.jpg" type="image/webp">
+            <img id="previewImage" src="assets/portrait.jpg" alt="穿黑色西裝的男子在典禮背景前揮手">
+          </picture>
+          <figcaption id="previewCaption">照片類型的圖片通常優先考慮 JPG 或 WebP。</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section class="chooser-panel">
+      <div>
+        <p class="panel-label">Decision</p>
+        <h2>依需求選格式</h2>
+      </div>
+      <div class="need-grid" id="needGrid" aria-label="圖片需求">
+        <label><input type="checkbox" value="photo" checked> 照片或色彩連續</label>
+        <label><input type="checkbox" value="transparent"> 需要透明背景</label>
+        <label><input type="checkbox" value="animation"> 需要動畫</label>
+        <label><input type="checkbox" value="small-inline"> 小型內嵌圖示</label>
+        <label><input type="checkbox" value="modern"> 可使用現代瀏覽器最佳化</label>
+      </div>
+      <p class="recommendation" id="recommendation">建議：JPG；若能使用現代格式，可再評估 WebP。</p>
+    </section>
+
+    <section class="comparison-panel">
+      <h2>常見取捨</h2>
+      <div class="comparison-grid">
+        <div>
+          <strong>WebP fallback</strong>
+          <pre class="mini-code"><code>&lt;picture&gt;
+  &lt;source srcset="banner.webp" type="image/webp"&gt;
+  &lt;img src="banner.jpg" alt="活動橫幅"&gt;
+&lt;/picture&gt;</code></pre>
+        </div>
+        <div>
+          <strong>Base64 Data URL</strong>
+          <pre class="mini-code"><code>&lt;img
+  src="data:image/png;base64,..."
+  alt="小型圖示"&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

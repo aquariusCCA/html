@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>video 標籤與多格式來源 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/200-視頻標籤/01-video-標籤與多格式來源.md -->
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">HTML Demo</p>
+      <h1>video 標籤與多格式來源</h1>
+      <p class="lead">觀察內容影片、背景影片、多格式來源與常見錯誤的差異。</p>
+    </div>
+    <div class="source-note">來源：notes/200-視頻標籤/01-video-標籤與多格式來源.md</div>
+  </header>
+
+  <main>
+    <section class="workspace" aria-labelledby="mode-title">
+      <div class="toolbar" aria-label="Demo 模式">
+        <button class="mode-button active" type="button" data-mode="content">內容影片</button>
+        <button class="mode-button" type="button" data-mode="background">背景影片</button>
+        <button class="mode-button" type="button" data-mode="source">多格式來源</button>
+        <button class="mode-button" type="button" data-mode="mistakes">常見錯誤</button>
+      </div>
+
+      <div class="demo-grid">
+        <article class="preview-panel" aria-labelledby="mode-title">
+          <div class="panel-heading">
+            <p class="eyebrow">Preview</p>
+            <h2 id="mode-title">一般內容影片</h2>
+          </div>
+          <div id="preview" class="preview" aria-live="polite"></div>
+        </article>
+
+        <article class="code-panel" aria-labelledby="code-title">
+          <div class="panel-heading">
+            <p class="eyebrow">HTML</p>
+            <h2 id="code-title">目前範例寫法</h2>
+          </div>
+          <pre><code id="code-output"></code></pre>
+          <p id="lesson-output" class="lesson"></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="comparison" aria-labelledby="comparison-title">
+      <div class="section-heading">
+        <p class="eyebrow">Compare</p>
+        <h2 id="comparison-title">錯誤寫法與修正方向</h2>
+      </div>
+      <div class="mistake-list">
+        <button class="mistake-button active" type="button" data-mistake="controls">忘記 controls</button>
+        <button class="mistake-button" type="button" data-mistake="autoplay">誤解 autoplay</button>
+        <button class="mistake-button" type="button" data-mistake="format">只提供單一格式</button>
+        <button class="mistake-button" type="button" data-mistake="fallback">誤解備用文字</button>
+      </div>
+      <div class="mistake-grid">
+        <article>
+          <h3>容易出問題</h3>
+          <pre><code id="wrong-code"></code></pre>
+        </article>
+        <article>
+          <h3>建議改法</h3>
+          <pre><code id="right-code"></code></pre>
+        </article>
+        <article class="mistake-note">
+          <h3>觀察重點</h3>
+          <p id="mistake-note"></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

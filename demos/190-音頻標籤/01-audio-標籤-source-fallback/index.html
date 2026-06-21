@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>audio source 與 fallback Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/190-音頻標籤/01-audio-標籤.md -->
+  <main class="page">
+    <header class="intro">
+      <p class="eyebrow">HTML audio</p>
+      <h1>source 多格式來源與 fallback 位置</h1>
+      <p>比較單一 `src`、多個 `source` 與 fallback 文字的位置，並查看目前瀏覽器回報的音訊格式支援。</p>
+    </header>
+
+    <section class="comparison" aria-label="src 與 source 比較">
+      <article class="panel">
+        <h2>只有一個音訊檔</h2>
+        <p>格式明確、目標瀏覽器可支援時，可以直接在 `&lt;audio&gt;` 上寫 `src`。</p>
+        <pre><code>&lt;audio src=&quot;audio.mp3&quot; controls&gt;&lt;/audio&gt;</code></pre>
+      </article>
+
+      <article class="panel">
+        <h2>準備多個格式</h2>
+        <p>有多種音訊格式時，讓瀏覽器依序挑選第一個可播放的來源。</p>
+        <pre><code>&lt;audio controls&gt;
+  &lt;source src=&quot;audio.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+  &lt;source src=&quot;audio.ogg&quot; type=&quot;audio/ogg&quot;&gt;
+  您的瀏覽器不支持 audio 標籤。
+&lt;/audio&gt;</code></pre>
+      </article>
+    </section>
+
+    <section class="support-panel" aria-label="瀏覽器支援偵測">
+      <div>
+        <h2>目前瀏覽器的格式判斷</h2>
+        <p>`canPlayType()` 只能回報瀏覽器是否可能播放該 MIME type，實際播放仍取決於檔案內容與編碼。</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">MIME type</th>
+            <th scope="col">瀏覽器回報</th>
+          </tr>
+        </thead>
+        <tbody id="support-results"></tbody>
+      </table>
+    </section>
+
+    <section class="fallback-grid" aria-label="fallback 位置比較">
+      <article class="panel good">
+        <h2>fallback 放在 audio 裡</h2>
+        <pre><code>&lt;audio controls&gt;
+  &lt;source src=&quot;audio.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+  您的瀏覽器不支持 audio 標籤。
+&lt;/audio&gt;</code></pre>
+        <p>這段文字是 `&lt;audio&gt;` 的 fallback，只在瀏覽器不支援 `&lt;audio&gt;` 時才有機會顯示。</p>
+      </article>
+
+      <article class="panel bad">
+        <h2>fallback 放在 audio 外</h2>
+        <pre><code>&lt;audio controls&gt;
+  &lt;source src=&quot;audio.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+&lt;/audio&gt;
+&lt;p&gt;您的瀏覽器不支持 audio 標籤。&lt;/p&gt;</code></pre>
+        <p>這會變成一般頁面文字，不再是 `&lt;audio&gt;` 的 fallback。</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

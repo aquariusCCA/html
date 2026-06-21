@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文件下載與元素連結 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/210-超鏈接標籤/02-文件下載與元素連結.md -->
+  <header class="hero">
+    <div>
+      <p class="eyebrow">HTML Demo</p>
+      <h1>文件下載與元素連結</h1>
+      <p>同樣是 <code>&lt;a href="..."&gt;</code>，目標檔案類型、瀏覽器設定與伺服器回應會影響開啟或下載結果。</p>
+    </div>
+    <output id="status" class="status" aria-live="polite">選擇一個資源連結，觀察預期行為。</output>
+  </header>
+
+  <main>
+    <section class="resource-board" aria-label="檔案連結範例">
+      <article class="resource">
+        <span class="kind">圖片</span>
+        <h2>可直接開啟的圖片</h2>
+        <p>瀏覽器通常會顯示 JPG 圖片。</p>
+        <a href="assets/images/hyperlink-tags-img-002-354aea.jpg" data-kind="圖片連結通常會在瀏覽器中開啟圖片。">看圖片</a>
+      </article>
+
+      <article class="resource">
+        <span class="kind">PDF</span>
+        <h2>可預覽的 PDF</h2>
+        <p>多數桌面瀏覽器會內建 PDF 預覽。</p>
+        <a href="assets/pdfs/hyperlink-tags-pdf-001-78621d.pdf" data-kind="PDF 可能被瀏覽器預覽，也可能依設定下載。">看 PDF 檔</a>
+      </article>
+
+      <article class="resource">
+        <span class="kind">Audio</span>
+        <h2>音訊檔案</h2>
+        <p>支援格式時，瀏覽器可直接播放。</p>
+        <a href="assets/files/hyperlink-tags-file-003-278402.mp3" data-kind="MP3 通常可由瀏覽器或系統播放器開啟。">聽音樂</a>
+      </article>
+
+      <article class="resource">
+        <span class="kind">Video</span>
+        <h2>影片檔案</h2>
+        <p>支援格式時，瀏覽器可直接播放。</p>
+        <a href="assets/files/hyperlink-tags-file-002-9a18a4.mp4" data-kind="MP4 通常可由瀏覽器播放，但仍受編碼支援影響。">看小電影</a>
+      </article>
+
+      <article class="resource">
+        <span class="kind">ZIP</span>
+        <h2>壓縮檔</h2>
+        <p>瀏覽器通常無法直接顯示，常見結果是下載。</p>
+        <a href="assets/files/hyperlink-tags-file-004-28aaa1.zip" data-kind="ZIP 通常會觸發下載，因為瀏覽器不能直接顯示內容。">內部資源</a>
+      </article>
+
+      <article class="resource highlight">
+        <span class="kind">download</span>
+        <h2>提示下載</h2>
+        <p><code>download</code> 可提供建議檔名，但不是絕對命令。</p>
+        <a href="assets/pdfs/hyperlink-tags-pdf-001-78621d.pdf" download="一份PDF檔.pdf" data-kind="download 是下載提示；同源、標頭與瀏覽器策略仍會影響結果。">下載 PDF 檔案</a>
+      </article>
+    </section>
+
+    <section class="two-column">
+      <article class="panel image-link">
+        <h2>圖片可以放進 a</h2>
+        <a href="#product" class="linked-image" data-kind="整張圖片位於 a 裡，因此圖片區域都是可點擊連結。">
+          <img src="assets/images/hyperlink-tags-img-002-354aea.jpg" alt="查看商品示意圖">
+          <span>查看商品詳情</span>
+        </a>
+        <pre><code>&lt;a href="product.html"&gt;
+  &lt;img src="..." alt="查看商品示意圖"&gt;
+&lt;/a&gt;</code></pre>
+      </article>
+
+      <article class="panel">
+        <h2>不要把互動控制項放進 a</h2>
+        <div class="compare">
+          <div class="bad">
+            <strong>不建議</strong>
+            <pre><code>&lt;a href="product.html"&gt;
+  &lt;button&gt;查看商品&lt;/button&gt;
+&lt;/a&gt;</code></pre>
+          </div>
+          <div class="good">
+            <strong>較清楚</strong>
+            <pre><code>&lt;a href="product.html" class="button-link"&gt;查看商品&lt;/a&gt;
+&lt;button type="button"&gt;加入收藏&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="product" class="summary">
+      <h2>觀察重點</h2>
+      <p><code>&lt;a&gt;</code> 只負責前往 URL。開啟、播放、預覽或下載，還會受到檔案類型、瀏覽器、伺服器標頭與使用者設定影響。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

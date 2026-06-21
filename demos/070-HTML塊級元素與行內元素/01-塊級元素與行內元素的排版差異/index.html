@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>塊級元素與行內元素的排版差異 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/070-HTML塊級元素與行內元素/01-塊級元素與行內元素的排版差異.md -->
+  <header class="page-header">
+    <p class="eyebrow">HTML Demo</p>
+    <h1>塊級元素與行內元素的排版差異</h1>
+    <p>切換控制項，觀察 block 與 inline 在正常文件流、寬高控制與間距上的差異。</p>
+  </header>
+
+  <main class="layout">
+    <section class="control-panel" aria-labelledby="control-title">
+      <h2 id="control-title">觀察設定</h2>
+
+      <fieldset>
+        <legend>塊級元素寬度</legend>
+        <label><input type="radio" name="block-width" value="auto" checked> width: auto</label>
+        <label><input type="radio" name="block-width" value="fixed"> width: 260px</label>
+        <label><input type="radio" name="block-width" value="full"> width: 100%</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>行內元素顯示方式</legend>
+        <label><input type="radio" name="inline-display" value="inline" checked> display: inline</label>
+        <label><input type="radio" name="inline-display" value="inline-block"> display: inline-block</label>
+        <label><input type="radio" name="inline-display" value="block"> display: block</label>
+      </fieldset>
+
+      <label class="toggle-row">
+        <input id="space-toggle" type="checkbox" checked>
+        套用 padding、border、margin
+      </label>
+
+      <p class="hint">重點：先選語意正確的 HTML，再用 CSS 控制排版。不要只用「換不換行」判斷標籤。</p>
+    </section>
+
+    <section class="demo-stage" aria-label="排版觀察區">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>塊級元素</h2>
+          <span class="tag">h1 / p / div</span>
+        </div>
+        <div class="comparison-grid">
+          <pre class="code-block"><code id="block-code"></code></pre>
+          <div class="render-box block-demo" id="block-demo">
+            <h3>標題</h3>
+            <p>段落文字</p>
+            <div>區塊內容</div>
+          </div>
+        </div>
+        <p class="observation" id="block-note"></p>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>行內元素</h2>
+          <span class="tag">input / span</span>
+        </div>
+        <div class="comparison-grid">
+          <pre class="code-block"><code id="inline-code"></code></pre>
+          <div class="render-box inline-demo" id="inline-demo">
+            <input type="text" value="input" aria-label="示範文字輸入">
+            <span>span 補充文字</span>
+            <span>另一段 span</span>
+          </div>
+        </div>
+        <p class="observation" id="inline-note"></p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

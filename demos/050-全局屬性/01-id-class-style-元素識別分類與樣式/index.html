@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>id class style 元素識別分類與樣式 Demo</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d9dde3;
+      --panel: #ffffff;
+      --soft: #f6f8fb;
+      --accent: #176b87;
+      --accent-2: #6b4eff;
+      --warn: #a34800;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef3f6;
+      line-height: 1.6;
+    }
+
+    header, main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0 14px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: 0;
+    }
+
+    p { margin: 0; }
+
+    .lead { color: var(--muted); max-width: 760px; }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button, a.jump {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+      color: var(--ink);
+      padding: 10px 14px;
+      font: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button:hover, a.jump:hover {
+      border-color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 270px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+    }
+
+    code, pre {
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: .92rem;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 12px 0 0;
+      padding: 12px;
+      border-radius: 6px;
+      background: #101820;
+      color: #edf6ff;
+    }
+
+    .sample {
+      border: 1px dashed #9aa7b2;
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 12px;
+      background: var(--soft);
+    }
+
+    #intro-target {
+      outline: 0 solid transparent;
+      transition: outline-width .16s ease, background .16s ease;
+    }
+
+    #intro-target:target, .highlight-id {
+      outline: 4px solid rgba(23, 107, 135, .25);
+      background: #e4f3f7;
+    }
+
+    .notice {
+      border-left: 4px solid var(--accent);
+      padding: 9px 10px;
+      margin-top: 8px;
+      background: #edf8fb;
+    }
+
+    .notice.important {
+      border-left-color: var(--accent-2);
+      background: #f0edff;
+    }
+
+    .inline-target {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #c9d5df;
+      background: #f8fbfd;
+    }
+
+    .with-inline {
+      color: #b42318 !important;
+      font-weight: 700;
+      background: #fff1e8 !important;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .bad, .good {
+      border-radius: 6px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .bad strong { color: var(--warn); }
+    .good strong { color: #1b6f3a; }
+
+    @media (max-width: 820px) {
+      .grid, .compare { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Source notes: notes/050-全局屬性/01-id-class-style-元素識別分類與樣式.md -->
+  <header>
+    <h1>id、class、style 的用途差異</h1>
+    <p class="lead">觀察唯一定位、分類套用與行內樣式的差異。這個 demo 不用大量文字摘要，而是讓屬性的作用直接出現在畫面上。</p>
+    <div class="toolbar" aria-label="demo controls">
+      <a class="jump" href="#intro-target">跳到唯一 id 元素</a>
+      <button type="button" id="markId">標示 id 目標</button>
+      <button type="button" id="toggleInline">切換行內樣式效果</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section aria-labelledby="id-title">
+        <h2 id="id-title">id：唯一定位</h2>
+        <p>頁內連結或 JavaScript 通常會期待 `id` 指向唯一元素。</p>
+        <div id="intro-target" class="sample">
+          <strong>id="intro-target"</strong>
+          <p>按上方連結或按鈕時，只有這個區塊會被定位。</p>
+        </div>
+        <pre><code>&lt;section id="intro-target"&gt;...&lt;/section&gt;</code></pre>
+      </section>
+
+      <section aria-labelledby="class-title">
+        <h2 id="class-title">class：重複分類</h2>
+        <p>同一個 class 可以給多個元素共用，也能疊加多個 class。</p>
+        <div class="notice">class="notice"：第一則公告</div>
+        <div class="notice">class="notice"：第二則公告</div>
+        <div class="notice important">class="notice important"：重要公告</div>
+        <pre><code>.notice { border-left: 4px solid teal; }</code></pre>
+      </section>
+
+      <section aria-labelledby="style-title">
+        <h2 id="style-title">style：直接設定這個元素</h2>
+        <p>行內樣式適合少量測試，但大量使用會讓維護變困難。</p>
+        <div id="inlineTarget" class="inline-target">
+          這段文字可切換成行內樣式效果。
+        </div>
+        <pre><code>&lt;p style="color: red; font-weight: 700;"&gt;...&lt;/p&gt;</code></pre>
+      </section>
+    </div>
+
+    <section style="margin-top: 14px;" aria-labelledby="mistake-title">
+      <h2 id="mistake-title">常見錯誤對照</h2>
+      <div class="compare">
+        <div class="bad">
+          <strong>錯誤：重複使用同一個 id</strong>
+          <pre><code>&lt;article id="product-card"&gt;商品 A&lt;/article&gt;
+&lt;article id="product-card"&gt;商品 B&lt;/article&gt;</code></pre>
+        </div>
+        <div class="good">
+          <strong>修正：可重複分類改用 class</strong>
+          <pre><code>&lt;article class="product-card"&gt;商品 A&lt;/article&gt;
+&lt;article class="product-card"&gt;商品 B&lt;/article&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const markId = document.getElementById('markId');
+    const target = document.getElementById('intro-target');
+    const toggleInline = document.getElementById('toggleInline');
+    const inlineTarget = document.getElementById('inlineTarget');
+
+    markId.addEventListener('click', function () {
+      target.classList.add('highlight-id');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.setTimeout(function () {
+        target.classList.remove('highlight-id');
+      }, 1200);
+    });
+
+    toggleInline.addEventListener('click', function () {
+      inlineTarget.classList.toggle('with-inline');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>draggable 拖曳屬性與拖放事件 Demo</title>
+  <style>
+    :root {
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d8dee6;
+      --panel: #fff;
+      --soft: #f6f8fb;
+      --accent: #c2410c;
+      --accent-soft: #fff3ea;
+      --ok: #0f766e;
+      --ok-soft: #e6f5f3;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #f6f1ec; line-height: 1.6; }
+    header, main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 28px 0 16px; }
+    h1 { margin: 0 0 8px; font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: 0; }
+    p { margin: 0; }
+    .lead { color: var(--muted); max-width: 820px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    h2 { margin: 0 0 12px; font-size: 1.1rem; }
+
+    .stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 14px;
+      align-items: stretch;
+      margin-top: 12px;
+    }
+
+    .source, .dropzone {
+      min-height: 220px;
+      border: 2px dashed #cbd5df;
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--soft);
+    }
+
+    .dropzone.ready {
+      border-color: var(--ok);
+      background: var(--ok-soft);
+    }
+
+    .card {
+      width: min(100%, 240px);
+      border-radius: 8px;
+      border: 1px solid #fb923c;
+      background: var(--accent-soft);
+      color: var(--ink);
+      padding: 14px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .card.dragging {
+      opacity: .6;
+      background: #ffedd5;
+    }
+
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    input { width: 18px; height: 18px; }
+
+    button {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      padding: 10px 12px;
+      font: inherit;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .log {
+      min-height: 300px;
+      max-height: 380px;
+      overflow: auto;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: #101820;
+      color: #edf6ff;
+      padding: 12px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: .92rem;
+      white-space: pre-wrap;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .stage { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Source notes: notes/050-全局屬性/07-draggable-拖曳屬性.md -->
+  <!-- Source notes: notes/050-全局屬性/08-過時屬性-contextmenu-dropzone.md -->
+  <header>
+    <h1>draggable 只是拖放流程的一部分</h1>
+    <p class="lead">把卡片拖到放置區。切換 `preventDefault()` 開關，觀察為什麼拖放目標通常需要處理 `dragover`。</p>
+  </header>
+
+  <main class="grid">
+    <section aria-labelledby="drag-title">
+      <h2 id="drag-title">拖放練習</h2>
+      <label>
+        <input id="allowDrop" type="checkbox" checked>
+        在 dragover 中呼叫 preventDefault()
+      </label>
+      <div class="stage">
+        <div id="source" class="source">
+          <p>來源區</p>
+          <div id="card" class="card" draggable="true">可拖曳卡片<br><small>draggable="true"</small></div>
+        </div>
+        <div id="dropTarget" class="dropzone">
+          <p>放置區</p>
+        </div>
+      </div>
+      <button id="reset" type="button">重設卡片位置</button>
+      <p class="note">`dropzone` 屬性屬於舊用法。現代拖放應使用 `dragenter`、`dragover`、`drop` 等事件處理。</p>
+    </section>
+
+    <section aria-labelledby="event-title">
+      <h2 id="event-title">事件紀錄</h2>
+      <div id="log" class="log" aria-live="polite">拖曳卡片後，事件紀錄會出現在這裡。</div>
+    </section>
+  </main>
+
+  <script>
+    const source = document.getElementById('source');
+    const card = document.getElementById('card');
+    const dropTarget = document.getElementById('dropTarget');
+    const allowDrop = document.getElementById('allowDrop');
+    const reset = document.getElementById('reset');
+    const log = document.getElementById('log');
+
+    function addLog(message) {
+      const first = log.textContent.startsWith('拖曳卡片');
+      const line = new Date().toLocaleTimeString() + '  ' + message;
+      log.textContent = first ? line : log.textContent + '\n' + line;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    card.addEventListener('dragstart', function (event) {
+      event.dataTransfer.setData('text/plain', 'card');
+      card.classList.add('dragging');
+      addLog('dragstart：卡片開始被拖曳');
+    });
+
+    card.addEventListener('dragend', function () {
+      card.classList.remove('dragging');
+      dropTarget.classList.remove('ready');
+      addLog('dragend：拖曳結束');
+    });
+
+    dropTarget.addEventListener('dragenter', function (event) {
+      if (allowDrop.checked) {
+        event.preventDefault();
+      }
+      dropTarget.classList.add('ready');
+      addLog('dragenter：卡片進入放置區');
+    });
+
+    dropTarget.addEventListener('dragover', function (event) {
+      if (allowDrop.checked) {
+        event.preventDefault();
+      }
+    });
+
+    dropTarget.addEventListener('dragleave', function () {
+      dropTarget.classList.remove('ready');
+      addLog('dragleave：卡片離開放置區');
+    });
+
+    dropTarget.addEventListener('drop', function (event) {
+      event.preventDefault();
+      dropTarget.appendChild(card);
+      dropTarget.classList.remove('ready');
+      addLog('drop：卡片被放到目標區');
+    });
+
+    reset.addEventListener('click', function () {
+      source.appendChild(card);
+      addLog('reset：卡片回到來源區');
+    });
+  </script>
+</body>
+</html>

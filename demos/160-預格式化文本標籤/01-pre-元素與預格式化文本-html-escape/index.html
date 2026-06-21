@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pre 中展示 HTML 原始碼</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/160-預格式化文本標籤/01-pre-元素與預格式化文本.md -->
+  <main class="page-shell">
+    <header class="demo-header">
+      <div>
+        <p class="eyebrow">HTML Demo</p>
+        <h1>在 pre 中展示 HTML 原始碼</h1>
+      </div>
+      <label class="switch">
+        <input id="showTable" type="checkbox" checked>
+        <span>顯示轉義對照</span>
+      </label>
+    </header>
+
+    <section class="comparison-grid" aria-label="未轉義與已轉義比較">
+      <article class="panel danger">
+        <div class="panel-heading">
+          <span class="tag">錯誤</span>
+          <h2>直接寫 HTML 標籤</h2>
+        </div>
+        <p class="description">`pre` 會保留空白與換行，但裡面的 HTML 標籤仍會被瀏覽器解析。</p>
+        <section class="code-side" aria-label="未轉義原始碼">
+          <h3>HTML</h3>
+          <pre class="code-block"><code>&lt;pre&gt;
+&lt;div class="card"&gt;內容&lt;/div&gt;
+&lt;/pre&gt;</code></pre>
+        </section>
+        <section class="render-side" aria-label="未轉義結果">
+          <h3>Result</h3>
+          <div class="render-box">
+            <pre class="result-pre"><div class="card">內容</div></pre>
+          </div>
+        </section>
+      </article>
+
+      <article class="panel success">
+        <div class="panel-heading">
+          <span class="tag">修正</span>
+          <h2>先轉義特殊字元</h2>
+        </div>
+        <p class="description">要讓標籤以文字出現，就把 `<`、`>`、`&` 改成字元實體。</p>
+        <section class="code-side" aria-label="已轉義原始碼">
+          <h3>HTML</h3>
+          <pre class="code-block"><code>&lt;pre&gt;
+&amp;lt;div class="card"&amp;gt;內容&amp;lt;/div&amp;gt;
+&lt;/pre&gt;</code></pre>
+        </section>
+        <section class="render-side" aria-label="已轉義結果">
+          <h3>Result</h3>
+          <div class="render-box">
+            <pre class="result-pre">&lt;div class="card"&gt;內容&lt;/div&gt;</pre>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <section class="escape-table" id="escapeTable" aria-label="常見轉義對照">
+      <h2>常見轉義對照</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>原字元</th>
+            <th>轉義寫法</th>
+            <th>用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>&lt;</code></td>
+            <td><code>&amp;lt;</code></td>
+            <td>避免被解析成標籤開頭</td>
+          </tr>
+          <tr>
+            <td><code>&gt;</code></td>
+            <td><code>&amp;gt;</code></td>
+            <td>避免被解析成標籤結尾</td>
+          </tr>
+          <tr>
+            <td><code>&amp;</code></td>
+            <td><code>&amp;amp;</code></td>
+            <td>避免被解析成字元實體開頭</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

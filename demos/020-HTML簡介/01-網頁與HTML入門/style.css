@@ -1,0 +1,261 @@
+:root {
+  --ink: #172126;
+  --muted: #637179;
+  --line: #c9d5d8;
+  --paper: #f3f6f5;
+  --panel: #ffffff;
+  --accent: #276c73;
+  --accent-soft: #dceff0;
+  --warm: #a55f2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif;
+}
+
+.page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+  gap: 24px;
+  align-items: end;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+h1, h2, p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 34px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.map {
+  display: grid;
+  grid-template-columns: minmax(190px, 1fr) minmax(220px, 1.2fr) minmax(190px, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.site-box, .file-box, .page-chip, .panel, .step {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.site-box, .file-box {
+  padding: 20px;
+}
+
+.site-box span, .file-box span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.site-box strong, .file-box strong {
+  font-size: 22px;
+}
+
+.pages {
+  display: grid;
+  gap: 10px;
+}
+
+.page-chip {
+  padding: 14px 16px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.page-chip.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mode {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  padding: 10px 16px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.mode.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.panel {
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.panel h2 {
+  padding: 20px 20px 0;
+}
+
+pre {
+  margin: 0 20px 20px;
+  min-height: 190px;
+  border-radius: 8px;
+  background: #162025;
+  color: #e8f2ef;
+  padding: 18px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 16px;
+  background: #edf2f1;
+}
+
+.browser-bar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--warm);
+}
+
+.browser-bar span:nth-child(2) {
+  background: #c7a530;
+}
+
+.browser-bar span:nth-child(3) {
+  background: var(--accent);
+}
+
+.browser-bar p {
+  margin: 0 0 0 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.preview {
+  padding: 34px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.preview h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.preview p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.step {
+  padding: 18px;
+}
+
+.step span {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.step strong {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 18px;
+}
+
+.step p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .header, .map, .workspace, .pipeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    width: min(100% - 20px, 1120px);
+    padding: 20px 0;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .preview {
+    padding: 24px 16px;
+  }
+}

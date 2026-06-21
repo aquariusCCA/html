@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>列表嵌套 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/220-列表標籤/03-列表嵌套.md -->
+  <main class="demo-shell">
+    <header class="page-header">
+      <p class="eyebrow">HTML 巢狀列表</p>
+      <h1>內層列表必須放在父層 li 裡</h1>
+      <p>切換三種寫法，觀察縮排、標籤閉合位置與真正父子結構之間的差異。</p>
+    </header>
+
+    <section class="control-panel" aria-labelledby="case-title">
+      <div>
+        <h2 id="case-title">結構案例</h2>
+        <p id="case-description">內層 ul 被放在上海這個 li 裡，表示景點是上海的子項目。</p>
+      </div>
+      <div class="segmented" role="group" aria-label="選擇巢狀列表案例">
+        <button type="button" class="is-active" data-case="correct">正確巢狀</button>
+        <button type="button" data-case="sibling">ul 放錯層</button>
+        <button type="button" data-case="closed">li 過早結束</button>
+      </div>
+    </section>
+
+    <section class="tri-grid">
+      <article class="panel code-panel">
+        <div class="panel-heading">
+          <h2>HTML 結構</h2>
+          <span id="status-badge" class="badge good">結構清楚</span>
+        </div>
+        <pre><code id="code-output"></code></pre>
+      </article>
+
+      <article class="panel">
+        <h2>瀏覽器呈現</h2>
+        <div id="render-output" class="render-box" aria-live="polite"></div>
+      </article>
+
+      <article class="panel">
+        <h2>簡化父子關係</h2>
+        <div id="tree-output" class="tree-box" aria-live="polite"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

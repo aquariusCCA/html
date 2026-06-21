@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>列表標籤入門與 ul、ol Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/220-列表標籤/01-列表標籤入門與-ul-ol.md -->
+  <main class="demo-shell">
+    <header class="page-header">
+      <p class="eyebrow">HTML 列表標籤</p>
+      <h1>ul、ol 與 li 的語意選擇</h1>
+      <p>切換內容情境，觀察 HTML 結構如何對應無序列表、有序列表與正確的 li 容器。</p>
+    </header>
+
+    <section class="control-panel" aria-labelledby="scenario-title">
+      <div>
+        <h2 id="scenario-title">內容情境</h2>
+        <p id="scenario-description">商品特色是一組並列項目，項目順序不影響內容意義。</p>
+      </div>
+      <div class="segmented" role="group" aria-label="選擇列表情境">
+        <button type="button" class="is-active" data-scenario="features">商品特色</button>
+        <button type="button" data-scenario="steps">安裝步驟</button>
+        <button type="button" data-scenario="ranking">排行榜</button>
+      </div>
+    </section>
+
+    <section class="comparison-grid" aria-label="列表語意對照">
+      <article class="panel">
+        <div class="panel-heading">
+          <h2>建議 HTML</h2>
+          <span id="tag-badge" class="badge">&lt;ul&gt;</span>
+        </div>
+        <pre><code id="code-output">&lt;ul&gt;
+  &lt;li&gt;價格清楚&lt;/li&gt;
+  &lt;li&gt;支援行動裝置&lt;/li&gt;
+  &lt;li&gt;容易維護&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </article>
+
+      <article class="panel result-panel">
+        <div class="panel-heading">
+          <h2>瀏覽器呈現</h2>
+          <span id="meaning-badge" class="badge">順序不重要</span>
+        </div>
+        <div id="render-output" class="render-box" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="structure-section" aria-labelledby="structure-title">
+      <div class="section-heading">
+        <h2 id="structure-title">li 是列表項目的容器</h2>
+        <p>列表中的文字、段落或連結應該放進 <code>&lt;li&gt;</code>，而不是直接放在 <code>&lt;ul&gt;</code> 或 <code>&lt;ol&gt;</code> 裡。</p>
+      </div>
+
+      <div class="structure-grid">
+        <article class="panel good">
+          <h3>正確結構</h3>
+          <pre><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;JavaScript&lt;/p&gt;
+    &lt;a href=&quot;intro.html&quot;&gt;查看介紹&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          <div class="note">所有項目都是列表的 <code>&lt;li&gt;</code> 子元素。</div>
+        </article>
+
+        <article class="panel bad">
+          <h3>不建議結構</h3>
+          <pre><code>&lt;ul&gt;
+  HTML
+  &lt;p&gt;CSS&lt;/p&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          <div class="note">文字與 <code>&lt;p&gt;</code> 直接出現在列表裡，列表結構不清楚。</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

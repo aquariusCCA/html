@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>p 段落標籤語意與用法 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/110-段落標籤/01-p-段落標籤語意與用法.md -->
+  <main class="demo-shell">
+    <header class="demo-header">
+      <p class="eyebrow">HTML 教學 Demo</p>
+      <h1><code>&lt;p&gt;</code> 段落標籤：語意、換行與間距</h1>
+      <p class="intro">切換寫法並調整閱讀寬度，觀察段落結構、強制換行與 CSS 間距各自負責的事情。</p>
+    </header>
+
+    <section class="controls" aria-label="Demo 控制項">
+      <div class="mode-control" role="radiogroup" aria-label="選擇 HTML 寫法">
+        <label>
+          <input type="radio" name="mode" value="semantic" checked>
+          <span>多個 &lt;p&gt;</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="breaks">
+          <span>連續 &lt;br&gt;</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="empty">
+          <span>空的 &lt;p&gt;</span>
+        </label>
+      </div>
+
+      <div class="range-group">
+        <label for="widthRange">閱讀區寬度</label>
+        <input id="widthRange" type="range" min="320" max="760" value="560" step="20">
+        <output id="widthValue" for="widthRange">560px</output>
+      </div>
+
+      <div class="range-group">
+        <label for="spacingRange">段落下方間距</label>
+        <input id="spacingRange" type="range" min="0" max="32" value="16" step="4">
+        <output id="spacingValue" for="spacingRange">16px</output>
+      </div>
+    </section>
+
+    <section class="comparison" aria-label="HTML 寫法與呈現結果對照">
+      <article class="panel code-panel">
+        <div class="panel-header">
+          <h2>HTML 寫法</h2>
+          <p id="codeSummary">每個自然段使用一個 &lt;p&gt;。</p>
+        </div>
+        <pre><code id="codeBlock"></code></pre>
+      </article>
+
+      <article class="panel result-panel">
+        <div class="panel-header">
+          <h2>瀏覽器呈現</h2>
+          <p id="resultSummary">段落有清楚語意，間距交給 CSS 控制。</p>
+        </div>
+        <div class="viewport-frame">
+          <div id="resultBox" class="result-box" aria-live="polite"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="takeaway" aria-label="觀察重點">
+      <h2>觀察重點</h2>
+      <ul>
+        <li><code>&lt;p&gt;</code> 表示一個完整文字段落，不只是讓畫面多一段空白。</li>
+        <li>一般段落文字會依容器寬度自動換行，不需要插入很多 <code>&lt;br&gt;</code>。</li>
+        <li>段落之間的視覺距離應由 CSS 控制，不應新增空的 <code>&lt;p&gt;</code>。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

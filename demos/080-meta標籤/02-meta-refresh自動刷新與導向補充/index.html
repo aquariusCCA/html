@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>meta refresh 倒數觀察器</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/080-meta標籤/02-meta-refresh自動刷新與導向補充.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">安全模擬</p>
+      <h1>meta refresh 倒數觀察器</h1>
+      <p>選擇 refresh 寫法，觀察秒數、導向目標與提示文字如何影響使用者理解。</p>
+    </header>
+
+    <section class="panel controls" aria-label="refresh 設定">
+      <label for="mode">refresh 模式</label>
+      <select id="mode">
+        <option value="reload">5 秒後重新整理目前頁面</option>
+        <option value="redirect">3 秒後導向其他網址</option>
+      </select>
+      <label><input id="messageToggle" type="checkbox" checked> 顯示提示與手動連結</label>
+      <button id="restartButton" type="button">重新開始倒數</button>
+    </section>
+
+    <section class="layout">
+      <article class="panel">
+        <h2>head 片段</h2>
+        <pre><code id="codeSample"></code></pre>
+      </article>
+
+      <article class="panel countdown-card">
+        <h2>頁面狀態</h2>
+        <div class="count" id="countValue">5</div>
+        <div class="meter" aria-hidden="true"><span id="meterBar"></span></div>
+        <p id="statusText"></p>
+        <p class="manual-link" id="manualLink"></p>
+      </article>
+    </section>
+
+    <section class="comparison">
+      <article class="panel bad">
+        <h2>容易造成困惑</h2>
+        <pre><code>&lt;meta http-equiv="refresh" content="1;url=https://example.com"&gt;</code></pre>
+        <p>太短的延遲、沒有提示，使用者可能還沒理解頁面就被帶走。</p>
+      </article>
+      <article class="panel good">
+        <h2>較清楚的做法</h2>
+        <pre><code>&lt;p&gt;頁面即將前往新網址。如果沒有自動跳轉，請&lt;a href="https://example.com"&gt;點此開啟&lt;/a&gt;。&lt;/p&gt;</code></pre>
+        <p>提供文字說明與手動連結，讓自動導向不是唯一選擇。</p>
+      </article>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

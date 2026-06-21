@@ -1,0 +1,163 @@
+:root {
+  --ink: #1c2226;
+  --muted: #626f76;
+  --line: #d0d7db;
+  --paper: #f7f7f2;
+  --panel: #ffffff;
+  --teal: #237983;
+  --plum: #7d5a8c;
+  --active: #fff3bd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.page {
+  width: min(1160px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 450px);
+  gap: 24px;
+  align-items: end;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  color: var(--teal);
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+h1, h2, p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 34px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.tab {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  padding: 10px 16px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.tab.active {
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.column, .explain {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.column {
+  padding: 22px;
+}
+
+.column h2 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+ul {
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  line-height: 1.6;
+}
+
+li.highlight {
+  background: var(--active);
+  border-color: #dab64d;
+  font-weight: 700;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.cs h2 {
+  color: var(--plum);
+}
+
+.bs h2 {
+  color: var(--teal);
+}
+
+.explain {
+  margin-top: 20px;
+  padding: 22px;
+}
+
+.explain h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.explain p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 840px) {
+  .hero, .comparison {
+    grid-template-columns: 1fr;
+  }
+}

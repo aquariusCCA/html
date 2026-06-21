@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML title 標籤的作用與寫法</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/090-title標籤/01-title標籤的作用與寫法.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">HTML 文件資訊</p>
+      <h1>title 標籤的作用與寫法</h1>
+      <p>調整文件標題與頁面主標題，觀察它們分別出現在瀏覽器分頁與頁面正文的位置。</p>
+    </header>
+
+    <section class="workspace" aria-label="title 標籤互動觀察">
+      <form class="panel controls" id="titleForm">
+        <div class="field">
+          <label for="titleInput">文件標題：寫在 &lt;title&gt;</label>
+          <input id="titleInput" type="text" value="作品集 - 小明的個人網站" maxlength="48">
+        </div>
+
+        <div class="field">
+          <label for="h1Input">頁面主標題：寫在 &lt;h1&gt;</label>
+          <input id="h1Input" type="text" value="小明的作品集" maxlength="42">
+        </div>
+
+        <fieldset class="preset-group">
+          <legend>標題範例</legend>
+          <button type="button" class="preset active" data-title="作品集 - 小明的個人網站" data-h1="小明的作品集">清楚具體</button>
+          <button type="button" class="preset" data-title="首頁" data-h1="歡迎來到我的網站">太籠統</button>
+          <button type="button" class="preset" data-title="HTML HTML教學 HTML入門 HTML標籤 HTML學習" data-h1="HTML title 標籤教學">關鍵字堆砌</button>
+        </fieldset>
+      </form>
+
+      <section class="panel browser-panel" aria-label="簡化瀏覽器預覽">
+        <div class="browser">
+          <div class="tab-strip">
+            <div class="tab" id="tabPreview">作品集 - 小明的個人網站</div>
+          </div>
+          <article class="page-preview">
+            <h2 id="pageHeading">小明的作品集</h2>
+            <p>這裡介紹我的作品與學習紀錄。</p>
+          </article>
+        </div>
+        <p class="observation" id="observation">目前的 &lt;title&gt; 清楚指出頁面主題，適合出現在分頁、書籤或搜尋結果標題附近。</p>
+      </section>
+    </section>
+
+    <section class="layout">
+      <article class="panel">
+        <h2>完整 HTML 位置</h2>
+        <pre><code id="codeSample"></code></pre>
+      </article>
+
+      <article class="panel">
+        <h2>容易混淆的寫法</h2>
+        <div class="comparison">
+          <section class="compare-item good">
+            <h3>正確：放在 head</h3>
+            <pre><code>&lt;head&gt;
+  &lt;title&gt;我的網站&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+            <p>&lt;title&gt; 描述整份 HTML 文件。</p>
+          </section>
+
+          <section class="compare-item bad">
+            <h3>錯誤：放進 body</h3>
+            <pre><code>&lt;body&gt;
+  &lt;title&gt;我的網站&lt;/title&gt;
+  &lt;h1&gt;我的網站&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+            <p>文件資訊放錯位置，瀏覽器可能修正或忽略。</p>
+          </section>
+
+          <section class="compare-item neutral">
+            <h3>不同：title 屬性</h3>
+            <pre><code>&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;</code></pre>
+            <p>這是元素提示資訊，不會設定整份文件標題。</p>
+          </section>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

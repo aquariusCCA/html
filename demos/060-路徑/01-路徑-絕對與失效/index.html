@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>絕對路徑與路徑失效觀察</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/060-路徑/01-路徑：讓 HTML 找到圖片與資源.md -->
+  <main class="app">
+    <header class="page-header">
+      <p class="eyebrow">HTML 路徑 Demo</p>
+      <h1>不是每種「看起來完整」的路徑都適合正式網頁</h1>
+      <p>切換執行情境，觀察本機絕對路徑、網站根目錄路徑、外站網址與相對路徑的穩定性。</p>
+    </header>
+
+    <section class="scenario-panel" aria-label="情境切換">
+      <span class="scenario-label">目前情境</span>
+      <div class="segmented" role="group" aria-label="選擇頁面執行情境">
+        <button class="scenario-button active" type="button" data-scenario="own">自己的電腦</button>
+        <button class="scenario-button" type="button" data-scenario="other">別人的電腦</button>
+        <button class="scenario-button" type="button" data-scenario="server">網站伺服器</button>
+      </div>
+    </section>
+
+    <section class="cards" aria-label="路徑案例比較">
+      <article class="case-card" data-case="local">
+        <div class="case-top">
+          <span class="case-name">本機絕對路徑</span>
+          <span class="case-state"></span>
+        </div>
+        <code>&lt;img src="D:\day01\images\1.jpg" alt="範例圖片"&gt;</code>
+        <div class="preview"><img src="assets/sample-image.svg" alt="範例圖片"></div>
+        <p class="case-reason"></p>
+        <p class="case-fix"></p>
+      </article>
+
+      <article class="case-card" data-case="root">
+        <div class="case-top">
+          <span class="case-name">網站根目錄路徑</span>
+          <span class="case-state"></span>
+        </div>
+        <code>&lt;img src="/images/logo.png" alt="網站標誌"&gt;</code>
+        <div class="preview"><img src="assets/sample-image.svg" alt="網站標誌"></div>
+        <p class="case-reason"></p>
+        <p class="case-fix"></p>
+      </article>
+
+      <article class="case-card" data-case="remote">
+        <div class="case-top">
+          <span class="case-name">外站圖片網址</span>
+          <span class="case-state"></span>
+        </div>
+        <code>&lt;img src="https://other-site.example.com/photo.jpg" alt="活動照片"&gt;</code>
+        <div class="preview"><img src="assets/sample-image.svg" alt="活動照片"></div>
+        <p class="case-reason"></p>
+        <p class="case-fix"></p>
+      </article>
+
+      <article class="case-card" data-case="relative">
+        <div class="case-top">
+          <span class="case-name">專案內相對路徑</span>
+          <span class="case-state"></span>
+        </div>
+        <code>&lt;img src="images/1.jpg" alt="範例圖片"&gt;</code>
+        <div class="preview"><img src="assets/sample-image.svg" alt="範例圖片"></div>
+        <p class="case-reason"></p>
+        <p class="case-fix"></p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

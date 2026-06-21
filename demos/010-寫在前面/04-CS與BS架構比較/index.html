@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C/S 與 B/S 架構比較 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/010-寫在前面/04-CS與BS架構比較.md -->
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">架構比較</p>
+        <h1>C/S 與 B/S 的差異</h1>
+      </div>
+      <p>選擇比較項目，觀察需要安裝的客戶端程式與只需瀏覽器的 Web 應用，在使用與維護上有什麼不同。</p>
+    </header>
+
+    <section class="controls" aria-label="比較項目">
+      <button class="tab active" type="button" data-focus="install">安裝</button>
+      <button class="tab" type="button" data-focus="logic">邏輯分布</button>
+      <button class="tab" type="button" data-focus="update">更新</button>
+      <button class="tab" type="button" data-focus="layers">B/S 三層</button>
+    </section>
+
+    <section class="comparison">
+      <article class="column cs">
+        <h2>C/S 架構</h2>
+        <p class="subtitle">Client / Server</p>
+        <ul>
+          <li data-key="install">使用前通常需要安裝專屬客戶端。</li>
+          <li data-key="logic">客戶端可能承擔部分運算與業務邏輯。</li>
+          <li data-key="update">升級時常需要更新每一個客戶端。</li>
+          <li data-key="layers">適合需要本機能力或受控安裝環境的場景。</li>
+        </ul>
+        <img src="assets/cs-bs-architecture-img-001-0f94cf.png" alt="C/S 架構中客戶端與伺服器雙向請求的示意圖">
+      </article>
+
+      <article class="column bs">
+        <h2>B/S 架構</h2>
+        <p class="subtitle">Browser / Server</p>
+        <ul>
+          <li data-key="install">使用者有瀏覽器即可訪問。</li>
+          <li data-key="logic">主要邏輯在伺服器端，瀏覽器端較輕量。</li>
+          <li data-key="update">更新伺服器即可讓使用者取得新版。</li>
+          <li data-key="layers">表現層、邏輯層、數據層分工清楚。</li>
+        </ul>
+        <img src="assets/cs-bs-architecture-img-002-fc4d53.png" alt="B/S 架構中表現層、邏輯層與數據層的示意圖">
+      </article>
+    </section>
+
+    <section class="explain" aria-live="polite">
+      <h2 id="focus-title">安裝門檻</h2>
+      <p id="focus-text">C/S 通常先下載安裝專屬客戶端；B/S 則只要打開瀏覽器輸入網址即可。</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

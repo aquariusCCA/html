@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML 文件骨架 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/020-HTML簡介/03-HTML文件基本骨架.md -->
+  <!-- Source notes: notes/020-HTML簡介/HTML文件宣告版本比較補充.md -->
+  <main class="page">
+    <header class="header">
+      <div>
+        <p class="eyebrow">HTML 文件結構</p>
+        <h1>骨架、宣告與內容位置</h1>
+      </div>
+      <p>HTML5 文件從簡潔的宣告開始，設定資訊放在 head，真正顯示的內容放在 body。</p>
+    </header>
+
+    <section class="doctype-tabs" aria-label="版本宣告切換">
+      <button class="tab active" type="button" data-version="html5">HTML5</button>
+      <button class="tab" type="button" data-version="html4">HTML4</button>
+      <button class="tab" type="button" data-version="xhtml">XHTML</button>
+    </section>
+
+    <section class="compare">
+      <article class="code-panel">
+        <h2 id="version-title">HTML5 宣告</h2>
+        <pre><code id="doctype-code"></code></pre>
+      </article>
+
+      <article class="tree-panel">
+        <h2>文件骨架層級</h2>
+        <ol class="tree" aria-label="HTML 骨架樹">
+          <li><strong>&lt;!DOCTYPE html&gt;</strong><span>文件類型宣告</span></li>
+          <li><strong>&lt;html&gt;</strong><span>根容器</span>
+            <ol>
+              <li><strong>&lt;head&gt;</strong><span>設定區</span>
+                <ol>
+                  <li><strong>&lt;meta&gt;</strong><span>編碼等資訊</span></li>
+                  <li><strong>&lt;title&gt;</strong><span>分頁標題</span></li>
+                </ol>
+              </li>
+              <li><strong>&lt;body&gt;</strong><span>內容區</span>
+                <ol>
+                  <li><strong>&lt;h1&gt;</strong><span>畫面可見內容</span></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="placement">
+      <div class="controls" aria-label="內容位置切換">
+        <button class="place active" type="button" data-place="body">內容放在 body</button>
+        <button class="place" type="button" data-place="head">內容誤放 head</button>
+      </div>
+
+      <div class="placement-grid">
+        <article class="code-panel">
+          <h2>位置對照</h2>
+          <pre><code id="placement-code"></code></pre>
+        </article>
+        <article class="result-panel">
+          <h2 id="placement-title">結構清楚</h2>
+          <div class="result" id="placement-result"></div>
+          <p id="placement-note"></p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

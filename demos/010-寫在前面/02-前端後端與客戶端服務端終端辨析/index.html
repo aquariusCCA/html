@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>前端後端與客戶端服務端終端辨析 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/010-寫在前面/02-前端後端與客戶端服務端終端辨析.md -->
+  <main class="layout">
+    <header class="header">
+      <p class="eyebrow">同一網站情境</p>
+      <h1>三組名詞，三個維度</h1>
+      <p>點選情境中的節點，觀察它在「前端/後端」「客戶端/服務端」「終端」這三組概念中各自代表什麼。</p>
+    </header>
+
+    <section class="workspace">
+      <div class="scene" aria-label="網站互動示意">
+        <button class="node active" type="button" data-node="browser">
+          <span>瀏覽器畫面</span>
+          <small>HTML / CSS / JS</small>
+        </button>
+        <button class="node" type="button" data-node="server">
+          <span>伺服器程式</span>
+          <small>處理請求</small>
+        </button>
+        <button class="node" type="button" data-node="database">
+          <span>資料庫</span>
+          <small>儲存資料</small>
+        </button>
+        <button class="node" type="button" data-node="terminal">
+          <span>終端視窗</span>
+          <small>操作機器</small>
+        </button>
+      </div>
+
+      <aside class="inspector" aria-live="polite">
+        <h2 id="node-title">瀏覽器畫面</h2>
+        <dl>
+          <div>
+            <dt>前端 / 後端</dt>
+            <dd id="frontend-backend">前端：負責使用者看見與操作的畫面。</dd>
+          </div>
+          <div>
+            <dt>客戶端 / 服務端</dt>
+            <dd id="client-server">客戶端：這次互動中發出請求的一方。</dd>
+          </div>
+          <div>
+            <dt>終端</dt>
+            <dd id="terminal">不是終端；它是圖形化瀏覽器介面。</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="compare">
+      <article>
+        <h2>分工</h2>
+        <p>前端與後端回答「這段程式負責展示資料，還是提供資料？」</p>
+      </article>
+      <article>
+        <h2>角色</h2>
+        <p>客戶端與服務端回答「這次互動中誰發出請求，誰提供服務？」</p>
+      </article>
+      <article>
+        <h2>操作介面</h2>
+        <p>終端回答「你用什麼介面操作這台機器？」</p>
+      </article>
+    </section>
+
+    <figure class="diagram">
+      <img src="assets/web-frontend-backend-img-001-b8f042.png" alt="前端向後端發出請求並取得回應的示意圖">
+    </figure>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

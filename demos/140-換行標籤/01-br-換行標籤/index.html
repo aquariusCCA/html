@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>br 換行標籤 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Source notes: notes/140-換行標籤/01-br-換行標籤.md -->
+  <main class="demo-shell">
+    <header class="demo-header">
+      <p class="eyebrow">HTML 教學 Demo</p>
+      <h1><code>&lt;br&gt;</code> 換行標籤：內容分行，不做間距</h1>
+      <p class="intro">切換不同寫法，觀察強制換行、段落語意與 CSS 間距各自適合處理的情境。</p>
+    </header>
+
+    <section class="controls" aria-label="Demo 控制項">
+      <div class="mode-control" role="radiogroup" aria-label="選擇 HTML 寫法">
+        <label>
+          <input type="radio" name="mode" value="address" checked>
+          <span>地址分行</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="poem">
+          <span>短句節奏</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="paragraphs">
+          <span>段落比較</span>
+        </label>
+        <label>
+          <input type="radio" name="mode" value="spacing">
+          <span>間距錯誤</span>
+        </label>
+      </div>
+
+      <div class="range-group">
+        <label for="widthRange">預覽區寬度</label>
+        <input id="widthRange" type="range" min="300" max="760" value="560" step="20">
+        <output id="widthValue" for="widthRange">560px</output>
+      </div>
+    </section>
+
+    <section class="comparison" aria-label="HTML 寫法與呈現結果對照">
+      <article class="panel code-panel">
+        <div class="panel-header">
+          <h2>HTML 寫法</h2>
+          <p id="codeSummary">地址的每一行都有內容意義，適合用 &lt;br&gt; 固定分行。</p>
+        </div>
+        <pre><code id="codeBlock"></code></pre>
+      </article>
+
+      <article class="panel result-panel">
+        <div class="panel-header">
+          <h2>瀏覽器呈現</h2>
+          <p id="resultSummary">同一筆地址資料依指定位置換到下一行。</p>
+        </div>
+        <div class="viewport-frame">
+          <div id="resultBox" class="result-box" aria-live="polite"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="decision-grid" aria-label="br p 與 CSS 的選擇比較">
+      <article>
+        <strong>用 <code>&lt;br&gt;</code></strong>
+        <p>換行是內容的一部分，例如地址、詩句、聯絡資訊。</p>
+      </article>
+      <article>
+        <strong>用 <code>&lt;p&gt;</code></strong>
+        <p>文字已經進入另一個自然段，段落本身需要語意。</p>
+      </article>
+      <article>
+        <strong>用 CSS</strong>
+        <p>只是想增加上下距離，應交給 <code>margin</code> 或 <code>padding</code>。</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

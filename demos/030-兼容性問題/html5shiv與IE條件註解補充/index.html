@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>html5shiv 與 IE 條件註解簡化示意</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes: notes/030-兼容性問題/html5shiv與IE條件註解補充.md -->
+  <main class="shell">
+    <header class="page-header">
+      <p class="eyebrow">簡化示意</p>
+      <h1>html5shiv 與 IE 條件註解</h1>
+      <p>切換瀏覽器情境與載入方式，觀察 HTML5 語意標籤樣式是否能在舊版 IE 中正常套用。</p>
+    </header>
+
+    <section class="panel controls" aria-label="Demo controls">
+      <div>
+        <h2>瀏覽器情境</h2>
+        <div class="choice-grid" role="radiogroup" aria-label="瀏覽器情境">
+          <label><input type="radio" name="browser" value="ie8" checked> IE8</label>
+          <label><input type="radio" name="browser" value="ie9"> IE9</label>
+          <label><input type="radio" name="browser" value="ie10"> IE10</label>
+          <label><input type="radio" name="browser" value="chrome"> Chrome</label>
+        </div>
+      </div>
+      <div>
+        <h2>html5shiv 載入方式</h2>
+        <div class="choice-grid" role="radiogroup" aria-label="載入方式">
+          <label><input type="radio" name="loadMode" value="none" checked> 不載入</label>
+          <label><input type="radio" name="loadMode" value="direct"> 直接載入</label>
+          <label><input type="radio" name="loadMode" value="conditional"> 條件註解載入</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <article class="panel">
+        <h2>head 片段</h2>
+        <pre><code id="codeSample"></code></pre>
+      </article>
+
+      <article class="panel result-panel">
+        <h2>觀察結果</h2>
+        <dl class="facts">
+          <div>
+            <dt>html5shiv 是否載入</dt>
+            <dd id="loadResult"></dd>
+          </div>
+          <div>
+            <dt>語意標籤樣式</dt>
+            <dd id="styleResult"></dd>
+          </div>
+          <div>
+            <dt>判斷重點</dt>
+            <dd id="noteResult"></dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>語意標籤版面預覽</h2>
+      <p class="hint">這裡用模型呈現舊版 IE 的差異；現代瀏覽器本身不會真的退回 IE8 行為。</p>
+      <div id="preview" class="preview">
+        <header>header</header>
+        <nav>nav</nav>
+        <section>
+          <article>article</article>
+          <aside>aside</aside>
+        </section>
+        <footer>footer</footer>
+      </div>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>
