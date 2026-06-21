@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iframe 的 name 與 target 配合</title>
+  <!-- Source notes: notes/250-框架標籤/01-iframe框架標籤.md -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-head">
+    <h1>iframe 的 name 與 target 配合</h1>
+    <p class="lead">
+      觀察 <code>&lt;iframe name&gt;</code> 如何和 <code>&lt;a target&gt;</code>、<code>&lt;form target&gt;</code> 配合，
+      讓連結與表單的結果載入到指定框架；並比較名稱對不上時的後果。
+    </p>
+    <p class="source">對應筆記：<code>notes/250-框架標籤/01-iframe框架標籤.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊一：連結 target 導向（正確） -->
+    <section class="card">
+      <h2>① 連結 target 導向（正確：名稱一致）</h2>
+      <p class="hint">
+        三個連結都設定 <code>target="container"</code>，右側 iframe 設定 <code>name="container"</code>。
+        點不同連結，內容會載入到<strong>同一個</strong>框架。
+      </p>
+
+      <div class="split">
+        <nav class="link-col" aria-label="導覽連結">
+          <a href="./assets/home.html" target="container" data-name="home">🏠 首頁</a>
+          <a href="./assets/news.html" target="container" data-name="news">📰 最新消息</a>
+          <a href="./assets/about.html" target="container" data-name="about">ℹ️ 關於我們</a>
+          <p class="status">最近一次載入：<span id="lastLoaded">（尚未點擊）</span></p>
+        </nav>
+
+        <div class="frame-col">
+          <iframe
+            name="container"
+            title="連結開啟結果"
+            width="100%"
+            height="280"
+            src="./assets/home.html"
+            style="border: 1px solid #94a3b8; border-radius: 8px;"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊二：表單 target 導向 -->
+    <section class="card">
+      <h2>② 表單 target 導向</h2>
+      <p class="hint">
+        表單設定 <code>target="container"</code>，送出後結果會載入到上方<strong>同一個</strong>名為
+        <code>container</code> 的 iframe，而不會跳離本頁。輸入關鍵字試試看。
+      </p>
+
+      <form action="./assets/search.html" target="container" class="search-form">
+        <label>
+          搜尋關鍵字
+          <input type="text" name="keyword" placeholder="例如：iframe" value="iframe">
+        </label>
+        <button type="submit">搜索</button>
+      </form>
+      <p class="note">提示：表單以預設的 GET 方式送出，結果頁會把 <code>keyword</code> 顯示出來。請看上方框架。</p>
+    </section>
+
+    <!-- 區塊三：錯誤修正 target 與 name 對不上 -->
+    <section class="card">
+      <h2>③ 常見錯誤：target 與 name 對不上</h2>
+      <p class="hint">
+        下面這個連結的 <code>target="content"</code>，但本頁沒有 <code>name="content"</code> 的框架。
+        瀏覽器找不到對應框架，會改用<strong>新分頁／新視窗</strong>開啟，而不是載入到下方框架。
+      </p>
+
+      <div class="split">
+        <div class="link-col">
+          <p class="code-inline"><code>&lt;a target="content"&gt;</code> ✗ 對不上</p>
+          <a href="./assets/news.html" target="content" class="broken">⚠️ 點我（會另開視窗）</a>
+          <p class="status" id="brokenNote"></p>
+        </div>
+        <div class="frame-col">
+          <iframe
+            name="result"
+            title="名稱對不上的框架"
+            width="100%"
+            height="200"
+            src="./assets/about.html"
+            style="border: 1px dashed #b45309; border-radius: 8px;"></iframe>
+          <p class="note">這個框架叫 <code>result</code>，和上面連結的 <code>content</code> 不一致，所以不會被它更新。</p>
+        </div>
+      </div>
+
+      <div class="fix">
+        <h3>修正方式</h3>
+        <pre class="code-out"><code>&lt;!-- 讓 target 與 name 使用相同名稱 --&gt;
+&lt;a href="news.html" target="result"&gt;開啟頁面&lt;/a&gt;
+&lt;iframe name="result" title="頁面內容"&gt;&lt;/iframe&gt;</code></pre>
+        <p class="note">只要兩邊名稱一致，連結內容就會正確載入到指定框架。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-foot">
+    <p>本 demo 為自包含教學範例，被嵌入的頁面位於 <code>./assets/</code>，未引用或修改任何 origin/notes 原檔。</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

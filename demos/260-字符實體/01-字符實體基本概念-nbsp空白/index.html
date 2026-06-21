@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>空白合併與不換行空格 &nbsp;</title>
+  <!-- Source notes: notes/260-字符實體/01-字符實體基本概念.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>空白合併與不換行空格 <code>&amp;nbsp;</code></h1>
+    <p class="lead">
+      在一般 HTML 文字排版中，原始碼裡的連續空格與換行通常會被「合併」成一個空格。
+      <code>&amp;nbsp;</code>（non-breaking space，不換行空格）則不會被合併，可用來保留空格效果。
+      但這個規則不是到處都一樣，<code>&lt;pre&gt;</code> 與 CSS <code>white-space</code> 會改變結果。
+    </p>
+
+    <section class="card">
+      <h2>三塊對照：同一句話，不同處理方式</h2>
+
+      <div class="compare">
+        <div class="compare-row">
+          <div class="compare-label">
+            <h3>① 普通段落，原始碼有 5 個空格</h3>
+            <pre class="code-literal">hello     world</pre>
+          </div>
+          <div class="compare-result">
+            <span class="tag">畫面結果</span>
+            <p class="sample">hello     world</p>
+            <p class="explain">連續空白被合併，看起來只剩 1 個空格。</p>
+          </div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">
+            <h3>② 用 5 個 <code>&amp;nbsp;</code></h3>
+            <pre class="code-literal">hello&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;world</pre>
+          </div>
+          <div class="compare-result">
+            <span class="tag">畫面結果</span>
+            <p class="sample">hello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world</p>
+            <p class="explain"><code>&amp;nbsp;</code> 不會被合併，5 個空格效果被保留。</p>
+          </div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">
+            <h3>③ 放進 <code>&lt;pre&gt;</code></h3>
+            <pre class="code-literal">&lt;pre&gt;hello     world&lt;/pre&gt;</pre>
+          </div>
+          <div class="compare-result">
+            <span class="tag">畫面結果</span>
+            <pre class="sample-pre">hello     world</pre>
+            <p class="explain"><code>&lt;pre&gt;</code> 會原樣保留空白與換行，連續空格不被合併。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>互動比較：調整空格數量</h2>
+      <p class="hint">
+        拖動滑桿改變空格數量，比較「普通空格」與「<code>&amp;nbsp;</code>」兩行的實際寬度差異。
+      </p>
+
+      <label class="slider-field">
+        <span>空格數量：<strong id="count-label">5</strong></span>
+        <input type="range" id="space-count" min="1" max="15" value="5">
+      </label>
+
+      <div class="live-compare">
+        <div class="live-row">
+          <span class="tag tag-plain">普通空格</span>
+          <p class="live-sample" id="plain-line"></p>
+        </div>
+        <div class="live-row">
+          <span class="tag tag-nbsp">&amp;nbsp;</span>
+          <p class="live-sample" id="nbsp-line"></p>
+        </div>
+      </div>
+      <p class="note">
+        兩行的原始碼都放了同樣數量的空格，但只有 <code>&amp;nbsp;</code> 那行會真的把空格顯示出來。
+      </p>
+    </section>
+
+    <p class="source">資料來源：notes/260-字符實體/01-字符實體基本概念.md</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

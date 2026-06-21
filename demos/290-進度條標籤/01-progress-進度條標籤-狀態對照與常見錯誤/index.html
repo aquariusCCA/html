@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>progress 狀態對照與常見錯誤</title>
+  <!-- Source notes: notes/290-進度條標籤/01-progress-進度條標籤.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>progress 狀態對照與常見錯誤</h1>
+      <p class="lead">
+        同一個 <code>&lt;progress&gt;</code> 標籤，寫法對不對會影響語意是否合理、使用者能不能看懂。
+        以下三組左右對照，左邊是常見錯誤寫法，右邊是較好的寫法。
+      </p>
+    </header>
+
+    <!-- 對照一：有沒有文字說明 -->
+    <section aria-label="對照一：有沒有文字說明">
+      <h2>對照一：把 progress 當成純裝飾線條</h2>
+      <div class="compare">
+        <div class="case case-bad">
+          <p class="tag tag-bad">錯誤寫法</p>
+          <progress value="80" max="100"></progress>
+          <pre><code>&lt;progress value="80" max="100"&gt;&lt;/progress&gt;</code></pre>
+          <p class="why">畫面上沒有任何文字，使用者不知道這條進度條代表上傳、下載還是其他任務。</p>
+        </div>
+        <div class="case case-good">
+          <p class="tag tag-good">較好的寫法</p>
+          <label for="download-progress">下載進度</label>
+          <progress id="download-progress" value="80" max="100"></progress>
+          <pre><code>&lt;label for="download-progress"&gt;下載進度&lt;/label&gt;
+&lt;progress id="download-progress" value="80" max="100"&gt;&lt;/progress&gt;</code></pre>
+          <p class="why">搭配 <code>&lt;label&gt;</code>（或附近文字、ARIA），讓使用者與輔助技術都知道這條進度條的用途。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 對照二：value 大於 max -->
+    <section aria-label="對照二：value 大於 max">
+      <h2>對照二：value 大於 max</h2>
+      <div class="compare">
+        <div class="case case-bad">
+          <p class="tag tag-bad">錯誤寫法</p>
+          <progress value="120" max="100"></progress>
+          <pre><code>&lt;progress value="120" max="100"&gt;&lt;/progress&gt;</code></pre>
+          <p class="why"><code>value</code> 是目前進度、<code>max</code> 是完成目標。目前值大於目標值時語意不合理，後續維護者也難以判斷真實狀態（瀏覽器多半只會夾到 100%）。</p>
+        </div>
+        <div class="case case-good">
+          <p class="tag tag-good">較好的寫法</p>
+          <progress value="100" max="100"></progress>
+          <pre><code>&lt;progress value="100" max="100"&gt;&lt;/progress&gt;</code></pre>
+          <p class="why">完成時 <code>value</code> 等於 <code>max</code>，比例為 100%，語意清楚一致。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 對照三：用 progress 表示一般數值 -->
+    <section aria-label="對照三：用 progress 表示一般數值">
+      <h2>對照三：用 progress 表示一般數值</h2>
+      <div class="compare">
+        <div class="case case-bad">
+          <p class="tag tag-bad">語意誤用</p>
+          <p class="mini-label">商品評分</p>
+          <progress value="4" max="5"></progress>
+          <pre><code>&lt;!-- 把評分當成「進度」 --&gt;
+&lt;progress value="4" max="5"&gt;&lt;/progress&gt;</code></pre>
+          <p class="why">評分、溫度、庫存量是「某個範圍內的測量值」，不是任務進度。只因為外觀像長條就用 <code>&lt;progress&gt;</code> 會傳達錯誤語意。</p>
+        </div>
+        <div class="case case-good">
+          <p class="tag tag-good">較合適的做法</p>
+          <p class="mini-label">商品評分</p>
+          <p class="rating-text">4 / 5 ★</p>
+          <pre><code>&lt;p&gt;商品評分：4 / 5&lt;/p&gt;</code></pre>
+          <p class="why">進度條只適合表示「任務完成進度」。表示一般測量值時，用文字或更符合語意的標記（例如 <code>&lt;meter&gt;</code>）比硬塞 <code>&lt;progress&gt;</code> 更恰當。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="checklist" aria-label="實務判斷準則">
+      <h2>使用前先問自己兩個問題</h2>
+      <ol>
+        <li>這個畫面是在表示一項任務的<strong>完成進度</strong>嗎？</li>
+        <li>是否有目前值與目標值，或至少有「正在進行但比例未知」的狀態？</li>
+      </ol>
+      <p class="hint">兩題都肯定，<code>&lt;progress&gt;</code> 通常合適；若只是分隔線、裝飾線、評分條或普通數值條，就不該因為外觀像進度條而使用它。</p>
+    </section>
+
+    <footer class="src">
+      來源：<code>notes/290-進度條標籤/01-progress-進度條標籤.md</code>
+    </footer>
+  </main>
+</body>
+</html>

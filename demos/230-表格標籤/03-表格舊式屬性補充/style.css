@@ -1,0 +1,113 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+  line-height: 1.6;
+  color: #1e293b;
+  background: #f8fafc;
+}
+
+.page-head {
+  background: #7c2d12;
+  color: #fff;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem);
+}
+.page-head h1 { margin: 0 0 .25rem; }
+.page-head .lead { margin: .25rem 0; }
+.page-head .src { margin: .5rem 0 0; font-size: .85rem; color: #fed7aa; }
+
+code { font-family: "Cascadia Code", Consolas, monospace; }
+.page-head code { color: #fde68a; }
+
+main { max-width: 980px; margin: 0 auto; padding: 1rem clamp(1rem, 4vw, 2rem) 3rem; }
+
+.block {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.block h2 { margin-top: 0; font-size: 1.15rem; }
+.hint { color: #475569; font-size: .9rem; }
+
+/* 控制區 */
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-size: .85rem;
+  font-weight: 600;
+  color: #334155;
+}
+.controls input[type="range"] { width: 100%; accent-color: #ea580c; }
+.controls output {
+  align-self: flex-start;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 6px;
+  padding: 0 .5rem;
+  font-family: "Cascadia Code", Consolas, monospace;
+}
+
+/* 對照 */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+@media (max-width: 760px) { .compare { grid-template-columns: 1fr; } }
+figure { margin: 0; padding: 1rem; border-radius: 10px; }
+figure.old { background: #fff7ed; border: 1px solid #fed7aa; }
+figure.css { background: #eff6ff; border: 1px solid #bfdbfe; }
+figcaption { font-weight: 700; margin-bottom: .8rem; }
+figure.old figcaption { color: #c2410c; }
+figure.css figcaption { color: #1d4ed8; }
+
+.table-scroll { overflow-x: auto; }
+
+/* 舊式表格由 JS 重建，這裡只給 caption/th 基礎可讀性 */
+#old-wrap table { background: #fff; }
+#old-wrap caption, .css-demo-table caption {
+  caption-side: top; font-weight: 700; padding: .3rem; color: #334155;
+}
+#old-wrap th { background: #f1f5f9; }
+
+/* 右側：等效 CSS 表格，外觀由 JS 設定 inline style */
+.css-demo-table { background: #fff; }
+.css-demo-table th { background: #f1f5f9; }
+.css-demo-table th, .css-demo-table td { text-align: center; }
+
+pre {
+  margin: .8rem 0 0;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: .9rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: .8rem;
+  line-height: 1.6;
+}
+
+/* 參考表 */
+.ref-table { border-collapse: collapse; width: 100%; margin-top: .5rem; }
+.ref-table th, .ref-table td {
+  border: 1px solid #cbd5e1;
+  padding: .55rem .8rem;
+  text-align: left;
+  font-size: .9rem;
+}
+.ref-table thead th { background: #f1f5f9; }
+.ref-table tbody tr:nth-child(even) { background: #f8fafc; }
+
+.caution {
+  margin-top: 1rem;
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: .6rem .9rem;
+  font-size: .9rem;
+  border-radius: 0 8px 8px 0;
+}

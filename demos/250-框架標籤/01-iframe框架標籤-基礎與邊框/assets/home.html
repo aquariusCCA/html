@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>示範首頁</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, "Segoe UI", "Microsoft JhengHei", sans-serif;
+      color: #1f2933;
+      background: linear-gradient(135deg, #e0f2fe, #ede9fe);
+    }
+    .wrap { padding: 24px 28px; }
+    h1 { margin: 0 0 8px; font-size: 22px; color: #0369a1; }
+    p { margin: 6px 0; line-height: 1.7; }
+    .tag {
+      display: inline-block; margin-top: 12px; padding: 4px 12px;
+      background: #0369a1; color: #fff; border-radius: 999px; font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>這是被嵌入的「示範首頁」</h1>
+    <p>你現在看到的整塊內容，其實是另一個獨立的 HTML 頁面（<code>assets/home.html</code>）。</p>
+    <p>外層頁面透過 <code>&lt;iframe src="./assets/home.html"&gt;</code> 把它載入進來。</p>
+    <span class="tag">iframe 內嵌頁面</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>表格基本結構 Demo｜table / tr / th / td 與語意分區</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/230-表格標籤/01-表格基本結構.md -->
+<body>
+  <header class="page-head">
+    <h1>表格基本結構</h1>
+    <p class="lead">用 <code>&lt;table&gt;</code> 表達資料的「列」與「欄」關係，並用語意標籤讓結構更清楚。</p>
+    <p class="src">對應筆記：<code>notes/230-表格標籤/01-表格基本結構.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：基本層級 -->
+    <section class="block">
+      <h2>A. 基本層級：table → tr → th / td</h2>
+      <p class="hint">把游標移到下方表格的每一格，右側原始碼會高亮對應的標籤層級。</p>
+      <div class="split">
+        <div class="preview">
+          <table class="demo-table" id="basic-table">
+            <tr>
+              <th data-tag="th">姓名</th>
+              <th data-tag="th">性別</th>
+              <th data-tag="th">年齡</th>
+            </tr>
+            <tr>
+              <td data-tag="td">劉德華</td>
+              <td data-tag="td">男</td>
+              <td data-tag="td">56</td>
+            </tr>
+            <tr>
+              <td data-tag="td">張學友</td>
+              <td data-tag="td">男</td>
+              <td data-tag="td">58</td>
+            </tr>
+          </table>
+          <ul class="legend">
+            <li><span class="chip chip-th"></span> <code>&lt;th&gt;</code> 標題儲存格</li>
+            <li><span class="chip chip-td"></span> <code>&lt;td&gt;</code> 資料儲存格</li>
+            <li><span class="chip chip-tr"></span> <code>&lt;tr&gt;</code> 一列</li>
+          </ul>
+        </div>
+        <div class="code">
+<pre><code>&lt;table&gt;
+  <span class="ln" data-tag="tr">&lt;tr&gt;</span>
+    <span class="ln" data-tag="th">&lt;th&gt;姓名&lt;/th&gt;</span>
+    <span class="ln" data-tag="th">&lt;th&gt;性別&lt;/th&gt;</span>
+    <span class="ln" data-tag="th">&lt;th&gt;年齡&lt;/th&gt;</span>
+  <span class="ln" data-tag="tr">&lt;/tr&gt;</span>
+  <span class="ln" data-tag="tr">&lt;tr&gt;</span>
+    <span class="ln" data-tag="td">&lt;td&gt;劉德華&lt;/td&gt;</span>
+    <span class="ln" data-tag="td">&lt;td&gt;男&lt;/td&gt;</span>
+    <span class="ln" data-tag="td">&lt;td&gt;56&lt;/td&gt;</span>
+  <span class="ln" data-tag="tr">&lt;/tr&gt;</span>
+  <span class="ln" data-tag="tr">&lt;tr&gt;…&lt;/tr&gt;</span>
+&lt;/table&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：完整語意結構 -->
+    <section class="block">
+      <h2>B. 完整語意結構：caption / thead / tbody / tfoot</h2>
+      <p class="hint">點下方按鈕，依序高亮表格的四個語意分區，理解每一區的角色。</p>
+      <div class="part-buttons">
+        <button type="button" data-part="caption">caption 標題</button>
+        <button type="button" data-part="thead">thead 表頭</button>
+        <button type="button" data-part="tbody">tbody 主體</button>
+        <button type="button" data-part="tfoot">tfoot 腳注</button>
+        <button type="button" data-part="none" class="reset">清除高亮</button>
+      </div>
+      <div class="split">
+        <div class="preview">
+          <table class="demo-table full" id="full-table" border="1">
+            <caption data-part="caption">段考成績</caption>
+            <thead data-part="thead">
+              <tr><th>科目</th><th>分數</th></tr>
+            </thead>
+            <tbody data-part="tbody">
+              <tr><td>語文</td><td>99</td></tr>
+              <tr><td>數學</td><td>60</td></tr>
+            </tbody>
+            <tfoot data-part="tfoot">
+              <tr><td>總分</td><td>159</td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="part-desc" id="part-desc">
+          <p>選一個分區看說明。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 C：錯誤修正 -->
+    <section class="block">
+      <h2>C. 錯誤修正：表頭該用 th 而不是 td</h2>
+      <p class="hint">兩張表畫面接近，但語意不同：左邊整列都是 <code>&lt;td&gt;</code>，失去「這格是標題」的資訊。</p>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ 表頭全用 <code>td</code></figcaption>
+          <table class="demo-table" border="1">
+            <tr><td class="hl-bad">商品</td><td class="hl-bad">價格</td></tr>
+            <tr><td>鍵盤</td><td>1200</td></tr>
+          </table>
+          <p class="note">畫面普通、不會自動加粗，輔助技術也讀不出「這是欄位標題」。</p>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ 表頭用 <code>th</code></figcaption>
+          <table class="demo-table" border="1">
+            <tr><th>商品</th><th>價格</th></tr>
+            <tr><td>鍵盤</td><td>1200</td></tr>
+          </table>
+          <p class="note"><code>th</code> 表達「標題儲存格」的語意，瀏覽器預設也會加粗置中。</p>
+        </figure>
+      </div>
+      <p class="caution">注意：用 <code>th</code> 的理由是語意，不是想讓字變粗。只想要樣式時，應交給 CSS。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

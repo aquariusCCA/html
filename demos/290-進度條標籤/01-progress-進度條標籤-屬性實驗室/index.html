@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>progress 屬性實驗室：觀察 value / max 與不確定進度</title>
+  <!-- Source notes: notes/290-進度條標籤/01-progress-進度條標籤.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>progress 屬性實驗室</h1>
+      <p class="lead">
+        <code>&lt;progress&gt;</code> 表示「一項任務目前完成到哪裡」。
+        調整下方的 <code>value</code> 與 <code>max</code>，觀察 <code>value / max</code> 的比例如何驅動進度條，
+        並切換「不確定進度」看看省略 <code>value</code> 時會發生什麼事。
+      </p>
+    </header>
+
+    <section class="stage" aria-label="progress 即時渲染">
+      <p class="stage-label" id="scenarioLabel">上傳進度：</p>
+      <progress id="liveProgress" value="50" max="100">50%</progress>
+      <p class="readout">
+        目前完成比例：<strong id="ratioText">—</strong>
+      </p>
+      <p class="note-tip">
+        提示：不同瀏覽器對進度條的原生外觀略有差異；「不確定進度」狀態通常會顯示為一段來回流動的動畫，以你目前瀏覽器的原生渲染為準。
+      </p>
+    </section>
+
+    <section class="controls" aria-label="屬性控制項">
+      <h2>調整屬性</h2>
+      <div class="presets">
+        <span>情境預設：</span>
+        <button type="button" data-preset="upload">檔案上傳</button>
+        <button type="button" data-preset="download">檔案下載</button>
+      </div>
+
+      <div class="grid">
+        <label>value（目前進度）
+          <input type="range" id="in-value" min="0" max="100" value="50">
+          <output id="out-value">50</output>
+        </label>
+        <label>max（目標總量，必須大於 0）
+          <input type="number" id="in-max" min="1" value="100">
+        </label>
+      </div>
+
+      <label class="toggle">
+        <input type="checkbox" id="in-indeterminate">
+        省略 value（不確定進度）
+      </label>
+      <p class="hint">
+        勾選後會移除 <code>value</code> 屬性，進度條進入「正在進行但完成比例未知」的不確定狀態，
+        適合只知道任務在處理、卻無法估算百分比的情境。
+      </p>
+    </section>
+
+    <section class="code" aria-label="對應 HTML 原始碼">
+      <h2>目前對應的 HTML</h2>
+      <pre><code id="codeOut"></code></pre>
+      <p class="hint">
+        重點不是「畫一條好看的長條」，而是用 HTML 表達：這是一項任務的進度，
+        且實務上應搭配文字或 <code>&lt;label&gt;</code> 說明這條進度條代表什麼任務。
+      </p>
+    </section>
+
+    <footer class="src">
+      來源：<code>notes/290-進度條標籤/01-progress-進度條標籤.md</code>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

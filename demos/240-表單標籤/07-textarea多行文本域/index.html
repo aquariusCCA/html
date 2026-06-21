@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>textarea Demo｜多行文本域與初始內容寫法</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/07-textarea多行文本域.md -->
+<body>
+  <header class="page-head">
+    <h1>textarea 多行文本域</h1>
+    <p class="lead">多行文字用 <code>&lt;textarea&gt;</code>；它沒有 <code>type</code>，初始內容也不是寫在 <code>value</code>。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/07-textarea多行文本域.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：input vs textarea -->
+    <section class="block">
+      <h2>A. 對照：單行 input vs 多行 textarea</h2>
+      <p class="hint">在兩個欄位都試著輸入多行留言（按 Enter 換行），體會差異。</p>
+      <div class="split">
+        <div class="preview">
+          <div class="field">
+            <label for="single">input type="text"（單行）</label>
+            <input type="text" id="single" name="single" placeholder="只能單行，內容會被擠在一行">
+          </div>
+          <div class="field">
+            <label for="multi">textarea（多行）</label>
+            <textarea id="multi" name="multi" rows="5" placeholder="可以輸入多行留言&#10;像這樣換行"></textarea>
+          </div>
+        </div>
+        <div class="code">
+<pre><code>&lt;input type="text" name="single"&gt;
+
+&lt;textarea name="multi" rows="5"&gt;
+&lt;/textarea&gt;</code></pre>
+          <p class="note">留言、評論、地址這類可能超過一行的內容，用 textarea。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：初始內容寫法 -->
+    <section class="block">
+      <h2>B. 錯誤修正：初始內容寫在哪？</h2>
+      <p class="hint">兩個 textarea 都「想要」預設文字「這是預設文字」，但只有正確寫法真的出現了文字。</p>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ 用 value 設定（無效）</figcaption>
+          <textarea name="intro-bad" rows="3" value="這是預設文字"></textarea>
+          <p class="note">textarea 不吃 <code>value</code>，所以上面是空的。</p>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ 寫在標籤中間（有效）</figcaption>
+          <textarea name="intro-good" rows="3">這是預設文字</textarea>
+          <p class="note">初始內容要放在 <code>&lt;textarea&gt;</code> 與 <code>&lt;/textarea&gt;</code> 之間。</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 區塊 C：沒有 type -->
+    <section class="block">
+      <h2>C. textarea 沒有 type 屬性</h2>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ 錯誤觀念</figcaption>
+<pre><code>&lt;textarea type="text"
+  name="message"&gt;&lt;/textarea&gt;</code></pre>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ 正確寫法</figcaption>
+<pre><code>&lt;textarea name="message"
+  rows="6"&gt;&lt;/textarea&gt;</code></pre>
+        </figure>
+      </div>
+      <p class="caution">需要單行用 <code>&lt;input type="text"&gt;</code>；需要多行用 <code>&lt;textarea&gt;</code>。正式版面的尺寸通常交給 CSS，而非只靠 rows/cols。</p>
+    </section>
+  </main>
+</body>
+</html>

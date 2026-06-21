@@ -1,0 +1,135 @@
+:root {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --ink: #1f2933;
+  --muted: #6b7280;
+  --line: #e2e8f0;
+  --accent: #2563eb;
+  --bad: #dc2626;
+  --good: #16a34a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+h1 { font-size: 1.6rem; margin: 0 0 .5rem; }
+h2 { font-size: 1.15rem; margin: 0 0 1rem; }
+
+.lead { color: var(--muted); margin-top: 0; }
+
+code {
+  font-family: "Cascadia Code", Consolas, monospace;
+  background: #eef2f7;
+  padding: .1em .35em;
+  border-radius: 4px;
+  font-size: .92em;
+}
+
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.case {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+}
+.case-bad { border-top: 4px solid var(--bad); }
+.case-good { border-top: 4px solid var(--good); }
+
+.tag {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  margin: 0 0 .75rem;
+}
+.tag-bad { background: #fee2e2; color: var(--bad); }
+.tag-good { background: #dcfce7; color: var(--good); }
+
+progress {
+  width: 100%;
+  height: 1.2rem;
+  display: block;
+  margin: .25rem 0 .5rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: .9rem;
+  margin-bottom: .25rem;
+}
+
+.mini-label {
+  font-weight: 600;
+  font-size: .9rem;
+  margin: 0 0 .25rem;
+}
+
+.rating-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: .25rem 0 .5rem;
+}
+
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: .8rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: .25rem 0 .6rem;
+  font-size: .82rem;
+}
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.why {
+  font-size: .85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.checklist ol {
+  margin: 0 0 .75rem;
+  padding-left: 1.25rem;
+}
+.checklist li { margin-bottom: .35rem; }
+
+.hint { font-size: .85rem; color: var(--muted); }
+
+.src {
+  margin-top: 1.5rem;
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: center;
+}

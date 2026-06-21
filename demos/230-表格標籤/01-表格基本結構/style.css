@@ -1,0 +1,136 @@
+:root {
+  --th: #2563eb;
+  --td: #16a34a;
+  --tr: #f59e0b;
+  --bad: #dc2626;
+  --good: #16a34a;
+  --line: #cbd5e1;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+  line-height: 1.6;
+  color: #1e293b;
+  background: #f8fafc;
+}
+
+.page-head {
+  background: #1e293b;
+  color: #fff;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem);
+}
+.page-head h1 { margin: 0 0 .25rem; }
+.page-head .lead { margin: .25rem 0; }
+.page-head .src { margin: .5rem 0 0; font-size: .85rem; color: #94a3b8; }
+
+code { font-family: "Cascadia Code", Consolas, monospace; }
+.page-head code { color: #fde68a; }
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+.block {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.block h2 { margin-top: 0; font-size: 1.15rem; }
+.hint { color: #475569; font-size: .9rem; }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+@media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+
+.demo-table { border-collapse: collapse; background: #fff; }
+.demo-table th, .demo-table td {
+  border: 1px solid var(--line);
+  padding: .5rem .9rem;
+  text-align: center;
+  transition: background .15s, outline .15s;
+}
+.demo-table.full caption {
+  caption-side: top;
+  font-weight: 700;
+  padding: .4rem;
+  color: #334155;
+}
+
+/* 區塊 A 高亮聯動 */
+.demo-table [data-tag].active { outline: 3px solid currentColor; outline-offset: -3px; }
+.demo-table th[data-tag].active { color: var(--th); background: #dbeafe; }
+.demo-table td[data-tag].active { color: var(--td); background: #dcfce7; }
+
+.code pre {
+  margin: 0;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: .85rem;
+  line-height: 1.7;
+}
+.code .ln { display: block; border-radius: 4px; padding: 0 .25rem; }
+.code .ln.active[data-tag="th"] { background: rgba(37,99,235,.4); }
+.code .ln.active[data-tag="td"] { background: rgba(22,163,74,.4); }
+.code .ln.active[data-tag="tr"] { background: rgba(245,158,11,.4); }
+
+.legend { list-style: none; padding: 0; margin: 1rem 0 0; font-size: .85rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+.legend li { display: flex; align-items: center; gap: .4rem; }
+.chip { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.chip-th { background: #dbeafe; border: 2px solid var(--th); }
+.chip-td { background: #dcfce7; border: 2px solid var(--td); }
+.chip-tr { background: #fef3c7; border: 2px solid var(--tr); }
+
+/* 區塊 B */
+.part-buttons { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 1rem; }
+.part-buttons button {
+  border: 1px solid var(--line);
+  background: #f1f5f9;
+  padding: .4rem .8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: .85rem;
+}
+.part-buttons button:hover { background: #e2e8f0; }
+.part-buttons button.reset { margin-left: auto; }
+
+.demo-table.full [data-part].part-active { outline: 3px solid #7c3aed; outline-offset: 2px; background: #f3e8ff; }
+caption[data-part].part-active { background: #f3e8ff; border-radius: 6px; }
+
+.part-desc {
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 4rem;
+}
+.part-desc h3 { margin: 0 0 .4rem; color: #7c3aed; font-size: 1rem; }
+.part-desc p { margin: 0; }
+
+/* 區塊 C */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 720px) { .compare { grid-template-columns: 1fr; } }
+figure { margin: 0; padding: 1rem; border-radius: 10px; }
+figure.bad { background: #fef2f2; border: 1px solid #fecaca; }
+figure.good { background: #f0fdf4; border: 1px solid #bbf7d0; }
+figcaption { font-weight: 700; margin-bottom: .6rem; }
+figure.bad figcaption { color: var(--bad); }
+figure.good figcaption { color: var(--good); }
+.note { font-size: .85rem; color: #475569; margin: .6rem 0 0; }
+.hl-bad { color: var(--bad); }
+.caution {
+  margin-top: 1rem;
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: .6rem .9rem;
+  font-size: .9rem;
+  border-radius: 0 8px 8px 0;
+}

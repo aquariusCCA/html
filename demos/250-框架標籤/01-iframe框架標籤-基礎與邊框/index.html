@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iframe 基礎嵌入與邊框控制</title>
+  <!-- Source notes: notes/250-框架標籤/01-iframe框架標籤.md -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-head">
+    <h1>iframe 基礎嵌入與邊框控制</h1>
+    <p class="lead">
+      觀察 <code>src</code> / <code>title</code> / <code>width</code> / <code>height</code> 的作用，
+      並理解新內容為什麼應以 CSS <code>border</code> 取代舊式 <code>frameborder</code>。
+    </p>
+    <p class="source">對應筆記：<code>notes/250-框架標籤/01-iframe框架標籤.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊一：即時控制 iframe 的尺寸與邊框 -->
+    <section class="card">
+      <h2>① 即時調整：尺寸與邊框</h2>
+      <p class="hint">下方 iframe 嵌入了本機頁面 <code>./assets/home.html</code>。調整控制項，觀察畫面與右側即時程式碼的變化。</p>
+
+      <div class="controls">
+        <label>
+          邊框樣式
+          <select id="borderSelect">
+            <option value="border: 0;">border: 0;（無邊框，建議）</option>
+            <option value="border: 1px solid currentColor;">border: 1px solid currentColor;</option>
+            <option value="border: 3px dashed #0369a1;">border: 3px dashed #0369a1;</option>
+          </select>
+        </label>
+        <label>
+          寬度 width：<output id="widthOut">900</output>
+          <input type="range" id="widthRange" min="280" max="900" step="10" value="900">
+        </label>
+        <label>
+          高度 height：<output id="heightOut">300</output>
+          <input type="range" id="heightRange" min="160" max="420" step="10" value="300">
+        </label>
+      </div>
+
+      <div class="stage">
+        <iframe
+          id="demoFrame"
+          src="./assets/home.html"
+          title="示範首頁"
+          width="900"
+          height="300"
+          style="border: 0;"></iframe>
+      </div>
+
+      <p class="caption">目前產生的 HTML：</p>
+      <pre class="code-out"><code id="codeOut"></code></pre>
+    </section>
+
+    <!-- 區塊二：frameborder（舊）對照 CSS border（新） -->
+    <section class="card">
+      <h2>② 對照：frameborder（舊） vs CSS border（新）</h2>
+      <p class="hint">兩種寫法都能去掉邊框，但 <code>frameborder</code> 是已過時的舊式屬性，新內容應改用 CSS。</p>
+
+      <div class="compare">
+        <div class="compare-col bad">
+          <h3>舊式寫法（不建議）</h3>
+          <pre class="code-out"><code>&lt;iframe src="home.html"
+        frameborder="0"&gt;&lt;/iframe&gt;</code></pre>
+          <iframe src="./assets/home.html" title="使用 frameborder 的示範" width="100%" height="180" frameborder="0"></iframe>
+          <p class="note">能運作，但屬於舊式屬性，且樣式與結構沒有分離。</p>
+        </div>
+        <div class="compare-col good">
+          <h3>現代寫法（建議）</h3>
+          <pre class="code-out"><code>&lt;iframe src="home.html" title="..."
+        style="border: 0;"&gt;&lt;/iframe&gt;</code></pre>
+          <iframe src="./assets/home.html" title="使用 CSS border 的示範" width="100%" height="180" style="border: 0;"></iframe>
+          <p class="note">用 CSS 控制邊框，符合樣式與結構分離，也提供了 <code>title</code>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊三：進階屬性（唯讀說明） -->
+    <section class="card readonly">
+      <h2>③ 進階屬性速覽（唯讀說明）</h2>
+      <p class="hint">初學階段先掌握上面的基礎即可。下列屬性在嵌入第三方服務或考量安全/效能時才會用到，這裡僅說明、不做互動。</p>
+      <table>
+        <thead>
+          <tr><th>屬性</th><th>作用</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>sandbox</code></td><td>限制 iframe 內頁面的能力，例如是否允許執行腳本、提交表單或開新視窗。</td></tr>
+          <tr><td><code>allow</code></td><td>指定 iframe 可使用哪些瀏覽器功能，例如全螢幕、相機、麥克風、剪貼簿等。</td></tr>
+          <tr><td><code>allowfullscreen</code></td><td>允許 iframe 內容進入全螢幕，常見於影音播放器或互動展示。</td></tr>
+          <tr><td><code>referrerpolicy</code></td><td>控制載入 iframe 時，是否以及如何送出來源頁面的 referrer 資訊。</td></tr>
+          <tr><td><code>loading</code></td><td>設為 <code>lazy</code> 時，iframe 接近可視範圍才載入，減少初始負擔。</td></tr>
+        </tbody>
+      </table>
+      <p class="note">關於 PDF：iframe 也能嵌入瀏覽器可顯示的文件（如 PDF），寫法與嵌入網頁相同，只是 <code>src</code> 指向文件路徑。本 demo 未附 PDF 檔，故以本機 HTML 頁面示意。</p>
+    </section>
+  </main>
+
+  <footer class="page-foot">
+    <p>本 demo 為自包含教學範例，嵌入頁面位於 <code>./assets/</code>，未引用或修改任何 origin/notes 原檔。</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>details / summary：基本展開收合與 open 屬性</title>
+  <!-- Source notes: notes/310-detail標籤/01-details與summary標籤.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page__head">
+      <h1>details / summary：基本展開收合與 <code>open</code></h1>
+      <p class="lead">
+        <code>&lt;details&gt;</code> 是可展開收合的內容區塊，<code>&lt;summary&gt;</code>
+        是它永遠可見、可點擊的摘要標題。下面的展開收合<strong>全部由瀏覽器原生提供</strong>，
+        頁面上的「目前狀態」徽章只是用 JavaScript 監聽 <code>toggle</code> 事件來輔助你觀察。
+      </p>
+    </header>
+
+    <!-- 區塊一：基本展開收合 + 狀態徽章 -->
+    <section class="card">
+      <h2>1. 點擊摘要標題，觀察展開與收合</h2>
+      <p class="hint">點擊「文章概要」這行文字，看內容如何展開或收合。</p>
+
+      <div class="demo-stage">
+        <details id="basicDetails">
+          <summary>文章概要</summary>
+          <div class="content">
+            這裡放文章的詳細概要內容。可以是段落、列表或其他適合的 HTML。
+            預設情況下這段內容是收合的，點擊上方摘要標題後才會顯示。
+          </div>
+        </details>
+
+        <p class="status">
+          目前狀態：<span id="stateBadge" class="badge badge--closed">收合</span>
+        </p>
+      </div>
+
+      <details class="src">
+        <summary>看這段的 HTML</summary>
+<pre><code>&lt;details&gt;
+  &lt;summary&gt;文章概要&lt;/summary&gt;
+  &lt;div&gt;這裡放文章的詳細概要內容。&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+      </details>
+    </section>
+
+    <!-- 區塊二：有無 open 的對照 -->
+    <section class="card">
+      <h2>2. 加上 <code>open</code> 會改變「初始狀態」</h2>
+      <p class="hint">
+        兩個區塊內容相同，差別只在右邊多了 <code>open</code>。重新整理頁面時，
+        左邊預設收合、右邊預設展開。
+      </p>
+
+      <div class="compare">
+        <div class="compare__col">
+          <p class="compare__label">沒有 open（預設收合）</p>
+          <details>
+            <summary>常見問題</summary>
+            <div class="content">沒有寫 open，所以一開始是收合的。</div>
+          </details>
+<pre><code>&lt;details&gt;
+  &lt;summary&gt;常見問題&lt;/summary&gt;
+  &lt;div&gt;...&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+        </div>
+
+        <div class="compare__col">
+          <p class="compare__label">有 open（預設展開）</p>
+          <details open>
+            <summary>常見問題</summary>
+            <div class="content">寫了 open，所以一開始就是展開的。</div>
+          </details>
+<pre><code>&lt;details <strong>open</strong>&gt;
+  &lt;summary&gt;常見問題&lt;/summary&gt;
+  &lt;div&gt;...&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+        </div>
+      </div>
+
+      <p class="note">
+        <code>open</code> 是布林屬性：只要出現就代表預設展開，沒有它則預設收合。
+        無論初始狀態為何，使用者之後都能自由點擊切換。
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

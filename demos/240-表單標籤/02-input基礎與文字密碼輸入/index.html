@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>input 基礎 Demo｜text / password / file 與 value、placeholder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/02-input基礎與文字密碼輸入.md -->
+<body>
+  <header class="page-head">
+    <h1>input 基礎與文字、密碼輸入</h1>
+    <p class="lead">同一個 <code>&lt;input&gt;</code>，靠 <code>type</code> 變成不同控件；<code>value</code> 是「值」，<code>placeholder</code> 只是「提示」。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/02-input基礎與文字密碼輸入.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：type 決定控件 -->
+    <section class="block">
+      <h2>A. type 決定輸入型態</h2>
+      <p class="hint">三個都是 <code>&lt;input&gt;</code>，只因 <code>type</code> 不同就變成完全不同的控件。試著各輸入一次看看。</p>
+      <div class="split">
+        <div class="preview">
+          <div class="field">
+            <label for="a-text">type="text"（單行文字）</label>
+            <input type="text" id="a-text" name="t" placeholder="可直接看到輸入內容">
+          </div>
+          <div class="field">
+            <label for="a-pwd">type="password"（遮蔽顯示）</label>
+            <input type="password" id="a-pwd" name="p" placeholder="輸入後會變成圓點">
+          </div>
+          <div class="field">
+            <label for="a-file">type="file"（選擇本機檔案）</label>
+            <input type="file" id="a-file" name="f">
+          </div>
+        </div>
+        <div class="code">
+<pre><code>&lt;input type="text"&gt;
+&lt;input type="password"&gt;
+&lt;input type="file"&gt;
+&lt;!-- 一次選多個檔案 --&gt;
+&lt;input type="file" multiple&gt;</code></pre>
+          <p class="note">密碼框只是「畫面遮蔽」，不代表資料已加密；真正安全要靠 HTTPS 與後端。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：value vs placeholder -->
+    <section class="block">
+      <h2>B. 錯誤修正：value 當提示 vs placeholder 當提示</h2>
+      <p class="hint">在兩個框「不輸入任何字」直接看下方的「目前真正的值」，差別立刻出現。</p>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ 把提示放進 value</figcaption>
+          <input type="text" id="bad-input" value="請輸入使用者名稱">
+          <p class="note">這串字其實是「欄位值」，使用者沒清掉就提交，會把提示文字送出去。</p>
+          <p class="note">目前的值：<code><span id="bad-val"></span></code></p>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ 用 placeholder 當提示</figcaption>
+          <input type="text" id="good-input" placeholder="請輸入使用者名稱">
+          <p class="note">提示只是灰字，使用者一輸入就消失，未輸入時值為空。</p>
+          <p class="note">目前的值：<code><span id="good-val"></span></code></p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 區塊 C：密碼顯示切換 -->
+    <section class="block">
+      <h2>C. 互動：密碼框只是遮蔽畫面</h2>
+      <p class="hint">輸入一段文字後，點按鈕切換 <code>type</code>，會發現「值沒變，只是顯示方式變了」。</p>
+      <div class="field">
+        <label for="c-pwd">密碼</label>
+        <input type="password" id="c-pwd" name="password" value="">
+      </div>
+      <button type="button" id="toggle-pwd">顯示密碼</button>
+      <p class="note">目前 type：<code><span id="pwd-type">password</span></code>，目前的值：<code><span id="pwd-val"></span></code></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

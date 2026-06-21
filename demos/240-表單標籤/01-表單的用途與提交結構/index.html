@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>表單的用途與提交結構 Demo｜form / name / 哪些資料會被提交</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/01-表單的用途與提交結構.md -->
+<body>
+  <header class="page-head">
+    <h1>表單的用途與提交結構</h1>
+    <p class="lead"><code>&lt;form&gt;</code> 定義「資料提交的範圍」，但不是畫面上每個欄位都會被送出——關鍵在 <code>name</code> 與欄位狀態。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/01-表單的用途與提交結構.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：表單組成 -->
+    <section class="block">
+      <h2>A. 表單由哪幾部分組成</h2>
+      <p class="hint">一個完整表單 = 表單域 + 表單控件 + 提示資訊。</p>
+      <div class="split">
+        <div class="preview">
+          <form onsubmit="return false">
+            <div class="field">
+              <label for="a-account">帳號（提示資訊 + 控件）</label>
+              <input type="text" id="a-account" name="account" placeholder="請輸入帳號">
+            </div>
+            <button type="submit">註冊（提交按鈕）</button>
+          </form>
+          <ul class="legend">
+            <li><code>&lt;form&gt;</code> 表單域：可提交資料的範圍</li>
+            <li><code>&lt;input&gt;</code>/<code>&lt;label&gt;</code> 控件與提示</li>
+          </ul>
+        </div>
+        <div class="code">
+<pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;label for="account"&gt;帳號&lt;/label&gt;
+  &lt;input id="account" name="account" type="text"&gt;
+  &lt;button type="submit"&gt;註冊&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：哪些資料會被提交 -->
+    <section class="block">
+      <h2>B. 互動：到底哪些欄位會被提交？</h2>
+      <p class="hint">填好欄位後按「模擬提交」。表單不會真的送出，而是用 JavaScript 收集瀏覽器實際會提交的 <code>name=value</code>，讓你看清楚規則。</p>
+      <form id="demo-form" onsubmit="return false">
+        <div class="field">
+          <label for="f-username">① 有 name 的文字框（會提交）</label>
+          <input type="text" id="f-username" name="username" value="amy">
+        </div>
+        <div class="field">
+          <label for="f-noname">② 沒有 name 的文字框（不會提交）</label>
+          <input type="text" id="f-noname" value="我沒有 name">
+        </div>
+        <div class="field">
+          <label for="f-disabled">③ 有 name 但被 disabled（不會提交）</label>
+          <input type="text" id="f-disabled" name="vip" value="locked" disabled>
+        </div>
+        <input type="hidden" name="source" value="demo-page">
+        <p class="note">④ 上面還藏了一個 <code>&lt;input type="hidden" name="source" value="demo-page"&gt;</code>，看不見但會提交。</p>
+        <button type="submit">模擬提交</button>
+        <button type="button" class="reset" id="reset-btn">清除結果</button>
+      </form>
+
+      <div class="output">
+        <h3>瀏覽器實際會送出的資料（FormData）</h3>
+        <ul id="result">
+          <li class="empty">尚未提交，點「模擬提交」看看。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 區塊 C：常見錯誤 -->
+    <section class="block">
+      <h2>C. 常見錯誤：只放 input、沒有 form</h2>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ 散落的控件</figcaption>
+<pre><code>&lt;input type="text" name="account"&gt;
+&lt;button&gt;送出&lt;/button&gt;</code></pre>
+          <p class="note">沒有表單域，瀏覽器不知道這組資料屬於哪個提交範圍。</p>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ 用 form 包起來</figcaption>
+<pre><code>&lt;form action="/login" method="post"&gt;
+  &lt;input type="text" name="account"&gt;
+  &lt;button type="submit"&gt;送出&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          <p class="note">明確的提交範圍與方式（<code>action</code> 送到哪、<code>method</code> 怎麼送）。</p>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

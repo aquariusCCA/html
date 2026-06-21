@@ -1,0 +1,80 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", "Microsoft JhengHei", sans-serif;
+  line-height: 1.8;
+  color: #1f2933;
+  background: #f5f7fa;
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.1rem; margin-top: 0; }
+
+.lead {
+  background: #eef2f7;
+  border-left: 4px solid #5b8def;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+input[type="search"] {
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+input[type="search"]:focus {
+  outline: 2px solid #5b8def;
+  outline-offset: 1px;
+}
+
+.status {
+  font-size: 0.9rem;
+  color: #52606d;
+  margin-bottom: 0;
+}
+
+.content { font-size: 1.05rem; }
+
+/* 命中的關鍵字以 mark 呈現 */
+.content mark {
+  background-color: #ffe08a;
+  color: #1f2933;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+pre {
+  background: #1f2933;
+  color: #e4ebf1;
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+pre code { font-family: "Consolas", "Cascadia Code", monospace; }

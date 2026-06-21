@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mark 標籤：語意與樣式</title>
+  <!-- Source notes: notes/320-mark標籤/01-mark-標籤基本用法.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>mark 標籤：語意與樣式</h1>
+    <p class="lead">
+      <code>&lt;mark&gt;</code> 用來標示「在目前上下文中需要注意的文字片段」。
+      多數瀏覽器預設給它黃色背景，但那只是<strong>預設樣式</strong>，不是它的全部意義。
+      下面切換樣式時請注意：不管底色怎麼變，被標記文字的<em>語意</em>都沒有改變。
+    </p>
+
+    <section class="panel">
+      <h2>原始 HTML</h2>
+      <pre><code>&lt;p&gt;學習 HTML 時，先理解 &lt;mark&gt;標籤語意&lt;/mark&gt; 會比只記語法更重要。&lt;/p&gt;</code></pre>
+    </section>
+
+    <section class="panel">
+      <h2>實際呈現</h2>
+      <div id="preview" class="preview preview--default">
+        <p>學習 HTML 時，先理解 <mark>標籤語意</mark> 會比只記語法更重要。</p>
+        <p>這堂課會先介紹 <mark>HTML5 新增標籤</mark> 的用途。</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>切換 mark 的樣式</h2>
+      <div class="controls" role="group" aria-label="mark 樣式切換">
+        <button type="button" data-style="default" class="is-active">瀏覽器預設黃底</button>
+        <button type="button" data-style="custom">自訂顏色 #ffe08a</button>
+        <button type="button" data-style="underline">去背景，改用底線</button>
+      </div>
+      <p class="hint" id="hint">目前樣式：瀏覽器預設黃底。語意不變，只是視覺呈現不同。</p>
+      <pre class="css-view"><code id="css-view">mark {
+  /* 使用瀏覽器預設樣式 */
+}</code></pre>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

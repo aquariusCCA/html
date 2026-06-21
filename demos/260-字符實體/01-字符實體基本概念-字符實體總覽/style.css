@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+  line-height: 1.7;
+  color: #1f2933;
+  background: #f5f7fa;
+}
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+h1 {
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+}
+
+.lead {
+  color: #3e4c59;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e1e7ef;
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-top: 24px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, .06);
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 0 0 12px;
+}
+
+h3 {
+  font-size: 1rem;
+  margin: 0 0 8px;
+  color: #486581;
+}
+
+.hint {
+  color: #52606d;
+  font-size: .92rem;
+  margin-top: 0;
+}
+
+code {
+  background: #eef2f7;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: .9em;
+}
+
+.entity-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.entity-table th,
+.entity-table td {
+  border: 1px solid #dbe2ea;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.entity-table th {
+  background: #f0f4f8;
+  font-size: .9rem;
+}
+
+.render {
+  font-size: 1.15rem;
+  text-align: center;
+  background: #fbfdff;
+}
+
+.nbsp-demo {
+  background: #fff3cd;
+  border: 1px dashed #d9b54a;
+}
+
+.note {
+  font-size: .9rem;
+  color: #52606d;
+}
+
+.field {
+  display: block;
+  margin: 14px 0;
+}
+
+.field span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+textarea {
+  width: 100%;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: .95rem;
+  padding: 10px;
+  border: 1px solid #c5cfda;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.preview-box {
+  border: 1px solid #dbe2ea;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fbfdff;
+}
+
+.render-output {
+  display: block;
+  min-height: 48px;
+  font-size: 1.1rem;
+}
+
+.literal-output {
+  margin: 0;
+  min-height: 48px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: .9rem;
+  color: #334e68;
+}
+
+.quick {
+  margin-top: 16px;
+  font-size: .92rem;
+}
+
+.quick button {
+  font-family: Consolas, "Courier New", monospace;
+  background: #e8f0fe;
+  border: 1px solid #b9cdf3;
+  border-radius: 5px;
+  padding: 4px 8px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.quick button:hover {
+  background: #d6e4fd;
+}
+
+.source {
+  margin-top: 28px;
+  font-size: .82rem;
+  color: #829ab1;
+}
+
+@media (max-width: 640px) {
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+}

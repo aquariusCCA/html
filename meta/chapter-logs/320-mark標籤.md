@@ -9,8 +9,9 @@
 - notes 生成：已完成
 - notes 完成檢查：已完成
 - notes 索引 metadata：已完成
+- demos 生成：已完成
 - 目前最新正確來源：`notes/320-mark標籤/`（已通過 notes 完成檢查）
-- 後續流程：notes 索引 metadata 已完成；下一步依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
+- 後續流程：demos 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`、`practice/`、`review/`。
 
 ## 已執行流程
 
@@ -26,5 +27,7 @@
 
 - 2026-06-19：已依 `.codex/skills/notes-index-metadata/SKILL.md` 完成 `notes/320-mark標籤/` 的 topics / summary 標記；並確認 `scripts/build-index.mjs --check` 通過，`meta/index.md` 與 notes front matter 一致。
 
+- 2026-06-21：已依 `.claude/skills/notes-demo-generation/SKILL.md` 由 `notes/320-mark標籤/` 生成可獨立開啟的 HTML 教學 demo `demos/320-mark標籤/`，共 3 組 demo。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`、`demos/`、`practice/`、`review/`。
+- 依標準輸出規則生成或同步 `appendix/`、`practice/`、`review/`。

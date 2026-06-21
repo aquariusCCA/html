@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rowspan / colspan 合併單元格 Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/230-表格標籤/02-rowspan-colspan-合併單元格.md -->
+<body>
+  <header class="page-head">
+    <h1>合併單元格：rowspan 與 colspan</h1>
+    <p class="lead"><code>rowspan</code> 讓儲存格向下跨列，<code>colspan</code> 讓儲存格向右跨欄。</p>
+    <p class="src">對應筆記：<code>notes/230-表格標籤/02-rowspan-colspan-合併單元格.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：互動切換合併方式 -->
+    <section class="block">
+      <h2>A. 切換合併方式，觀察方向</h2>
+      <p class="hint">以一張 3×3 表格為基底，切換不同合併方式，左側表格與右側原始碼會同步變化。</p>
+      <div class="mode-buttons">
+        <button type="button" data-mode="none" class="active">無合併（3×3）</button>
+        <button type="button" data-mode="colspan">colspan＝向右跨欄</button>
+        <button type="button" data-mode="rowspan">rowspan＝向下跨列</button>
+      </div>
+      <div class="split">
+        <div class="preview">
+          <div id="grid-wrap"></div>
+          <p class="dir-tip" id="dir-tip">每格各自獨立，共 9 格。</p>
+        </div>
+        <div class="code">
+          <pre><code id="grid-code"></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：合併後是否刪除多餘儲存格 -->
+    <section class="block">
+      <h2>B. 合併後一定要刪除多餘儲存格</h2>
+      <p class="hint">同樣想讓第一格 <code>colspan="2"</code>，差別只在於有沒有刪掉被占用的那一格。</p>
+      <div class="toggle-row">
+        <label class="switch">
+          <input type="checkbox" id="fix-toggle">
+          <span>顯示「正確寫法（已刪多餘格）」</span>
+        </label>
+      </div>
+      <div class="compare">
+        <figure id="err-fig" class="bad">
+          <figcaption id="err-cap">✗ 錯誤：加了 colspan 卻沒刪多餘的 td</figcaption>
+          <div id="err-table"></div>
+          <pre><code id="err-code"></code></pre>
+          <p class="note" id="err-note">第一列有 colspan="2" 又多出一個 td，總欄數變成 4，第三欄被擠出去而錯位。</p>
+        </figure>
+      </div>
+      <p class="caution">合併不是「把格子變大就結束」：被占用位置上的 <code>&lt;td&gt;</code> / <code>&lt;th&gt;</code> 必須移除，否則欄位錯位。</p>
+    </section>
+
+    <!-- 區塊 C：實際應用 -->
+    <section class="block">
+      <h2>C. 實際應用：課表</h2>
+      <p class="hint">「HTML 基礎」用 <code>rowspan="2"</code> 跨兩個連續時段；最下方「備註」用 <code>colspan="3"</code> 橫跨三欄。</p>
+      <div class="preview">
+        <table class="demo-table" border="1">
+          <caption>週一課表</caption>
+          <thead>
+            <tr><th>時間</th><th>科目</th><th>教室</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>09:00</td>
+              <td rowspan="2" class="mark-row">HTML 基礎</td>
+              <td>A101</td>
+            </tr>
+            <tr>
+              <td>10:00</td>
+              <td>A101</td>
+            </tr>
+            <tr>
+              <td>11:00</td>
+              <td>CSS 入門</td>
+              <td>A102</td>
+            </tr>
+            <tr>
+              <td colspan="3" class="mark-col">備註：第三節後有 10 分鐘休息</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

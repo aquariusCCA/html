@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>meter 屬性實驗室：觀察 value / min / max / low / high / optimum</title>
+  <!-- Source notes: notes/280-度量衡標籤/01-meter-度量衡標籤.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>meter 屬性實驗室</h1>
+      <p class="lead">
+        <code>&lt;meter&gt;</code> 表示「已知範圍內的測量值」（gauge）。
+        拖動下方控制項，觀察各屬性如何改變量表的位置、狀態與顏色。
+      </p>
+    </header>
+
+    <section class="stage" aria-label="meter 即時渲染">
+      <p class="stage-label" id="scenarioLabel">手機電量：</p>
+      <meter id="liveMeter" value="50" min="0" max="100" low="20" high="80">50%</meter>
+      <p class="readout">
+        目前狀態判讀：<strong id="stateText">—</strong>
+      </p>
+      <p class="note-tip" id="renderTip">
+        提示：各瀏覽器對 <code>low</code> / <code>high</code> / <code>optimum</code> 的預設配色不同，
+        以你目前使用的瀏覽器原生渲染為準。
+      </p>
+    </section>
+
+    <section class="controls" aria-label="屬性控制項">
+      <h2>調整屬性</h2>
+      <div class="presets">
+        <span>情境預設：</span>
+        <button type="button" data-preset="battery">手機電量</button>
+        <button type="button" data-preset="disk">磁碟用量</button>
+      </div>
+
+      <div class="grid">
+        <label>value（目前值，必要）
+          <input type="number" id="in-value" value="50">
+        </label>
+        <label>min（最小值）
+          <input type="number" id="in-min" value="0">
+        </label>
+        <label>max（最大值）
+          <input type="number" id="in-max" value="100">
+        </label>
+        <label>low（偏低界線）
+          <input type="number" id="in-low" value="20">
+        </label>
+        <label>high（偏高界線）
+          <input type="number" id="in-high" value="80">
+        </label>
+        <label>optimum（最佳值，留空表示不設定）
+          <input type="number" id="in-optimum" placeholder="（未設定）">
+        </label>
+      </div>
+    </section>
+
+    <section class="code" aria-label="對應 HTML 原始碼">
+      <h2>目前對應的 HTML</h2>
+      <pre><code id="codeOut"></code></pre>
+      <p class="hint">
+        重點不是「畫出一條像進度條的東西」，而是用 HTML 表達：這是一個有上下限、能被判斷高低狀態的數值。
+      </p>
+    </section>
+
+    <footer class="src">
+      來源：<code>notes/280-度量衡標籤/01-meter-度量衡標籤.md</code>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

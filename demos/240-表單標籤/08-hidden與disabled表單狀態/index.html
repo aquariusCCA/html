@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hidden 與 disabled Demo｜看不見 vs 不能操作 vs 會不會提交</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/08-hidden與disabled表單狀態.md -->
+<body>
+  <header class="page-head">
+    <h1>hidden 與 disabled 表單狀態</h1>
+    <p class="lead"><code>hidden</code> 看不見但會帶資料；<code>disabled</code> 看得見卻不能操作、通常不提交。兩者都不是安全邊界。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/08-hidden與disabled表單狀態.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：互動觀察提交差異 -->
+    <section class="block">
+      <h2>A. 互動：誰會被提交？</h2>
+      <p class="hint">這個留言表單藏了一個 hidden 欄位，也有一個 disabled 欄位。按「模擬提交」看右側實際送出的資料。</p>
+      <div class="split">
+        <div class="preview">
+          <form id="demo-form" onsubmit="return false">
+            <!-- 看不見，但會提交 -->
+            <input type="hidden" name="post_id" value="42">
+
+            <div class="field">
+              <label for="message">留言（看得見、可編輯、會提交）</label>
+              <textarea id="message" name="message" rows="3">寫得真好！</textarea>
+            </div>
+
+            <div class="field">
+              <label for="vip">VIP 等級（看得見、被 disabled、不提交）</label>
+              <input type="text" id="vip" name="vip_level" value="gold" disabled>
+            </div>
+
+            <button type="submit">模擬提交</button>
+          </form>
+        </div>
+        <div class="output">
+          <h3>實際送出的資料</h3>
+          <ul id="result"><li class="empty">點「模擬提交」看看。</li></ul>
+        </div>
+      </div>
+      <ul class="legend">
+        <li><code>post_id=42</code>：hidden，畫面看不到卻被送出</li>
+        <li><code>message</code>：一般欄位，照常送出</li>
+        <li><code>vip_level</code>：被 disabled，<span class="tag-skip">不會出現在提交資料</span></li>
+      </ul>
+    </section>
+
+    <!-- 區塊 B：對照表 -->
+    <section class="block">
+      <h2>B. hidden 與 disabled 對照</h2>
+      <table class="cmp-table">
+        <thead>
+          <tr><th>特性</th><th>hidden</th><th>disabled</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>使用者是否看得到</td><td>看不到</td><td>看得到但不可操作</td></tr>
+          <tr><td>是否常用來帶固定資料</td><td>是</td><td>否</td></tr>
+          <tr><td>是否通常會提交</td><td>會</td><td>不會</td></tr>
+          <tr><td>是否能當安全保護</td><td>不能</td><td>不能</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 區塊 C：fieldset disabled -->
+    <section class="block">
+      <h2>C. 用 fieldset disabled 禁用一整組</h2>
+      <p class="hint">整組「進階設定」被一次禁用，適合「整區暫時不可編輯」的情境。</p>
+      <form onsubmit="return false">
+        <fieldset disabled>
+          <legend>進階設定（整組禁用）</legend>
+          <div class="field">
+            <label for="s-name">設定名稱</label>
+            <input type="text" id="s-name" name="setting_name" value="暫不可編輯">
+          </div>
+          <button type="button">測試設定</button>
+        </fieldset>
+      </form>
+      <p class="caution">注意：hidden 的值可被開發者工具看到並修改，disabled 也擋不住直接呼叫 API。價格、權限、身分這類重要資料，一律由後端重新查詢與驗證。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

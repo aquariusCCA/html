@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>label 與表單分組 Demo｜for/id、包覆式、fieldset/legend</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/06-label與表單分組.md -->
+<body>
+  <header class="page-head">
+    <h1>label 與表單分組</h1>
+    <p class="lead"><code>label</code> 說明單一控件、擴大可點擊範圍；<code>fieldset</code> 與 <code>legend</code> 說明一組控件。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/06-label與表單分組.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：點 label 也能操作控件 -->
+    <section class="block">
+      <h2>A. 互動：點「文字」也能操作控件</h2>
+      <p class="hint">直接點下面的文字標籤（不是點輸入框本身），看右側顯示哪個控件被聚焦或選取。</p>
+      <div class="split">
+        <div class="preview">
+          <p><strong>for / id 寫法：</strong></p>
+          <div class="field">
+            <label for="account">帳號</label>
+            <input type="text" id="account" name="account" data-label="帳號(for/id)">
+          </div>
+
+          <p><strong>包覆式寫法（常用於 radio/checkbox）：</strong></p>
+          <label><input type="radio" name="gender" value="female" data-label="女(包覆式)"> 女</label>
+          <label><input type="radio" name="gender" value="male" data-label="男(包覆式)"> 男</label>
+        </div>
+        <div class="output">
+          <h3>最近被 label 啟動的控件</h3>
+          <ul id="focus-log"><li class="empty">點點左側的文字標籤。</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：for/id 不一致 -->
+    <section class="block">
+      <h2>B. 錯誤修正：for 與 id 不一致就失效</h2>
+      <p class="hint">兩邊都點「電子郵件」文字看看：左邊點了沒反應，右邊會聚焦到輸入框。</p>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ for="email" 找不到 id</figcaption>
+          <label for="email">電子郵件</label>
+          <input id="user-email" type="email" data-label="不該被啟動">
+          <p class="note">控件的 id 是 <code>user-email</code>，label 卻指向 <code>email</code>，關聯失敗。</p>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ for 與 id 一致</figcaption>
+          <label for="good-email">電子郵件</label>
+          <input id="good-email" type="email" data-label="電子郵件(正確關聯)">
+          <p class="note">點文字就能聚焦輸入框。</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 區塊 C：fieldset/legend 分組 -->
+    <section class="block">
+      <h2>C. fieldset 與 legend：替一組欄位分組</h2>
+      <p class="hint">用框線與標題清楚分出「主要資訊」與「性別」兩組，每個控件仍各自有 label。</p>
+      <form onsubmit="return false">
+        <fieldset>
+          <legend>主要資訊</legend>
+          <div class="field">
+            <label for="g-account">帳戶</label>
+            <input type="text" id="g-account" name="account" maxlength="10">
+          </div>
+          <div class="field">
+            <label for="g-password">密碼</label>
+            <input type="password" id="g-password" name="password" maxlength="20">
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>性別</legend>
+          <input type="radio" name="g2" value="woman" id="woman">
+          <label for="woman">女</label>
+          <label><input type="radio" name="g2" value="man"> 男</label>
+        </fieldset>
+        <button type="submit">提交</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

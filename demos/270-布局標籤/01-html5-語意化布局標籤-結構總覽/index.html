@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<!-- Source notes: notes/270-布局標籤/01-html5-語意化布局標籤.md -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML5 語意化布局結構總覽</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="demo-wrap">
+    <h1 class="demo-title">HTML5 語意化布局結構總覽</h1>
+    <p class="demo-intro">
+      下面是一個用語意化標籤組成的真實頁面。勾選下方選項可疊上各區塊的虛線外框與標籤名稱，
+      把滑鼠移到任一區塊，右側說明欄會顯示這個標籤代表的內容角色。
+    </p>
+
+    <div class="demo-controls">
+      <label class="toggle">
+        <input type="checkbox" id="toggleOutline">
+        顯示語意外框與標籤名
+      </label>
+      <span class="hint">提示：語意標籤不負責讓畫面變漂亮，而是讓 HTML 結構更有意義。</span>
+    </div>
+
+    <div class="demo-stage">
+      <!-- 示範頁面：每個語意區塊都有 data-tag / data-role 供互動使用 -->
+      <div class="page" id="page">
+        <header class="region" data-tag="&lt;header&gt;" data-role="頭部、頁首或某個區塊的開頭，常放網站標題、Logo、頁面標題區。">
+          <h2 class="site-name">尚品匯</h2>
+        </header>
+
+        <nav class="region" data-tag="&lt;nav&gt;" data-role="導覽區，包住一組具有導覽功能的連結，例如主選單。">
+          <a href="#">首頁</a>
+          <a href="#">商品</a>
+          <a href="#">會員中心</a>
+        </nav>
+
+        <div class="body-row">
+          <main class="region" data-tag="&lt;main&gt;" data-role="頁面主要內容，一個頁面通常只有一個 main，頁首、導覽、頁尾不放進來。">
+            <article class="region" data-tag="&lt;article&gt;" data-role="可獨立理解的完整內容，例如一篇文章、一則新聞、一張商品卡片。">
+              <h3>前端學習路線</h3>
+              <section class="region" data-tag="&lt;section&gt;" data-role="同一主題下的有標題分段，是文章裡的一個小節。">
+                <h4>先學 HTML</h4>
+                <p>HTML 負責描述網頁內容與結構。</p>
+              </section>
+              <section class="region" data-tag="&lt;section&gt;" data-role="同一主題下的有標題分段，是文章裡的一個小節。">
+                <h4>再學 CSS</h4>
+                <p>CSS 負責控制畫面樣式與版面。</p>
+              </section>
+            </article>
+          </main>
+
+          <aside class="region" data-tag="&lt;aside&gt;" data-role="側邊或補充內容，和主要內容相關但不是主線，例如相關連結、推薦內容。">
+            <nav class="region" data-tag="&lt;nav&gt;" data-role="導覽區，這裡是補充用的分類導覽。">
+              <h3>相關連結</h3>
+              <ul>
+                <li><a href="#">推薦文章</a></li>
+                <li><a href="#">熱門分類</a></li>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+
+        <footer class="region" data-tag="&lt;footer&gt;" data-role="尾部、頁尾或區塊結尾，常放版權資訊、友情連結、補充導覽。">
+          <p>Copyright 2026 尚品匯</p>
+        </footer>
+      </div>
+
+      <aside class="info-panel" aria-live="polite">
+        <h2 class="info-title">區塊角色說明</h2>
+        <p class="info-tag" id="infoTag">把滑鼠移到左側任一區塊</p>
+        <p class="info-role" id="infoRole">這裡會顯示該語意標籤代表的內容角色。</p>
+      </aside>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>meter 與 progress 的差異與三種常見錯誤</title>
+  <!-- Source notes: notes/280-度量衡標籤/01-meter-度量衡標籤.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>meter vs progress，與常見錯誤</h1>
+      <p class="lead">
+        <code>&lt;meter&gt;</code> 描述「某個值的狀態」，<code>&lt;progress&gt;</code> 描述「某件事完成到哪裡」。
+        下面用真實渲染的元素對照兩者，並示範三種常見錯誤的後果與修正。
+      </p>
+    </header>
+
+    <section aria-label="meter 與 progress 對照">
+      <h2>一、語意對照</h2>
+      <div class="compare">
+        <div class="col">
+          <h3>用 <code>&lt;meter&gt;</code></h3>
+          <p class="case-label">手機電量目前 50%</p>
+          <span>手機電量：</span>
+          <meter value="50" min="0" max="100" low="20" high="80">50%</meter>
+          <p class="why">為什麼：這是「已知範圍內的測量值」，描述的是電量這個值的狀態。</p>
+        </div>
+        <div class="col">
+          <h3>用 <code>&lt;progress&gt;</code></h3>
+          <p class="case-label">檔案下載到 60%</p>
+          <span>下載中：</span>
+          <progress value="60" max="100">60%</progress>
+          <p class="why">為什麼：這是「任務完成進度」，描述的是下載這件事做到哪裡。</p>
+        </div>
+      </div>
+
+      <h3 class="sub">情境判斷小卡</h3>
+      <ul class="cards">
+        <li><span class="q">手機電量目前 50%</span><span class="a meter">meter</span><span class="r">已知範圍內的測量值</span></li>
+        <li><span class="q">磁碟已使用 80GB / 100GB</span><span class="a meter">meter</span><span class="r">容量用量的度量</span></li>
+        <li><span class="q">檔案下載到 60%</span><span class="a progress">progress</span><span class="r">任務完成進度</span></li>
+        <li><span class="q">表單送出處理中</span><span class="a progress">progress</span><span class="r">流程或任務進行狀態</span></li>
+      </ul>
+      <p class="hint">判斷一句話：這個數字是在描述「某個值的狀態」，還是「某件事完成到哪裡」？</p>
+    </section>
+
+    <section aria-label="常見錯誤一">
+      <h2>二、錯誤一：用 meter 表示下載進度</h2>
+      <div class="fixpair">
+        <div class="bad">
+          <span class="tag">✗ 不建議</span>
+          <p class="case-label">下載 60%，卻用了 meter</p>
+          <meter value="60" min="0" max="100">60%</meter>
+          <pre><code>&lt;meter value="60" min="0" max="100"&gt;60%&lt;/meter&gt;</code></pre>
+          <p class="why">下載進度是任務進行狀態，不是度量衡數值，語意不對。</p>
+        </div>
+        <div class="good">
+          <span class="tag">✓ 建議</span>
+          <p class="case-label">改用 progress</p>
+          <progress value="60" max="100">60%</progress>
+          <pre><code>&lt;progress value="60" max="100"&gt;60%&lt;/progress&gt;</code></pre>
+          <p class="why">progress 正確表達「下載這件事完成 60%」。</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="常見錯誤二">
+      <h2>三、錯誤二：只給 value，沒有清楚範圍</h2>
+      <div class="fixpair">
+        <div class="bad">
+          <span class="tag">✗ 錯誤</span>
+          <p class="case-label">想表示 50/100，卻沒寫 min/max</p>
+          <meter value="50">50%</meter>
+          <pre><code>&lt;meter value="50"&gt;50%&lt;/meter&gt;</code></pre>
+          <p class="why">未指定 min/max 時，預設範圍是 0~1，value=50 超出範圍，瀏覽器會當成最大值（量表全滿）。</p>
+        </div>
+        <div class="good">
+          <span class="tag">✓ 正確</span>
+          <p class="case-label">明確寫出 min 與 max</p>
+          <meter value="50" min="0" max="100">50%</meter>
+          <pre><code>&lt;meter value="50" min="0" max="100"&gt;50%&lt;/meter&gt;</code></pre>
+          <p class="why">範圍清楚，value=50 才會正確顯示在一半的位置。</p>
+        </div>
+      </div>
+      <p class="hint">比較上面兩個量表的填滿程度，就能看出沒寫 min/max 的後果。</p>
+    </section>
+
+    <section aria-label="常見錯誤三">
+      <h2>四、錯誤三：沒有文字說明量表代表什麼</h2>
+      <div class="fixpair">
+        <div class="bad">
+          <span class="tag">✗ 語意不夠清楚</span>
+          <p class="case-label">只有一個量表，看不出代表什麼</p>
+          <meter value="70" min="0" max="100">70%</meter>
+          <pre><code>&lt;meter value="70" min="0" max="100"&gt;&lt;/meter&gt;</code></pre>
+          <p class="why">使用者不知道這是電量、容量還是評分。</p>
+        </div>
+        <div class="good">
+          <span class="tag">✓ 正確</span>
+          <p class="case-label">搭配文字標籤或上下文</p>
+          <span>手機電量：</span>
+          <meter value="70" min="0" max="100">70%</meter>
+          <pre><code>&lt;span&gt;手機電量：&lt;/span&gt;
+&lt;meter value="70" min="0" max="100"&gt;70%&lt;/meter&gt;</code></pre>
+          <p class="why">加上文字後，量表的意義一目了然。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="src">
+      來源：<code>notes/280-度量衡標籤/01-meter-度量衡標籤.md</code>
+    </footer>
+  </main>
+</body>
+</html>

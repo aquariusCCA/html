@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>表單按鈕 Demo｜submit / reset / button 的 type 行為</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/04-表單按鈕與提交行為.md -->
+<body>
+  <header class="page-head">
+    <h1>表單按鈕與提交行為</h1>
+    <p class="lead">按鈕的 <code>type</code> 決定它是提交、重置，還是普通操作；忘了寫 <code>type</code> 可能造成意外提交。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/04-表單按鈕與提交行為.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：三種 type 行為 -->
+    <section class="block">
+      <h2>A. 互動：三種按鈕，三種行為</h2>
+      <p class="hint">先改一下下面的暱稱欄位，再分別點三顆按鈕，觀察右側的事件記錄與欄位變化。（提交已被攔截，不會真的離開頁面）</p>
+      <div class="split">
+        <div class="preview">
+          <form id="btn-form" onsubmit="return false">
+            <div class="field">
+              <label for="nick">暱稱（初始值：小明）</label>
+              <input type="text" id="nick" name="nickname" value="小明">
+            </div>
+            <button type="submit">submit 提交</button>
+            <button type="reset">reset 重置</button>
+            <button type="button" id="plain-btn" class="ghost">button 普通按鈕</button>
+          </form>
+        </div>
+        <div class="output">
+          <h3>事件記錄</h3>
+          <ul id="log">
+            <li class="empty">尚未操作。</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="legend">
+        <li><code>type="submit"</code>：送出表單（這裡攔截後顯示「已觸發提交」）</li>
+        <li><code>type="reset"</code>：恢復<strong>初始值</strong>（小明），不是清空</li>
+        <li><code>type="button"</code>：不提交、不重置，只跑 JavaScript</li>
+      </ul>
+    </section>
+
+    <!-- 區塊 B：忘記 type 的陷阱 -->
+    <section class="block">
+      <h2>B. 錯誤修正：表單內的 button 忘記寫 type</h2>
+      <p class="hint">兩顆按鈕都叫「取得驗證碼」。點點看，左邊會意外提交表單，右邊不會。</p>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ &lt;button&gt;取得驗證碼&lt;/button&gt;</figcaption>
+          <form class="mini-form" onsubmit="return false" data-name="bad">
+            <input type="text" name="account" placeholder="帳號">
+            <button>取得驗證碼</button>
+          </form>
+          <p class="note" id="bad-status">在表單裡沒寫 type 的 button，預設等同 submit。</p>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ &lt;button type="button"&gt;取得驗證碼&lt;/button&gt;</figcaption>
+          <form class="mini-form" onsubmit="return false" data-name="good">
+            <input type="text" name="account" placeholder="帳號">
+            <button type="button">取得驗證碼</button>
+          </form>
+          <p class="note" id="good-status">明確寫 type="button"，純操作不會提交。</p>
+        </figure>
+      </div>
+      <p class="caution">建議：表單裡的每顆 <code>&lt;button&gt;</code> 都明確寫出 <code>type</code>。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

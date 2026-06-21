@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-Hant">
+<!-- Source notes: notes/270-布局標籤/01-html5-語意化布局標籤.md -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>語意化布局常見錯誤與修正</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="demo-wrap">
+    <h1 class="demo-title">語意化布局常見錯誤與修正</h1>
+    <p class="demo-intro">
+      下面對照三個常見錯誤的「錯誤寫法」與「正確寫法」，並說明錯在哪、為什麼、如何避免。
+    </p>
+
+    <!-- CSS-only 切換：checkbox 作為後續 .case 的同層前置元素，用 ~ 控制示意外框 -->
+    <input type="checkbox" id="toggleOutline" class="toggle-cb">
+    <div class="demo-controls">
+      <label class="toggle" for="toggleOutline">在第一個範例顯示語意外框</label>
+      <span class="hint">只用 div 切版時，外框只有 class 名稱；改用語意標籤後可看到標籤角色。</span>
+    </div>
+
+    <!-- 錯誤一 -->
+    <section class="case">
+      <h2 class="case-title">錯誤一：整頁只用 div 分區</h2>
+      <div class="pair">
+        <div class="col bad">
+          <span class="badge bad-badge">錯誤寫法</span>
+          <pre class="code">&lt;div class="header"&gt;...&lt;/div&gt;
+&lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;div class="main"&gt;...&lt;/div&gt;
+&lt;div class="footer"&gt;...&lt;/div&gt;</pre>
+          <div class="mini-page outline-div">
+            <div class="mp-row" data-label="div.header">網站標題</div>
+            <div class="mp-row" data-label="div.nav">導覽</div>
+            <div class="mp-row" data-label="div.main">主要內容</div>
+            <div class="mp-row" data-label="div.footer">頁尾</div>
+          </div>
+        </div>
+        <div class="col good">
+          <span class="badge good-badge">正確寫法</span>
+          <pre class="code">&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</pre>
+          <div class="mini-page outline-semantic">
+            <div class="mp-row" data-label="&lt;header&gt;">網站標題</div>
+            <div class="mp-row" data-label="&lt;nav&gt;">導覽</div>
+            <div class="mp-row" data-label="&lt;main&gt;">主要內容</div>
+            <div class="mp-row" data-label="&lt;footer&gt;">頁尾</div>
+          </div>
+        </div>
+      </div>
+      <div class="explain">
+        <p><strong>錯在哪：</strong>畫面可能完全正常，但 HTML 本身沒有語意。</p>
+        <p><strong>為什麼：</strong>其他人必須靠 <code>class</code> 猜結構，輔助技術與搜尋引擎也較難理解頁面角色。</p>
+        <p><strong>如何避免：</strong>有明確內容角色時，改用 <code>&lt;header&gt;</code>、<code>&lt;nav&gt;</code>、<code>&lt;main&gt;</code>、<code>&lt;footer&gt;</code>。</p>
+      </div>
+    </section>
+
+    <!-- 錯誤二 -->
+    <section class="case">
+      <h2 class="case-title">錯誤二：把 section 當成萬用容器</h2>
+      <div class="pair">
+        <div class="col bad">
+          <span class="badge bad-badge">錯誤寫法</span>
+          <pre class="code">&lt;section class="button-group"&gt;
+  &lt;button&gt;儲存&lt;/button&gt;
+  &lt;button&gt;取消&lt;/button&gt;
+&lt;/section&gt;</pre>
+        </div>
+        <div class="col good">
+          <span class="badge good-badge">正確寫法</span>
+          <pre class="code">&lt;div class="button-group"&gt;
+  &lt;button&gt;儲存&lt;/button&gt;
+  &lt;button&gt;取消&lt;/button&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+      <div class="explain">
+        <p><strong>錯在哪：</strong>按鈕群組沒有形成一個有主題的內容小節。</p>
+        <p><strong>為什麼：</strong>用 <code>&lt;section&gt;</code> 會製造它「是一個主題分段」的錯誤語意。</p>
+        <p><strong>如何避免：</strong>只是排版或分組就用 <code>&lt;div&gt;</code>，把 <code>&lt;section&gt;</code> 留給有標題的主題分段。</p>
+      </div>
+    </section>
+
+    <!-- 錯誤三 -->
+    <section class="case">
+      <h2 class="case-title">錯誤三：混淆 article 和 section</h2>
+      <div class="pair">
+        <div class="col bad">
+          <span class="badge bad-badge">容易失準</span>
+          <pre class="code">&lt;!-- 整篇用 section 包，
+     或每個小節都用 article --&gt;
+&lt;section&gt;
+  &lt;article&gt;...&lt;/article&gt;
+  &lt;article&gt;...&lt;/article&gt;
+&lt;/section&gt;</pre>
+        </div>
+        <div class="col good">
+          <span class="badge good-badge">較穩定的做法</span>
+          <pre class="code">&lt;article&gt;
+  &lt;h2&gt;HTML5 語意化布局&lt;/h2&gt;
+  &lt;section&gt;
+    &lt;h3&gt;常見布局標籤&lt;/h3&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h3&gt;article 與 section 差異&lt;/h3&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/article&gt;</pre>
+        </div>
+      </div>
+      <div class="explain">
+        <p><strong>錯在哪：</strong>把整篇用 <code>&lt;section&gt;</code> 包，或把每個小節都寫成 <code>&lt;article&gt;</code>。</p>
+        <p><strong>為什麼：</strong><code>&lt;article&gt;</code> 強調完整、獨立，<code>&lt;section&gt;</code> 強調同一主題下的分段，混用會讓結構失準。</p>
+        <p><strong>如何避免：</strong>整篇內容是 <code>&lt;article&gt;</code>，文章內的不同小節用 <code>&lt;section&gt;</code>。</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

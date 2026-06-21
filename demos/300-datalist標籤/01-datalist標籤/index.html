@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>datalist 標籤：替輸入框提供建議選項</title>
+  <!-- Source notes: notes/300-datalist標籤/01-datalist標籤.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1><code>&lt;datalist&gt;</code> 標籤：替輸入框提供建議選項</h1>
+    <p class="lead">
+      <code>&lt;datalist&gt;</code> 替指定的 <code>&lt;input&gt;</code> 提供「候選建議值」，但<strong>不強制</strong>，
+      使用者仍可輸入清單外的內容。下面三個區塊分別示範：基本綁定與自由輸入、與 <code>&lt;select&gt;</code> 的差異、
+      以及 <code>list</code> / <code>id</code> 對不上的常見錯誤。
+    </p>
+  </header>
+
+  <!-- 區塊一：互動觀察 — 基本綁定與自由輸入 -->
+  <section class="demo-block">
+    <h2>① 建議輸入：list 與 id 的綁定</h2>
+    <p class="hint">
+      點進輸入框時，瀏覽器會跳出 <code>&lt;datalist&gt;</code> 的建議清單。
+      你可以選建議值，<strong>也可以直接輸入清單以外的瀏覽器名稱</strong>（例如 Edge、Brave）。
+    </p>
+
+    <div class="field">
+      <label for="browser">請輸入常用瀏覽器：</label>
+      <input id="browser" name="browser" type="text" list="browsers"
+             placeholder="開始輸入，會出現建議…" autocomplete="off">
+      <datalist id="browsers">
+        <option value="Firefox"></option>
+        <option value="IE"></option>
+        <option value="Chrome"></option>
+        <option value="Opera"></option>
+        <option value="Safari"></option>
+      </datalist>
+    </div>
+
+    <div class="readout" aria-live="polite">
+      <p>目前輸入值：<output id="browser-value">（空）</output></p>
+      <p>是否在建議清單內：<output id="browser-in-list" class="badge">—</output></p>
+    </div>
+
+    <p class="note">
+      重點：<code>input</code> 的 <code>list="browsers"</code> 必須等於 <code>datalist</code> 的
+      <code>id="browsers"</code>，瀏覽器才知道要用哪一組建議。
+    </p>
+  </section>
+
+  <!-- 區塊二：對照比較 — datalist vs select -->
+  <section class="demo-block">
+    <h2>② 對照：<code>&lt;datalist&gt;</code> 與 <code>&lt;select&gt;</code></h2>
+    <p class="hint">
+      兩邊都是「瀏覽器」選項。左邊 datalist 允許自由輸入，右邊 select 只能從固定選項挑一個。
+      各自下方會即時顯示「表單會送出的值」。
+    </p>
+
+    <div class="compare">
+      <div class="compare-col">
+        <h3><code>&lt;datalist&gt;</code>（建議，可自由輸入）</h3>
+        <form class="mini-form" data-output="datalist-out">
+          <label for="dl-browser">瀏覽器：</label>
+          <input id="dl-browser" name="browser" type="text" list="cmp-browsers"
+                 placeholder="可輸入清單外的值" autocomplete="off">
+          <datalist id="cmp-browsers">
+            <option value="Firefox"></option>
+            <option value="Chrome"></option>
+            <option value="Safari"></option>
+          </datalist>
+          <button type="submit">送出</button>
+        </form>
+        <p class="readout">送出值：<output id="datalist-out">（尚未送出）</output></p>
+        <p class="note">試試輸入 <code>Edge</code> 再送出 —— 清單外的值也能送出。</p>
+      </div>
+
+      <div class="compare-col">
+        <h3><code>&lt;select&gt;</code>（強制，只能選固定值）</h3>
+        <form class="mini-form" data-output="select-out">
+          <label for="sel-browser">瀏覽器：</label>
+          <select id="sel-browser" name="browser">
+            <option value="">請選擇…</option>
+            <option value="Firefox">Firefox</option>
+            <option value="Chrome">Chrome</option>
+            <option value="Safari">Safari</option>
+          </select>
+          <button type="submit">送出</button>
+        </form>
+        <p class="readout">送出值：<output id="select-out">（尚未送出）</output></p>
+        <p class="note">無法輸入 <code>Edge</code> —— 只能在三個固定選項裡選。</p>
+      </div>
+    </div>
+
+    <p class="note">
+      準則：需要「提示但允許自由輸入」用 <code>&lt;datalist&gt;</code>；
+      需要「限定固定選項」用 <code>&lt;select&gt;</code>。
+    </p>
+  </section>
+
+  <!-- 區塊三：錯誤修正 — list 與 id 對不上 -->
+  <section class="demo-block">
+    <h2>③ 常見錯誤：<code>list</code> 和 <code>id</code> 沒對上</h2>
+    <p class="hint">
+      下面的 <code>&lt;datalist&gt;</code> 固定是 <code>id="real-list"</code>。
+      用按鈕切換輸入框的 <code>list</code> 值，觀察建議清單何時出現、何時失效。
+    </p>
+
+    <div class="field">
+      <label for="err-input">城市：</label>
+      <input id="err-input" name="city" type="text" list="wrong-list"
+             placeholder="點進來看看有沒有建議…" autocomplete="off">
+      <datalist id="real-list">
+        <option value="台北"></option>
+        <option value="台中"></option>
+        <option value="高雄"></option>
+      </datalist>
+    </div>
+
+    <div class="controls">
+      <button type="button" id="toggle-list" data-state="wrong">
+        目前：list="wrong-list"（錯，點我修正）
+      </button>
+    </div>
+
+    <p class="readout">
+      目前 <code>input</code> 的 list 屬性：<output id="list-attr">wrong-list</output>
+      狀態：<output id="list-status" class="badge badge-bad">對不上，無建議</output>
+    </p>
+
+    <pre class="code-state"><code id="code-state"></code></pre>
+
+    <p class="note">
+      <code>input[list]</code> 的值必須等於某個 <code>datalist</code> 的 <code>id</code>。
+      值不同時，瀏覽器找不到對應清單，建議就不會出現。
+    </p>
+  </section>
+
+  <footer class="page-footer">
+    <p>來源：<code>notes/300-datalist標籤/01-datalist標籤.md</code></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

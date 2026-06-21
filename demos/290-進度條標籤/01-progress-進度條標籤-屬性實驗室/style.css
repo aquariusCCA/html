@@ -1,0 +1,146 @@
+:root {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --ink: #1f2933;
+  --muted: #6b7280;
+  --line: #e2e8f0;
+  --accent: #2563eb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+h1 { font-size: 1.6rem; margin: 0 0 .5rem; }
+h2 { font-size: 1.15rem; margin: 0 0 .75rem; }
+
+.lead { color: var(--muted); margin-top: 0; }
+
+code {
+  font-family: "Cascadia Code", Consolas, monospace;
+  background: #eef2f7;
+  padding: .1em .35em;
+  border-radius: 4px;
+  font-size: .92em;
+}
+
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.stage {
+  text-align: center;
+}
+
+.stage-label {
+  font-weight: 600;
+  margin: 0 0 .5rem;
+}
+
+#liveProgress {
+  width: 80%;
+  max-width: 420px;
+  height: 1.4rem;
+}
+
+.readout { margin: 1rem 0 .25rem; }
+.readout strong { color: var(--accent); }
+
+.note-tip {
+  font-size: .82rem;
+  color: var(--muted);
+  margin: .5rem 0 0;
+}
+
+.presets {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+button {
+  font: inherit;
+  border: 1px solid var(--accent);
+  background: #fff;
+  color: var(--accent);
+  padding: .35rem .9rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+button:hover { background: var(--accent); color: #fff; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .9rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+label.toggle {
+  flex-direction: row;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+input[type="number"] {
+  font: inherit;
+  font-weight: 400;
+  padding: .4rem .5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+output {
+  font-weight: 400;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0;
+}
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.hint { font-size: .85rem; color: var(--muted); }
+
+.src {
+  margin-top: 1.5rem;
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: center;
+}

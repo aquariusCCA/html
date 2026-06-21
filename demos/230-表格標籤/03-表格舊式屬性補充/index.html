@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>表格舊式屬性補充 Demo｜舊式 HTML 屬性 vs CSS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/230-表格標籤/03-表格舊式屬性補充.md -->
+<body>
+  <header class="page-head">
+    <h1>表格舊式屬性 vs CSS</h1>
+    <p class="lead">調整 <code>border</code>、<code>cellpadding</code>、<code>cellspacing</code>、<code>width</code>，左右兩張表同步變化：左用舊式 HTML 屬性，右用等效 CSS。</p>
+    <p class="src">對應筆記：<code>notes/230-表格標籤/03-表格舊式屬性補充.md</code></p>
+  </header>
+
+  <main>
+    <section class="block">
+      <h2>A. 互動控制：拖動參數看效果</h2>
+      <div class="controls">
+        <label>
+          border（邊框寬度）
+          <input type="range" id="border" min="0" max="6" step="1" value="1">
+          <output id="border-out">1</output>
+        </label>
+        <label>
+          cellpadding（內距）
+          <input type="range" id="cellpadding" min="0" max="30" step="1" value="8">
+          <output id="cellpadding-out">8</output>
+        </label>
+        <label>
+          cellspacing（格間距）
+          <input type="range" id="cellspacing" min="0" max="20" step="1" value="2">
+          <output id="cellspacing-out">2</output>
+        </label>
+        <label>
+          width（表格寬度 px）
+          <input type="range" id="width" min="200" max="500" step="10" value="320">
+          <output id="width-out">320</output>
+        </label>
+      </div>
+
+      <div class="compare">
+        <figure class="old">
+          <figcaption>舊式 HTML 屬性</figcaption>
+          <div id="old-wrap"></div>
+          <pre><code id="old-code"></code></pre>
+        </figure>
+        <figure class="css">
+          <figcaption>等效 CSS（現代實務）</figcaption>
+          <table id="css-table" class="css-demo-table">
+            <caption>商品清單</caption>
+            <thead><tr><th>商品</th><th>價格</th></tr></thead>
+            <tbody>
+              <tr><td>鍵盤</td><td>1200</td></tr>
+              <tr><td>滑鼠</td><td>650</td></tr>
+            </tbody>
+          </table>
+          <pre><code id="css-code"></code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>B. 舊式屬性與 CSS 的分工</h2>
+      <p class="hint">這些屬性能讀懂即可；正式專案的外觀控制應集中在 CSS。</p>
+      <table class="ref-table">
+        <thead>
+          <tr><th>目的</th><th>舊式 HTML 屬性</th><th>現代實務方向</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>表格對齊</td><td><code>align</code></td><td>CSS 版面與 <code>margin</code></td></tr>
+          <tr><td>邊框</td><td><code>border</code></td><td>CSS <code>border</code>、<code>border-collapse</code></td></tr>
+          <tr><td>儲存格內距</td><td><code>cellpadding</code></td><td>CSS <code>padding</code></td></tr>
+          <tr><td>儲存格間距</td><td><code>cellspacing</code></td><td>CSS <code>border-spacing</code> 或 <code>border-collapse</code></td></tr>
+          <tr><td>表格寬度</td><td><code>width</code></td><td>CSS <code>width</code>、<code>max-width</code>、響應式</td></tr>
+        </tbody>
+      </table>
+      <p class="caution">HTML 負責資料結構與語意，CSS 負責視覺表現。<code>border</code> 只提供基礎邊框，無法精細控制框線顏色、雙線或合併——那要交給 CSS。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

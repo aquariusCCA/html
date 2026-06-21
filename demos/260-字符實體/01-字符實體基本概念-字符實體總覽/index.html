@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>字符實體總覽與即時預覽</title>
+  <!-- Source notes: notes/260-字符實體/01-字符實體基本概念.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>字符實體總覽與即時預覽</h1>
+    <p class="lead">
+      常見命名字符實體的形式是 <code>&amp; + 名稱 + ;</code>，例如
+      <code>&amp;copy;</code>。HTML 也支援數字字符引用（十進位 <code>&amp;#169;</code>
+      與十六進位 <code>&amp;#xA9;</code>），它們可表示同一個字符。
+    </p>
+
+    <section class="card">
+      <h2>常用字符實體對照表</h2>
+      <p class="hint">左欄是你在原始碼中輸入的字面寫法，右欄是瀏覽器實際渲染的結果。</p>
+      <table class="entity-table">
+        <thead>
+          <tr>
+            <th>想顯示的字符</th>
+            <th>原始碼寫法</th>
+            <th>數字引用</th>
+            <th>渲染結果</th>
+            <th>常見用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>空格</td>
+            <td><code>&amp;nbsp;</code></td>
+            <td><code>&amp;#160;</code></td>
+            <td class="render"><span class="nbsp-demo">a&nbsp;&nbsp;&nbsp;b</span></td>
+            <td>顯示不會被合併的空格</td>
+          </tr>
+          <tr>
+            <td>&lt;</td>
+            <td><code>&amp;lt;</code></td>
+            <td><code>&amp;#60;</code></td>
+            <td class="render">&lt;</td>
+            <td>顯示小於號或開始標籤符號</td>
+          </tr>
+          <tr>
+            <td>&gt;</td>
+            <td><code>&amp;gt;</code></td>
+            <td><code>&amp;#62;</code></td>
+            <td class="render">&gt;</td>
+            <td>顯示大於號或結束標籤符號</td>
+          </tr>
+          <tr>
+            <td>&amp;</td>
+            <td><code>&amp;amp;</code></td>
+            <td><code>&amp;#38;</code></td>
+            <td class="render">&amp;</td>
+            <td>顯示和號本身</td>
+          </tr>
+          <tr>
+            <td>©</td>
+            <td><code>&amp;copy;</code></td>
+            <td><code>&amp;#169;</code> / <code>&amp;#xA9;</code></td>
+            <td class="render">&copy;</td>
+            <td>顯示版權符號</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">最該先熟悉的是 <code>&amp;nbsp;</code>、<code>&amp;lt;</code>、<code>&amp;gt;</code>、<code>&amp;amp;</code>。</p>
+    </section>
+
+    <section class="card">
+      <h2>即時預覽：輸入含字符實體的文字</h2>
+      <p class="hint">
+        在下方輸入框輸入一段文字，可以混用命名實體或數字引用。
+        「渲染結果」是瀏覽器把實體解析後顯示的樣子。
+      </p>
+      <label class="field">
+        <span>輸入原始碼文字</span>
+        <textarea id="entity-input" rows="3" spellcheck="false">&copy; 2026 &amp; &lt;b&gt;粗體文字&lt;/b&gt; &#169;</textarea>
+      </label>
+
+      <div class="preview-grid">
+        <div class="preview-box">
+          <h3>渲染結果</h3>
+          <output id="entity-output" class="render-output"></output>
+        </div>
+        <div class="preview-box">
+          <h3>你實際輸入的字面字串</h3>
+          <pre id="entity-literal" class="literal-output"></pre>
+        </div>
+      </div>
+
+      <p class="quick">
+        快速插入：
+        <button type="button" data-entity="&copy;">&amp;copy;</button>
+        <button type="button" data-entity="&amp;">&amp;amp;</button>
+        <button type="button" data-entity="&lt;">&amp;lt;</button>
+        <button type="button" data-entity="&gt;">&amp;gt;</button>
+        <button type="button" data-entity="&nbsp;">&amp;nbsp;</button>
+        <button type="button" data-entity="&#x2764;">&amp;#x2764;</button>
+      </p>
+    </section>
+
+    <p class="source">資料來源：notes/260-字符實體/01-字符實體基本概念.md</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

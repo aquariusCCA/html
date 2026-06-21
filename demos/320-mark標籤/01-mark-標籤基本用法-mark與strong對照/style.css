@@ -1,0 +1,70 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", "Microsoft JhengHei", sans-serif;
+  line-height: 1.7;
+  color: #1f2933;
+  background: #f5f7fa;
+}
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.2rem; margin-top: 2rem; }
+h3 { font-size: 1rem; margin: 0 0 0.5rem; }
+
+.lead {
+  background: #eef2f7;
+  border-left: 4px solid #5b8def;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.card--ok { border-top: 4px solid #38a169; }
+.card--bad { border-top: 4px solid #e53e3e; }
+
+.card--ok h3 { color: #2f855a; }
+.card--bad h3 { color: #c53030; }
+
+pre {
+  background: #1f2933;
+  color: #e4ebf1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.8rem;
+}
+
+pre code { font-family: "Consolas", "Cascadia Code", monospace; }
+
+.note {
+  font-size: 0.85rem;
+  color: #52606d;
+  margin-bottom: 0;
+}
+
+/* 示範：促銷文字屬於樣式需求，用 CSS class 表達 */
+.sale-text {
+  color: #c53030;
+  font-weight: 700;
+}

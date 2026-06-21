@@ -1,0 +1,139 @@
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --ink: #1f2933;
+  --muted: #607080;
+  --line: #d7dee5;
+  --accent: #2563eb;
+  --bad: #dc2626;
+  --good: #16a34a;
+  --code-bg: #0f172a;
+  --code-ink: #e2e8f0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, "Microsoft JhengHei", sans-serif;
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.page__head h1 {
+  font-size: 1.5rem;
+  margin: 0 0 8px;
+}
+
+.lead {
+  color: var(--muted);
+  margin: 0;
+}
+
+code {
+  font-family: "Cascadia Code", Consolas, monospace;
+  background: #e8edf2;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-top: 22px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.card h2 {
+  font-size: 1.15rem;
+  margin: 0 0 14px;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 680px) {
+  .compare { grid-template-columns: 1fr; }
+}
+
+.compare__col {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  background: #f8fafc;
+}
+
+.compare__col--bad { border-top: 4px solid var(--bad); }
+.compare__col--good { border-top: 4px solid var(--good); }
+
+.tag {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0 0 12px;
+  padding: 2px 10px;
+  border-radius: 6px;
+}
+
+.tag--bad { color: #fff; background: var(--bad); }
+.tag--good { color: #fff; background: var(--good); }
+
+.case {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+details p { margin: 10px 0 0; }
+
+pre {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 12px 14px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.why {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  background: #fff7ed;
+  border-left: 4px solid #f59e0b;
+  border-radius: 6px;
+  font-size: 0.92rem;
+}

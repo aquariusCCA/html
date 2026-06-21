@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>單選複選與下拉 Demo｜radio / checkbox / select</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/03-單選複選與下拉選項.md -->
+<body>
+  <header class="page-head">
+    <h1>單選、複選與下拉選項</h1>
+    <p class="lead">選項控件的核心：把使用者選到的項目，轉成可提交的 <code>name=value</code>。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/03-單選複選與下拉選項.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：三種控件即時觀察 -->
+    <section class="block">
+      <h2>A. 互動：選一選，看實際提交值</h2>
+      <p class="hint">操作下面三組控件，右側即時顯示每組目前會提交的值，理解單選、複選與下拉的差異。</p>
+      <div class="split">
+        <div class="preview">
+          <form id="opt-form" onsubmit="return false">
+            <fieldset>
+              <legend>性別（radio：只能選一個）</legend>
+              <label><input type="radio" name="gender" value="female" checked> 女</label>
+              <label><input type="radio" name="gender" value="male"> 男</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>興趣（checkbox：可選多個）</legend>
+              <label><input type="checkbox" name="hobby" value="reading"> 閱讀</label>
+              <label><input type="checkbox" name="hobby" value="music"> 音樂</label>
+              <label><input type="checkbox" name="hobby" value="sport"> 運動</label>
+            </fieldset>
+
+            <div class="field">
+              <label for="province">地區（select：選項多，省空間）</label>
+              <select id="province" name="province">
+                <option value="heilongjiang">黑龍江</option>
+                <option value="liaoning">遼寧</option>
+                <option value="jilin">吉林</option>
+                <option value="guangdong" selected>廣東</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="output">
+          <h3>目前會提交的資料</h3>
+          <ul id="result">
+            <li class="empty">操作左側控件看看。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：radio 共用 name -->
+    <section class="block">
+      <h2>B. 對照：radio 一定要「共用 name」才會互斥</h2>
+      <p class="hint">左邊兩個 radio 的 name 不同，可以同時選中（失去互斥）；右邊共用 name，才是正確的多選一。</p>
+      <div class="compare">
+        <figure class="bad">
+          <figcaption>✗ name 不同，無法互斥</figcaption>
+          <label><input type="radio" name="male" value="male"> 男</label><br>
+          <label><input type="radio" name="female" value="female"> 女</label>
+          <p class="note">試試看——兩個都能被選中。</p>
+        </figure>
+        <figure class="good">
+          <figcaption>✓ 共用 name="gender"</figcaption>
+          <label><input type="radio" name="gender2" value="male"> 男</label><br>
+          <label><input type="radio" name="gender2" value="female"> 女</label>
+          <p class="note">選了一個，另一個會自動取消，這才是單選。</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 區塊 C：使用時機 -->
+    <section class="block">
+      <h2>C. 使用時機速記</h2>
+      <ul class="legend">
+        <li><code>radio</code>：只能選一個（性別、付款方式）</li>
+        <li><code>checkbox</code>：可選多個（興趣、通知方式）</li>
+        <li><code>select</code>：選項多、想省空間（地區、年份）</li>
+      </ul>
+      <p class="caution">提醒：<code>value</code> 是提交值，不一定等於畫面文字；<code>checked</code> 用於 radio/checkbox，<code>selected</code> 用於 option。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

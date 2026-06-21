@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>標籤轉義與常見錯誤</title>
+  <!-- Source notes: notes/260-字符實體/01-字符實體基本概念.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>標籤轉義與常見錯誤</h1>
+    <p class="lead">
+      如果想在頁面上「顯示」一段 HTML 標籤文字（例如教別人 <code>&lt;p&gt;</code> 是什麼），
+      必須把 <code>&lt;</code> 寫成 <code>&amp;lt;</code>、<code>&gt;</code> 寫成 <code>&amp;gt;</code>，
+      否則瀏覽器會把它當成真正的標籤解析。
+    </p>
+
+    <section class="card">
+      <h2>互動：同一段文字，兩種對待方式</h2>
+      <p class="hint">
+        在輸入框輸入含有 <code>&lt;</code>、<code>&gt;</code> 的內容，
+        切換下方開關，觀察「當成 HTML 解析」與「當成文字顯示」的差別。
+      </p>
+
+      <label class="field">
+        <span>輸入內容</span>
+        <textarea id="tag-input" rows="2" spellcheck="false">&lt;p&gt;Hello&lt;/p&gt;</textarea>
+      </label>
+
+      <div class="switch-row">
+        <label class="switch">
+          <input type="checkbox" id="parse-toggle">
+          <span class="switch-track"></span>
+        </label>
+        <span id="mode-label" class="mode-label">目前：當成文字顯示（已轉義）</span>
+      </div>
+
+      <div class="preview-grid">
+        <div class="preview-box">
+          <h3>畫面結果</h3>
+          <div id="tag-result" class="tag-result"></div>
+        </div>
+        <div class="preview-box">
+          <h3>瀏覽器實際收到的 HTML 原始碼</h3>
+          <pre id="tag-source" class="tag-source"></pre>
+        </div>
+      </div>
+      <p class="note">
+        「當成文字顯示」時，<code>&lt;</code> 與 <code>&gt;</code> 會被轉義成 <code>&amp;lt;</code> 與 <code>&amp;gt;</code>，
+        所以標籤只會被當成文字，不會被執行。
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>常見錯誤對照</h2>
+
+      <div class="mistake">
+        <h3>1. 漏掉分號</h3>
+        <div class="mistake-grid">
+          <div class="bad">
+            <span class="badge badge-bad">錯誤</span>
+            <pre>&amp;copy</pre>
+          </div>
+          <div class="good">
+            <span class="badge badge-good">正確</span>
+            <pre>&amp;copy;</pre>
+          </div>
+        </div>
+        <p class="why">命名字符實體通常要以分號 <code>;</code> 結尾，漏掉可能導致解析結果不穩定，也降低可讀性。</p>
+      </div>
+
+      <div class="mistake">
+        <h3>2. 把 HTML 標籤直接寫成文字</h3>
+        <div class="mistake-grid">
+          <div class="bad">
+            <span class="badge badge-bad">錯誤</span>
+            <pre>&lt;h1&gt; 是標題標籤</pre>
+            <p class="result-note">瀏覽器把 <code>&lt;h1&gt;</code> 當成真正的標題開始標籤：</p>
+            <div class="rendered-bad"><h1> 是標題標籤</h1></div>
+          </div>
+          <div class="good">
+            <span class="badge badge-good">正確</span>
+            <pre>&amp;lt;h1&amp;gt; 是標題標籤</pre>
+            <p class="result-note">畫面正確顯示這段文字：</p>
+            <div class="rendered-good">&lt;h1&gt; 是標題標籤</div>
+          </div>
+        </div>
+        <p class="why">要顯示標籤文字時，把 <code>&lt;</code>、<code>&gt;</code> 轉義成 <code>&amp;lt;</code>、<code>&amp;gt;</code>。</p>
+      </div>
+
+      <div class="mistake">
+        <h3>3. 用大量 <code>&amp;nbsp;</code> 做排版</h3>
+        <div class="mistake-grid">
+          <div class="bad">
+            <span class="badge badge-bad">不建議</span>
+            <pre>姓名：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;小明</pre>
+          </div>
+          <div class="good">
+            <span class="badge badge-good">建議</span>
+            <pre>用 CSS：margin / padding / gap</pre>
+          </div>
+        </div>
+        <p class="why"><code>&amp;nbsp;</code> 適合處理文字中的特殊空格，控制元素間距離應交給 CSS 排版。</p>
+      </div>
+
+      <div class="mistake">
+        <h3>4. 誤以為所有空白都會被保留</h3>
+        <p class="why">
+          一般文字排版中連續空白與換行會被合併，但
+          <code>&lt;pre&gt;</code> 會保留空白與換行、<code>&lt;textarea&gt;</code> 會保留輸入內容、
+          CSS <code>white-space</code> 也會改變空白顯示方式。看到結果不同時，先確認目前元素與 CSS 規則。
+        </p>
+      </div>
+    </section>
+
+    <p class="source">資料來源：notes/260-字符實體/01-字符實體基本概念.md</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

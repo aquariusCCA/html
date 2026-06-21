@@ -1,0 +1,104 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+  line-height: 1.6;
+  color: #1e293b;
+  background: #f8fafc;
+}
+
+.page-head {
+  background: #0f766e;
+  color: #fff;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem);
+}
+.page-head h1 { margin: 0 0 .25rem; }
+.page-head .lead { margin: .25rem 0; }
+.page-head .src { margin: .5rem 0 0; font-size: .85rem; color: #99f6e4; }
+
+code { font-family: "Cascadia Code", Consolas, monospace; }
+.page-head code { color: #fde68a; }
+
+main { max-width: 980px; margin: 0 auto; padding: 1rem clamp(1rem, 4vw, 2rem) 3rem; }
+
+.block {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.block h2 { margin-top: 0; font-size: 1.15rem; }
+.hint { color: #475569; font-size: .9rem; }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+@media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+
+.mode-buttons, .toggle-row { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 1rem; }
+.mode-buttons button {
+  border: 1px solid #cbd5e1;
+  background: #f1f5f9;
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: .85rem;
+}
+.mode-buttons button:hover { background: #e2e8f0; }
+.mode-buttons button.active { background: #0f766e; color: #fff; border-color: #0f766e; }
+
+.demo-table { border-collapse: collapse; background: #fff; width: 100%; max-width: 360px; }
+.demo-table caption { caption-side: top; font-weight: 700; padding: .4rem; color: #334155; }
+.demo-table th, .demo-table td {
+  border: 1px solid #94a3b8;
+  padding: .55rem .7rem;
+  text-align: center;
+  height: 2.6rem;
+}
+.demo-table th { background: #f1f5f9; }
+
+/* 區塊 A 動態表格 */
+#grid-wrap .demo-table td { background: #fff; }
+.cell-colspan { background: #ccfbf1 !important; color: #0f766e; font-weight: 700; }
+.cell-rowspan { background: #fef3c7 !important; color: #b45309; font-weight: 700; }
+
+.dir-tip { font-size: .9rem; color: #475569; }
+
+.code pre, figure pre {
+  margin: .5rem 0 0;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+/* 區塊 B */
+.switch { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; font-size: .9rem; }
+.switch input { width: 18px; height: 18px; }
+
+.compare figure { margin: 0; padding: 1rem; border-radius: 10px; transition: background .2s, border-color .2s; }
+figure.bad { background: #fef2f2; border: 1px solid #fecaca; }
+figure.good { background: #f0fdf4; border: 1px solid #bbf7d0; }
+figcaption { font-weight: 700; margin-bottom: .6rem; }
+figure.bad figcaption { color: #dc2626; }
+figure.good figcaption { color: #16a34a; }
+.note { font-size: .85rem; color: #475569; margin: .6rem 0 0; }
+
+/* 錯位示意：保留多餘格時用紅框標出溢出的那一格 */
+.err-extra { outline: 3px dashed #dc2626; outline-offset: -3px; background: #fee2e2 !important; }
+
+.caution {
+  margin-top: 1rem;
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: .6rem .9rem;
+  font-size: .9rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* 區塊 C */
+.mark-row { background: #fef3c7; }
+.mark-col { background: #ccfbf1; }

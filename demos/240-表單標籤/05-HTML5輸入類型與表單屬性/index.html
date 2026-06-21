@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML5 輸入類型 Demo｜email / url / date / number 與 required</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- Source notes: notes/240-表單標籤/05-HTML5輸入類型與表單屬性.md -->
+<body>
+  <header class="page-head">
+    <h1>HTML5 輸入類型與表單屬性</h1>
+    <p class="lead">用更精確的 <code>type</code> 描述資料格式，讓瀏覽器提供合適的輸入介面與基本驗證。</p>
+    <p class="src">對應筆記：<code>notes/240-表單標籤/05-HTML5輸入類型與表單屬性.md</code></p>
+  </header>
+
+  <main>
+    <!-- 區塊 A：各種 type 的控件介面 -->
+    <section class="block">
+      <h2>A. 觀察：不同 type 帶來不同輸入介面</h2>
+      <p class="hint">點點下面各個欄位，注意 date 會跳出日曆、number 有上下箭頭、color 有取色器、行動裝置上鍵盤也會不同。</p>
+      <div class="split">
+        <div class="preview">
+          <div class="field"><label for="t-email">type="email"</label><input type="email" id="t-email" placeholder="name@example.com"></div>
+          <div class="field"><label for="t-url">type="url"</label><input type="url" id="t-url" placeholder="https://example.com"></div>
+          <div class="field"><label for="t-date">type="date"</label><input type="date" id="t-date"></div>
+          <div class="field"><label for="t-time">type="time"</label><input type="time" id="t-time"></div>
+          <div class="field"><label for="t-number">type="number"</label><input type="number" id="t-number" placeholder="數量"></div>
+          <div class="field"><label for="t-tel">type="tel"</label><input type="tel" id="t-tel" placeholder="電話"></div>
+          <div class="field"><label for="t-search">type="search"</label><input type="search" id="t-search" placeholder="搜尋關鍵字"></div>
+          <div class="field"><label for="t-color">type="color"</label><input type="color" id="t-color" value="#2f6fed"></div>
+        </div>
+        <div class="code">
+<pre><code>&lt;input type="email"&gt;
+&lt;input type="url"&gt;
+&lt;input type="date"&gt;
+&lt;input type="number"&gt;
+&lt;input type="tel"&gt;
+&lt;input type="search"&gt;
+&lt;input type="color"&gt;</code></pre>
+          <p class="note">日期、顏色等控件外觀依瀏覽器不同，版面要保留彈性。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊 B：required 原生驗證 -->
+    <section class="block">
+      <h2>B. 互動：required + email 的原生驗證</h2>
+      <p class="hint">不填、或填一個格式不對的信箱（例如 <code>abc</code>），直接按提交，瀏覽器會自己擋下來並提示。</p>
+      <form id="v-form">
+        <div class="field">
+          <label for="v-email">電子郵件（必填）</label>
+          <input type="email" id="v-email" name="email" required placeholder="name@example.com" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="v-age">年齡（1–120）</label>
+          <input type="number" id="v-age" name="age" min="1" max="120" placeholder="選填">
+        </div>
+        <button type="submit">提交</button>
+      </form>
+      <div class="output">
+        <h3>提交結果</h3>
+        <ul id="result"><li class="empty">通過驗證後才會送出（這裡攔截顯示）。</li></ul>
+      </div>
+      <p class="caution">提醒：原生驗證是「使用者體驗」，使用者仍可能繞過，重要資料一定要在後端再驗證一次。</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

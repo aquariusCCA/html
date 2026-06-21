@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+<!-- Source notes: notes/270-布局標籤/01-html5-語意化布局標籤.md -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>article / section / div 選用對照</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="demo-wrap">
+    <h1 class="demo-title">article / section / div 選用對照</h1>
+    <p class="demo-intro">
+      這三個標籤都能包住一塊內容，差別在語意。下方先對照三者的適用情境，
+      再用一個三步判斷流程，幫你決定一塊內容該用哪個標籤。
+    </p>
+
+    <h2 class="block-title">三者對照</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h3 class="tag-name">&lt;article&gt;</h3>
+        <p class="tag-when">內容相對獨立、完整，單獨拿出來仍可理解。</p>
+        <pre class="code good">&lt;article&gt;
+  &lt;h2&gt;前端學習路線&lt;/h2&gt;
+  &lt;p&gt;介紹初學者如何安排
+     HTML、CSS 與 JS 的順序。&lt;/p&gt;
+&lt;/article&gt;</pre>
+        <p class="tag-note"><span class="ok">適合</span>：一篇文章、一則新聞、一張商品卡片。</p>
+      </div>
+
+      <div class="compare-card">
+        <h3 class="tag-name">&lt;section&gt;</h3>
+        <p class="tag-when">同一主題下的有標題分段。</p>
+        <pre class="code good">&lt;article&gt;
+  &lt;section&gt;
+    &lt;h3&gt;先學 HTML&lt;/h3&gt;
+    &lt;p&gt;描述網頁內容與結構。&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/article&gt;</pre>
+        <p class="tag-note"><span class="ok">適合</span>：文章或頁面中有主題的小節。</p>
+      </div>
+
+      <div class="compare-card">
+        <h3 class="tag-name">&lt;div&gt;</h3>
+        <p class="tag-when">只是排版、分組或樣式容器，沒有特定語意。</p>
+        <pre class="code neutral">&lt;div class="button-group"&gt;
+  &lt;button&gt;儲存&lt;/button&gt;
+  &lt;button&gt;取消&lt;/button&gt;
+&lt;/div&gt;</pre>
+        <p class="tag-note"><span class="ok">適合</span>：只為了套 CSS、排版或包住幾個元素。</p>
+      </div>
+    </div>
+
+    <h2 class="block-title">判斷流程</h2>
+    <p class="demo-intro">依序回答下面三題，會即時高亮建議使用的標籤。</p>
+    <div class="flow">
+      <label class="flow-step">
+        <input type="checkbox" id="q1">
+        <span>1. 這塊內容能不能<strong>獨立成一篇完整內容</strong>？單獨拿出來仍可理解？</span>
+      </label>
+      <label class="flow-step">
+        <input type="checkbox" id="q2">
+        <span>2. 這塊內容是不是<strong>同一主題下的一個小節</strong>，通常可以加標題？</span>
+      </label>
+      <p class="flow-tip">兩題都不是，代表只是為了排版或分組。</p>
+
+      <div class="flow-result">
+        <span class="result-label">建議使用：</span>
+        <span class="result-tags">
+          <span class="result-tag" data-tag="article">&lt;article&gt;</span>
+          <span class="result-tag" data-tag="section">&lt;section&gt;</span>
+          <span class="result-tag" data-tag="div">&lt;div&gt;</span>
+        </span>
+      </div>
+      <p class="flow-reason" id="flowReason"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

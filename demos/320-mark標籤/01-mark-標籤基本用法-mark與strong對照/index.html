@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mark 與 strong 對照與常見錯誤</title>
+  <!-- Source notes: notes/320-mark標籤/01-mark-標籤基本用法.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>mark 與 strong 對照、常見錯誤修正</h1>
+    <p class="lead">
+      <code>&lt;mark&gt;</code> 與 <code>&lt;strong&gt;</code> 都可能讓文字看起來醒目，但語意不同：
+      <code>&lt;mark&gt;</code> 是「在目前上下文中被標記」，<code>&lt;strong&gt;</code> 是「內容本身很重要」。
+      選標籤時先看語意是否成立，再看畫面效果。
+    </p>
+
+    <section>
+      <h2>語意對照</h2>
+      <div class="compare">
+        <div class="card card--ok">
+          <h3>搜尋命中片段 → <code>&lt;mark&gt;</code></h3>
+          <p>搜尋「HTML」後，把結果摘要中的 <mark>HTML</mark> 標出來，屬於上下文標記。</p>
+          <pre><code>&lt;p&gt;...摘要中的 &lt;mark&gt;HTML&lt;/mark&gt;...&lt;/p&gt;</code></pre>
+        </div>
+        <div class="card card--ok">
+          <h3>重要警告 → <code>&lt;strong&gt;</code></h3>
+          <p><strong>請務必填寫真實姓名。</strong>這裡重點是內容很重要，而不是被標記。</p>
+          <pre><code>&lt;p&gt;&lt;strong&gt;請務必填寫真實姓名。&lt;/strong&gt;&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>常見錯誤 → 修正</h2>
+
+      <div class="compare">
+        <div class="card card--bad">
+          <h3>✗ 把 mark 當黃底樣式工具</h3>
+          <p>今天特價：<mark>全部商品 8 折</mark></p>
+          <pre><code>&lt;mark&gt;全部商品 8 折&lt;/mark&gt;</code></pre>
+          <p class="note">純粹想做促銷視覺，沒有「上下文標記」語意。</p>
+        </div>
+        <div class="card card--ok">
+          <h3>✓ 用 CSS class 表達樣式</h3>
+          <p>今天特價：<span class="sale-text">全部商品 8 折</span></p>
+          <pre><code>&lt;span class="sale-text"&gt;全部商品 8 折&lt;/span&gt;</code></pre>
+          <p class="note">只是顏色/樣式需求，交給 CSS 更清楚。</p>
+        </div>
+      </div>
+
+      <div class="compare">
+        <div class="card card--bad">
+          <h3>✗ 用 mark 取代 strong</h3>
+          <p><mark>請勿關閉電源。</mark></p>
+          <pre><code>&lt;mark&gt;請勿關閉電源。&lt;/mark&gt;</code></pre>
+          <p class="note">這是重要警告，重點是「內容很重要」。</p>
+        </div>
+        <div class="card card--ok">
+          <h3>✓ 改用 strong 表達重要性</h3>
+          <p><strong>請勿關閉電源。</strong></p>
+          <pre><code>&lt;strong&gt;請勿關閉電源。&lt;/strong&gt;</code></pre>
+          <p class="note">語意正確：強調內容本身的重要性。</p>
+        </div>
+      </div>
+
+      <div class="compare">
+        <div class="card card--bad">
+          <h3>✗ 標記過多文字</h3>
+          <p><mark>這一整段很長的文字全部都被標記，讀者很難判斷真正的重點在哪裡。</mark></p>
+          <p class="note">幾乎整段都標，等於沒有重點。</p>
+        </div>
+        <div class="card card--ok">
+          <h3>✓ 只標關鍵片段</h3>
+          <p>這一段主要說明 <mark>只標示關鍵片段</mark> 才能讓重點清楚。</p>
+          <p class="note">聚焦在真正要讀者注意的詞。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

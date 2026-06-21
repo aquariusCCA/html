@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mark 標籤：搜尋結果高亮</title>
+  <!-- Source notes: notes/320-mark標籤/01-mark-標籤基本用法.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>mark 標籤：搜尋結果高亮</h1>
+    <p class="lead">
+      標示「搜尋命中的文字」是 <code>&lt;mark&gt;</code> 最典型的使用情境。
+      在下面輸入關鍵字，命中的片段會即時被包進 <code>&lt;mark&gt;</code>。
+      清空輸入即還原。請注意下方產生的 HTML：高亮其實就是把命中文字包成 <code>&lt;mark&gt;</code>。
+    </p>
+
+    <section class="panel">
+      <label for="keyword">搜尋關鍵字</label>
+      <input id="keyword" type="search" placeholder="例如：HTML、標籤、瀏覽器" autocomplete="off">
+      <p class="status" id="status">尚未輸入關鍵字。</p>
+    </section>
+
+    <section class="panel">
+      <h2>內容（命中即高亮）</h2>
+      <div id="content" class="content">
+        <p>HTML 是用來描述網頁結構的標記語言。瀏覽器讀取 HTML 後，會把標籤解析成你在畫面上看到的內容。</p>
+        <p>學習 HTML 時，先理解標籤語意，再記語法，會比死背更有效率。常見的語意標籤包括段落、標題與強調。</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>目前產生的 HTML 片段</h2>
+      <pre class="html-view"><code id="html-view">（輸入關鍵字後，這裡會顯示含 &lt;mark&gt; 的 HTML）</code></pre>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

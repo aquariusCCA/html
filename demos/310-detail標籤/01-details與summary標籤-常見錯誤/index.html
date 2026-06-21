@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>details / summary：常見錯誤與正確寫法</title>
+  <!-- Source notes: notes/310-detail標籤/01-details與summary標籤.md -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page__head">
+      <h1>details / summary：三種常見錯誤對照</h1>
+      <p class="lead">
+        每一組都是「錯誤寫法」對「正確寫法」。實際展開試試看，
+        對照畫面差異與旁邊的「錯在哪」說明。
+      </p>
+    </header>
+
+    <!-- 錯誤一：缺少 summary -->
+    <section class="card">
+      <h2>錯誤 1：只寫 details，沒有 summary</h2>
+      <div class="compare">
+        <div class="compare__col compare__col--bad">
+          <p class="tag tag--bad">✗ 錯誤寫法</p>
+          <details>
+            <p>這是一段補充說明。</p>
+          </details>
+<pre><code>&lt;details&gt;
+  &lt;p&gt;這是一段補充說明。&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+          <p class="why">
+            錯在哪：沒有 <code>&lt;summary&gt;</code>，瀏覽器會自動補一個預設標題
+            （通常顯示「Details」或「詳細資料」）。這個標題不一定符合內容，讀者也難以理解。
+          </p>
+        </div>
+
+        <div class="compare__col compare__col--good">
+          <p class="tag tag--good">✓ 正確寫法</p>
+          <details>
+            <summary>補充說明</summary>
+            <p>這是一段補充說明。</p>
+          </details>
+<pre><code>&lt;details&gt;
+  &lt;summary&gt;補充說明&lt;/summary&gt;
+  &lt;p&gt;這是一段補充說明。&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+          <p class="why">明確提供 <code>&lt;summary&gt;</code>，標題語意清楚。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 錯誤二：summary 放在 details 外面 -->
+    <section class="card">
+      <h2>錯誤 2：summary 放在 details 外面</h2>
+      <div class="compare">
+        <div class="compare__col compare__col--bad">
+          <p class="tag tag--bad">✗ 錯誤寫法</p>
+          <summary>文章概要</summary>
+          <details>
+            <p>文章詳細內容。</p>
+          </details>
+<pre><code>&lt;summary&gt;文章概要&lt;/summary&gt;
+&lt;details&gt;
+  &lt;p&gt;文章詳細內容。&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+          <p class="why">
+            錯在哪：<code>&lt;summary&gt;</code> 不在 <code>&lt;details&gt;</code> 裡，
+            就不再是這組可展開內容的摘要標題，點它也不會控制展開；而 details 因為少了 summary，
+            又會回到自動補預設標題的情況。
+          </p>
+        </div>
+
+        <div class="compare__col compare__col--good">
+          <p class="tag tag--good">✓ 正確寫法</p>
+          <details>
+            <summary>文章概要</summary>
+            <p>文章詳細內容。</p>
+          </details>
+<pre><code>&lt;details&gt;
+  &lt;summary&gt;文章概要&lt;/summary&gt;
+  &lt;p&gt;文章詳細內容。&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+          <p class="why">
+            <code>&lt;summary&gt;</code> 放在 <code>&lt;details&gt;</code> 裡，且為第一個子元素。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 錯誤三：用 details 取代複雜互動元件 -->
+    <section class="card">
+      <h2>錯誤 3：用 details 硬做複雜互動元件</h2>
+      <div class="compare">
+        <div class="compare__col compare__col--bad">
+          <p class="tag tag--bad">✗ 不適合</p>
+          <p class="case">把主導覽選單、分頁切換或需要記錄狀態的操作面板，全部塞進巢狀 details：</p>
+          <details>
+            <summary>主選單</summary>
+            <details>
+              <summary>產品</summary>
+              <details>
+                <summary>分類 A</summary>
+                <p>巢狀越疊越深，焦點管理與鍵盤操作都會出問題。</p>
+              </details>
+            </details>
+          </details>
+          <p class="why">
+            錯在哪：<code>&lt;details&gt;</code> 只適合「一個標題 + 一段可選擇查看的內容」。
+            多層級選單、分頁、需要動畫與焦點控制的元件，硬用 details 會難以維護也不易操作。
+          </p>
+        </div>
+
+        <div class="compare__col compare__col--good">
+          <p class="tag tag--good">✓ 適合</p>
+          <p class="case">單純的「常見問題」展開，正是 details 的拿手情境：</p>
+          <details>
+            <summary>運費怎麼計算？</summary>
+            <p>滿額免運，未滿額酌收固定運費。</p>
+          </details>
+          <details>
+            <summary>可以退貨嗎？</summary>
+            <p>商品到貨七天內可申請退貨。</p>
+          </details>
+          <p class="why">
+            內容是「標題＋可選擇查看的詳細資訊」，用 <code>&lt;details&gt;</code> 既簡單又語意清楚。
+            複雜互動則改用完整的 HTML + CSS + JavaScript 設計。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
