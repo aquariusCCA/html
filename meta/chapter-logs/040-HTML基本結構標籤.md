@@ -9,9 +9,10 @@
 - notes 完成檢查：已完成
 - notes 索引 metadata：已完成
 - demos 生成：已完成
+- practice 生成：已完成
 - 目前最新正確來源：`notes/040-HTML基本結構標籤/`（已通過 notes 完成檢查）
 - 候選概念來源：`atomic/040-HTML基本結構標籤/`
-- 後續流程：demos 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`、`practice/`、`review/`。
+- 後續流程：practice 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`、`review/`。
 
 ## 已執行流程
 
@@ -34,5 +35,7 @@
 
 - 2026-06-21：已依 `.codex/skills/notes-demo-generation/SKILL.md` 由已完成檢查的 `notes/040-HTML基本結構標籤/` 生成 `demos/040-HTML基本結構標籤/` 教學 demo；靜態檢查與瀏覽器驗證已完成，`demos 生成` 可同步標記為已完成。
 
+- 2026-06-22：已依 `.codex/skills/notes-practice-generation/SKILL.md` 由已完成檢查的 `notes/040-HTML基本結構標籤/` 生成 `practice/040-HTML基本結構標籤/`；共 3 份練習（01-HTML文件起手式練習、02-標籤屬性練習、03-HTML注釋練習），每份各 2 題（應用練習題×1、改錯題×1），靜態檢查全部通過，`practice 生成` 標記為已完成。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`、`practice/`、`review/`。
+- 依標準輸出規則生成或同步 `appendix/`、`review/`。
