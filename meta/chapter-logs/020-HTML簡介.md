@@ -33,5 +33,7 @@
 
 - 2026-06-21：已依 `.codex/skills/notes-demo-generation/SKILL.md` 由已完成檢查的 `notes/020-HTML簡介/` 生成 `demos/020-HTML簡介/` 教學 demo；靜態檢查與瀏覽器驗證已完成，`demos 生成` 可同步標記為已完成。
 
+- 2026-06-22：已依 `notes-practice-generation` skill 完成 `practice/020-HTML簡介/` 生成；共建立 2 份練習（`01-HTML骨架練習.md`、`02-標籤結構與元素關係練習.md`），各含應用練習題與改錯題共 4 題；靜態檢查與可解性回溯驗證通過；`practice 生成` 欄位已標記為「已完成」。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`、`practice/`、`review/`。
+- 依標準輸出規則生成或同步 `appendix/`、`review/`。
