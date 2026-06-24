@@ -11,7 +11,8 @@
 - demos 生成：已完成
 - practice 生成：已完成
 - 目前最新正確來源：`notes/090-title標籤/`（已通過 notes 完成檢查）
-- 後續流程：demos 與 practice 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`、`review/`。
+- review 生成：已完成
+- 後續流程：demos、practice、review 生成均已完成；下一步依標準輸出規則生成或同步 `appendix/`，完成後進行最終驗收。
 
 ## 已執行流程
 
@@ -32,5 +33,7 @@
 
 - 2026-06-23：已依 `.codex/skills/notes-practice-generation/SKILL.md` 由已完成檢查的 `notes/090-title標籤/` 生成 `practice/090-title標籤/` 練習題，共 1 份 practice Markdown；已完成 source_notes 回溯與 `<details>` 成對檢查，`practice 生成` 可同步標記為已完成。
 
+- 2026-06-24：已依 `notes-review-generation` skill 由已完成檢查的 `notes/090-title標籤/` 生成 `review/090-title標籤/01-title標籤複習.md`，共 9 張卡片（問答×3＋填空×3＋卡片×3）；靜態檢查與來源回溯檢查全部通過，`review 生成` 已標記為已完成。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`、`review/`。
+- 依標準輸出規則生成或同步 `appendix/`，完成後進行最終驗收。

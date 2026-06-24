@@ -1,11 +1,9 @@
-請使用 `.codex\skills\update-judgment\SKILL.md` 進行 **HTML 筆記包更新判斷**。
+請使用 `.codex/skills/notes-review-generation/SKILL.md` 進行 **Notes 轉複習材料**
 
-章節：`demos\230-表格標籤` ~ `demos\320-mark標籤`
+章節名稱：`240-表單標籤`
 
-改動檔案或資料夾：`demos\230-表格標籤` ~ `demos\320-mark標籤`
+專案根目錄：預設為目前工作目錄
 
-改動摘要：使用 `.claude\skills\notes-demo-generation\SKILL.md` 進行 **Notes 轉 HTML 教學 Demo**。
+執行階段：預設為階段一「Review 生成規劃」
 
-希望處理方式：只判斷
-
-補充限制：不要實際改檔。
+是否允許寫入檔案：預設不允許；階段二確認語句可視為允許寫入 `review/240-表單標籤/`
