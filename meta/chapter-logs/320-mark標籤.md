@@ -11,8 +11,9 @@
 - notes 索引 metadata：已完成
 - demos 生成：已完成
 - practice 生成：已完成
+- review 生成：已完成
 - 目前最新正確來源：`notes/320-mark標籤/`（已通過 notes 完成檢查）
-- 後續流程：demos 與 practice 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`、`review/`。
+- 後續流程：demos、practice 與 review 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`。
 
 ## 已執行流程
 
@@ -32,5 +33,7 @@
 
 - 2026-06-23：已依 `.codex/skills/notes-practice-generation/SKILL.md` 由已完成檢查的 `notes/320-mark標籤/` 生成 `practice/320-mark標籤/` 練習題，共 4 份 practice Markdown；已完成 source_notes 回溯與 `<details>` 成對檢查，`practice 生成` 可同步標記為已完成。
 
+- 2026-06-25：已依 `.codex/skills/notes-review-generation/SKILL.md` 由已完成檢查的 `notes/320-mark標籤/` 生成 `review/320-mark標籤/01-mark標籤複習.md`，共 1 份 review、12 張卡片；已完成 source_notes 回溯、卡片 ID 唯一性、`card_count` 與 `<details>` 成對檢查，`review 生成` 可同步標記為已完成。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`、`review/`。
+- 依標準輸出規則生成或同步 `appendix/`。
