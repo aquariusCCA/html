@@ -13,7 +13,7 @@
 - review 生成：已完成
 - appendix 索引：已完成
 - 目前最新正確來源：`notes/080-meta標籤/`（已通過 notes 完成檢查）
-- 後續流程：appendix 已完成；下一步進行最終驗收。
+- 後續流程：最終驗收已完成；章節交付完成。
 
 ## 已執行流程
 
@@ -40,5 +40,7 @@
 
 - 2026-06-25：已依 `.codex/skills/notes-appendix-generation/SKILL.md` 由已完成檢查的 `notes/080-meta標籤/` 生成 `appendix/080-meta標籤/`；共 2 份查表資料（01-meta基本設定速查、02-seo與社群分享meta速查），靜態檢查與來源回溯檢查全部通過，`appendix 索引` 標記為已完成。
 
+- 2026-06-25：已依 `.codex/skills/chapter-final-acceptance/SKILL.md` 完成 `080-meta標籤` 第一階段最終驗收報告；前置閘門、產出存在性、追溯鏈、連結與資產、索引與狀態、schema 與全章連貫性皆通過，無 S1-S4 轉交項目；使用者已核可進入第二階段回填，章節交付完成。
+
 ## 待確認與下一步
-- 進行最終驗收。
+- 章節交付完成。

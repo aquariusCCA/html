@@ -12,9 +12,10 @@
 - practice 生成：已完成
 - review 生成：已完成
 - appendix 索引：已完成
+- 最終驗收：已完成
 - 目前最新正確來源：`notes/040-HTML基本結構標籤/`（已通過 notes 完成檢查）
 - 候選概念來源：`atomic/040-HTML基本結構標籤/`
-- 後續流程：demos、practice、review 與 appendix 生成已完成；下一步進行最終驗收。
+- 後續流程：demos、practice、review 與 appendix 生成已完成；最終驗收已核可，章節交付完成。
 
 ## 已執行流程
 
@@ -43,5 +44,7 @@
 
 - 2026-06-25：已依 `.codex/skills/notes-appendix-generation/SKILL.md` 由已完成檢查的 `notes/040-HTML基本結構標籤/` 生成 `appendix/040-HTML基本結構標籤/` 查表資料，共 3 份 appendix Markdown（`01-HTML文件起手式速查.md`、`02-標籤屬性寫法速查.md`、`03-HTML注釋速查.md`）；已完成 source_notes 回溯、front matter 欄位、表格欄數與上游/下游誤引用檢查，`appendix 索引` 可同步標記為已完成。
 
+- 2026-06-25：已依 `.codex/skills/chapter-final-acceptance/SKILL.md` 完成最終驗收；第一階段驗收無 S1/S2/S3/S4 轉交項目，使用者已人工核可本章通過最終驗收，並將本章標記為章節交付完成。
+
 ## 待確認與下一步
-- appendix 已生成完成；下一步進行最終驗收。
+- 無待確認項目；章節交付完成。

@@ -13,7 +13,7 @@
 - 目前最新正確來源：`notes/090-title標籤/`（已通過 notes 完成檢查）
 - review 生成：已完成
 - appendix 索引：不適用（本章不需產出獨立 appendix 檔案）
-- 後續流程：demos、practice、review 均已完成；appendix 索引不適用；下一步進行最終驗收。
+- 後續流程：最終驗收已完成；章節交付完成。
 
 ## 已執行流程
 
@@ -38,5 +38,7 @@
 
 - 2026-06-25：已依 `notes-appendix-generation` 階段一完成 appendix 生成規劃；本章為單一概念教學，既有 notes 已包含必要對照，不需產出獨立 `appendix/090-title標籤/` 檔案，`appendix 索引` 同步標記為不適用。
 
+- 2026-06-25：已依 `.codex/skills/chapter-final-acceptance/SKILL.md` 完成 `090-title標籤` 第一階段最終驗收報告；前置閘門、產出存在性、追溯鏈、連結與資產、索引與狀態、schema 與全章連貫性皆通過，無 S1-S4 轉交項目；使用者已核可進入第二階段回填，章節交付完成。
+
 ## 待確認與下一步
-- 進行最終驗收。
+- 章節交付完成。
