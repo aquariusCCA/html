@@ -9,9 +9,10 @@
 - notes 完成檢查：已完成
 - notes 索引 metadata：已完成
 - demos 生成：已完成
+- appendix 索引：已完成
 - 目前最新正確來源：`notes/020-HTML簡介/`（已通過 notes 完成檢查）
 - 候選概念來源：`atomic/020-HTML簡介/`
-- 後續流程：demos 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`、`practice/`、`review/`。
+- 後續流程：demos、practice、review 與 appendix 生成已完成；下一步進行最終驗收。
 
 ## 已執行流程
 
@@ -37,5 +38,7 @@
 
 - 2026-06-23：已依 `notes-review-generation` skill 完成 `review/020-HTML簡介/` 生成；共建立 5 份複習材料（01–05），涵蓋網站與網頁入門、HTML5 版本與特性、文件骨架、標籤與元素關係、版本宣告比較，共 36 張卡片（問答 14、填空 10、卡片 12）；靜態檢查與來源回溯驗證通過；`review 生成` 欄位已標記為已完成。
 
+- 2026-06-25：已依 `.codex/skills/notes-appendix-generation/SKILL.md` 由已完成檢查的 `notes/020-HTML簡介/` 生成 `appendix/020-HTML簡介/` 查表資料，共 2 份 appendix Markdown（`01-HTML文件骨架速查.md`、`02-HTML文件宣告版本比較.md`）；已完成 source_notes 回溯、front matter 欄位、表格欄數與上游/下游誤引用檢查，`appendix 索引` 可同步標記為已完成。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`。
+- appendix 已生成完成；下一步進行最終驗收。

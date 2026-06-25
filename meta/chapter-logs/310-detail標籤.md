@@ -12,8 +12,9 @@
 - demos 生成：已完成
 - practice 生成：已完成
 - review 生成：已完成
+- appendix 索引：已完成
 - 目前最新正確來源：`notes/310-detail標籤/`（已通過 notes 完成檢查）
-- 後續流程：demos、practice 與 review 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`。
+- 後續流程：demos、practice、review 與 appendix 生成已完成；下一步進行最終驗收。
 
 ## 已執行流程
 
@@ -35,5 +36,7 @@
 
 - 2026-06-25：已依 `.codex/skills/notes-review-generation/SKILL.md` 由已完成檢查的 `notes/310-detail標籤/` 生成 `review/310-detail標籤/01-details與summary標籤複習.md`，共 1 份 review、11 張卡片；已完成 source_notes 回溯、卡片 ID 唯一性、`card_count` 與 `<details>` 成對檢查，`review 生成` 可同步標記為已完成。
 
+- 2026-06-25：已依 `.codex/skills/notes-appendix-generation/SKILL.md` 由 `notes/310-detail標籤/` 生成 `appendix/310-detail標籤/01-details-summary-展開收合速查.md`，共 1 份 appendix；已完成 source_notes 回溯、front matter 與表格欄數檢查，`appendix 索引` 可同步標記為已完成。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`。
+- 進行最終驗收。

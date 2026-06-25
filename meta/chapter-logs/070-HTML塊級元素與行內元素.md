@@ -11,8 +11,9 @@
 - demos 生成：已完成
 - practice 生成：已完成
 - review 生成：已完成
+- appendix 索引：已完成
 - 目前最新正確來源：`notes/070-HTML塊級元素與行內元素/`（已通過 notes 完成檢查）
-- 後續流程：demos、practice 與 review 生成已完成；下一步依標準輸出規則生成或同步 `appendix/`，完成後進行最終驗收。
+- 後續流程：appendix 已完成；下一步進行最終驗收。
 
 ## 已執行流程
 
@@ -37,5 +38,7 @@
 
 - 2026-06-24：已依 `.codex/skills/notes-review-generation/SKILL.md` 由已完成檢查的 `notes/070-HTML塊級元素與行內元素/` 生成 `review/070-HTML塊級元素與行內元素/` 複習材料，共 3 份 review Markdown、24 張回憶檢索卡；已完成 front matter、source_notes、card_count、卡片 ID、`<details>`、schedule_days 與個人進度狀態排除檢查，`review 生成` 可同步標記為已完成。
 
+- 2026-06-25：已依 `.codex/skills/notes-appendix-generation/SKILL.md` 由已完成檢查的 `notes/070-HTML塊級元素與行內元素/` 生成 `appendix/070-HTML塊級元素與行內元素/`；共 2 份查表資料（01-塊級與行內元素速查、02-內容模型與巢狀規則速查），靜態檢查與來源回溯檢查全部通過，`appendix 索引` 標記為已完成。
+
 ## 待確認與下一步
-- 依標準輸出規則生成或同步 `appendix/`，完成後進行最終驗收。
+- 進行最終驗收。
