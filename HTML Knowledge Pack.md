@@ -53,7 +53,11 @@ notes/
   ↓
 notes content review
   ↓
-appendix/  demos/  practice/  review/
+notes 索引元資料（notes-index-metadata）
+  ↓
+appendix/  demos/  practice/  review/  supplements/
+  ↓
+最終驗收（chapter-final-acceptance）
 ```
 
 說明：
@@ -62,11 +66,13 @@ appendix/  demos/  practice/  review/
 * 「atomic 切分提案與產生」對應 `meta/chapter-status.md` 的「atomic 切分提案」「atomic 產生」欄位（見 [`skills-src/atomic-note-splitting/instructions.md`](skills-src/atomic-note-splitting/instructions.md)），是 `origin → atomic` 的生成過程，產出直接寫入 `atomic/`，不會再修改 `origin/`
 * `atomic review` 對應 `meta/chapter-status.md` 的「atomic 內容審查」欄位（見 [`skills-src/atomic-content-review/instructions.md`](skills-src/atomic-content-review/instructions.md)），審查 `atomic/<章節>/*.md` 的技術正確性、邏輯可靠性、主題歸屬與教學可用性，分為審查報告與確認後修正兩階段，且只更新 `atomic/`、不修改 `origin/`
 * `notes/` 生成對應 `meta/chapter-status.md` 的「notes 生成」欄位（見 [`skills-src/notes-generation/instructions.md`](skills-src/notes-generation/instructions.md)），是 `atomic → notes` 的生成過程，須在 `atomic review` 通過後進行，分為映射與結構提案、確認後產生正式教學筆記兩階段，且只更新 `notes/`、不修改 `origin/` 或 `atomic/`
-* `notes content review` 對應 `meta/chapter-status.md` 的「notes 完成檢查」欄位，審查 `notes/<章節>/*.md` 是否符合正式教學筆記要求，審查通過後才能進入 `appendix/demos/practice/review/supplements` 生成
+* `notes content review` 對應 `meta/chapter-status.md` 的「notes 完成檢查」欄位，審查 `notes/<章節>/*.md` 是否符合正式教學筆記要求，審查通過後才能進入 notes 索引元資料階段
+* `notes 索引元資料` 對應 `meta/chapter-status.md` 的「notes 索引元資料」欄位（見 [`skills-src/notes-index-metadata/instructions.md`](skills-src/notes-index-metadata/instructions.md)），在 `notes content review` 通過後為 `notes/<章節>/*.md` 的 front matter 加上 `topics` 與 `summary` 欄位，完成後才能進入下游教材生成
 * `atomic review`、`notes content review` 為審查關卡，審查通過後才能進入下一層生成
 * `demos/`、`practice/`、`review/` 皆以 `notes/` 為唯一來源生成，為每章節標準輸出
 * `appendix/` 為選用，當該章節有足夠可表格化的查表內容（名詞表、API 表、指令表、設定檔範例）時，以 `notes/` 為唯一來源生成，非每章節必經
 * `supplements/` 為選用補充，當 `notes/` 中某概念因教學節奏未深入說明、但值得進一步理解時，以 `notes/` 為唯一來源生成底層原理、進階觀念、相關比較或實務案例，非每章節必經
+* 「最終驗收」對應 `meta/chapter-status.md` 的「最終驗收」欄位（見 [`skills-src/chapter-final-acceptance/instructions.md`](skills-src/chapter-final-acceptance/instructions.md)），是所有下游教材生成完畢後的 release gate，驗證前置閘門完整性、產出存在性、跨層來源追溯鏈、連結與資產完整性、索引與狀態一致性
 
 ## 各層目錄規則
 
@@ -162,7 +168,7 @@ scripts/
 `meta/chapter-status.md` 記錄所有章節的：
 
 * 章節編號與標題
-* 各維護概念（origin 整理、資產命名、alt 與連結文字、atomic 切分提案／產生／內容審查、notes 生成／完成檢查、demos／practice／review 生成、appendix 索引、最終驗收）的處理狀態
+* 各維護概念（origin 整理、資產命名、alt 與連結文字、atomic 切分提案／產生／內容審查、notes 生成／完成檢查／索引元資料、demos／practice／review 生成、appendix 索引、supplements 補充、最終驗收）的處理狀態
 * 整體完成率、整體狀態、下一步待辦與備註
 
 其中「origin 整理」欄位代表原始資料與資產已放入 `origin/<章節>/` 目錄結構（`*.md` 置於章節根目錄、各類資產依分類放入 `assets/`），是後續資產命名、alt 與連結文字整理、atomic 切分提案的前提；與「資產命名」「alt 與連結文字」是先後接續關係，內容不互相重疊。
