@@ -29,6 +29,28 @@ meta/chapter-status.md（唯讀，用於前置狀態判斷；不修改）
 notes/<章節>/*.md 的 YAML front matter
 ```
 
+### meta/topics.md 的生命週期
+
+`meta/topics.md` 由使用者人工維護，skill 與任何腳本均不寫入。
+
+`meta/topics.md` **不需要預先建立**。建議的流程是：
+
+1. 一開始沒有此檔案，skill 跑第一個章節時自由命名 topics。
+2. 隨著章節累積，從 skill 階段一輸出的「新詞清單」中歸納出跨章節重複出現的詞彙。
+3. 當詞彙開始分裂（同一概念在不同章節用了不同詞），再建立 `meta/topics.md`，把想統一的詞收入。
+4. 此後新章節執行本 skill 時，會優先沿用 `meta/topics.md` 中的詞彙，避免同義詞繼續增生。
+
+`meta/topics.md` 的格式沒有強制規定，簡單的詞彙列表即可，例如：
+
+```md
+# Topics 受控詞彙清單
+
+- 屬性
+- 語意化
+- 表單
+- 事件處理
+```
+
 規則：
 
 1. 只在既有 `source_atomic` 欄位之後追加 `topics` 與 `summary` 兩個欄位，不調整、不刪除 `source_atomic`。
