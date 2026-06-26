@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文章資訊頁</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes:
+    notes/050-全局屬性/01-id-class-style-元素識別分類與樣式.md
+    notes/050-全局屬性/04-hidden-title-顯示與補充資訊.md
+    notes/100-標題標籤/01-html標題標籤.md
+    notes/110-段落標籤/01-p-段落標籤語意與用法.md
+    notes/130-語意化標籤/01-語意化標籤入門.md
+    notes/130-語意化標籤/02-div與語意化佈局比較.md
+    notes/180-圖片標籤/01-img標籤與圖片替代文字.md
+    notes/210-超鏈接標籤/01-a-標籤與超連結基礎.md
+    notes/210-超鏈接標籤/03-錨點鏈接與頁內定位.md
+  -->
+  <header class="site-header" id="top">
+    <div class="wrap">
+      <p class="eyebrow">HTML 綜合專案 020</p>
+      <h1>文章資訊頁</h1>
+      <p class="lead">用語意化結構、標題層級、段落、圖片與錨點，整理一篇可掃描的文章。</p>
+    </div>
+  </header>
+
+  <nav class="toc" title="文章段落導覽">
+    <div class="wrap toc-links">
+      <a href="#overview">文章摘要</a>
+      <a href="#story">主要內容</a>
+      <a href="#details">延伸資訊</a>
+    </div>
+  </nav>
+
+  <main class="wrap layout">
+    <article class="article-body">
+      <header class="article-header">
+        <p class="category">人物報導</p>
+        <h2 id="overview">從活動現場看網頁內容如何被組織</h2>
+        <p>
+          一篇文章頁不只需要把文字放到瀏覽器中，也需要讓標題、段落、配圖與導覽各自承擔清楚角色。
+          這份範例用一張人物活動照作為文章配圖，示範圖片來源與替代文字如何補足內容資訊。
+        </p>
+      </header>
+
+      <img
+        class="article-image"
+        src="./assets/images/article-portrait.jpg"
+        alt="穿黑色西裝的男士在活動背景前揮手"
+        title="文章主圖：人物活動照"
+        width="520"
+      >
+
+      <section id="story">
+        <h2>主要內容</h2>
+        <p>
+          文章的最高層級標題出現在頁首，主要段落則從二級標題開始安排。這樣的層級讓讀者可以先掃描主題，
+          再往下閱讀每一段內容。
+        </p>
+        <p>
+          每一個自然段都用獨立的 p 標籤表示，而不是用空段落或連續換行製造間距。視覺間距交給 CSS，
+          HTML 則保留文章本身的段落語意。
+        </p>
+        <p>
+          圖片的 src 指向專案內的本地檔案；alt 描述圖片傳達的資訊；title 只作為額外提示，不取代替代文字。
+        </p>
+      </section>
+
+      <section id="details">
+        <h2>延伸資訊</h2>
+        <p>
+          頁面上方的導覽使用 a 標籤，並用井號加上目標 id 指向文章內部段落。每個目標段落都有唯一 id，
+          因此點擊連結時能精準定位到對應內容。
+        </p>
+        <p>
+          若要回到文章開頭，可以使用 <a href="#top">回到頁首</a> 這樣的頁內錨點連結。
+          連結的用途是前往某個位置，而不是替代表單送出或其他操作按鈕。
+        </p>
+        <p hidden>內部編輯備註：此段落示範 hidden 屬性，通常可用於暫時不顯示的內容。</p>
+      </section>
+    </article>
+
+    <aside class="side-note">
+      <h2>結構檢查</h2>
+      <section>
+        <h3>標題</h3>
+        <p>頁面使用一個主要 h1，文章區塊再依內容層級使用 h2 與 h3。</p>
+      </section>
+      <section>
+        <h3>圖片</h3>
+        <p>圖片使用本地 src，並提供能替代圖片資訊的 alt 文字。</p>
+      </section>
+      <section>
+        <h3>連結</h3>
+        <p>導覽連結都指向頁面中真實存在且唯一的 id。</p>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>HTML 綜合專案：文章資訊頁</p>
+  </footer>
+</body>
+</html>

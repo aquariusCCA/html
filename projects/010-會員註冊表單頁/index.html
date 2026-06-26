@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>會員註冊表單頁</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes:
+    notes/050-全局屬性/01-id-class-style-元素識別分類與樣式.md
+    notes/050-全局屬性/04-hidden-title-顯示與補充資訊.md
+    notes/130-語意化標籤/01-語意化標籤入門.md
+    notes/130-語意化標籤/02-div與語意化佈局比較.md
+    notes/240-表單標籤/01-表單的用途與提交結構.md
+    notes/240-表單標籤/02-input基礎與文字密碼輸入.md
+    notes/240-表單標籤/03-單選複選與下拉選項.md
+    notes/240-表單標籤/04-表單按鈕與提交行為.md
+    notes/240-表單標籤/06-label與表單分組.md
+    notes/240-表單標籤/07-textarea多行文本域.md
+  -->
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">HTML 綜合專案 010</p>
+      <h1 id="signup-title">會員註冊表單頁</h1>
+      <p class="lead">使用語意化結構與表單控件，建立一份可提交的註冊資料。</p>
+    </div>
+  </header>
+
+  <main class="wrap page-grid">
+    <section class="form-panel" id="signup-form">
+      <h2>建立會員資料</h2>
+      <p class="section-intro">欄位旁的文字都用 label 關聯到對應控件，選項群組則用 fieldset 和 legend 表達共同主題。</p>
+
+      <form action="#signup-result" method="post" name="member-signup">
+        <fieldset>
+          <legend>帳號資訊</legend>
+          <div class="field">
+            <label for="account">帳號</label>
+            <input id="account" class="text-field" type="text" name="account" placeholder="請輸入帳號" maxlength="20">
+          </div>
+
+          <div class="field">
+            <label for="password">密碼</label>
+            <input id="password" class="text-field" type="password" name="password" placeholder="請輸入密碼" maxlength="24">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>會員方案</legend>
+          <div class="choice-row">
+            <input id="plan-basic" type="radio" name="plan" value="basic" checked>
+            <label for="plan-basic">一般會員</label>
+          </div>
+          <div class="choice-row">
+            <input id="plan-plus" type="radio" name="plan" value="plus">
+            <label for="plan-plus">進階會員</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>偏好設定</legend>
+          <div class="choice-row">
+            <input id="notice-email" type="checkbox" name="notice" value="email" checked>
+            <label for="notice-email">接收電子郵件通知</label>
+          </div>
+          <div class="choice-row">
+            <input id="notice-message" type="checkbox" name="notice" value="message">
+            <label for="notice-message">接收站內訊息提醒</label>
+          </div>
+
+          <div class="field">
+            <label for="region">所在地區</label>
+            <select id="region" name="region" class="text-field">
+              <option value="taipei" selected>台北</option>
+              <option value="taichung">台中</option>
+              <option value="kaohsiung">高雄</option>
+              <option value="other">其他地區</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>自我介紹</legend>
+          <div class="field">
+            <label for="bio">簡短介紹</label>
+            <textarea id="bio" class="text-field" name="bio" rows="6" cols="40" placeholder="請輸入你的學習目標或想補充的資料" maxlength="300"></textarea>
+          </div>
+        </fieldset>
+
+        <p id="signup-result" class="submit-note" title="此範例展示原生表單提交結構，不連接後端服務。">
+          送出後，瀏覽器會依 form 的 action 與 method 處理資料；本專案用頁內錨點示範提交目標。
+        </p>
+        <p hidden>內部註記：此段落示範 hidden 屬性，預設不顯示在頁面上。</p>
+
+        <div class="button-row">
+          <button type="submit">送出註冊</button>
+          <button type="reset">重新填寫</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="summary-panel">
+      <h2>頁面觀察重點</h2>
+      <section>
+        <h3>語意化骨架</h3>
+        <p>頁首、主要內容、表單區與補充區各自使用有角色的標籤，避免整頁只靠 div 表示結構。</p>
+      </section>
+      <section>
+        <h3>表單資料</h3>
+        <p>每個要提交的控件都有 name，radio 共用 name 形成單選，checkbox 用 value 表示被勾選的項目。</p>
+      </section>
+      <section>
+        <h3>標籤與分組</h3>
+        <p>label 透過 for 對應 input 的 id；fieldset 和 legend 讓一組相關欄位有清楚標題。</p>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>HTML 綜合專案：會員註冊表單頁</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>課程資料表頁</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Source notes:
+    notes/050-全局屬性/01-id-class-style-元素識別分類與樣式.md
+    notes/130-語意化標籤/01-語意化標籤入門.md
+    notes/210-超鏈接標籤/01-a-標籤與超連結基礎.md
+    notes/220-列表標籤/01-列表標籤入門與-ul-ol.md
+    notes/220-列表標籤/02-自定義列表-dl-dt-dd.md
+    notes/230-表格標籤/01-表格基本結構.md
+    notes/230-表格標籤/02-rowspan-colspan-合併單元格.md
+  -->
+  <header class="site-header" id="top">
+    <div class="wrap">
+      <p class="eyebrow">HTML 綜合專案 030</p>
+      <h1>課程資料表頁</h1>
+      <p class="lead">用列表與表格整理課程特色、學習流程、術語說明與時段資料。</p>
+    </div>
+  </header>
+
+  <nav class="quick-nav">
+    <div class="wrap nav-links">
+      <a href="#features">課程特色</a>
+      <a href="#steps">學習流程</a>
+      <a href="#terms">術語說明</a>
+      <a href="#schedule">課程表</a>
+    </div>
+  </nav>
+
+  <main class="wrap content-grid">
+    <section id="features" class="panel">
+      <h2>課程特色</h2>
+      <ul class="feature-list">
+        <li>以 HTML 結構為主，先建立內容語意。</li>
+        <li>每個範例都能回推到來源 notes 的知識點。</li>
+        <li>用 CSS 處理呈現，不把表格拿來做版面排版。</li>
+      </ul>
+    </section>
+
+    <section id="steps" class="panel">
+      <h2>學習流程</h2>
+      <ol class="step-list">
+        <li>先閱讀對應 notes，理解每個標籤的語意。</li>
+        <li>再觀察整合頁面中各區塊使用的 HTML 結構。</li>
+        <li>最後檢查資料是否適合用列表、描述列表或表格呈現。</li>
+      </ol>
+    </section>
+
+    <section id="terms" class="panel">
+      <h2>術語說明</h2>
+      <dl class="term-list">
+        <dt>無序列表</dt>
+        <dd>用來呈現沒有固定順序的一組相關項目。</dd>
+        <dt>有序列表</dt>
+        <dd>用來呈現步驟、流程或排名等順序有意義的項目。</dd>
+        <dt>描述列表</dt>
+        <dd>用來呈現名稱與描述之間的對應關係。</dd>
+      </dl>
+    </section>
+
+    <section id="schedule" class="panel table-panel">
+      <h2>課程表</h2>
+      <table class="course-table">
+        <caption>HTML 入門課程安排</caption>
+        <thead>
+          <tr>
+            <th>時段</th>
+            <th>主題</th>
+            <th>內容</th>
+            <th>形式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09:00</td>
+            <td rowspan="2">HTML 結構</td>
+            <td>語意化標籤與頁面骨架</td>
+            <td>講解</td>
+          </tr>
+          <tr>
+            <td>10:00</td>
+            <td>標題、段落與列表判斷</td>
+            <td>範例</td>
+          </tr>
+          <tr>
+            <td>11:00</td>
+            <td>表格資料</td>
+            <td>表格基本結構與合併單元格</td>
+            <td>實作</td>
+          </tr>
+          <tr>
+            <td colspan="4">備註：表格用來呈現列欄資料，不用來控制整頁版面。</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">課程單元數</td>
+            <td>3</td>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="back-link"><a href="#top">回到頁首</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>HTML 綜合專案：課程資料表頁</p>
+  </footer>
+</body>
+</html>

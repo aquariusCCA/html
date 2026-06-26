@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, "Microsoft JhengHei", sans-serif;
+  color: #1f2733;
+  background: #f3f6f4;
+  line-height: 1.7;
+}
+
+.wrap {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  background: #33463f;
+  color: #fff;
+  padding: 42px 0 34px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #cce0d7;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 2.1rem;
+}
+
+.lead {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: #edf5f1;
+}
+
+.quick-nav {
+  background: #fff;
+  border-bottom: 1px solid #d8e0dc;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+a {
+  color: #23624f;
+  font-weight: 700;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 28px 0 36px;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #d8e0dc;
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.panel h2 {
+  margin-bottom: 12px;
+}
+
+.feature-list,
+.step-list {
+  margin-bottom: 0;
+  padding-left: 22px;
+}
+
+.feature-list li,
+.step-list li {
+  margin-bottom: 8px;
+}
+
+.term-list {
+  margin: 0;
+}
+
+.term-list dt {
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.term-list dt:first-child {
+  margin-top: 0;
+}
+
+.term-list dd {
+  margin-left: 0;
+  color: #586472;
+}
+
+.table-panel {
+  grid-column: 1 / -1;
+  overflow-x: auto;
+}
+
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.course-table caption {
+  padding: 8px 0 14px;
+  font-weight: 700;
+  color: #33463f;
+}
+
+.course-table th,
+.course-table td {
+  border: 1px solid #b9c7c1;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.course-table th {
+  background: #e6eee9;
+}
+
+.course-table tfoot td {
+  background: #f0f4f2;
+  font-weight: 700;
+}
+
+.back-link {
+  margin: 16px 0 0;
+}
+
+.site-footer {
+  border-top: 1px solid #d8e0dc;
+  background: #fff;
+  padding: 18px 0;
+  text-align: center;
+  color: #586472;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-panel {
+    grid-column: auto;
+  }
+}
