@@ -14,7 +14,7 @@
 - review 生成：已完成
 - appendix 索引：已完成
 - 目前最新正確來源：`notes/310-detail標籤/`（已通過 notes 完成檢查）
-- 後續流程：demos、practice、review 與 appendix 生成已完成；下一步進行最終驗收。
+- 後續流程：demos、practice、review 與 appendix 生成已完成；章節最終驗收已通過，可作為完整交付物。
 
 ## 已執行流程
 
@@ -38,5 +38,7 @@
 
 - 2026-06-25：已依 `.codex/skills/notes-appendix-generation/SKILL.md` 由 `notes/310-detail標籤/` 生成 `appendix/310-detail標籤/01-details-summary-展開收合速查.md`，共 1 份 appendix；已完成 source_notes 回溯、front matter 與表格欄數檢查，`appendix 索引` 可同步標記為已完成。
 
+- 2026-06-26：已依 `.codex/skills/chapter-final-acceptance/SKILL.md` 完成章節最終驗收；確認 origin、atomic、notes、demos、practice、review、appendix 產出存在，來源回溯鏈完整，`scripts/build-index.mjs --check` 通過，未發現 S1/S2/S3/S4 阻斷問題。使用者已核可進入第二階段回填，`最終驗收` 可同步標記為已完成。
+
 ## 待確認與下一步
-- 進行最終驗收。
+- 最終驗收已通過，無待處理事項。

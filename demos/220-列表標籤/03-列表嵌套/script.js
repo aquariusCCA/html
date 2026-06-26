@@ -10,7 +10,7 @@ const cases = {
     <ul>
       <li>外灘</li>
       <li>杜莎夫人蠟像館</li>
-      <li><a href="">東方明珠</a></li>
+      <li id="oriental-pearl"><a href="#oriental-pearl">東方明珠</a></li>
       <li>迪士尼樂園</li>
     </ul>
   </li>

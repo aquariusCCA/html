@@ -3,7 +3,7 @@ const videoSrc = "assets/video-tags-file-001-7239dd.mp4";
 const modes = {
   content: {
     title: "一般內容影片",
-    html: `<video src="${videoSrc}" controls width="640" poster="">
+    html: `<video src="${videoSrc}" controls width="640" poster="cover.jpg">
 </video>`,
     lesson: "內容型影片通常要保留 controls，讓使用者能自行播放、暫停與調整音量。",
     render() {
