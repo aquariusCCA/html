@@ -24,7 +24,7 @@ alt 與連結文字（另一概念，不在本 skill 範圍）
 atomic 切分提案 → atomic 產生 → ...
 ```
 
-`CLAUDE.md` 規定 `origin/` 唯讀，不可修改、覆蓋、刪除。本 skill 是該規則的**明確例外**，但範圍嚴格限定於：
+專案規範中 `origin/` 是原始資料來源，原則上不直接改寫為正式筆記。本 skill 是該保護規則的**明確例外**，但範圍嚴格限定於：
 
 * 重新命名 `origin/<章節>/assets/` 內可唯一對應的實體資產檔案。
 * 同步更新 `origin/<章節>/*.md` 中對應的本地資產引用路徑。
@@ -128,6 +128,8 @@ mailto:
 tel:
 javascript:
 line:
+data:
+blob:
 空連結，例如 href=""
 ```
 
