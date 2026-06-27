@@ -35,7 +35,7 @@ atomic/<章節>/*.md
 origin/<章節>/*.md
 ```
 
-`CLAUDE.md` 規定 `origin/` 唯讀，不可修改、覆蓋、刪除。本 skill 不修改 `origin/<章節>/*.md`，也不修改、刪除或搬移 `origin/<章節>/assets/`；`origin/<章節>/*.md` 只作為唯讀對照來源，用來判斷問題來自原始資料或 atomic 轉換過程，且只在必要時回查。
+本筆記包規則規定 `origin/` 原則上作為可追溯來源，不可在本 skill 中修改、覆蓋、刪除。本 skill 不修改 `origin/<章節>/*.md`，也不修改、刪除或搬移 `origin/<章節>/assets/`；`origin/<章節>/*.md` 只作為唯讀對照來源，用來判斷問題來自原始資料或 atomic 轉換過程，且只在必要時回查。
 
 本 skill 與 `atomic-note-splitting` 的分工：
 
