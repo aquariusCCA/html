@@ -28,7 +28,7 @@ atomic 產生（本 skill 階段二）
 atomic 內容審查 → notes 生成 → ...
 ```
 
-`CLAUDE.md` 規定 `origin/` 唯讀，不可修改、覆蓋、刪除。本 skill 不修改 `origin/` 任何內容，只將 `origin/<章節>/*.md` 當作唯一原始資料來源讀取，輸出寫入：
+本筆記包規則規定 `origin/` 原則上作為可追溯來源，不可在本 skill 中修改、覆蓋、刪除。本 skill 不修改 `origin/` 任何內容，只將 `origin/<章節>/*.md` 當作唯一原始資料來源讀取，輸出寫入：
 
 ```text
 atomic/<章節>/*.md
