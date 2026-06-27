@@ -57,7 +57,7 @@ notes content review
   ↓
 notes 索引元資料
   ↓
-appendix/  demos/  practice/  review/
+demos/  practice/  review/
   ↓
 最終驗收
 ```
