@@ -31,7 +31,7 @@ html/
 | `projects/`    | 整合專案區     | 根據「跨章節的多篇 `notes/`」生成可獨立開啟執行的綜合 HTML 專案（例如結合表單、語意化、全局屬性的完整頁面）。以「專案」而非「章節」為單位，是綜合多知識點的宏觀場景；視內容需要選用生成，非每章節必經。                                                                                                                                                                                                            |
 | `practice/`    | 練習題區      | 根據 `notes/` 生成練習題、實作任務、改錯題、重構題。                                                                                                                                                                                                                                                                                                         |
 | `review/`      | 複習材料區     | 根據 `notes/` 生成重點摘要、問答題、填空題、複習卡片。                                                                                                                                                                                                                                                                                                        |
-| `supplements/` | 補充資料區     | 根據 `notes/` 延伸補充底層原理、進階觀念、相關比較與實務案例；當 notes 中某概念因教學節奏未深入說明、但值得進一步理解時，視內容需要選用生成，非每章節必經。                                                                                                                                                                                                                                                  |
+| `supplements/` | 補充資料區     | 整理外部素材或延伸解說為補充筆記，並以 `notes/` 作為來源追溯與內容邊界；當 notes 中某概念因教學節奏未深入說明、但值得進一步理解時，視內容需要選用生成，非每章節必經。                                                                                                                                                                                                                                                  |
 | `skills-src/`  | Skill 原始碼區 | 存放各 skill 的原始碼（每個子目錄對應一個 skill），由 `scripts/build-skills.mjs` 建置至各 AI 工具（Claude Code、Codex 等）的 skill 目錄，供工作流各階段呼叫。                                                                                                                                                                                                                                      |
 | `scripts/`     | 維護腳本區     | 存放專案維護用的 Node.js 腳本，不屬於 HTML 知識內容。                                                                                                                                                                                                                                                              |
 
@@ -57,7 +57,7 @@ notes content review
   ↓
 notes 索引元資料
   ↓
-appendix/  demos/  practice/  review/  supplements/
+appendix/  demos/  practice/  review/
   ↓
 最終驗收
 ```
@@ -74,9 +74,9 @@ appendix/  demos/  practice/  review/  supplements/
 * `atomic review`、`notes content review` 為審查關卡，審查通過後才能進入下一層生成
 * `demos/`、`practice/`、`review/` 皆以 `notes/` 為唯一來源生成，為每章節標準輸出，分別對應 `meta/chapter-status.md` 的「demos 生成」「practice 生成」「review 生成」欄位
 * `appendix/` 為選用，當該章節有足夠可表格化的查表內容（標籤速查表、屬性速查表、字元實體表、元素分類表等）時，以 `notes/` 為唯一來源生成，對應 `meta/chapter-status.md` 的「appendix 索引」欄位，非每章節必經
-* `supplements/` 為選用補充，當 `notes/` 中某概念因教學節奏未深入說明、但值得進一步理解時，以 `notes/` 為唯一來源生成底層原理、進階觀念、相關比較或實務案例，非每章節必經
+* `supplements/` 為選用補充層，不屬於章節標準交付主線；可在 `notes/` 完成後依需求整理外部素材或延伸解說，並以 `source_notes` 對應既有 `notes/` 作為追溯與內容邊界
 * `projects/` 為選用的「跨章節整合層」，不在上方單章節資料流之內：它以「跨多個章節的多篇 `notes/`」為來源（多來源追溯），在所有相關章節的「notes 索引元資料」皆完成後才生成；其狀態與來源追溯記錄於 `meta/projects-index.md`，不佔用 `meta/chapter-status.md` 的章節列
-* 「最終驗收」對應 `meta/chapter-status.md` 的「最終驗收」欄位，是所有下游教材生成完畢後的 release gate，驗證前置閘門完整性、產出存在性、跨層來源追溯鏈、連結與資產完整性、索引與狀態一致性
+* 「最終驗收」對應 `meta/chapter-status.md` 的「最終驗收」欄位，是章節標準交付內容完成後的 release gate，驗證前置閘門完整性、產出存在性、跨層來源追溯鏈、連結與資產完整性、索引與狀態一致性；`projects/` 與 `supplements/` 不作為單章節最終驗收的必經前置
 
 ## 流程與 skill 對照
 
@@ -174,9 +174,9 @@ notes/
     *.md
 ```
 
-* 根據 `notes/<章節>/*.md` 生成，章節資料夾與 `origin/`、`atomic/`、`notes/` 對齊
+* 根據 `notes/<章節>/*.md` 生成或對應，章節資料夾與 `origin/`、`atomic/`、`notes/` 對齊
 * `appendix/` 為選用，僅在該章節有足夠可表格化的查表內容時才建立
-* `supplements/` 為選用，僅在該章節有對應補充內容時才建立
+* `supplements/` 為選用補充層，僅在該章節有對應外部素材或延伸解說時才建立；其內容須以 `source_notes` 回連既有 `notes/`
 
 ### demos/
 
@@ -218,7 +218,7 @@ scripts/
 ```
 
 * `skills-src/` 每個子目錄對應一個 skill，由 `scripts/build-skills.mjs` 建置至各 AI 工具（Claude Code、Codex 等）的 skill 目錄；新增或修改 skill 原始碼後，執行 `node scripts/build-skills.mjs` 重新建置
-* `scripts/` 存放專案維護腳本，不屬於 HTML 知識內容，不參與 `origin → supplements` 的資料流
+* `scripts/` 存放專案維護腳本，不屬於 HTML 知識內容；僅提供 skill 建置、索引建置與維護檢查等輔助功能
 
 ## 章節命名規則
 
@@ -257,7 +257,7 @@ scripts/
 * `notes/` 是根據 `atomic/` 生成的主幹知識
 * `demos/`、`practice/`、`review/` 是根據 `notes/` 生成的不同用途內容，為每章節標準輸出
 * `appendix/` 為選用，當該章節有足夠可表格化的查表內容時，以 `notes/` 為來源生成，非每章節必經
-* `supplements/` 為選用補充，當 `notes/` 中某概念值得進一步理解但教學節奏未深入說明時，以 `notes/` 為來源生成，非每章節必經
+* `supplements/` 為選用補充，當 `notes/` 中某概念值得進一步理解但教學節奏未深入說明時，可整理外部素材或延伸解說；補充內容須以 `notes/` 作為追溯與內容邊界，非每章節必經
 * `projects/` 為選用的跨章節整合層，以「專案」為單位、跨多篇 `notes/` 生成綜合 HTML 專案，索引與反向追溯記錄於 `meta/projects-index.md`；只能組裝來源 notes 已教技術的聯集，不得引入新知識
 * 各層 `<章節>` 資料夾名稱（編號+標題）需在 `origin/` ~ `supplements/` 之間保持一致；`projects/` 以專案為鍵、不在此列
 * `atomic/`、`notes/` 不另存資產，統一引用 `origin/<章節>/assets/`
