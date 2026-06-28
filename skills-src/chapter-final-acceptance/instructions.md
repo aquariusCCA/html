@@ -10,7 +10,7 @@ origin 整理 / 資產命名 / alt 與連結文字
   ↓
 atomic 切分提案 / atomic 產生 / atomic 內容審查
   ↓
-notes 生成 / notes 完成檢查 / notes 索引 metadata
+notes 生成 / notes 完成檢查 / notes 索引元資料
   ↓
 demos 生成 / practice 生成 / review 生成 / appendix 索引
   ↓

@@ -21,7 +21,7 @@ practice 與 review 容易混淆，先界定清楚：
 * **review＝回憶檢索**：考「記不記得」，型式為重點摘要、問答題、填空題、複習卡片。
 * 純問答、純填空、純記憶型題目優先歸 review，本 skill **不**重複生成；practice 的每一題都要有「動手做或動手改」的成分。
 
-開始處理前，應先查閱 `meta/chapter-status.md` 對應章節的「notes 完成檢查」欄位，確認狀態為「已完成」才適合開始本 skill；若尚未完成，應提示使用者先完成 `notes-content-review`，不要預設繼續生成 practice。
+開始處理前，應先查閱 `meta/chapter-status.md` 對應章節的「notes 完成檢查」與「notes 索引元資料」欄位，確認兩者皆為「已完成」才適合開始本 skill；若尚未完成，應提示使用者先完成 `notes-content-review` 或 `notes-index-metadata`，不要預設繼續生成 practice。
 
 本 skill 主要讀取：
 
@@ -292,8 +292,9 @@ front matter 之後：
 1. 是否已取得 `<章節>`。
 2. 是否能讀取 `notes/<章節>/*.md`。
 3. `meta/chapter-status.md` 中該章節「notes 完成檢查」是否為「已完成」；若不是，提示先完成 `notes-content-review`。
-4. `meta/chapter-status.md` 中該章節「practice 生成」目前狀態為何；若已是「已完成」，確認使用者是否要重新處理。
-5. 目前是否處於階段一；若沒有明確確認語句，不得進入階段二。
+4. `meta/chapter-status.md` 中該章節「notes 索引元資料」是否為「已完成」；若不是，提示先完成 `notes-index-metadata`。
+5. `meta/chapter-status.md` 中該章節「practice 生成」目前狀態為何；若已是「已完成」，確認使用者是否要重新處理。
+6. 目前是否處於階段一；若沒有明確確認語句，不得進入階段二。
 
 如果任一項不符合，請先回報問題並要求使用者補充，不要猜測。
 
@@ -566,10 +567,11 @@ notes/020-HTML簡介/02-HTML5版本與特性.md
 1. 未提供章節名稱。
 2. `notes/<章節>/` 不存在或沒有 `.md` 檔案。
 3. `meta/chapter-status.md` 顯示「notes 完成檢查」尚未完成。
-4. 使用者要求第二階段產生 practice，但尚未明確回覆「確認，請產生 practice」。
-5. 目標 practice 檔案或 `-starter/` 已存在，且使用者尚未確認覆蓋、更新或保留。
-6. 想出的題目考點或解答在 notes 中找不到足夠前置知識，無法判斷是否該出。
-7. 起始檔需要的圖片、音訊、影片或附件資產在 origin 中無法定位。
+4. `meta/chapter-status.md` 顯示「notes 索引元資料」尚未完成。
+5. 使用者要求第二階段產生 practice，但尚未明確回覆「確認，請產生 practice」。
+6. 目標 practice 檔案或 `-starter/` 已存在，且使用者尚未確認覆蓋、更新或保留。
+7. 想出的題目考點或解答在 notes 中找不到足夠前置知識，無法判斷是否該出。
+8. 起始檔需要的圖片、音訊、影片或附件資產在 origin 中無法定位。
 
 ---
 

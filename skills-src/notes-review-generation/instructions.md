@@ -20,7 +20,7 @@ review 與 practice 容易混淆，先界定清楚：
 * **practice＝動手應用**：考「會不會用」，題型為應用練習、實作任務、改錯、重構，讀者要動手寫或改 HTML。
 * 凡是需要讀者動手寫或改 HTML 才能完成的，一律歸 practice，本 skill **不**重複生成；review 的每一張卡都是「想起來／回答出來」就能完成，不要求動手。
 
-開始處理前，應先查閱 `meta/chapter-status.md` 對應章節的「notes 完成檢查」欄位，確認狀態為「已完成」才適合開始本 skill；若尚未完成，應提示使用者先完成 `notes-content-review`，不要預設繼續生成 review。
+開始處理前，應先查閱 `meta/chapter-status.md` 對應章節的「notes 完成檢查」與「notes 索引元資料」欄位，確認兩者皆為「已完成」才適合開始本 skill；若尚未完成，應提示使用者先完成 `notes-content-review` 或 `notes-index-metadata`，不要預設繼續生成 review。
 
 本 skill 主要讀取：
 
@@ -306,8 +306,9 @@ img 標籤的 `alt` 屬性是用來做什麼的？
 1. 是否已取得 `<章節>`。
 2. 是否能讀取 `notes/<章節>/*.md`。
 3. `meta/chapter-status.md` 中該章節「notes 完成檢查」是否為「已完成」；若不是，提示先完成 `notes-content-review`。
-4. `meta/chapter-status.md` 中該章節「review 生成」目前狀態為何；若已是「已完成」，確認使用者是否要重新處理。
-5. 目前是否處於階段一；若沒有明確確認語句，不得進入階段二。
+4. `meta/chapter-status.md` 中該章節「notes 索引元資料」是否為「已完成」；若不是，提示先完成 `notes-index-metadata`。
+5. `meta/chapter-status.md` 中該章節「review 生成」目前狀態為何；若已是「已完成」，確認使用者是否要重新處理。
+6. 目前是否處於階段一；若沒有明確確認語句，不得進入階段二。
 
 如果任一項不符合，請先回報問題並要求使用者補充，不要猜測。
 
