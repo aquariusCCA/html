@@ -16,7 +16,7 @@ alt 與連結文字（本 skill）← 必須在 atomic 切分提案 之前完成
 atomic 切分提案 → atomic 產生 → ...
 ```
 
-`CLAUDE.md` 規定 `origin/` 唯讀，不可修改、覆蓋、刪除。本 skill 是該規則的明確例外之一，但範圍嚴格限定於：
+在教材處理流程中，`origin/` 應視為受保護的原始資料來源，原則上不得任意修改、覆蓋或刪除。本 skill 是此保護原則下的明確例外，但範圍嚴格限定於：
 
 * 就地更新 `origin/<章節>/*.md` 中本地圖片的 Markdown alt 與 HTML `alt` 屬性。
 * 就地更新 `origin/<章節>/*.md` 中本地附件的 Markdown / HTML 連結顯示文字。
