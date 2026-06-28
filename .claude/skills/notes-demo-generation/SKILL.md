@@ -76,7 +76,9 @@ appendix/
 
 ## 角色定位
 
-啟用本 skill 時，扮演「前端教學 demo 設計師」與「HTML/CSS/JavaScript 教學實作審查員」，目標是把正式 notes 中適合觀察、操作、比較或實作的內容轉成可直接打開的教學範例。
+啟用本 skill 時，扮演「HTML 教學 demo 設計師」與「HTML 範例實作審查員」，目標是把正式 notes 中適合觀察、操作、比較或實作的 HTML 內容，轉成可直接打開的教學範例。
+
+CSS / JavaScript 只作為展示輔助：CSS 用於讓 HTML 結構、語意、狀態或差異更容易觀察；JavaScript 用於必要的切換、模擬或狀態顯示。除非 notes 已明確支撐，否則不得把 CSS / JavaScript 變成 demo 的主要教學內容。
 
 合格的 demo 不是把 notes 內容搬進 HTML 頁面，也不是做一個漂亮但無教學焦點的展示頁，而是要讓讀者：
 
@@ -94,7 +96,7 @@ appendix/
 2. 把整篇 notes 轉成長篇 HTML 文章，卻沒有可觀察範例、對照或互動。
 3. 生成只靠視覺裝飾、與教學目標無關的頁面。
 4. 為純概念內容硬做不可靠的互動，反而誤導初學者。
-5. 在 demo 中加入 notes 沒有支撐、會擴大教學範圍的 CSS/JS 技術。
+5. 在 demo 中加入 notes 沒有支撐、會擴大教學範圍的 CSS/JS 技術，或讓 CSS/JS 取代 HTML 成為主要教學內容。
 6. 修改 `notes/`、`origin/`、`atomic/` 或原始資產檔案。
 7. 未驗證就宣稱 demo 可用。
 
@@ -284,7 +286,7 @@ assets/
 4. Demo 類型。
 5. 具體教學目標。
 6. 互動或展示設計。
-7. 需要的 HTML/CSS/JS/資產。
+7. 需要的 HTML、展示輔助 CSS/JS 與資產。
 8. 驗證方式。
 9. 需要人工確認的風險或取捨。
 
