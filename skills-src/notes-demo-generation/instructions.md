@@ -237,13 +237,13 @@ assets/
 
 ### 來源標示
 
-每個 `index.html` 中應以 HTML 註解或頁面中簡短文字標示來源 notes，例如：
+每個 `index.html` 必須以 HTML 註解標示單一來源 notes；此註解是 demos 層等價於 `source_notes` 的追溯欄位。固定格式：
 
 ```html
 <!-- Source notes: notes/180-圖片標籤/01-img標籤與圖片替代文字.md -->
 ```
 
-來源標示只做追溯，不把整篇 notes 搬進頁面。
+每組 demo 只允許一筆來源 notes，路徑必須指向實體存在的 `notes/<章節>/*.md`。若頁面中另以可見文字標示來源，也不能取代 HTML 註解。來源標示只做追溯，不把整篇 notes 搬進頁面。
 
 ---
 
@@ -322,11 +322,12 @@ assets/
 1. `demos/<章節>/<筆記名>/index.html` 存在。
 2. `index.html` 不是空檔。
 3. `index.html` 具備最小骨架：`<!doctype html>`、`<html lang="...">`、`<meta charset="utf-8">`、`<meta name="viewport" content="width=device-width, initial-scale=1">`、非空 `<title>`。
-4. 本地 `src`、`href` 指向的 CSS、JS、圖片、音訊、影片或附件檔案存在。
-5. `style.css`、`script.js` 若被引用，檔案存在且路徑正確。
-6. 沒有使用指向不存在檔案的本地路徑。
-7. 沒有錯把 notes 中的 Markdown 相對資產路徑直接搬進 demo 而導致路徑失效。
-8. 沒有修改 `notes/`、`origin/`、`atomic/`。
+4. 包含固定格式的 `Source notes` HTML 註解，且只列一筆可解析 notes 路徑。
+5. 本地 `src`、`href` 指向的 CSS、JS、圖片、音訊、影片或附件檔案存在。
+6. `style.css`、`script.js` 若被引用，檔案存在且路徑正確。
+7. 沒有使用指向不存在檔案的本地路徑。
+8. 沒有錯把 notes 中的 Markdown 相對資產路徑直接搬進 demo 而導致路徑失效。
+9. 沒有修改 `notes/`、`origin/`、`atomic/`。
 
 ### 瀏覽器驗證（可行時必須）
 
@@ -413,6 +414,7 @@ assets/
 - 是否只輸出到 demos/<章節>/：
 - 是否未修改 notes/atomic/origin：
 - 是否每組 demo 可獨立開啟：
+- 是否具備固定格式 Source notes 註解且路徑存在：
 - 是否相對路徑正確：
 - 是否完成靜態檢查：
 - 是否完成瀏覽器驗證：
@@ -531,13 +533,14 @@ notes/020-HTML簡介/02-HTML5版本與特性.md
 4. 是否每組 demo 都有清楚教學目標。
 5. 是否每組 demo 都有可觀察範例、對照或互動。
 6. 是否避免把 notes 全文搬進 HTML 頁面。
-7. 是否每組 demo 都有 `index.html` 且可獨立開啟。
-8. 是否相對路徑正確，所有本地 `src`/`href` 都能解析；資產以自包含（複製進 demo `assets/`）為優先，若引用 origin 資產已於來源標示註明。
-9. 是否未修改 `origin/`、`atomic/`、`notes/`、原始資產檔案或其他下游目錄。
-10. 是否已完成靜態檢查。
-11. 若環境可行，是否已完成瀏覽器驗證與至少一次核心互動檢查。
-12. 若無法瀏覽器驗證，是否明確說明原因。
-13. 是否提出 `meta/chapter-status.md` 中「demos 生成」欄位的建議標記。
+7. 是否每組 demo 具備固定格式 `Source notes` 註解，作為 demos 層等價來源欄位。
+8. 是否每組 demo 都有 `index.html` 且可獨立開啟。
+9. 是否相對路徑正確，所有本地 `src`/`href` 都能解析；資產以自包含（複製進 demo `assets/`）為優先，若引用 origin 資產已於來源標示註明。
+10. 是否未修改 `origin/`、`atomic/`、`notes/`、原始資產檔案或其他下游目錄。
+11. 是否已完成靜態檢查。
+12. 若環境可行，是否已完成瀏覽器驗證與至少一次核心互動檢查。
+13. 若無法瀏覽器驗證，是否明確說明原因。
+14. 是否提出 `meta/chapter-status.md` 中「demos 生成」欄位的建議標記。
 
 可建議「demos 生成」標記為「已完成」的條件：
 

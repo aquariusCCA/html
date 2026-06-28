@@ -142,6 +142,8 @@ meta/index.md                          聚合索引
 
 第一階段只輸出驗收報告，不建立、修改或刪除任何檔案。請按以下順序：
 
+本 skill 所稱「上游 13 欄」固定為：`origin 整理`、`資產命名`、`alt 與連結文字`、`atomic 切分提案`、`atomic 產生`、`atomic 內容審查`、`notes 生成`、`notes 完成檢查`、`notes 索引元資料`、`demos 生成`、`practice 生成`、`review 生成`、`appendix 索引`。`最終驗收` 是本 skill 自身欄位，不列入上游 13 欄。
+
 1. **前置閘門完整性**：逐欄檢查該章上游 13 欄是否皆為「已完成」或有正當理由的「不適用」；列出任何殘留「未開始/進行中/待確認」或無理由的「不適用」。
 2. **產出存在性**：對每個非「不適用」的層，確認 `notes/`、`demos/`、`practice/`、`review/`、`appendix/` 等實際有預期產出檔，且 `meta/chapter-logs/<章節>.md` 有對應完成記錄。
 3. **追溯鏈完整**：抽查 `notes` 的 `source_atomic`、`demos/practice/review/appendix` 的 `source_notes`（或等義來源欄）是否都能解析到實體檔；列出斷鏈與缺漏。
@@ -192,7 +194,7 @@ meta/index.md                          聚合索引
 ## 最終驗收報告
 
 - 章節：
-- 上游 13 欄完成情況：
+- 上游 13 欄完成情況（依固定欄位清單）：
 - 已驗收的層：
 - build-index 校驗結果：
 - S1 問題數：
@@ -363,7 +365,7 @@ build-index.mjs --check 失敗，meta/index.md 與某 notes 的 topics 不一致
 
 1. 是否全程唯讀於教材內容，未修改任何 origin/atomic/notes/demos/practice/review/appendix 或資產。
 2. 是否逐項完成七大驗收面向，並以實際檔案 / 指令輸出為依據。
-3. 是否確認上游 13 欄的完成情況。
+3. 是否依固定欄位清單確認上游 13 欄的完成情況。
 4. 是否驗證來源追溯鏈、連結資產、索引與狀態一致性、front matter schema。
 5. 是否把已確認問題列為轉交項目、把需人工確認者列入「需人工確認」表，並分別標註嚴重度、信心與回退流程。
 6. 是否給出明確驗收裁決與 `meta/chapter-status.md` 建議標記。
