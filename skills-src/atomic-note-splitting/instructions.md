@@ -11,7 +11,7 @@ origin/<章節>/assets/
   ↓
 資產命名（asset-standardization，另一概念，須先完成或標記為不適用）
   ↓
-alt 與連結文字（asset-alt-and-link-text，另一概念，須先完成或標記為不適用）
+alt 與連結文字整理（asset-alt-and-link-text，另一概念，須先完成或標記為不適用）
   ↓
 atomic 切分提案（本 skill 階段一）
   ↓
@@ -26,7 +26,7 @@ atomic 內容審查 → notes 生成 → ...
 atomic/<章節>/*.md
 ```
 
-本 skill 不是資產命名或 alt/連結文字整理（屬於另外兩個 skill，且應先於本 skill 完成或標記為不適用），也不是 notes/review/practice/demos/appendix 等下游生成流程；若使用者要求的是資產改名、alt 整理或下游內容生成，應提示改用其他流程。
+本 skill 不是資產命名或 alt/連結文字整理（屬於另外兩個 skill，且應先於本 skill 完成或標記為不適用），也不負責 notes 生成，或以 notes 為來源的下游教材生成。若使用者要求的是資產改名、alt 整理、notes 生成或任何下游輸出生成，應提示改用對應流程。
 
 開始處理前，建議先查閱 `meta/chapter-status.md` 對應章節的「atomic 切分提案」「atomic 產生」欄位，確認狀態為「未開始」「進行中」或「待確認」才需要實際處理；若已是「已完成」，應先確認使用者是否要重新處理，而非預設重跑。同時須確認該章節「資產命名」與「alt 與連結文字」欄位是否為「已完成」或「不適用」，避免在這兩項尚未完成前就進行切分；詳見 Step 1 前置檢查。
 
