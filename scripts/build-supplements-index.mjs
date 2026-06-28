@@ -73,8 +73,8 @@ function stripQuotes(value) {
   return quoted ? quoted[1] : trimmed;
 }
 
-function parseTopics(frontmatter) {
-  const match = frontmatter.match(/^topics:\s*\[(.*)\]\s*$/m);
+function parseInlineList(frontmatter, key) {
+  const match = frontmatter.match(new RegExp(`^${key}:\\s*\\[(.*)\\]\\s*$`, "m"));
   if (!match) return [];
   return match[1]
     .split(",")
@@ -82,8 +82,31 @@ function parseTopics(frontmatter) {
     .filter(Boolean);
 }
 
-function parseSummary(frontmatter) {
-  const match = frontmatter.match(/^summary:\s*(.+)$/m);
+// Parse a YAML key whose value is either an inline list (`key: [a, b]`)
+// or a block list:
+//   key:
+//     - a
+//     - b
+function parseList(frontmatter, key) {
+  const inline = parseInlineList(frontmatter, key);
+  if (inline.length) return inline;
+
+  const lines = frontmatter.split(/\r?\n/);
+  const startIndex = lines.findIndex((line) => new RegExp(`^${key}:\\s*$`).test(line));
+  if (startIndex === -1) return [];
+
+  const items = [];
+  for (let i = startIndex + 1; i < lines.length; i += 1) {
+    const itemMatch = lines[i].match(/^\s+-\s+(.*)$/);
+    if (!itemMatch) break;
+    const value = stripQuotes(itemMatch[1]);
+    if (value) items.push(value);
+  }
+  return items;
+}
+
+function parseScalar(frontmatter, key) {
+  const match = frontmatter.match(new RegExp(`^${key}:\\s*(.+)$`, "m"));
   if (!match) return "";
   return stripQuotes(match[1]);
 }
@@ -120,8 +143,9 @@ async function collectEntries() {
         file,
         baseName,
         title: parseTitle(body) || baseName,
-        topics: parseTopics(frontmatter),
-        summary: parseSummary(frontmatter),
+        sourceNotes: parseList(frontmatter, "source_notes"),
+        topics: parseList(frontmatter, "topics"),
+        summary: parseScalar(frontmatter, "summary"),
         supplementRelPath: toPosixPath(path.join("..", "supplements", chapter, file)),
       });
     }
@@ -138,6 +162,12 @@ function renderByChapter(entries) {
     lines.push(`### ${chapter}`, "");
     for (const entry of entries.filter((item) => item.chapter === chapter)) {
       lines.push(`- ${renderMarkdownLink(entry.title, entry.supplementRelPath)}`);
+      if (entry.sourceNotes.length) {
+        lines.push("  - source_notes:");
+        for (const sourceNote of entry.sourceNotes) {
+          lines.push(`    - ${toPosixPath(sourceNote)}`);
+        }
+      }
       if (entry.topics.length) lines.push(`  - topics: ${entry.topics.join(", ")}`);
       if (entry.summary) lines.push(`  - summary: ${entry.summary}`);
     }
@@ -177,15 +207,17 @@ function renderByTopic(entries) {
 
 function renderUntagged(entries) {
   const lines = ["## 尚未標記 metadata", ""];
-  const untagged = entries.filter((entry) => !entry.topics.length || !entry.summary);
+  const untagged = entries.filter(
+    (entry) => !entry.sourceNotes.length || !entry.topics.length || !entry.summary,
+  );
 
   if (!untagged.length) {
-    lines.push("（所有 supplements 都已標記 topics 與 summary）", "");
+    lines.push("（所有 supplements 都已標記 source_notes、topics 與 summary）", "");
     return lines;
   }
 
   lines.push(
-    "以下 supplements 缺少 `topics` 或 `summary`，可使用 `notes-supplements-generation` skill 補上：",
+    "以下 supplements 缺少 `source_notes`、`topics` 或 `summary`，可使用 `notes-supplements-generation` skill 補上：",
     "",
   );
   for (const entry of untagged) {
@@ -203,7 +235,7 @@ function renderIndex(entries) {
     "# Supplements 索引",
     "",
     "> 本檔案由 `scripts/build-supplements-index.mjs` 自動產生，請勿手動編輯。",
-    "> 如需更新，請修改對應 supplements 的 front matter（`topics`/`summary`）後重新執行：",
+    "> 如需更新，請修改對應 supplements 的 front matter（`source_notes`/`topics`/`summary`）後重新執行：",
     ">",
     "> ```text",
     "> node scripts/build-supplements-index.mjs",
